@@ -1,4 +1,3 @@
-import AdminDeal from '@/components/AdminDeal';
 import Deal from '@/components/Deal';
 import { DealsRecord } from '@/xata';
 
