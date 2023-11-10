@@ -1,0 +1,11 @@
+{
+  "id": "mig_cl6l7kstl6u1ihs07hug",
+  "checksum": "1:8965d79c89232c2f1c6950c3bfb9973d7e84e32745bd68597620a952f4340a8d",
+  "operations": [
+    {
+      "addTable": {
+        "table": "deals"
+      }
+    }
+  ]
+}

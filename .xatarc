@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://James-Q-Quick-s-workspace-l5kbra.us-east-1.xata.sh/db/developer-black-friday-deals",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}

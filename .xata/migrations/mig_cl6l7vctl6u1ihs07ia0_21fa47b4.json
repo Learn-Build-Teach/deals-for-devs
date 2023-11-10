@@ -1,0 +1,16 @@
+{
+  "id": "mig_cl6l7vctl6u1ihs07ia0",
+  "parentID": "mig_cl6l7s4tl6u1ihs07i6g",
+  "checksum": "1:21fa47b49d68c853cc51bd8f38a4c5a4e21995cd546e9129691fabe21acc8852",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "coupon",
+          "type": "string"
+        },
+        "table": "deals"
+      }
+    }
+  ]
+}
