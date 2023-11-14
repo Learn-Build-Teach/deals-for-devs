@@ -6,8 +6,11 @@ const schema = z.object({
   name: z.string(),
   link: z.string().url(),
   description: z.string(),
+  startDate: z.coerce.date(),
+  endDate: z.coerce.date(),
   coupon: z.string().optional(),
   couponPercentage: z.number().optional(),
+  email: z.string().email().optional(),
 });
 
 export default function DealForm() {
@@ -19,8 +22,11 @@ export default function DealForm() {
         name: formData.get('name'),
         coupon: formData.get('coupon'),
         link: formData.get('link'),
+        startDate: formData.get('startDate'),
+        endDate: formData.get('endDate'),
         description: formData.get('description'),
         couponPercent: formData.get('couponPercent'),
+        email: formData.get('email'),
       });
     } catch (error) {
       return console.error(error);
@@ -29,8 +35,11 @@ export default function DealForm() {
       name: parsed.name,
       coupon: parsed.coupon,
       link: parsed.link,
+      startDate: parsed.startDate,
+      endDate: parsed.endDate,
       description: parsed.description,
       couponPercentage: parsed.couponPercentage,
+      email: parsed.email,
     };
     console.log(newDeal);
     const xataClient = getXataClient();
@@ -91,6 +100,38 @@ export default function DealForm() {
             required
           />
         </div>
+        <div>
+          <label
+            className=" text-gray-300 text-sm font-bold mb-2"
+            htmlFor="startDate"
+            aria-label="startDate"
+          >
+            Start date
+          </label>
+          <input
+            className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
+            name="startDate"
+            id="startDate"
+            required
+            type="date"
+          />
+        </div>
+        <div>
+          <label
+            className=" text-gray-300 text-sm font-bold mb-2"
+            htmlFor="endDate"
+            aria-label="endDate"
+          >
+            End date
+          </label>
+          <input
+            className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
+            name="endDate"
+            id="endDate"
+            required
+            type="date"
+          />
+        </div>
 
         <div>
           <label
@@ -122,6 +163,22 @@ export default function DealForm() {
             id="couponPercent"
             type="number"
             placeholder="50"
+          />
+        </div>
+        <div>
+          <label
+            className=" text-gray-300 text-sm font-bold mb-2"
+            htmlFor="email"
+            aria-label="email"
+          >
+            Your email in case there are any follow up details needed?
+            (optional)
+          </label>
+          <input
+            className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
+            name="email"
+            id="email"
+            type="text"
           />
         </div>
         <button className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-32">
