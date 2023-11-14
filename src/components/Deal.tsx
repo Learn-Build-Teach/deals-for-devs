@@ -18,11 +18,9 @@ export default function Deal({
       >
         <h2>{deal.name}</h2>
       </Link>
-      <p className="font-normal text-gray-700 dark:text-gray-400">
-        {deal.description}
-      </p>
+      <p className="font-normal text-gray-300">{deal.description}</p>
       {deal.coupon && (
-        <p className="mt-4 text-sm font-medium text-gray-900 dark:text-gray-200">
+        <p className="mt-4 text-sm font-medium text-gray-400">
           Coupon Code: ({deal.couponPercent}%off) {deal.coupon}
         </p>
       )}

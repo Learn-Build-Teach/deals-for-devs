@@ -1,6 +1,7 @@
 'use client';
 
 import { useUser, UserButton } from '@clerk/nextjs';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Nav() {
@@ -12,11 +13,9 @@ export default function Nav() {
         className="flex items-center justify-between p-6 lg:px-8 h-20 "
         aria-label="Global"
       >
-        <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
-            BF Deals
-          </a>
-        </div>
+        <a href="/" className="-m-1.5 p-1.5">
+          <Image src="/logo-teal.png" alt="me" height="48" width={30} />
+        </a>
 
         <div className=" flex flex-1 justify-end gap-x-4 items-center">
           {isLoaded && user && (
