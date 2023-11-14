@@ -1,5 +1,4 @@
 import { getXataClient } from '@/xata';
-import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
