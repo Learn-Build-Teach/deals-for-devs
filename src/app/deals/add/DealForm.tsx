@@ -47,7 +47,7 @@ export default function DealForm() {
             htmlFor="name"
             aria-label="Name"
           >
-            What&aposs the name?
+            {"What's the name?"}
           </label>
           <input
             className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
@@ -64,7 +64,7 @@ export default function DealForm() {
             htmlFor="link"
             aria-label="Link"
           >
-            What&aposs the link?
+            {"What's the link?"}
           </label>
           <input
             className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
