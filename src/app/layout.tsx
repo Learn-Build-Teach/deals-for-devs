@@ -1,12 +1,19 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import Nav from '@/components/Nav';
 
 export const metadata: Metadata = {
-  title: 'Developer Black Friday Deals',
-  description: 'The Best Black Friday deals for developers!',
+  title: 'Developer Deals',
+  description:
+    'The Best Black Friday deals on courses, tools, and desk setups for developers!',
+  openGraph: {
+    images: [
+      {
+        url: '/logo-wide.png',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
