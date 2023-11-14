@@ -1,6 +1,11 @@
 import React from 'react';
 import DealForm from './DealForm';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: 'Add a Black Friday Deal',
+  description: 'Share the best deals that you know developers will love!',
+};
 export default function AddDealPage() {
   return (
     <main className="">
