@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.27.0",
+    "@sentry/nextjs": "^7.80.1",
     "@xata.io/client": "^0.27.0",
     "next": "14.0.2",
     "react": "^18",
