@@ -18,10 +18,14 @@ export default function Deal({
       >
         <h2>{deal.name}</h2>
       </Link>
-      <p className="font-normal text-gray-300">{deal.description}</p>
+      <p className="font-normal text-gray-300 line-clamp-4">
+        {deal.description}
+      </p>
       {deal.coupon && (
         <p className="mt-4 text-sm font-medium text-gray-400">
-          Coupon Code: ({deal.couponPercent}%off) {deal.coupon}
+          Coupon Code:{' '}
+          <span className="font-bold text-gray-100">{deal.coupon}</span>
+          {deal.couponPercent && <span>{`(${deal.couponPercent}% off)`}</span>}
         </p>
       )}
       {showAdminOptions && <AdminOptions id={deal.id} />}

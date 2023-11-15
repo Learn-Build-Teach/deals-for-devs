@@ -1,6 +1,8 @@
 import Hero from '@/components/Hero';
 import Deals from './DealsList';
 import { DealsRecord, getXataClient } from '@/xata';
+import Countdown from 'react-countdown';
+import Timer from '@/components/Timer';
 
 export default async function Home() {
   const xataClient = getXataClient();
@@ -11,6 +13,9 @@ export default async function Home() {
   return (
     <main>
       <Hero />
+      <div className="mb-20">
+        <Timer />
+      </div>
       <Deals deals={deals} />
     </main>
   );
