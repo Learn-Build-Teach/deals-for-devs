@@ -2,6 +2,7 @@ import { DealsRecord } from '@/xata';
 import Link from 'next/link';
 import React from 'react';
 import AdminOptions from './AdminOptions';
+import ClickableCouponCode from './ClickableCouponCode';
 
 export default function Deal({
   deal,
@@ -41,8 +42,7 @@ export default function Deal({
       </p>
       {deal.coupon && (
         <p className="mt-4 text-sm font-medium text-gray-400">
-          Coupon Code:{' '}
-          <span className="font-bold text-teal-500">{deal.coupon}</span>
+          Coupon Code: <ClickableCouponCode coupon={deal.coupon} />
           {deal.couponPercent && <span>{`(${deal.couponPercent}% off)`}</span>}
         </p>
       )}
