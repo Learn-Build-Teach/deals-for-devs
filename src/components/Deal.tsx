@@ -10,15 +10,31 @@ export default function Deal({
   deal: DealsRecord;
   showAdminOptions?: boolean;
 }) {
+  const startDateStr = deal.startDate?.toLocaleDateString('en-us', {
+    // year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+
+  const endDateStr = deal.endDate?.toLocaleDateString('en-us', {
+    // year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
   return (
     <div className=" max-w-sm p-6 bg-gray-800 border border-gray-200 rounded-lg shadow">
       <Link
         href={deal.link}
-        className="mb-2 text-2xl font-bold tracking-tight text-gray-200 hover:text-white"
+        className=" text-2xl font-bold tracking-tight text-gray-200 hover:text-white"
       >
         <h2>{deal.name}</h2>
       </Link>
-      <p className="font-normal text-gray-300 line-clamp-4">
+      {deal.startDate && deal.endDate && (
+        <small>
+          {startDateStr} - {endDateStr}
+        </small>
+      )}
+      <p className="font-normal text-gray-300 line-clamp-4 mt-2">
         {deal.description}
       </p>
       {deal.coupon && (
