@@ -9,7 +9,9 @@ export const metadata: Metadata = {
 export default function AddDealPage() {
   return (
     <main className="">
-      <h1 className="text-4xl font-bold mb-10 text-center">Share a deal?</h1>
+      <h1 className="text-4xl font-bold mb-10 text-gray-100 text-center">
+        Share a deal?
+      </h1>
       <DealForm />
     </main>
   );

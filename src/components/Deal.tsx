@@ -32,7 +32,7 @@ export default function Deal({
         {deal.name}
       </h2>
       {deal.startDate && deal.endDate && (
-        <small>
+        <small className="text-gray-300">
           {startDateStr} - {endDateStr}
         </small>
       )}
@@ -42,7 +42,7 @@ export default function Deal({
       {deal.coupon && (
         <p className="mt-4 text-sm font-medium text-gray-400">
           Coupon Code:{' '}
-          <span className="font-bold text-gray-100">{deal.coupon}</span>
+          <span className="font-bold text-teal-500">{deal.coupon}</span>
           {deal.couponPercent && <span>{`(${deal.couponPercent}% off)`}</span>}
         </p>
       )}

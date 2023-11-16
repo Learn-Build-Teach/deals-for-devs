@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <div className="bg-gray-800 p-8">
       <div className="max-w-4xl mx-auto text-center">
-        <p className="font-bold text-lg">
+        <p className="font-bold text-lg text-gray-200">
           {' '}
           Built with{' '}
           <MyLink text="Next.js 14" isFancy={true} href="https://nextjs.org/" />

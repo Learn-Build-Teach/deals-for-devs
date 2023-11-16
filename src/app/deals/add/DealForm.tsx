@@ -56,7 +56,7 @@ export default function DealForm() {
             htmlFor="name"
             aria-label="Name"
           >
-            {"What's the name?"}
+            {"What's the name of the product?"}
           </label>
           <input
             className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
@@ -90,7 +90,7 @@ export default function DealForm() {
             htmlFor="description"
             aria-label="description"
           >
-            What are the deets?
+            What are the details?
           </label>
           <textarea
             className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
@@ -106,7 +106,7 @@ export default function DealForm() {
             htmlFor="startDate"
             aria-label="startDate"
           >
-            Start date
+            Sale start date
           </label>
           <input
             className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
@@ -122,7 +122,7 @@ export default function DealForm() {
             htmlFor="endDate"
             aria-label="endDate"
           >
-            End date
+            Sale end date
           </label>
           <input
             className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
@@ -155,7 +155,7 @@ export default function DealForm() {
             htmlFor="couponPercent"
             aria-label="couponPercent"
           >
-            Coupon code percentage? (optional)
+            What percentage off does the coupon give? (optional)
           </label>
           <input
             className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
@@ -171,7 +171,7 @@ export default function DealForm() {
             htmlFor="email"
             aria-label="email"
           >
-            Your email in case there are any follow up details needed?
+            Your email (in case there are any follow up details needed)?
             (optional)
           </label>
           <input

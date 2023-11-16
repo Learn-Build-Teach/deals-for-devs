@@ -4,7 +4,12 @@ import React from 'react';
 
 export default function AdminOptions({ id }: { id: string }) {
   const router = useRouter();
-  const handleApprove = async () => {
+  //button click event handler typescript
+
+  const handleApprove = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    e.preventDefault();
+
     const res = await fetch('/api/deals/approve', {
       method: 'POST',
       body: JSON.stringify({ id }),
@@ -15,7 +20,10 @@ export default function AdminOptions({ id }: { id: string }) {
     router.refresh();
   };
 
-  const handleReject = async () => {
+  const handleReject = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    e.preventDefault();
+
     const res = await fetch('/api/deals/reject', {
       method: 'POST',
       body: JSON.stringify({ id }),
