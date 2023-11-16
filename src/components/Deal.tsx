@@ -22,19 +22,21 @@ export default function Deal({
     day: 'numeric',
   });
   return (
-    <div className=" max-w-sm p-6 bg-gray-800 border border-gray-200 rounded-lg shadow">
-      <Link
-        href={deal.link}
-        className=" text-2xl font-bold tracking-tight text-gray-200 hover:text-white"
-      >
-        <h2>{deal.name}</h2>
-      </Link>
+    <Link
+      href={deal.link}
+      className=" max-w-sm p-6 bg-gray-800 border border-gray-200 rounded-lg shadow hover:scale-105 hover:border-teal-500 hover:border-4 hover:rotate-3 cursor-pointer transition duration-300 ease-in-out"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <h2 className="text-2xl font-bold tracking-tight text-gray-200">
+        {deal.name}
+      </h2>
       {deal.startDate && deal.endDate && (
         <small>
           {startDateStr} - {endDateStr}
         </small>
       )}
-      <p className="font-normal text-gray-300 line-clamp-4 mt-2">
+      <p className="font-normal text-md text-gray-300 line-clamp-4 mt-2">
         {deal.description}
       </p>
       {deal.coupon && (
@@ -45,6 +47,6 @@ export default function Deal({
         </p>
       )}
       {showAdminOptions && <AdminOptions id={deal.id} />}
-    </div>
+    </Link>
   );
 }
