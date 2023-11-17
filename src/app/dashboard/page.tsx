@@ -21,7 +21,9 @@ export default async function Home() {
     .getMany();
   return (
     <main>
-      <h1 className="text-4xl font-bold mb-10 text-center">Dashboard</h1>
+      <h1 className="text-4xl text-gray-100 font-bold mb-10 text-center">
+        Dashboard
+      </h1>
       <DealsList deals={deals} isAdmin={true} />
     </main>
   );
