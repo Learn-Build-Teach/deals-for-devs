@@ -10,7 +10,7 @@ const schema = z.object({
   endDate: z.coerce.date(),
   coupon: z.string().optional(),
   couponPercentage: z.number().optional(),
-  email: z.string().email().optional(),
+  email: z.string().email().optional().or(z.literal('')),
 });
 
 export default function DealForm() {
