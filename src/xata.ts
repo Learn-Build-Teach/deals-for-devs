@@ -24,6 +24,7 @@ const tables = [
       { name: "startDate", type: "datetime" },
       { name: "endDate", type: "datetime" },
       { name: "email", type: "email" },
+      { name: "type", type: "string" },
     ],
   },
   { name: "adminUser", columns: [] },

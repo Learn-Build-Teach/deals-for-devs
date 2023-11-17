@@ -2,6 +2,14 @@ import { getXataClient } from '@/xata';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
+export enum DealType {
+  General = 'general',
+  Ebook = 'ebook',
+  VideoCourse = 'video-course',
+  Tool = 'tool',
+  Conference = 'conference',
+}
+
 const schema = z.object({
   name: z.string(),
   link: z.string().url(),
@@ -11,6 +19,8 @@ const schema = z.object({
   coupon: z.string().optional(),
   couponPercentage: z.number().optional(),
   email: z.string().email(),
+  //TODO: don't replicate array
+  type: z.enum(['general', 'ebook', 'video-course', 'tool', 'conference']),
 });
 
 export default function DealForm() {
@@ -27,6 +37,7 @@ export default function DealForm() {
         description: formData.get('description'),
         couponPercent: formData.get('couponPercent'),
         email: formData.get('email'),
+        type: formData.get('type'),
       });
     } catch (error) {
       return console.error(error);
@@ -56,7 +67,7 @@ export default function DealForm() {
             htmlFor="name"
             aria-label="Name"
           >
-            {"What's the name of the product?"}
+            {"What's the name of the deal?"}
           </label>
           <input
             className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
@@ -66,6 +77,27 @@ export default function DealForm() {
             placeholder="Popular Web Development Course"
             required
           />
+        </div>
+        <div>
+          <label
+            className=" text-gray-300 text-sm font-bold mb-2"
+            htmlFor="type"
+            aria-label="type"
+          >
+            {'What type of deal is this?'}
+          </label>
+          <select
+            className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
+            name="type"
+            id="type"
+            required
+          >
+            {Object.values(DealType).map((dealType) => (
+              <option key={dealType} value={dealType}>
+                {dealType}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label
@@ -100,37 +132,41 @@ export default function DealForm() {
             required
           />
         </div>
-        <div>
-          <label
-            className=" text-gray-300 text-sm font-bold mb-2"
-            htmlFor="startDate"
-            aria-label="startDate"
-          >
-            Sale start date
-          </label>
-          <input
-            className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
-            name="startDate"
-            id="startDate"
-            required
-            type="date"
-          />
-        </div>
-        <div>
-          <label
-            className=" text-gray-300 text-sm font-bold mb-2"
-            htmlFor="endDate"
-            aria-label="endDate"
-          >
-            Sale end date
-          </label>
-          <input
-            className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
-            name="endDate"
-            id="endDate"
-            required
-            type="date"
-          />
+        <div className="flex gap-x-4">
+          <div className="grow">
+            <label
+              className=" text-gray-300 text-sm font-bold mb-2"
+              htmlFor="startDate"
+              aria-label="startDate"
+            >
+              Start date
+            </label>
+            <input
+              className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
+              name="startDate"
+              id="startDate"
+              defaultValue={new Date().toISOString().split('T')[0]}
+              required
+              type="date"
+            />
+          </div>
+          <div className="grow">
+            <label
+              className=" text-gray-300 text-sm font-bold mb-2"
+              htmlFor="endDate"
+              aria-label="endDate"
+            >
+              End date
+            </label>
+            <input
+              className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
+              name="endDate"
+              id="endDate"
+              defaultValue={new Date().toISOString().split('T')[0]}
+              required
+              type="date"
+            />
+          </div>
         </div>
 
         <div>
@@ -139,7 +175,7 @@ export default function DealForm() {
             htmlFor="coupon"
             aria-label="Coupon"
           >
-            Is there a coupon code? (optional)
+            Coupon code (optional)
           </label>
           <input
             className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
