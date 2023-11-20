@@ -4,7 +4,7 @@ import React from 'react';
 import AdminOptions from './AdminOptions';
 import ClickableCouponCode from './ClickableCouponCode';
 import { FaBeer, FaVideo, FaBook, FaCog, FaCalendar } from 'react-icons/fa';
-import { Category } from '@/app/deals/add/DealForm';
+import { Category } from '@/app/deals/add/page';
 
 const categoryToIcon = {
   misc: <FaBeer />,
@@ -36,7 +36,7 @@ export default function Deal({
   return (
     <Link
       href={deal.link}
-      className=" max-w-sm py-8 px-4 bg-gray-800 border border-gray-200 rounded-lg shadow hover:scale-105 hover:border-teal-500 hover:border-4 hover:rotate-3 cursor-pointer transition duration-300 ease-in-out relative"
+      className=" max-w-sm py-8 px-4 bg-gray-800 border border-gray-200 rounded-lg shadow hover:scale-105 hover:border-teal-500 hover:border-4 hover:rotate-1 cursor-pointer transition duration-300 ease-in-out relative"
       target="_blank"
       rel="noopener noreferrer"
     >

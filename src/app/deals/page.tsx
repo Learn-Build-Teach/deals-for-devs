@@ -1,6 +1,6 @@
 import { DealsRecord, getXataClient } from '@/xata';
-import Deals from '../DealsList';
-import DealsFilter from '@/components/DealsFilter';
+import CategoryOptions from '@/components/CategoryOptions';
+import DealsList from '../DealsList';
 
 export default async function DealsPage() {
   const xataClient = getXataClient();
@@ -10,7 +10,10 @@ export default async function DealsPage() {
     .getAll();
   return (
     <div>
-      <DealsFilter deals={deals} />
+      <h1 className="text-4xl text-center font-bold mb-10 text-white">
+        Top Deals
+      </h1>
+      <DealsList deals={deals} />
     </div>
   );
 }

@@ -1,62 +1,14 @@
-import { getXataClient } from '@/xata';
-import { redirect } from 'next/navigation';
-import { z } from 'zod';
+'use client';
 
-export enum Category {
-  Ebook = 'ebook',
-  VideoCourse = 'video',
-  Tool = 'tool',
-  Conference = 'conference',
-  Misc = 'misc',
-}
+import { useFormStatus } from 'react-dom';
+import { Category } from './page';
 
-const dealSchema = z.object({
-  name: z.string(),
-  link: z.string().url(),
-  description: z.string(),
-  startDate: z.coerce.date(),
-  endDate: z.coerce.date(),
-  coupon: z.string().optional(),
-  couponPercentage: z.number().optional(),
-  email: z.string().email(),
-  //TODO: don't replicate array
-  type: z.enum(['misc', 'ebook', 'video', 'tool', 'conference']),
-});
-
-export default function DealForm() {
-  async function createDeal(formData: FormData) {
-    'use server';
-    let parsed;
-    try {
-      parsed = dealSchema.parse({
-        name: formData.get('name'),
-        coupon: formData.get('coupon'),
-        link: formData.get('link'),
-        startDate: formData.get('startDate'),
-        endDate: formData.get('endDate'),
-        description: formData.get('description'),
-        couponPercent: formData.get('couponPercent'),
-        email: formData.get('email'),
-        type: formData.get('type'),
-      });
-    } catch (error) {
-      return console.error(error);
-    }
-    const newDeal = {
-      name: parsed.name,
-      coupon: parsed.coupon,
-      link: parsed.link,
-      startDate: parsed.startDate,
-      endDate: parsed.endDate,
-      description: parsed.description,
-      couponPercentage: parsed.couponPercentage,
-      email: parsed.email,
-    };
-    console.log(newDeal);
-    const xataClient = getXataClient();
-    await xataClient.db.deals.create(newDeal);
-    redirect(`/thank-you`);
-  }
+export default function DealForm({
+  createDeal,
+}: {
+  createDeal: (formData: FormData) => void;
+}) {
+  const { pending } = useFormStatus();
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -217,8 +169,11 @@ export default function DealForm() {
             required
           />
         </div>
-        <button className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-32">
-          Submit
+        <button
+          className="bg-gray-800 hover:bg-gray-700 disabled:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-32"
+          disabled={pending}
+        >
+          Submit {pending && '...'}
         </button>
       </form>
     </div>
