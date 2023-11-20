@@ -6,10 +6,5 @@ export default function DealsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div>
-      <CategoryOptions />
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 }

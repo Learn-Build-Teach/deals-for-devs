@@ -13,6 +13,7 @@ export default async function DealsPage() {
       <h1 className="text-4xl text-center font-bold mb-10 text-white">
         Top Deals
       </h1>
+      <CategoryOptions />
       <DealsList deals={deals} />
     </div>
   );

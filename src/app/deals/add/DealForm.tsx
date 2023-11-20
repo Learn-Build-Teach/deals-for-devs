@@ -33,15 +33,15 @@ export default function DealForm({
         <div>
           <label
             className=" text-gray-300 text-sm font-bold mb-2"
-            htmlFor="type"
-            aria-label="type"
+            htmlFor="category"
+            aria-label="category"
           >
-            {'What type of deal is this?'}
+            {'What category of deal is this?'}
           </label>
           <select
             className="shadow appearance-none border-2 border-gray-700 rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-transparent "
-            name="type"
-            id="type"
+            name="category"
+            id="category"
             required
           >
             {Object.values(Category).map((dealType) => (
@@ -166,7 +166,6 @@ export default function DealForm({
             name="email"
             id="email"
             type="text"
-            required
           />
         </div>
         <button

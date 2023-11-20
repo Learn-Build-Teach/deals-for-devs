@@ -18,6 +18,7 @@ export default async function CategoryPage({
       <h1 className="text-4xl text-center font-bold mb-10 text-white">
         Top <span className="text-teal-500">{params.category}</span> Deals
       </h1>
+      <CategoryOptions />
       <DealsList deals={deals} />
     </div>
   );

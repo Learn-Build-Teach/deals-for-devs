@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { getXataClient } from '@/xata';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
+import { createDeal } from '../actions';
 
 //TODO: why doesn't this work with server component page?
 // export const metadata: Metadata = {
@@ -26,43 +27,12 @@ export const dealSchema = z.object({
   endDate: z.coerce.date(),
   coupon: z.string().optional(),
   couponPercentage: z.number().optional(),
-  email: z.string().email(),
+  email: z.string().email().optional(),
   //TODO: don't replicate array
-  type: z.enum(['misc', 'ebook', 'video', 'tool', 'conference']),
+  category: z.enum(['misc', 'ebook', 'video', 'tool', 'conference']),
 });
 
 export default function AddDealPage() {
-  async function createDeal(formData: FormData) {
-    let parsed;
-    try {
-      parsed = dealSchema.parse({
-        name: formData.get('name'),
-        coupon: formData.get('coupon'),
-        link: formData.get('link'),
-        startDate: formData.get('startDate'),
-        endDate: formData.get('endDate'),
-        description: formData.get('description'),
-        couponPercent: formData.get('couponPercent'),
-        email: formData.get('email'),
-        type: formData.get('type'),
-      });
-    } catch (error) {
-      return console.error(error);
-    }
-    const newDeal = {
-      name: parsed.name,
-      coupon: parsed.coupon,
-      link: parsed.link,
-      startDate: parsed.startDate,
-      endDate: parsed.endDate,
-      description: parsed.description,
-      couponPercentage: parsed.couponPercentage,
-      email: parsed.email,
-    };
-    const xataClient = getXataClient();
-    await xataClient.db.deals.create(newDeal);
-    redirect(`/thank-you`);
-  }
   return (
     <main className="">
       <h1 className="text-4xl font-bold mb-10 text-gray-100 text-center">
