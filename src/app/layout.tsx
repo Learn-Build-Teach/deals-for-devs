@@ -29,7 +29,7 @@ export default function RootLayout({
           <div className="bg-gray-900 min-h-screen flex justify-between flex-col">
             <div>
               <Nav />
-              <div className=" px-4 sm:px-8 py-12 max-w-6xl mx-auto">
+              <div className=" px-4 sm:px-8 py-6 pt-1 max-w-6xl mx-auto">
                 {children}
               </div>
             </div>

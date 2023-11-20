@@ -3,23 +3,16 @@ import Deals from './DealsList';
 import { DealsRecord, getXataClient } from '@/xata';
 import Timer from '@/components/Timer';
 import Link from 'next/link';
+import FeaturedDeals from '@/components/FeaturedDeals';
+import { Category } from './deals/add/page';
 
 export default async function Home() {
-  const xataClient = getXataClient();
-  const deals: DealsRecord[] = await xataClient.db.deals
-    .filter({ approved: true, featured: true })
-    .sort('xata.createdAt', 'desc')
-    .getMany();
   return (
     <main>
       <Hero />
       <div className="mb-20">
         <Timer />
       </div>
-      <h2 className="text-4xl font-bold mb-8 text-gray-100 text-center">
-        Featured Deals
-      </h2>
-      <Deals deals={deals} />
       <div className="text-center my-20">
         <Link
           href="/deals"
@@ -27,6 +20,16 @@ export default async function Home() {
         >
           View All Deals
         </Link>
+      </div>
+      <div className="flex gap-y-16 flex-col mb-20">
+        {[
+          Category.Video,
+          Category.Tool,
+          Category.Conference,
+          Category.Ebook,
+        ].map((category) => (
+          <FeaturedDeals category={category} key={category} />
+        ))}
       </div>
     </main>
   );
