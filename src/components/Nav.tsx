@@ -18,6 +18,12 @@ export default function Nav() {
         </a>
 
         <div className=" flex flex-1 justify-end gap-x-4 items-center">
+          <Link
+            href="/deals"
+            className="rounded-md  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm  "
+          >
+            All Deals
+          </Link>
           {isLoaded && user && (
             <>
               <Link
@@ -29,6 +35,7 @@ export default function Nav() {
               <UserButton afterSignOutUrl="/" />
             </>
           )}
+
           <Link
             href="/deals/add"
             className="rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500  text-center"
