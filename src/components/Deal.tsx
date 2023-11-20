@@ -4,15 +4,14 @@ import React from 'react';
 import AdminOptions from './AdminOptions';
 import ClickableCouponCode from './ClickableCouponCode';
 import { FaBeer, FaVideo, FaBook, FaCog, FaCalendar } from 'react-icons/fa';
-import { DealType } from '@/app/deals/add/DealForm';
-import { SiJavascript, SiReact } from 'react-icons/si';
+import { Category } from '@/app/deals/add/DealForm';
 
-const typeToIcon = {
-  general: <FaBeer className="text-white" />,
-  ebook: <FaBook className="text-white" />,
-  'video-course': <FaVideo className="text-white" />,
-  tool: <FaCog className="text-white" />,
-  conference: <FaCalendar className="text-white" />,
+const categoryToIcon = {
+  misc: <FaBeer />,
+  ebook: <FaBook />,
+  video: <FaVideo />,
+  tool: <FaCog />,
+  conference: <FaCalendar />,
 };
 
 export default function Deal({
@@ -33,6 +32,7 @@ export default function Deal({
     month: 'short',
     day: 'numeric',
   });
+
   return (
     <Link
       href={deal.link}
@@ -43,9 +43,9 @@ export default function Deal({
       <h2 className="text-2xl font-bold tracking-tight text-gray-200">
         {deal.name}
       </h2>
-      {deal.type && (
-        <div className="absolute top-2 right-2">
-          {typeToIcon[deal.type as DealType]}
+      {deal.category && (
+        <div className="absolute top-2 right-2 text-teal-500">
+          {categoryToIcon[deal.category as Category]}
         </div>
       )}
       {/* <SiJavascript className="text-yellow-500" /> */}

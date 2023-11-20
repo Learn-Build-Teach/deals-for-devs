@@ -2,15 +2,15 @@ import { getXataClient } from '@/xata';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-export enum DealType {
-  General = 'general',
+export enum Category {
   Ebook = 'ebook',
-  VideoCourse = 'video-course',
+  VideoCourse = 'video',
   Tool = 'tool',
   Conference = 'conference',
+  Misc = 'misc',
 }
 
-const schema = z.object({
+const dealSchema = z.object({
   name: z.string(),
   link: z.string().url(),
   description: z.string(),
@@ -20,7 +20,7 @@ const schema = z.object({
   couponPercentage: z.number().optional(),
   email: z.string().email(),
   //TODO: don't replicate array
-  type: z.enum(['general', 'ebook', 'video-course', 'tool', 'conference']),
+  type: z.enum(['misc', 'ebook', 'video', 'tool', 'conference']),
 });
 
 export default function DealForm() {
@@ -28,7 +28,7 @@ export default function DealForm() {
     'use server';
     let parsed;
     try {
-      parsed = schema.parse({
+      parsed = dealSchema.parse({
         name: formData.get('name'),
         coupon: formData.get('coupon'),
         link: formData.get('link'),
@@ -92,7 +92,7 @@ export default function DealForm() {
             id="type"
             required
           >
-            {Object.values(DealType).map((dealType) => (
+            {Object.values(Category).map((dealType) => (
               <option key={dealType} value={dealType}>
                 {dealType}
               </option>
