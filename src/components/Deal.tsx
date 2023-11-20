@@ -5,6 +5,8 @@ import AdminOptions from './AdminOptions';
 import ClickableCouponCode from './ClickableCouponCode';
 import { FaBeer, FaVideo, FaBook, FaCog, FaCalendar } from 'react-icons/fa';
 import { DealType } from '@/app/deals/add/DealForm';
+import { SiJavascript, SiReact } from 'react-icons/si';
+
 const typeToIcon = {
   general: <FaBeer className="text-white" />,
   ebook: <FaBook className="text-white" />,
@@ -46,9 +48,10 @@ export default function Deal({
           {typeToIcon[deal.type as DealType]}
         </div>
       )}
-      {deal.startDate && deal.endDate && (
+      {/* <SiJavascript className="text-yellow-500" /> */}
+      {deal.startDate && (
         <small className="text-gray-300">
-          {startDateStr} - {endDateStr}
+          {startDateStr} - {deal.endDate ? endDateStr : '??'}
         </small>
       )}
       <p className="font-normal text-md text-gray-300 line-clamp-4 mt-2">
