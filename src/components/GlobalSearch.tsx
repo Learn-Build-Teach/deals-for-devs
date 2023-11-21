@@ -1,7 +1,7 @@
 'use client';
 import { useHotkeys } from 'react-hotkeys-hook';
 
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import Overlay from './Overlay';
 import { DealsRecord } from '@/xata';
 import Link from 'next/link';
@@ -39,7 +39,9 @@ export default function GlobalSearch() {
     preventDefault: true,
   });
 
-  const handleSearchOnChange = async (e) => {
+  const handleSearchOnChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setSearchQuery(e.target.value);
     if (!e.target.value) {
       setDeals(null);
