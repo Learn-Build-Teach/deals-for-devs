@@ -1,7 +1,7 @@
 import Deal from '@/components/Deal';
 import { DealsRecord } from '@/xata';
 
-export default async function DealsList({
+export default function DealsList({
   deals,
   isAdmin = false,
 }: {

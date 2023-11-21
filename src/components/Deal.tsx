@@ -21,17 +21,12 @@ export default function Deal({
   deal: DealsRecord;
   showAdminOptions?: boolean;
 }) {
-  const startDateStr = deal.startDate?.toLocaleDateString('en-us', {
-    // year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
-
-  const endDateStr = deal.endDate?.toLocaleDateString('en-us', {
-    // year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
+  const getFormattedDate = (date: Date) => {
+    return date.toLocaleDateString('en-us', {
+      month: 'short',
+      day: 'numeric',
+    });
+  };
 
   return (
     <Link
@@ -51,7 +46,8 @@ export default function Deal({
       {/* <SiJavascript className="text-yellow-500" /> */}
       {deal.startDate && (
         <small className="text-gray-300">
-          {startDateStr} - {deal.endDate ? endDateStr : '??'}
+          {getFormattedDate(deal.startDate)} -{' '}
+          {deal.endDate ? getFormattedDate(deal.endDate) : '??'}
         </small>
       )}
       <p className="font-normal text-md text-gray-300 line-clamp-4 mt-2">

@@ -3,6 +3,8 @@ import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
+import GlobalSearch from '@/components/GlobalSearch';
+import { SearchProvider } from '@/components/SearchContext';
 
 export const metadata: Metadata = {
   title: 'Developer Deals',
@@ -28,7 +30,10 @@ export default function RootLayout({
         <body className="">
           <div className="bg-gray-900 min-h-screen flex justify-between flex-col">
             <div>
-              <Nav />
+              <SearchProvider>
+                <GlobalSearch />
+                <Nav />
+              </SearchProvider>
               <div className=" px-4 sm:px-8 py-6 pt-1 max-w-6xl mx-auto">
                 {children}
               </div>

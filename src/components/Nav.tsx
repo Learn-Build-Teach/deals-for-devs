@@ -3,14 +3,16 @@
 import { useUser, UserButton } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearch } from './SearchContext';
 
 export default function Nav() {
   const { user, isLoaded } = useUser();
+  const { setSearchOpen } = useSearch();
 
   return (
     <header>
       <nav
-        className="flex items-center justify-between p-6 lg:px-8 h-20 "
+        className="flex flex-col sm:flex-row items-center justify-between p-6 lg:px-8 h-20 gap-y-4"
         aria-label="Global"
       >
         <a href="/" className="-m-1.5 p-1.5">
@@ -42,6 +44,17 @@ export default function Nav() {
           >
             Add a Deal
           </Link>
+          <div className="text-center">
+            <button
+              className="border-2 hover:border-gray-100 text-sm  border-gray-500 px-4 py-1 rounded-md text-gray-100 w-[200px] items-center flex justify-between"
+              onClick={() => setSearchOpen(true)}
+            >
+              Search{' '}
+              <span className="border border-gray-500 px-3 py-1 rounded-md text-sm">
+                /
+              </span>
+            </button>
+          </div>
         </div>
       </nav>
     </header>
