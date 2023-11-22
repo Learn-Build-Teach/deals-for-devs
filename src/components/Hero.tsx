@@ -3,7 +3,7 @@ import React from 'react';
 export default function Hero() {
   return (
     <div className="max-w-2xl mx-auto mb-2">
-      <div className="mt-24 sm:mt-32 lg:mt-16 text-center">
+      <div className="mt-10 md:mt-24 sm:mt-32 lg:mt-16 text-center">
         <a href="#" className="inline-flex space-x-6">
           <span className="rounded-full bg-teal-500/10 px-3 py-1 text-sm font-semibold leading-6 text-teal-400 ring-1 ring-inset ring-teal-500/20">
             Black Friday 2023
