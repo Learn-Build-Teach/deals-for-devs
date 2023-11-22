@@ -16,9 +16,9 @@ export default function Nav() {
         className="flex sm:flex-row flex-col items-center justify-between p-6 lg:px-8 sm:h-20 gap-y-4"
         aria-label="Global"
       >
-        <a href="/" className="-m-1.5 p-1.5">
+        <Link href="/" className="-m-1.5 p-1.5">
           <Image src="/logo-teal.png" alt="me" height="48" width={30} />
-        </a>
+        </Link>
 
         <div className=" flex flex-1 flex-row justify-end gap-x-4 items-center gap-y-2">
           <Link
