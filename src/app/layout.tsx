@@ -8,6 +8,7 @@ import { SearchProvider } from '@/components/SearchContext';
 
 export const metadata: Metadata = {
   title: 'Developer Deals',
+  metadataBase: new URL('https://dealsfordevs.com/'),
   description:
     'The Best Black Friday deals on courses, tools, and desk setups for developers!',
   openGraph: {
