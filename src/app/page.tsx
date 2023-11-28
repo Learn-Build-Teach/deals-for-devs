@@ -1,10 +1,8 @@
 import Hero from '@/components/Hero';
-import Deals from './DealsList';
-import { DealsRecord, getXataClient } from '@/xata';
 import Timer from '@/components/Timer';
 import Link from 'next/link';
 import FeaturedDeals from '@/components/FeaturedDeals';
-import { Category } from './deals/add/page';
+import { Category } from './deals/add/DealForm';
 
 export default async function Home() {
   return (

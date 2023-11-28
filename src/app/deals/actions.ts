@@ -1,8 +1,21 @@
 'use server';
 
 import { getXataClient } from '@/xata';
-import { dealSchema } from './add/page';
 import { redirect } from 'next/navigation';
+import { z } from 'zod';
+
+const dealSchema = z.object({
+  name: z.string(),
+  link: z.string().url(),
+  description: z.string(),
+  startDate: z.coerce.date(),
+  endDate: z.coerce.date(),
+  coupon: z.string().optional(),
+  couponPercentage: z.number().optional(),
+  email: z.string().email().optional(),
+  //TODO: don't replicate array
+  category: z.enum(['misc', 'ebook', 'video', 'tool', 'conference']),
+});
 
 export async function createDeal(formData: FormData) {
   let parsed;

@@ -1,6 +1,4 @@
-import DealsList from '@/app/DealsList';
-import { Category } from '@/app/deals/add/page';
-import { DealsRecord } from '@/xata';
+import { Category } from '@/app/deals/add/DealForm';
 import Link from 'next/link';
 
 export default function CategoryOptions() {

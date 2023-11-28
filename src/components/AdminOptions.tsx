@@ -31,6 +31,7 @@ export default function AdminOptions({ id }: { id: string }) {
         'Content-Type': 'application/json',
       },
     });
+    router.refresh();
   };
 
   return (

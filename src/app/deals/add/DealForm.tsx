@@ -1,12 +1,18 @@
 import { createDeal } from '../actions';
-import { Category } from './page';
 import SubmitButton from '@/components/SubmitButton';
-import { FaCaretDown } from 'react-icons/fa';
+
+export enum Category {
+  Ebook = 'ebook',
+  Video = 'video',
+  Tool = 'tool',
+  Conference = 'conference',
+  Misc = 'misc',
+}
 
 export default function DealForm() {
   return (
     <div>
-      <form className=" mb-1 block flex flex-col gap-y-6" action={createDeal}>
+      <form className=" mb-1 flex flex-col gap-y-6" action={createDeal}>
         <div className="flex gap-x-4">
           <div className="grow">
             <label
