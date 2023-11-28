@@ -3,7 +3,6 @@ import { Metadata } from 'next';
 import { getXataClient } from '@/xata';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
-import { createDeal } from '../actions';
 
 //TODO: why doesn't this work with server component page?
 // export const metadata: Metadata = {
@@ -38,7 +37,9 @@ export default function AddDealPage() {
       <h1 className="text-4xl font-bold mb-10 text-gray-100 text-center">
         Share a deal?
       </h1>
-      <DealForm createDeal={createDeal} />
+      <div className="max-w-2xl mx-auto">
+        <DealForm />
+      </div>
     </main>
   );
 }
