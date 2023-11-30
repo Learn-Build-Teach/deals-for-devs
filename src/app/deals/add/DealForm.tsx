@@ -1,13 +1,6 @@
-import { createDeal } from '../actions';
+import { Category } from '@/types/Category';
 import SubmitButton from '@/components/SubmitButton';
-
-export enum Category {
-  Ebook = 'ebook',
-  Video = 'video',
-  Tool = 'tool',
-  Conference = 'conference',
-  Misc = 'misc',
-}
+import { createDeal } from '@/actions/deals';
 
 export default function DealForm() {
   return (

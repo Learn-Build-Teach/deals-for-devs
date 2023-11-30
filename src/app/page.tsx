@@ -2,7 +2,7 @@ import Hero from '@/components/Hero';
 import Timer from '@/components/Timer';
 import Link from 'next/link';
 import FeaturedDeals from '@/components/FeaturedDeals';
-import { Category } from './deals/add/DealForm';
+import { Category } from '@/types/Category';
 
 export default async function Home() {
   return (

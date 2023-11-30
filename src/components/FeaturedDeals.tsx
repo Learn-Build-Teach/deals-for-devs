@@ -1,6 +1,6 @@
 import DealsList from '@/app/DealsList';
-import { Category } from '@/app/deals/add/DealForm';
-import { DealsRecord, getXataClient } from '@/xata';
+import { Category } from '@/types/Category';
+import { getXataClient } from '@/xata';
 import React from 'react';
 
 export default async function FeaturedDeals({

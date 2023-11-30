@@ -1,4 +1,4 @@
-import { Category } from '@/app/deals/add/DealForm';
+import { Category } from '@/types/Category';
 import Link from 'next/link';
 
 export default function CategoryOptions() {
