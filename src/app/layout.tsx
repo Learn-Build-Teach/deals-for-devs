@@ -5,6 +5,8 @@ import Nav from '@/components/Nav';
 import Footer from '@/components/Footer';
 import GlobalSearch from '@/components/GlobalSearch';
 import { SearchProvider } from '@/components/SearchContext';
+import { Suspense } from 'react';
+import { PHProvider, PostHogPageview } from './providers';
 
 export const metadata: Metadata = {
   title: 'Developer Deals',
@@ -28,20 +30,25 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className="">
-          <div className="bg-gray-900 min-h-screen flex justify-between flex-col">
-            <div>
-              <SearchProvider>
-                <GlobalSearch />
-                <Nav />
-              </SearchProvider>
-              <div className=" px-4 sm:px-8 py-6 pt-1 max-w-6xl mx-auto">
-                {children}
+        <Suspense>
+          <PostHogPageview />
+        </Suspense>
+        <PHProvider>
+          <body className="">
+            <div className="bg-gray-900 min-h-screen flex justify-between flex-col">
+              <div>
+                <SearchProvider>
+                  <GlobalSearch />
+                  <Nav />
+                </SearchProvider>
+                <div className=" px-4 sm:px-8 py-6 pt-1 max-w-6xl mx-auto">
+                  {children}
+                </div>
               </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
-        </body>
+          </body>
+        </PHProvider>
       </html>
     </ClerkProvider>
   );

@@ -13,6 +13,7 @@
     "@sentry/nextjs": "^7.80.1",
     "@xata.io/client": "^0.27.0",
     "next": "14.0.2",
+    "posthog-js": "^1.96.1",
     "react": "^18",
     "react-countdown": "^2.3.5",
     "react-dom": "^18",

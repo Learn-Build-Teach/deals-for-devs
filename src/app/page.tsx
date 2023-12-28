@@ -8,9 +8,7 @@ export default async function Home() {
   return (
     <main>
       <Hero />
-      <div className="mb-20">
-        <Timer />
-      </div>
+
       <div className="text-center my-20">
         <Link
           href="/deals"
