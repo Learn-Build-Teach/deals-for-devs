@@ -8,6 +8,7 @@ import { SearchProvider } from '@/components/SearchContext';
 import { Suspense } from 'react';
 import { PHProvider, PostHogPageview } from './providers';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   title: 'Developer Deals',
@@ -49,6 +50,7 @@ export default function RootLayout({
               <Footer />
             </div>
             <SpeedInsights />
+            <Analytics />
           </body>
         </PHProvider>
       </html>
