@@ -1,5 +1,5 @@
 {
-  "name": "developer-black-friday-deals",
+  "name": "deals-for-devs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,7 +13,7 @@
     "@sentry/nextjs": "^7.80.1",
     "@vercel/analytics": "^1.1.1",
     "@vercel/speed-insights": "^1.0.2",
-    "@xata.io/client": "^0.27.0",
+    "@xata.io/client": "^0.28.3",
     "next": "14.0.2",
     "posthog-js": "^1.96.1",
     "react": "^18",

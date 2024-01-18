@@ -26,6 +26,7 @@ const tables = [
       { name: "email", type: "email" },
       { name: "category", type: "string" },
       { name: "featured", type: "bool", notNull: true, defaultValue: "false" },
+      { name: "image", type: "file" },
     ],
   },
   { name: "adminUser", columns: [] },

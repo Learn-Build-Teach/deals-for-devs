@@ -12,7 +12,6 @@ export default function ClickableCouponCode({ coupon }: { coupon: string }) {
     setTimeout(() => {
       setShowPopup(false);
     }, 2000);
-    console.log('copied coupon code to clipboard');
   };
 
   return (

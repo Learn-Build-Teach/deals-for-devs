@@ -1,6 +1,6 @@
 'use server';
 
-import { getXataClient } from '@/xata';
+import { DealsRecord, getXataClient } from '@/xata';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
@@ -41,11 +41,17 @@ export async function createDeal(formData: FormData) {
     startDate: parsed.startDate,
     endDate: parsed.endDate,
     description: parsed.description,
-    couponPercentage: parsed.couponPercentage,
+    couponPercent: parsed.couponPercentage,
     email: parsed.email,
     category: parsed.category,
+    image: { name: parsed.name, mediaType: 'image/png', base64Content: '' },
   };
+
   const xataClient = getXataClient();
-  await xataClient.db.deals.create(newDeal);
+  const createdRecord = await xataClient.db.deals.create(newDeal, [
+    'image.uploadUrl',
+  ]);
+
+  console.log(createdRecord);
   redirect(`/thank-you`);
 }
