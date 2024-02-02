@@ -12,6 +12,7 @@ export default authMiddleware({
     '/monitoring',
     '/api/deals',
     '/.well-known/webfinger',
+    '/test/e',
   ],
 });
 

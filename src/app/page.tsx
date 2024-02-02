@@ -1,8 +1,7 @@
 import Hero from '@/components/Hero';
-import Timer from '@/components/Timer';
 import Link from 'next/link';
 import FeaturedDeals from '@/components/FeaturedDeals';
-import { Category } from '@/types/Category';
+import { Category } from '@/types/Types';
 
 export default async function Home() {
   return (
@@ -19,10 +18,10 @@ export default async function Home() {
       </div>
       <div className="flex gap-y-16 flex-col mb-20">
         {[
-          Category.Video,
-          Category.Tool,
-          Category.Conference,
-          Category.Ebook,
+          Category.COURSE,
+          Category.TOOL,
+          Category.CONFERENCE,
+          Category.EBOOK,
         ].map((category) => (
           <FeaturedDeals category={category} key={category} />
         ))}

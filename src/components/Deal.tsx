@@ -4,7 +4,7 @@ import React from 'react';
 import AdminOptions from './AdminOptions';
 import ClickableCouponCode from './ClickableCouponCode';
 import { FaBeer, FaVideo, FaBook, FaCog, FaCalendar } from 'react-icons/fa';
-import { Category } from '@/types/Category';
+import { Category } from '@/types/Types';
 
 const categoryToIcon = {
   misc: <FaBeer />,

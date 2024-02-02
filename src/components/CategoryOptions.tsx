@@ -1,4 +1,4 @@
-import { Category } from '@/types/Category';
+import { Category } from '@/types/Types';
 import Link from 'next/link';
 
 export default function CategoryOptions() {

@@ -1,3 +1,4 @@
+import { FORM_DEAL_SCHEMA } from '@/types/Types';
 import { getXataClient } from '@/xata';
 import { NextRequest } from 'next/server';
 
@@ -19,5 +20,37 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error(error);
     return new Response('Bad Request', { status: 400 });
+  }
+}
+
+export async function POST(request: Request) {
+  const body = await request.json();
+  let parsed;
+  try {
+    parsed = FORM_DEAL_SCHEMA.parse(body);
+    console.log(parsed);
+  } catch (error) {
+    console.log('failed to parse');
+    // console.error(error);
+    return new Response('Bad Request', { status: 400 });
+  }
+
+  try {
+    const newDeal = {
+      ...parsed,
+      image: { name: parsed.name, mediaType: 'image/png', base64Content: '' },
+    };
+
+    const xataClient = getXataClient();
+    const createdRecord = await xataClient.db.deals.create(newDeal, [
+      'image.uploadUrl',
+    ]);
+
+    return new Response(JSON.stringify(createdRecord), {
+      headers: { 'content-type': 'application/json' },
+    });
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify(error), { status: 500 });
   }
 }

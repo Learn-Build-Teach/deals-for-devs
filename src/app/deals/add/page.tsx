@@ -9,10 +9,10 @@ import DealForm from './DealForm';
 export default function AddDealPage() {
   return (
     <main className="">
-      <h1 className="text-4xl font-bold mb-10 text-gray-100 text-center">
-        Share a deal?
+      <h1 className="text-4xl font-bold py-20 text-gray-100 text-center">
+        Share a Deal
       </h1>
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto pb-20">
         <DealForm />
       </div>
     </main>

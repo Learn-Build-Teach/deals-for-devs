@@ -11,7 +11,7 @@ const dealSchema = z.object({
   startDate: z.coerce.date(),
   endDate: z.coerce.date(),
   coupon: z.string().optional(),
-  couponPercentage: z.number().optional(),
+  couponPercent: z.number().optional(),
   email: z.string().email().optional(),
   //TODO: don't replicate array
   category: z.enum(['misc', 'ebook', 'video', 'tool', 'conference']),
@@ -41,7 +41,7 @@ export async function createDeal(formData: FormData) {
     startDate: parsed.startDate,
     endDate: parsed.endDate,
     description: parsed.description,
-    couponPercent: parsed.couponPercentage,
+    couponPercent: parsed.couponPercent,
     email: parsed.email,
     category: parsed.category,
     image: { name: parsed.name, mediaType: 'image/png', base64Content: '' },

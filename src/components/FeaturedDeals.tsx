@@ -1,5 +1,5 @@
 import DealsList from '@/app/DealsList';
-import { Category } from '@/types/Category';
+import { Category } from '@/types/Types';
 import { getXataClient } from '@/xata';
 import React from 'react';
 
@@ -17,6 +17,8 @@ export default async function FeaturedDeals({
         size: 3,
       },
     });
+
+  if (!deals || deals.length === 0) return null;
   return (
     <div>
       <h2 className="text-4xl font-bold mb-6 text-gray-100 ">

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function AddDealPage() {
+export default function ThankYou() {
   return (
     <main className="">
       <h1 className="text-6xl text-gray-100 text-center font-bold mb-4">
