@@ -42,7 +42,6 @@ const tables = [
       { name: "ebookNotifications", type: "bool", defaultValue: "false" },
       { name: "courseNotifications", type: "bool", defaultValue: "false" },
       { name: "toolNotifications", type: "bool", defaultValue: "false" },
-      { name: "conferenceNotifications", type: "bool" },
       {
         name: "officeEquipmentNotifications",
         type: "bool",
@@ -52,6 +51,7 @@ const tables = [
       { name: "verified", type: "bool", defaultValue: "false" },
       { name: "token", type: "string", unique: true },
       { name: "email", type: "email", unique: true },
+      { name: "conferenceNotifications", type: "bool", defaultValue: "false" },
     ],
   },
 ] as const;
