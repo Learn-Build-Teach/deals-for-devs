@@ -7,54 +7,54 @@ import type {
 } from '@xata.io/client'
 
 const tables = [
-	{
-		name: 'deals',
-		columns: [
-			{ name: 'name', type: 'string', notNull: true, defaultValue: 'null' },
-			{ name: 'link', type: 'string', notNull: true, defaultValue: 'null' },
-			{ name: 'coupon', type: 'string' },
-			{ name: 'approved', type: 'bool', defaultValue: 'false' },
-			{
-				name: 'description',
-				type: 'text',
-				notNull: true,
-				defaultValue: 'null',
-			},
-			{ name: 'couponPercent', type: 'int' },
-			{ name: 'startDate', type: 'datetime' },
-			{ name: 'endDate', type: 'datetime' },
-			{ name: 'email', type: 'email' },
-			{ name: 'category', type: 'string' },
-			{ name: 'featured', type: 'bool', notNull: true, defaultValue: 'false' },
-			{ name: 'image', type: 'file' },
-		],
-	},
-	{ name: 'adminUser', columns: [] },
-	{
-		name: 'subscribers',
-		columns: [
-			{
-				name: 'status',
-				type: 'string',
-				notNull: true,
-				defaultValue: 'UNSUBSCRIBED',
-			},
-			{ name: 'ebookNotifications', type: 'bool', defaultValue: 'false' },
-			{ name: 'courseNotifications', type: 'bool', defaultValue: 'false' },
-			{ name: 'toolNotifications', type: 'bool', defaultValue: 'false' },
-			{ name: 'conferenceNotifications', type: 'bool' },
-			{
-				name: 'officeEquipmentNotifications',
-				type: 'bool',
-				defaultValue: 'false',
-			},
-			{ name: 'miscNotifications', type: 'bool', defaultValue: 'false' },
-			{ name: 'verified', type: 'bool', defaultValue: 'false' },
-			{ name: 'token', type: 'string', unique: true },
-			{ name: 'email', type: 'email', unique: true },
-		],
-	},
-] as const
+  {
+    name: "deals",
+    columns: [
+      { name: "name", type: "string", notNull: true, defaultValue: "null" },
+      { name: "link", type: "string", notNull: true, defaultValue: "null" },
+      { name: "coupon", type: "string" },
+      { name: "approved", type: "bool", defaultValue: "false" },
+      {
+        name: "description",
+        type: "text",
+        notNull: true,
+        defaultValue: "null",
+      },
+      { name: "couponPercent", type: "int" },
+      { name: "startDate", type: "datetime" },
+      { name: "endDate", type: "datetime" },
+      { name: "email", type: "email" },
+      { name: "category", type: "string" },
+      { name: "featured", type: "bool", notNull: true, defaultValue: "false" },
+      { name: "image", type: "file" },
+    ],
+  },
+  { name: "adminUser", columns: [] },
+  {
+    name: "subscribers",
+    columns: [
+      {
+        name: "status",
+        type: "string",
+        notNull: true,
+        defaultValue: "UNSUBSCRIBED",
+      },
+      { name: "ebookNotifications", type: "bool", defaultValue: "false" },
+      { name: "courseNotifications", type: "bool", defaultValue: "false" },
+      { name: "toolNotifications", type: "bool", defaultValue: "false" },
+      {
+        name: "officeEquipmentNotifications",
+        type: "bool",
+        defaultValue: "false",
+      },
+      { name: "miscNotifications", type: "bool", defaultValue: "false" },
+      { name: "verified", type: "bool", defaultValue: "false" },
+      { name: "token", type: "string", unique: true },
+      { name: "email", type: "email", unique: true },
+      { name: "conferenceNotifications", type: "bool", defaultValue: "false" },
+    ],
+  },
+] as const;
 
 export type SchemaTables = typeof tables
 export type InferredTypes = SchemaInference<SchemaTables>
