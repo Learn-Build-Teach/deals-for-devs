@@ -30,6 +30,43 @@ const tables = [
     ],
   },
   { name: "adminUser", columns: [] },
+  {
+    name: "subscribers",
+    columns: [
+      {
+        name: "status",
+        type: "string",
+        notNull: true,
+        defaultValue: "UNSUBSCRIBED",
+      },
+      { name: "ebookNotifications", type: "bool", defaultValue: "false" },
+      { name: "courseNotifications", type: "bool", defaultValue: "false" },
+      { name: "toolNotifications", type: "bool", defaultValue: "false" },
+      { name: "conferenceNotifications", type: "bool" },
+      {
+        name: "officeEquipmentNotifications",
+        type: "bool",
+        defaultValue: "false",
+      },
+      { name: "miscNotifications", type: "bool", defaultValue: "false" },
+      { name: "verified", type: "bool", defaultValue: "false" },
+    ],
+    revLinks: [{ column: "subscriberId", table: "subscriberSessions" }],
+  },
+  {
+    name: "subscriberSessions",
+    columns: [
+      { name: "subscriberId", type: "link", link: { table: "subscribers" } },
+      { name: "sessionId", type: "string" },
+      { name: "used", type: "bool", defaultValue: "false" },
+      {
+        name: "expiration",
+        type: "datetime",
+        notNull: true,
+        defaultValue: "now",
+      },
+    ],
+  },
 ] as const;
 
 export type SchemaTables = typeof tables;
@@ -41,9 +78,17 @@ export type DealsRecord = Deals & XataRecord;
 export type AdminUser = InferredTypes["adminUser"];
 export type AdminUserRecord = AdminUser & XataRecord;
 
+export type Subscribers = InferredTypes["subscribers"];
+export type SubscribersRecord = Subscribers & XataRecord;
+
+export type SubscriberSessions = InferredTypes["subscriberSessions"];
+export type SubscriberSessionsRecord = SubscriberSessions & XataRecord;
+
 export type DatabaseSchema = {
   deals: DealsRecord;
   adminUser: AdminUserRecord;
+  subscribers: SubscribersRecord;
+  subscriberSessions: SubscriberSessionsRecord;
 };
 
 const DatabaseClient = buildClient();
