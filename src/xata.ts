@@ -51,6 +51,7 @@ const tables = [
       { name: "miscNotifications", type: "bool", defaultValue: "false" },
       { name: "verified", type: "bool", defaultValue: "false" },
       { name: "token", type: "string", unique: true },
+      { name: "email", type: "email", unique: true },
     ],
   },
 ] as const;
