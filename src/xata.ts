@@ -50,21 +50,7 @@ const tables = [
       },
       { name: "miscNotifications", type: "bool", defaultValue: "false" },
       { name: "verified", type: "bool", defaultValue: "false" },
-    ],
-    revLinks: [{ column: "subscriberId", table: "subscriberSessions" }],
-  },
-  {
-    name: "subscriberSessions",
-    columns: [
-      { name: "subscriberId", type: "link", link: { table: "subscribers" } },
-      { name: "sessionId", type: "string" },
-      { name: "used", type: "bool", defaultValue: "false" },
-      {
-        name: "expiration",
-        type: "datetime",
-        notNull: true,
-        defaultValue: "now",
-      },
+      { name: "token", type: "string", unique: true },
     ],
   },
 ] as const;
@@ -81,14 +67,10 @@ export type AdminUserRecord = AdminUser & XataRecord;
 export type Subscribers = InferredTypes["subscribers"];
 export type SubscribersRecord = Subscribers & XataRecord;
 
-export type SubscriberSessions = InferredTypes["subscriberSessions"];
-export type SubscriberSessionsRecord = SubscriberSessions & XataRecord;
-
 export type DatabaseSchema = {
   deals: DealsRecord;
   adminUser: AdminUserRecord;
   subscribers: SubscribersRecord;
-  subscriberSessions: SubscriberSessionsRecord;
 };
 
 const DatabaseClient = buildClient();
