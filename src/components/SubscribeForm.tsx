@@ -9,7 +9,12 @@ export default function SubscribeForm() {
 			className='mt-4 flex justify-center'
 			action={async (formData) => {
 				await subscribe(formData)
-			}}
+
+				const form = document.getElementById(
+              'subscribe-form'
+            ) as HTMLFormElement
+            form.reset()
+          }}
 		>
 			<div className='relative w-[476px]'>
 				<input

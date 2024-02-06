@@ -2,6 +2,8 @@
 import { getXataClient } from '@/xata'
 import { v4 as uuidv4 } from 'uuid'
 import { z } from 'zod'
+import { revalidatePath } from 'next/cache'
+import { sendConfirmationEmail } from './sendConfirmationEmail'
 
 const subscribeSchema = z.object({
 	email: z.string().email(),
@@ -11,6 +13,9 @@ const subscribeSchema = z.object({
 // generate uuid
 const token = uuidv4()
 
+// get env variables
+const node = process.env.NODE_ENV
+
 export const subscribe = async (formData: FormData) => {
 	let parsed
 
@@ -19,21 +24,30 @@ export const subscribe = async (formData: FormData) => {
 
 	const newSubscriber = {
 		email: parsed.email,
-    token: parsed.token,
-    courseNotifications: true,
-    ebookNotifications: true,
-    miscNotifications: true,
-    officeEquipmentNotifications: true,
-    toolNotifications: true,
-    conferenceNotifications: true,
+		token: parsed.token,
+		courseNotifications: true,
+		ebookNotifications: true,
+		miscNotifications: true,
+		officeEquipmentNotifications: true,
+		toolNotifications: true,
+		conferenceNotifications: true,
 	}
 
-	// send the new subscriber to the server
+	// add new subscriber to the database
 	const xataClient = getXataClient()
-	const createRecord = await xataClient.db.subscribers.create(newSubscriber)
-	console.log(createRecord)
+	await xataClient.db.subscribers.create(newSubscriber)
 
 	// send email confirmation email using resend
+	// create link
+	const location =
+		node === 'development'
+			? 'http://localhost:3000'
+			: 'https://dealsfordevs.com'
+	const link = `${location}/confirm-email?token=${token}`
+
+	// send email
+	sendConfirmationEmail(parsed.email, link)
 
 	// route subscriber to preference page
+	revalidatePath('/admin')
 }
