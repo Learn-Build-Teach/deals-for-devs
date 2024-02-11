@@ -32,6 +32,7 @@
 		"react-day-picker": "^8.10.0",
 		"react-dom": "^18",
 		"react-dropzone": "^14.2.3",
+		"react-email": "^2.0.0",
 		"react-hot-toast": "^2.4.1",
 		"react-hotkeys-hook": "^4.4.1",
 		"react-icons": "^4.12.0",

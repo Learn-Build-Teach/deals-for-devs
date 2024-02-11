@@ -15,6 +15,7 @@ export default authMiddleware({
 		'/test/e',
 		'/confirm-email',
 		'/subscriber-preferences',
+		'/api/cron/monthly-newsletter',
 	],
 })
 

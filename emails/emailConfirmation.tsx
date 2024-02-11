@@ -1,4 +1,12 @@
-import { Html, Head, Preview, Body, Text, Link } from '@react-email/components'
+import {
+	Html,
+	Head,
+	Preview,
+	Body,
+	Text,
+	Link,
+	Button,
+} from '@react-email/components'
 import { Tailwind } from '@react-email/components'
 
 interface EmailTemplateProps {
@@ -24,12 +32,12 @@ export default function EmailConfirmationTemplate(props: EmailTemplateProps) {
 						<Text className='font-sans'>
 							To confirm your subscription, please click the link below:
 						</Text>
-						<Link
+						<Button
 							href={props.link}
 							className='bg-teal-600 text-white py-2 rounded-xl cursor-pointer w-full'
 						>
 							Confirm Email
-						</Link>
+						</Button>
 						<Link href={props.link}>{props.link}</Link>
 						<Text className='font-sans'>
 							<strong>{`Deals for Devs Team`}</strong>

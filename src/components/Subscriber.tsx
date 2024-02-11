@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Subscribers } from '@/xata'
 import { cn } from '@/lib/utils'
 import { updatePreferences } from '@/actions/updatePreferences'
@@ -11,6 +11,7 @@ export default function Subscriber({
 	subscriber: Subscribers
 }) {
 	const [subscriberData, setSubscriberData] = useState(subscriber)
+	const [update, setUpdate] = useState(false)
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, checked } = event.target
@@ -18,6 +19,39 @@ export default function Subscriber({
 			...prevData,
 			[name]: checked,
 		}))
+
+		setUpdate(true)
+	}
+
+	const updateSubscriptions = async (val: boolean) => {
+		// Create a new object with the updated values
+		const newData = {
+			...subscriberData,
+			courseNotifications: val,
+			ebookNotifications: val,
+			toolNotifications: val,
+			conferenceNotifications: val,
+			miscNotifications: val,
+			status: val ? 'subscribed' : 'unsubscribed',
+		}
+
+		// Update the state
+		setSubscriberData((prevData) => ({
+			...prevData,
+			...newData,
+		}))
+
+		// Update the database
+		try {
+			await updatePreferences(subscriberData.id, newData)
+			toast.success(
+				`You have been ${
+					val ? 'subscribed to' : 'unsubscribed from'
+				} all notifications!`
+			)
+		} catch (error) {
+			toast.error(`Failed to update database: ${error}`)
+		}
 	}
 
 	return (
@@ -36,7 +70,7 @@ export default function Subscriber({
 					<input
 						name='courseNotifications'
 						type='checkbox'
-						defaultChecked={subscriberData.courseNotifications ?? false}
+						checked={subscriberData.courseNotifications ?? false}
 						onChange={handleChange}
 					/>
 					Course Notifications
@@ -45,7 +79,7 @@ export default function Subscriber({
 					<input
 						name='ebookNotifications'
 						type='checkbox'
-						defaultChecked={subscriberData.ebookNotifications ?? false}
+						checked={subscriberData.ebookNotifications ?? false}
 						onChange={handleChange}
 					/>
 					Ebook Notifications
@@ -54,7 +88,7 @@ export default function Subscriber({
 					<input
 						name='toolNotifications'
 						type='checkbox'
-						defaultChecked={subscriberData.toolNotifications ?? false}
+						checked={subscriberData.toolNotifications ?? false}
 						onChange={handleChange}
 					/>
 					Tool Notifications
@@ -63,7 +97,7 @@ export default function Subscriber({
 					<input
 						name='conferenceNotifications'
 						type='checkbox'
-						defaultChecked={subscriberData.conferenceNotifications ?? false}
+						checked={subscriberData.conferenceNotifications ?? false}
 						onChange={handleChange}
 					/>
 					Conference Notifications
@@ -72,24 +106,38 @@ export default function Subscriber({
 					<input
 						name='miscNotifications'
 						type='checkbox'
-						defaultChecked={subscriberData.miscNotifications ?? false}
+						checked={subscriberData.miscNotifications ?? false}
 						onChange={handleChange}
 					/>
 					Misc Notifications
 				</li>
 			</ul>
 			<div className='flex flex-col gap-2 mt-6'>
+				<div className='flex gap-2'>
+					<button
+						className='uppercase rounded-md bg-teal-600 px-3.5 w-1/2 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500  text-center'
+						onClick={() => updateSubscriptions(true)}
+					>
+						subscribe to all
+					</button>
+
+					<button
+						className='rounded-md bg-red-600 w-1/2 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500  text-center uppercase'
+						onClick={() => updateSubscriptions(false)}
+					>
+						unsubscribe from all
+					</button>
+				</div>
 				<button
-					className='uppercase rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500  text-center'
+					className='uppercase rounded-md bg-teal-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-teal-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500  text-center disabled:bg-slate-300 disabled:text-black/10'
 					onClick={async () => {
 						await updatePreferences(subscriberData.id, subscriberData)
 						toast.success('Preferences updated!')
+						setUpdate(false)
 					}}
+					disabled={!update}
 				>
 					update preferences
-				</button>
-				<button className='rounded-md bg-red-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-500  text-center uppercase'>
-					unsubscribe
 				</button>
 			</div>
 		</>
