@@ -1,42 +1,77 @@
-import { Html, Head, Preview, Body, Text, Link } from '@react-email/components'
-import { Tailwind } from '@react-email/components'
+import * as React from 'react'
+import {
+	Body,
+	Container,
+	Head,
+	Heading,
+	Html,
+	Img,
+	Preview,
+	Section,
+	Text,
+	Tailwind,
+} from '@react-email/components'
 
 interface EmailTemplateProps {
 	email: string
 	link: string
 }
 
-export default function EmailConfirmationTemplate(props: EmailTemplateProps) {
-	return (
-		<Html lang='en'>
+const baseUrl =
+	process.env.NODE_ENV === 'development'
+		? 'http://localhost:3000'
+		: 'https://dealsfordevs.com'
+
+export const confirmEmail = (props: EmailTemplateProps) => (
+	<Html lang='en'>
+		<Head />
+		<Preview>Confirm your email address</Preview>
+		<Tailwind>
 			<Head />
-			<Preview>
-				You've subscribed to Deals for Devs Monthly Notifications!
-			</Preview>
-			<Tailwind>
-				<Head />
-				<Body className=' bg-white text-black'>
-					<div className='w-full'>
-						<Text className='font-sans '>Hello, {props.email}!</Text>
-						<Text className='font-sans'>
-							You've subscribed to the Deals for Devs Monthly Notifications!
-						</Text>
-						<Text className='font-sans'>
-							To confirm your subscription, please click the link below:
-						</Text>
-						<Link
-							href={props.link}
-							className='bg-teal-600 text-white py-2 rounded-xl cursor-pointer w-full'
-						>
-							Confirm Email
-						</Link>
-						<Link href={props.link}>{props.link}</Link>
-						<Text className='font-sans'>
-							<strong>{`Deals for Devs Team`}</strong>
-						</Text>
-					</div>
-				</Body>
-			</Tailwind>
-		</Html>
-	)
+			<Body className='bg-white mx-auto p-4'>
+				<Container>
+					<Section>
+						<Img
+							src={`${baseUrl}/logo-teal.png`}
+							width='60'
+							alt='Deals for Devs'
+						/>
+					</Section>
+					<Heading style={h1}>Confirm your email address</Heading>
+					<Text className='text-xl mb-[15px]'>
+						Your confirmation link is below. Please click it to confirm your
+						email:
+					</Text>
+
+					<Section style={codeBox}>
+						<Text className='text-2xl'>{props.link}</Text>
+					</Section>
+
+					<Text className='text-xl'>
+						If you didn't request this email, there's nothing to worry about,
+						you can safely ignore it.
+					</Text>
+					<Text className='font-sans text-3xl'>
+						<strong>{`Deals for Devs Team`}</strong>
+					</Text>
+				</Container>
+			</Body>
+		</Tailwind>
+	</Html>
+)
+
+const h1 = {
+	color: '#1d1c1d',
+	fontSize: '24px',
+	fontWeight: '700',
+	margin: '10px 0',
+	padding: '0',
+	lineHeight: '42px',
+}
+
+const codeBox = {
+	background: 'rgb(245, 244, 245)',
+	borderRadius: '10px',
+	marginBottom: '15px',
+	padding: '10px',
 }
