@@ -44,7 +44,7 @@ export const confirmEmail = (props: EmailTemplateProps) => (
 					</Text>
 
 					<Section style={codeBox}>
-						<Text className='text-2xl'>{props.link}</Text>
+						<Text className='sm:text-xl md:text-2xl'>{props.link}</Text>
 					</Section>
 
 					<Text className='text-xl'>

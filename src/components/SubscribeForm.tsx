@@ -11,10 +11,10 @@ export default function SubscribeForm() {
 				await subscribe(formData)
 
 				const form = document.getElementById(
-              'subscribe-form'
-            ) as HTMLFormElement
-            form.reset()
-          }}
+					'subscribe-form'
+				) as HTMLFormElement
+				form.reset()
+			}}
 		>
 			<div className='relative w-[476px]'>
 				<input
