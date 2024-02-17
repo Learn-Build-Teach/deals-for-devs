@@ -1,27 +1,26 @@
-import React from 'react';
+import SubscribeForm from './forms/SubscribeForm'
 
 export default function Hero() {
   return (
-    <div className="max-w-2xl mx-auto mb-2">
-      {/* <div className="mt-10 md:mt-24 sm:mt-32 lg:mt-16 text-center">
-        <a href="#" className="inline-flex space-x-6">
-          <span className="rounded-full bg-teal-500/10 px-3 py-1 text-sm font-semibold leading-6 text-teal-400 ring-1 ring-inset ring-teal-500/20">
-            Black Friday 2023
-          </span>
-        </a>
-      </div> */}
+    <div className="mb-[40px] md:mb-[100px]">
+      <div className="flex flex-col gap-[23px] md:flex-row md:gap-[126px]">
+        <h1 className="max-w-[351px] text-[36px] font-semibold leading-[42.26px] tracking-tight text-white md:max-w-[861px] md:text-7xl md:leading-[84.53px]">
+          The best <span className="text-teal-500">deals</span> and{' '}
+          <span className="text-teal-500">giveaways</span> for developers
+        </h1>
 
-      <h1 className="mt-10 text-2xl sm:text-6xl max-w-xl mx-auto text-center w-full font-bold tracking-tight text-white ">
-        The Best Deals for{' '}
-        <span className="block text-teal-500  text-4xl sm:text-8xl">
-          Developers
-        </span>
-      </h1>
-      <p className="mt-2 max-w-xl mx-auto sm:mt-6 text-md sm:text-xl leading-8 tracking-wide text-gray-400 text-center">
-        Level up your skills, desk setup, or gadget collection with these Black
-        Friday deals.
-      </p>
-      <div className="mt-10 flex items-center justify-center gap-x-6"></div>
+        {/* subscription form */}
+        <div className="mb-10 max-w-[490px] md:mb-[90px]">
+          <p className="mb-[11px] text-[14px] leading-[21px] text-white md:mb-[25px] md:text-lg md:leading-[30px]">
+            Get upcoming and ongoing deals sent straight to your inbox every
+            month!
+          </p>
+          <SubscribeForm />
+        </div>
+      </div>
+
+      {/* separator */}
+      <div className="border border-white/[.31]" />
     </div>
-  );
+  )
 }

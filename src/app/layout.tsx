@@ -45,14 +45,12 @@ export default function RootLayout({
 				<PHProvider>
 					<body className=''>
 						<div className='bg-gray-900 min-h-screen flex justify-between flex-col'>
-							<div className='px-6 pt-5 md:px-24 md:pt-[84px]'>
+							<div className='px-6 pt-5 md:px-24 md:pt-[84px] max-w-[1728px] mx-auto'>
 								<SearchProvider>
 									<GlobalSearch />
 									<Nav />
 								</SearchProvider>
-								<div className=' px-4 sm:px-8 py-6 pt-1 max-w-6xl mx-auto'>
-									{children}
-								</div>
+								<div>{children}</div>
 							</div>
 							<Footer />
 						</div>

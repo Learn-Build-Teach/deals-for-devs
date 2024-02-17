@@ -2,7 +2,7 @@ import Hero from '@/components/Hero'
 import Link from 'next/link'
 import FeaturedDeals from '@/components/FeaturedDeals'
 import { Category } from '@/types/Types'
-import SubscribeForm from '@/components/SubscribeForm'
+import SubscribeForm from '@/components/forms/SubscribeForm'
 
 export default function Home() {
 	return (
@@ -17,6 +17,7 @@ export default function Home() {
 					View All Deals
 				</Link>
 			</div>
+
 			<div className='flex gap-y-16 flex-col mb-20'>
 				{[
 					Category.COURSE,

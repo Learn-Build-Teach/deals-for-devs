@@ -16,7 +16,7 @@ export default function Nav() {
 	return (
 		<header>
 			<nav
-				className='flex items-center justify-between mb-[153px]'
+				className='flex items-center justify-between mb-[79px] md:mb-[153px]'
 				aria-label='Global'
 			>
 				{/* D4D logo */}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { getXataClient } from '@/xata'
 import DeleteButton from '../DeleteButton'
-import SubscribeForm from '@/components/SubscribeForm'
+import SubscribeForm from '@/components/forms/SubscribeForm'
 
 export async function getSubscribers() {
 	const client = getXataClient()
