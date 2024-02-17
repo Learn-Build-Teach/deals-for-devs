@@ -11,6 +11,12 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/react'
 import { Toaster } from 'react-hot-toast'
 
+import { Raleway } from 'next/font/google'
+const raleway = Raleway({
+	subsets: ['latin'],
+	display: 'swap',
+})
+
 export const metadata: Metadata = {
 	title: 'Developer Deals',
 	metadataBase: new URL('https://dealsfordevs.com/'),
@@ -32,7 +38,7 @@ export default function RootLayout({
 }) {
 	return (
 		<ClerkProvider>
-			<html lang='en'>
+			<html lang='en' className={raleway.className}>
 				<Suspense>
 					<PostHogPageview />
 				</Suspense>
