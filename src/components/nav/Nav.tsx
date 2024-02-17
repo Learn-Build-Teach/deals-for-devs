@@ -3,9 +3,9 @@ import { UserButton, useUser } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import { GoSearch } from 'react-icons/go'
-import { useSearch } from './SearchContext'
-import NavLink from './nav/NavLink'
-import Separator from './nav/Separator'
+import { useSearch } from '../SearchContext'
+import NavLink from './NavLink'
+import Separator from './Separator'
 
 export default function Nav() {
 	const { user, isLoaded } = useUser()
@@ -15,7 +15,10 @@ export default function Nav() {
 
 	return (
 		<header>
-			<nav className='flex items-center justify-between' aria-label='Global'>
+			<nav
+				className='flex items-center justify-between mb-[153px]'
+				aria-label='Global'
+			>
 				{/* D4D logo */}
 				<Link href='/'>
 					<Image

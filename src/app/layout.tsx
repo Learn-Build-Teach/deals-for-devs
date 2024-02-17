@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
-import Nav from '@/components/Nav'
+import Nav from '@/components/nav/Nav'
 import Footer from '@/components/Footer'
 import GlobalSearch from '@/components/GlobalSearch'
 import { SearchProvider } from '@/components/SearchContext'
