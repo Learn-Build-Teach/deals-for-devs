@@ -17,13 +17,6 @@ export default function Home() {
 					View All Deals
 				</Link>
 			</div>
-			<div className='text-center '>
-				<p className='text-2xl text-white'>
-					Get upcoming and ongoing deals sent straight to your inbox every
-					month!
-				</p>
-				<SubscribeForm />
-			</div>
 			<div className='flex gap-y-16 flex-col mb-20'>
 				{[
 					Category.COURSE,
