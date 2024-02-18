@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { subscribe } from '@/actions/subscribe'
+import { subscribe } from '@/actions/subscriber-subscribe'
 
 export default function SubscribeForm() {
   return (

@@ -3,7 +3,7 @@ import { getXataClient } from '@/xata'
 import { v4 as uuidv4 } from 'uuid'
 import { z } from 'zod'
 import { revalidatePath } from 'next/cache'
-import { sendConfirmationEmail } from './sendConfirmationEmail'
+import { sendConfirmationEmail } from './email-sendConfirmation'
 import { redirect } from 'next/navigation'
 import { baseURL } from '@/lib/utils'
 

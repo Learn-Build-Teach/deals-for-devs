@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { sendConfirmationEmail } from '@/actions/sendConfirmationEmail'
+import { sendConfirmationEmail } from '@/actions/email-sendConfirmation'
 import toast from 'react-hot-toast'
 
 interface ResendConfirmationProps {

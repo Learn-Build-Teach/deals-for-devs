@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import { Subscribers } from '@/xata'
 import { cn } from '@/lib/utils'
-import { updatePreferences } from '@/actions/updatePreferences'
+import { updatePreferences } from '@/actions/subscriber-update'
 import toast from 'react-hot-toast'
 
 export default function Subscriber({

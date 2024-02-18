@@ -1,5 +1,5 @@
 'use client'
-import { deleteSubscriber } from '@/actions/delete'
+import { deleteSubscriber } from '@/actions/subscriber-delete'
 
 export default function DeleteButton({ id }: { id: string }) {
 	return (
