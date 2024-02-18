@@ -1,6 +1,6 @@
 import Hero from '@/components/Hero'
 import Link from 'next/link'
-import FeaturedDeals from '@/components/FeaturedDeals'
+import FeaturedDeals from '@/components/deals/FeaturedDeals'
 import { Category } from '@/types/Types'
 import SubscribeForm from '@/components/forms/SubscribeForm'
 import Image from 'next/image'

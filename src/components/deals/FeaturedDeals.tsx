@@ -1,4 +1,4 @@
-import DealsList from '@/app/DealsList';
+import DealsList from '@/components/deals/DealsList';
 import { Category } from '@/types/Types';
 import { getXataClient } from '@/xata';
 import React from 'react';

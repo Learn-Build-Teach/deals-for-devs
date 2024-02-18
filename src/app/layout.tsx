@@ -45,7 +45,7 @@ export default function RootLayout({
 				<PHProvider>
 					<body className=''>
 						<div className='bg-gray-900 min-h-screen flex justify-between flex-col'>
-							<div className='px-6 pt-5 md:px-24 md:pt-[84px] max-w-[1728px] mx-auto'>
+							<div className='px-6 pt-5 md:px-24 md:pt-[84px] max-w-[1728px] mx-auto w-full'>
 								<SearchProvider>
 									<GlobalSearch />
 									<Nav />

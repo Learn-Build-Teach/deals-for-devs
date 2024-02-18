@@ -1,6 +1,6 @@
 import Hero from '@/components/Hero';
 import { DealsRecord, getXataClient } from '@/xata';
-import DealsList from '../DealsList';
+import DealsList from '../../../components/deals/DealsList';
 import { auth } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 import { isAdminUser } from '@/utils/auth';

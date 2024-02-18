@@ -1,6 +1,6 @@
 import React from 'react'
 import { getXataClient } from '@/xata'
-import DeleteButton from '../DeleteButton'
+import DeleteButton from '../../../components/deals/DeleteButton'
 import SubscribeForm from '@/components/forms/SubscribeForm'
 
 export async function getSubscribers() {

@@ -1,6 +1,6 @@
 import { DealsRecord, getXataClient } from '@/xata';
 import CategoryOptions from '@/components/CategoryOptions';
-import DealsList from '../../DealsList';
+import DealsList from '../../../components/deals/DealsList';
 
 export default async function CategoryPage({
   params,
