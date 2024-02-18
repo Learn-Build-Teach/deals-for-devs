@@ -18,8 +18,9 @@ export default function SubscribeForm() {
       <div className="relative">
         <input
           type="email"
+          name="email"
           placeholder="E-mail address"
-          className="h-[44.36px] w-[303px] rounded-md border border-white/[.67] bg-transparent p-3 pl-4 text-black md:h-[70px] md:w-[476px] md:rounded-[16px] md:placeholder:text-white/[.47]"
+          className="h-[44.36px] w-[303px] rounded-md border border-white/[.67] bg-transparent p-3 pl-4  text-white md:h-[70px] md:w-[476px] md:rounded-[16px] md:placeholder:text-white/[.47]"
         />
         <button
           type="submit"
