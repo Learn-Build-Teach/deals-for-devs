@@ -2,16 +2,17 @@
 import * as React from 'react'
 import { Resend } from 'resend'
 import { confirmEmail } from '@/emails/emailConfirmation'
+import { baseURL } from '@/lib/utils'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
-const node = process.env.NODE_ENV
+const environment = process.env.VERCEL_ENV
 
 export const sendConfirmationEmail = async (email: string, link: string) => {
   let data
 
   // Set the from email address based on the environment
   const fromEmail =
-    node == 'development' ?
+    environment == 'development' ?
       'Deals for Devs<hello@chrisnowicki.io>'
     : 'Deals for Devs<hello@dealsfordevs.com>'
 
@@ -27,7 +28,7 @@ export const sendConfirmationEmail = async (email: string, link: string) => {
         link: link,
       }),
       headers: {
-        'List-Unsubscribe': '<https://example.com/unsubscribe>',
+        'List-Unsubscribe': `<${baseURL}/unsubscribe>`,
       },
     })
   } catch (error: unknown) {

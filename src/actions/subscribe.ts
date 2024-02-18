@@ -5,6 +5,7 @@ import { z } from 'zod'
 import { revalidatePath } from 'next/cache'
 import { sendConfirmationEmail } from './sendConfirmationEmail'
 import { redirect } from 'next/navigation'
+import { baseURL } from '@/lib/utils'
 
 const subscribeSchema = z.object({
   email: z.string().email(),
@@ -13,9 +14,6 @@ const subscribeSchema = z.object({
 
 // generate uuid
 const token = uuidv4()
-
-// get env variables
-const node = process.env.NODE_ENV
 
 export const subscribe = async (formData: FormData) => {
   let parsed
@@ -40,16 +38,13 @@ export const subscribe = async (formData: FormData) => {
 
   // send email confirmation email using resend
   // create link
-  const location =
-    node === 'development' ?
-      'http://localhost:3000'
-    : 'https://dealsfordevs.com'
-  const link = `${location}/validate?token=${token}`
+
+  const link = `${baseURL()}/validate?token=${token}`
 
   // send email
   sendConfirmationEmail(parsed.email, link)
 
   // route subscriber to preference page
   revalidatePath('/admin')
-  redirect(`${location}/confirm/${token}`)
+  redirect(`${baseURL()}/confirm/${token}`)
 }
