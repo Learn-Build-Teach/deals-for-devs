@@ -12,9 +12,7 @@ export const sendConfirmationEmail = async (email: string, link: string) => {
 
   // Set the from email address based on the environment
   const fromEmail =
-    environment == 'development' ?
-      'Deals for Devs<hello@chrisnowicki.io>'
-    : 'Deals for Devs<hello@dealsfordevs.com>'
+    process.env.FROM_EMAIL || 'Deals for Devs<hello@chrisnowicki.io>'
 
   // Send the confirmation email
   try {

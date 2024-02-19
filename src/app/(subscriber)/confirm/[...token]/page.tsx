@@ -57,7 +57,7 @@ export default async function ThankYou({ params }: ThankYouProps) {
         Please Verify Your Email!
       </span>
       <span>
-        We've sent an email to{' '}
+        {`We've`} sent an email to{' '}
         <span className="font-bold underline">{email}</span>.
       </span>
       <span className="mb-12 leading-10">
