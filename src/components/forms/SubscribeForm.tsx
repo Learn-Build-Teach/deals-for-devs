@@ -15,16 +15,16 @@ export default function SubscribeForm() {
         form.reset()
       }}
     >
-      <div className="relative">
+      <div className="relative h-[44.36px] w-[303px] md:h-[70px] md:w-[476px]">
         <input
           type="email"
           name="email"
           placeholder="E-mail address"
-          className="h-[44.36px] w-[303px] rounded-md border border-white/[.67] bg-transparent p-3 pl-4  text-white md:h-[70px] md:w-[476px] md:rounded-[16px] md:placeholder:text-white/[.47]"
+          className="w-full rounded-md border border-white/[.67] bg-transparent p-3 pl-4  text-white md:h-[70px] md:w-[476px] md:rounded-[16px] md:placeholder:text-white/[.47]"
         />
         <button
           type="submit"
-          className="absolute right-3.5 top-3.5 pr-[19px] hover:translate-x-1 md:right-6 md:top-6"
+          className="h absolute right-1 top-4 pr-[19px] hover:translate-x-1 md:top-6"
         >
           <svg
             width="24"

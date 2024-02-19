@@ -1,6 +1,6 @@
 import { HiOutlineExclamationCircle as Warning } from 'react-icons/hi'
 import { redirect } from 'next/navigation'
-import ResendConfirmation from '@/components/ResendConfirmation'
+import ResendConfirmation from '@/components/subscriber/ResendConfirmation'
 
 import { getXataClient } from '@/xata'
 const client = getXataClient()
@@ -42,6 +42,7 @@ export default async function ThankYou({ params }: ThankYouProps) {
 
   return (
     <main className="-mt-24 flex flex-col items-center text-white">
+      
       {/* email and verified status */}
       <div className="flex items-center justify-center gap-2">
         <span className="underline">{email}</span>

@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-checkbox {
+  display: inline-block;
+  position: relative;
+}
+
+.custom-checkbox input[type='checkbox'] {
+  visibility: hidden;
+}
+
+.custom-checkbox .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 1px solid white;
+}
+
+.custom-checkbox input[type='checkbox']:checked + .checkmark {
+  background-color: #14b8a6;
+  color: black;
+  border: 1px solid #14b8a6;
+}
