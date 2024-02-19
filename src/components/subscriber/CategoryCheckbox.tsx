@@ -25,7 +25,7 @@ export default function CategoryCheckbox({
           onChange={handleChange}
         />
         <span className="checkmark flex h-7 w-7 items-center justify-center md:h-12 md:w-12">
-          {isChecked && <MdCheck />}
+          {isChecked && <MdCheck className="md:text-3xl" />}
         </span>
       </label>
       <span className="mt-[2.5px] text-sm font-extralight md:mt-3 md:text-[28px]">
