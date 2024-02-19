@@ -1,16 +1,20 @@
+import DevGiveaways from '@/components/DevGiveaways'
 import Hero from '@/components/Hero'
-import Link from 'next/link'
+import Separator from '@/components/Separator'
 import FeaturedDeals from '@/components/deals/FeaturedDeals'
-import { Category } from '@/types/Types'
 import SubscribeForm from '@/components/forms/SubscribeForm'
+import { Category } from '@/types/Types'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   return (
     <main>
       <Hero />
+      <Separator className="my-20" />
 
-      <div className="my-20 text-center">
+      {/* deals */}
+      <div className="mb-20 text-center">
         <Link
           href="/deals"
           className="rounded-lg border-4 border-teal-800 bg-teal-600 p-4 px-10 text-xl text-teal-100 transition-colors duration-300 ease-in-out hover:bg-teal-700 "
@@ -19,7 +23,6 @@ export default function Home() {
         </Link>
       </div>
 
-      {/* deals */}
       <div className="mb-20 flex flex-col gap-y-16 px-6 md:px-0">
         {[
           Category.COURSE,
@@ -32,7 +35,7 @@ export default function Home() {
       </div>
 
       {/* Never Miss A Deal */}
-      <div className="mb-11 flex flex-col items-center rounded-2xl bg-[#0C111C] pt-[60px] md:pt-[97px]">
+      <div className="mb-20 flex flex-col items-center rounded-2xl bg-[#0C111C] pt-[60px] md:mb-36 md:pt-[97px]">
         <span className="w-[341px] text-center text-2xl text-white md:w-[635px] md:text-5xl">
           Never miss a <span className="text-teal-500">deal</span> for your
           favorite tools or courses
@@ -52,6 +55,9 @@ export default function Home() {
           alt="Never Miss A Deal Logos"
         />
       </div>
+
+      <Separator className="mb-20" />
+      <DevGiveaways />
     </main>
   )
 }
