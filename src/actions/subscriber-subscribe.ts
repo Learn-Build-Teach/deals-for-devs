@@ -3,27 +3,28 @@ import { getXataClient } from '@/xata'
 import { v4 as uuidv4 } from 'uuid'
 import { z } from 'zod'
 import { revalidatePath } from 'next/cache'
-import { sendConfirmationEmail } from './email-sendConfirmation'
+import { sendConfirmationEmail } from '../utils/resend/email-sendConfirmation'
 import { redirect } from 'next/navigation'
-import { baseURL } from '@/lib/utils'
 
 const subscribeSchema = z.object({
   email: z.string().email(),
-  token: z.string(),
 })
-
-// generate uuid
-const token = uuidv4()
 
 export const subscribe = async (formData: FormData) => {
   let parsed
 
-  // parse the email and token
-  parsed = subscribeSchema.parse({ email: formData.get('email'), token: token })
+  // create unique token
+  const token = uuidv4()
+
+  // get the base URL
+  const baseUrl = process.env.BASE_URL
+
+  // parse the email
+  parsed = subscribeSchema.parse({ email: formData.get('email') })
 
   const newSubscriber = {
     email: parsed.email,
-    token: parsed.token,
+    token: token,
     courseNotifications: true,
     ebookNotifications: true,
     miscNotifications: true,
@@ -39,12 +40,12 @@ export const subscribe = async (formData: FormData) => {
   // send email confirmation email using resend
   // create link
 
-  const link = `${baseURL()}/validate?token=${token}`
+  const link = `${baseUrl}/validate?token=${token}`
 
   // send email
   sendConfirmationEmail(parsed.email, link)
 
   // route subscriber to preference page
   revalidatePath('/admin')
-  redirect(`${baseURL()}/confirm/${token}`)
+  redirect(`${baseUrl}/confirm/${token}`)
 }

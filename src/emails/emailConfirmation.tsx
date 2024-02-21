@@ -17,10 +17,8 @@ interface EmailTemplateProps {
   link: string
 }
 
-const baseUrl =
-  process.env.NODE_ENV === 'development' ?
-    'http://localhost:3000'
-  : 'https://dealsfordevs.com'
+//TODO: add issue for button for verify.  If that doesn't work then copy link
+const baseURL = process.env.BASE_URL
 
 export const confirmEmail = (props: EmailTemplateProps) => (
   <Html lang="en">
@@ -32,7 +30,7 @@ export const confirmEmail = (props: EmailTemplateProps) => (
         <Container>
           <Section>
             <Img
-              src={`${baseUrl}/logo-teal.png`}
+              src={`${baseURL}/logo-teal.png`}
               width="60"
               alt="Deals for Devs"
             />

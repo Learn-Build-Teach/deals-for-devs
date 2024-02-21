@@ -4,7 +4,6 @@ import Separator from '@/components/Separator'
 import FeaturedDeals from '@/components/deals/FeaturedDeals'
 import SubscribeForm from '@/components/forms/SubscribeForm'
 import { Category } from '@/types/Types'
-import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Home() {
@@ -47,13 +46,6 @@ export default function Home() {
         <div className="mb-12 bg-gray-900 md:mb-0">
           <SubscribeForm />
         </div>
-        <Image
-          src="/nmad-logos.png"
-          width={609}
-          height={65.1}
-          className="mb-3 mt-8 hidden md:block"
-          alt="Never Miss A Deal Logos"
-        />
       </div>
 
       <Separator className="mb-20" />

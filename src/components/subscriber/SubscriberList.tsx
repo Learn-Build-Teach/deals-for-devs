@@ -1,4 +1,4 @@
-import DeleteButton from '../deals/DeleteButton'
+import DeleteButton from './DeleteButton'
 import SubscribeForm from '@/components/forms/SubscribeForm'
 import type { Subscribers } from '@/xata'
 

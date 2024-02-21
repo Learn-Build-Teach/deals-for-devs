@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 
 const client = getXataClient()
 
+//TODO: Add error checking
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
   const token = searchParams.get('token')
@@ -13,19 +14,25 @@ export async function GET(request: NextRequest) {
   }
 
   const subscriber = await client.db.subscribers.getFirst({
-    filter: { token: token },
+    filter: { token },
   })
 
   if (!subscriber) {
     redirect('/')
   }
 
-  const data = await client.db.subscribers.update(subscriber.id, {
+  const { id } = subscriber
+
+  const data = await client.db.subscribers.update(id, {
     verified: true,
     status: 'subscribed',
   })
 
-  if (data) {
-    return redirect(`/preferences/${data.token}`)
+  if (!data) {
+    //TODO: handle not found (return's null)
+    //TODO: redirect to a new page saying error of some sort
+    return
   }
+
+  return redirect(`/preferences/${token}`)
 }

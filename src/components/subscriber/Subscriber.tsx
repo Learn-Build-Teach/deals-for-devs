@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { Subscribers } from '@/xata'
-import { updatePreferences } from '@/actions/subscriber-update'
+import { updateSubscriberPreferences } from '@/lib/queries'
 import toast from 'react-hot-toast'
 import CategoryCheckbox from './CategoryCheckbox'
 
@@ -23,6 +23,9 @@ export default function Subscriber({
     setUpdate(true)
   }
 
+  //TODO: Iterate through ENUM for categories
+  //TODO: Add category table to Xata
+  //TODO: Update name with ENUM category value.
   const subscribedCategories = [
     {
       name: 'courseNotifications',
@@ -40,16 +43,16 @@ export default function Subscriber({
     { name: 'miscNotifications', subscribed: subscriberData.miscNotifications },
   ]
 
-  const updateSubscriptions = async (val: boolean) => {
+  const updateAllSubscriptions = async (subscribedStatus: boolean) => {
     // Create a new object with the updated values
     const newData = {
       ...subscriberData,
-      courseNotifications: val,
-      ebookNotifications: val,
-      toolNotifications: val,
-      conferenceNotifications: val,
-      miscNotifications: val,
-      status: val ? 'subscribed' : 'unsubscribed',
+      courseNotifications: subscribedStatus,
+      ebookNotifications: subscribedStatus,
+      toolNotifications: subscribedStatus,
+      conferenceNotifications: subscribedStatus,
+      miscNotifications: subscribedStatus,
+      status: subscribedStatus ? 'subscribed' : 'unsubscribed',
     }
 
     // Update the state
@@ -58,12 +61,13 @@ export default function Subscriber({
       ...newData,
     }))
 
+    //TODO: Look if updatePref is REALLY being used as a server action or server component
     // Update the database
     try {
-      await updatePreferences(subscriberData.id, newData)
+      await updateSubscriberPreferences(subscriberData.id, newData)
       toast.success(
         `You have been ${
-          val ? 'subscribed to' : 'unsubscribed from'
+          subscribedStatus ? 'subscribed to' : 'unsubscribed from'
         } all notifications!`
       )
     } catch (error) {
@@ -78,14 +82,14 @@ export default function Subscriber({
         <div className="mb-8 flex w-full justify-between">
           <button
             className="text-xs font-light md:text-[28px]"
-            onClick={() => updateSubscriptions(true)}
+            onClick={() => updateAllSubscriptions(true)}
           >
             Subscribe to all
           </button>
 
           <button
             className="rounded-md border border-red-400 bg-transparent px-3.5 py-2.5 text-center text-xs font-light text-red-400 shadow-sm hover:bg-red-400 hover:text-red-900 md:py-6 md:text-[28px]"
-            onClick={() => updateSubscriptions(false)}
+            onClick={() => updateAllSubscriptions(false)}
           >
             Unsubscribe from all
           </button>
@@ -107,7 +111,7 @@ export default function Subscriber({
         <button
           className="mb-80 mt-9 w-full rounded-md bg-teal-600 py-3 text-center text-sm font-semibold text-black shadow-sm hover:bg-teal-400 disabled:cursor-not-allowed disabled:border  disabled:border-teal-500 disabled:bg-transparent disabled:text-teal-500 md:mt-20 md:py-5 md:text-2xl"
           onClick={async () => {
-            await updatePreferences(subscriberData.id, subscriberData)
+            await updateSubscriberPreferences(subscriberData.id, subscriberData)
             toast.success('Preferences updated!')
             setUpdate(false)
           }}

@@ -11,38 +11,34 @@ type ThankYouProps = {
   }
 }
 
+//TODO: Add polling cycling to check email verification status
 export default async function ThankYou({ params }: ThankYouProps) {
-  const token = params.token
+  const tokenFromParams = params.token
 
-  if (!token) {
+  if (!tokenFromParams) {
     redirect('/')
   }
 
   const subscriber = await client.db.subscribers.getFirst({
-    filter: { token },
+    filter: { token: tokenFromParams },
   })
 
   if (!subscriber || !subscriber.email) {
     redirect('/')
   }
 
-  if (subscriber.verified) {
-    redirect(`/preferences/${subscriber.token}`)
+  const { email, verified, token } = subscriber
+
+  if (verified) {
+    redirect(`/preferences/${token}`)
   }
 
-  const subscriberData = {
-    id: subscriber.id,
-    email: subscriber.email,
-    verified: subscriber.verified,
-    token: subscriber.token,
-  }
-
-  const email = subscriberData.email
-  const confirmationLink = `http://localhost:3000/validate?token=${subscriberData.token}`
+  //TODO: Bring in baseURL from env
+  //TODO: Add to util function
+  const confirmationLink = `http://localhost:3000/validate?token=${token}`
 
   return (
     <main className="-mt-24 flex flex-col items-center text-white">
-      
       {/* email and verified status */}
       <div className="flex items-center justify-center gap-2">
         <span className="underline">{email}</span>
