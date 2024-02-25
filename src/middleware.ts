@@ -14,7 +14,7 @@ export default authMiddleware({
     '/confirm/(.*)',
     '/preferences/(.*)',
     '/api/cron/monthly-newsletter',
-    '/validate',
+    '/api/validate',
   ],
 })
 

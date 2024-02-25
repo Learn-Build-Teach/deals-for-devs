@@ -34,5 +34,5 @@ export async function GET(request: NextRequest) {
     return
   }
 
-  return redirect(`/preferences/${token}`)
+  return redirect(`/preferences?token=${token}`)
 }

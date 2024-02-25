@@ -17,6 +17,14 @@ export async function getAllSubscribers() {
   return JSON.parse(JSON.stringify(subscribers))
 }
 
+export async function getOneSubscriber(token: string) {
+  const subscriber = await xataClient.db.subscribers.getFirst({
+    filter: { token },
+  })
+
+  return JSON.parse(JSON.stringify(subscriber))
+}
+
 export async function deleteSubscriber(id: string) {
   const data = await xataClient.db.subscribers.delete(id)
   revalidatePath('/admin')
@@ -49,5 +57,4 @@ export async function updateSubscriberPreferences(
   }
 
   await xataClient.db.subscribers.update(id, subscriber)
-  revalidatePath('/admin')
 }
