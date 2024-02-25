@@ -17,7 +17,6 @@ interface EmailTemplateProps {
   link: string
 }
 
-//TODO: add issue for button for verify.  If that doesn't work then copy link
 const baseURL = process.env.BASE_URL
 
 export const confirmEmail = (props: EmailTemplateProps) => (

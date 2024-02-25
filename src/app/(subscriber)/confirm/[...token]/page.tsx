@@ -14,6 +14,7 @@ type ThankYouProps = {
 //TODO: Add polling cycling to check email verification status
 export default async function ThankYou({ params }: ThankYouProps) {
   const tokenFromParams = params.token
+  const baseUrl = process.env.BASE_URL
 
   if (!tokenFromParams) {
     redirect('/')
@@ -33,9 +34,8 @@ export default async function ThankYou({ params }: ThankYouProps) {
     redirect(`/preferences/${token}`)
   }
 
-  //TODO: Bring in baseURL from env
   //TODO: Add to util function
-  const confirmationLink = `http://localhost:3000/validate?token=${token}`
+  const confirmationLink = `${baseUrl}/validate?token=${token}`
 
   return (
     <main className="-mt-24 flex flex-col items-center text-white">

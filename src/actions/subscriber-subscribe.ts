@@ -39,7 +39,6 @@ export const subscribe = async (formData: FormData) => {
 
   // send email confirmation email using resend
   // create link
-
   const link = `${baseUrl}/validate?token=${token}`
 
   // send email
