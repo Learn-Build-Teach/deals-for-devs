@@ -5,8 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-const baseURL =
-  (process.env.BASE_URL_PREFIX || 'https://') + process.env.VERCEL_URL
+const baseURL = process.env.BASE_URL
 
 console.info(baseURL)
 

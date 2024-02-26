@@ -18,23 +18,23 @@ export default async function ConfirmEmail({
   const tokenFromParams = searchParams.token
 
   if (!tokenFromParams) {
-    redirect('/')
+    return redirect('/')
   }
 
   const subscriber = await getOneSubscriber(tokenFromParams)
 
   if (!subscriber || !subscriber.email) {
-    redirect('/')
+    return redirect('/')
   }
 
-  const { email, verified, token } = subscriber
+  const { email, verified } = subscriber
 
   if (verified) {
-    const preferencesLink = createPreferencesLink(token as string)
-    redirect(preferencesLink)
+    const preferencesLink = createPreferencesLink(tokenFromParams)
+    return redirect(preferencesLink)
   }
 
-  const validateEmailLink = createValidateEmailLink(token as string)
+  const validateEmailLink = createValidateEmailLink(tokenFromParams)
 
   return (
     <main className="mx-4 -mt-12 flex max-w-[1000px] flex-col items-center rounded-xl border border-white bg-[#0C111C] p-8 text-white shadow-xl md:mx-auto  md:-mt-24 md:mb-10">
@@ -52,7 +52,6 @@ export default async function ConfirmEmail({
         Click the link in your email to verify your account.
       </p>
 
-      {/* resend confirmation email */}
       <ResendConfirmationButton
         email={email}
         validateEmailLink={validateEmailLink}
