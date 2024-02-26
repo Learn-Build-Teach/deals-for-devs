@@ -1,4 +1,5 @@
-import DealForm from './DealForm';
+import DealForm from './DealForm'
+import { redirect } from 'next/navigation'
 
 //TODO: why doesn't this work with server component page?
 // export const metadata: Metadata = {
@@ -7,14 +8,15 @@ import DealForm from './DealForm';
 // };
 
 export default function AddDealPage() {
+  redirect('/')
   return (
     <main className="">
-      <h1 className="text-4xl font-bold py-20 text-gray-100 text-center">
+      <h1 className="py-20 text-center text-4xl font-bold text-gray-100">
         Share a Deal
       </h1>
-      <div className="max-w-2xl mx-auto pb-20">
+      <div className="mx-auto max-w-2xl pb-20">
         <DealForm />
       </div>
     </main>
-  );
+  )
 }

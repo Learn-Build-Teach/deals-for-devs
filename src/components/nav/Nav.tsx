@@ -6,6 +6,7 @@ import { GoSearch } from 'react-icons/go'
 import { useSearch } from '../SearchContext'
 import NavLink from './NavLink'
 import Separator from './Separator'
+import { cn } from '@/lib/utils'
 
 export default function Nav() {
   const { user, isLoaded } = useUser()
@@ -16,7 +17,10 @@ export default function Nav() {
   return (
     <header>
       <nav
-        className="mb-[79px] flex items-center justify-between px-6 md:mb-[153px] md:px-0"
+        className={cn(
+          'mb-[79px] flex w-full items-center px-6 md:mb-[153px] md:px-0',
+          isUserAuthenticated ? 'justify-between' : 'justify-center'
+        )}
         aria-label="Global"
       >
         {/* D4D logo */}
@@ -32,20 +36,21 @@ export default function Nav() {
 
         {/* nav links */}
         <div className=" flex flex-1 flex-row items-center justify-end gap-x-5 gap-y-2">
-          <NavLink href="/deals">Shop All Deals</NavLink>
-          <NavLink href="/deals/add">Add a deal</NavLink>
+          {/* <NavLink href="/deals">Shop All Deals</NavLink>
+          <NavLink href="/deals/add">Add a deal</NavLink> */}
 
           {/* admin dashboard */}
           {isUserAuthenticated && (
-            <NavLink href="/dashboard">Dashboard</NavLink>
+            <>
+              <NavLink href="/dashboard">Dashboard</NavLink>
+              <Separator />
+            </>
           )}
 
-          <Separator />
-
           {/* search */}
-          <button className="text-white" onClick={() => setSearchOpen(true)}>
+          {/* <button className="text-white" onClick={() => setSearchOpen(true)}>
             <GoSearch className="h-4 w-4 md:h-7 md:w-7" />
-          </button>
+          </button> */}
 
           {/* user logout */}
           {isUserAuthenticated && (

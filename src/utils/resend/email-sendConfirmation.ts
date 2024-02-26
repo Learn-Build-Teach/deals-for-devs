@@ -11,6 +11,7 @@ export const sendConfirmationEmail = async (email: string, link: string) => {
   // Set the from email address based on the environment
   const from = process.env.FROM_EMAIL || ''
 
+  // TODO: Add env variable for reply to email
   // Send the confirmation email
   try {
     data = await resend.emails.send({

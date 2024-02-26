@@ -28,11 +28,12 @@ export async function getOneSubscriber(token: string) {
   //   filter: { token },
   // })
 
-  const subscriber = await xataClient.db.subscribers.filter({
-   token: token
-  }).getFirst()
+  const subscriber = await xataClient.db.subscribers
+    .filter({
+      token: token,
+    })
+    .getFirst()
 
- 
   return subscriber
 }
 
