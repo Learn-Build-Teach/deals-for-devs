@@ -17,7 +17,7 @@ interface EmailTemplateProps {
   link: string
 }
 
-const baseURL = process.env.BASE_URL
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
 export const confirmEmail = (props: EmailTemplateProps) => (
   <Html lang="en">
