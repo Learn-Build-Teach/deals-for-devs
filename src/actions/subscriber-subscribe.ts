@@ -30,6 +30,8 @@ export const subscribe = async (formData: FormData) => {
     conferenceNotifications: true,
   }
 
+  //TODO check if email is already in the database first
+
   // add new subscriber to the database
   await createSubscriber(newSubscriber)
 
