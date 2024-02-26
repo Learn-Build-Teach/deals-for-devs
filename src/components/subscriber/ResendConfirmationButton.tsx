@@ -14,6 +14,7 @@ export default function ResendConfirmationButton({
   return (
     <form
       action={async () => {
+        console.info(email, validateEmailLink)
         const { error } = await sendConfirmationEmail(email, validateEmailLink)
 
         if (error) {

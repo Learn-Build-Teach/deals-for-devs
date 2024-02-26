@@ -35,7 +35,7 @@ export const sendConfirmationEmail = async (email: string, link: string) => {
         },
       ],
     })
-    console.log(`Email sent to ${email}`)
+    console.info(`Email sent to ${email}`)
   } catch (error: unknown) {
     return {
       error: error,
