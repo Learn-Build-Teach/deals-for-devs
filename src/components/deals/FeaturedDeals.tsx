@@ -1,14 +1,14 @@
-import DealsList from '@/app/DealsList';
-import { Category } from '@/types/Types';
-import { getXataClient } from '@/xata';
-import React from 'react';
+import DealsList from '@/components/deals/DealsList'
+import { Category } from '@/types/Types'
+import { getXataClient } from '@/xata'
+import React from 'react'
 
 export default async function FeaturedDeals({
   category,
 }: {
-  category: Category;
+  category: Category
 }) {
-  const xataClient = getXataClient();
+  const xataClient = getXataClient()
   const deals = await xataClient.db.deals
     .filter({ approved: true, featured: true, category })
     .sort('xata.createdAt', 'desc')
@@ -16,15 +16,15 @@ export default async function FeaturedDeals({
       pagination: {
         size: 3,
       },
-    });
+    })
 
-  if (!deals || deals.length === 0) return null;
+  if (!deals || deals.length === 0) return null
   return (
     <div>
-      <h2 className="text-4xl font-bold mb-6 text-gray-100 ">
+      <h2 className="mb-6 text-4xl font-bold text-gray-100 ">
         Featured <span className="text-teal-500">{category}</span> Deals
       </h2>
       <DealsList deals={deals} />
     </div>
-  );
+  )
 }

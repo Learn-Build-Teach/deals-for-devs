@@ -1,4 +1,4 @@
-import { authMiddleware } from '@clerk/nextjs';
+import { authMiddleware } from '@clerk/nextjs'
 
 // This example protects all routes including api/trpc routes
 // Please edit this to allow other routes to be public as needed.
@@ -8,14 +8,16 @@ export default authMiddleware({
     '/',
     '/deals/(.*)',
     '/deals',
-    '/thank-you',
     '/monitoring',
     '/api/deals',
     '/.well-known/webfinger',
-    '/test/e',
+    '/confirm',
+    '/preferences',
+    '/api/cron/monthly-newsletter',
+    '/api/validate',
   ],
-});
+})
 
 export const config = {
   matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
-};
+}
