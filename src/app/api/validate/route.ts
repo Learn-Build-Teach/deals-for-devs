@@ -1,8 +1,8 @@
 import { NextRequest } from 'next/server'
-import { getXataClient } from '@/xata'
 import { redirect } from 'next/navigation'
-
-const client = getXataClient()
+import { getOneSubscriber } from '@/lib/queries'
+import { createPreferencesLink } from '@/lib/utils'
+import { updateSubscriberToVerified } from '@/lib/queries'
 
 //TODO: Add error checking
 export async function GET(request: NextRequest) {
@@ -13,9 +13,7 @@ export async function GET(request: NextRequest) {
     redirect('/')
   }
 
-  const subscriber = await client.db.subscribers.getFirst({
-    filter: { token },
-  })
+  const subscriber = await getOneSubscriber(token)
 
   if (!subscriber) {
     redirect('/')
@@ -23,10 +21,7 @@ export async function GET(request: NextRequest) {
 
   const { id } = subscriber
 
-  const data = await client.db.subscribers.update(id, {
-    verified: true,
-    status: 'subscribed',
-  })
+  const data = await updateSubscriberToVerified(id)
 
   if (!data) {
     //TODO: handle not found (return's null)
@@ -34,5 +29,5 @@ export async function GET(request: NextRequest) {
     return
   }
 
-  return redirect(`/preferences?token=${token}`)
+  return redirect(createPreferencesLink(token))
 }

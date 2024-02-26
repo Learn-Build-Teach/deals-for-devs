@@ -1,10 +1,11 @@
-import { HiOutlineExclamationCircle as Warning } from 'react-icons/hi'
-import { redirect } from 'next/navigation'
-import ResendConfirmation from '@/components/subscriber/ResendConfirmation'
+import ResendConfirmationButton from '@/components/subscriber/ResendConfirmationButton'
+import { Badge } from '@/components/ui/badge'
 import { createValidateEmailLink } from '@/lib/utils'
+import { redirect } from 'next/navigation'
+import { HiOutlineExclamationCircle as Warning } from 'react-icons/hi'
+import { createPreferencesLink } from '@/lib/utils'
+import { getOneSubscriber } from '@/lib/queries'
 
-import { getXataClient } from '@/xata'
-const client = getXataClient()
 interface ConfirmEmailProps {
   searchParams: {
     token: string | undefined
@@ -21,9 +22,7 @@ export default async function ConfirmEmail({
     redirect('/')
   }
 
-  const subscriber = await client.db.subscribers.getFirst({
-    filter: { token: tokenFromParams },
-  })
+  const subscriber = await getOneSubscriber(tokenFromParams)
 
   if (!subscriber || !subscriber.email) {
     redirect('/')
@@ -32,36 +31,41 @@ export default async function ConfirmEmail({
   const { email, verified, token } = subscriber
 
   if (verified) {
-    redirect(`/preferences?token=${token}`)
+    const preferencesLink = createPreferencesLink(token as string)
+    redirect(preferencesLink)
   }
 
   const validateEmailLink = createValidateEmailLink(token as string)
 
   return (
-    <main className="mx-auto -mt-24 flex w-1/3 flex-col items-center rounded-xl border border-white p-6 text-white shadow-xl shadow-white/5">
+    <main className="mx-4 -mt-12 flex max-w-[1000px] flex-col items-center rounded-xl border border-white bg-[#0C111C] p-8 text-white shadow-xl  md:mx-auto md:-mt-24">
       {/* email and verified status */}
-      <div className="flex items-center justify-center gap-2">
-        <span className="underline">{email}</span>
-        <div className="flex items-center gap-2 rounded-full bg-[#F9D72238]/[.22] py-1 pl-1 pr-3">
-          <Warning className="text-2xl" />
+      <div className="flex  items-center justify-center gap-2 md:flex-row">
+        <span className="text-xs font-extralight underline md:text-2xl">
+          {email}
+        </span>
+        <Badge className="flex items-center gap-1 rounded-full bg-[#F9D72238]/[.22] pl-1 text-sm font-extralight md:text-xl">
+          <Warning className="text-md md:text-2xl" />
           Unverified
-        </div>
+        </Badge>
       </div>
 
       {/* call to action */}
-      <span className="mb-10 mt-6 text-4xl font-semibold tracking-tight">
+      <span className="my-4 text-2xl font-semibold tracking-tight md:mb-16 md:mt-10 md:text-7xl">
         Please Verify Your Email!
       </span>
-      <span>
-        {`We've`} sent an email to{' '}
-        <span className="font-bold underline">{email}</span>.
-      </span>
-      <span className="mb-12 leading-10">
-        Click the link in your email to verify your account
-      </span>
+      <p className="md:leading-10h mb-10 text-center text-xs leading-6 md:mb-20 md:text-2xl md:leading-10">
+        {` we've sent an email to `}
+        <span className="font-bold text-teal-500 underline">{email}</span>.
+        <br />
+        Click the link in your email to verify your account.
+      </p>
 
       {/* resend confirmation email */}
-      <ResendConfirmation email={email} validateEmailLink={validateEmailLink} />
+      <ResendConfirmationButton
+        email={email}
+        validateEmailLink={validateEmailLink}
+      />
     </main>
   )
 }

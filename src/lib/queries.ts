@@ -38,6 +38,15 @@ export async function getAllSubscribers(): Promise<Subscribers[]> {
   return JSON.parse(JSON.stringify(subscribers))
 }
 
+export async function updateSubscriberToVerified(id: string) {
+  const data = await xataClient.db.subscribers.update(id, {
+    verified: true,
+    status: 'subscribed',
+  })
+
+  return data
+}
+
 export async function updateSubscriberPreferences(
   id: string,
   subscriberData: Subscribers

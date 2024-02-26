@@ -19,7 +19,7 @@ export const createConfirmEmailLink = (token: string) => {
 }
 
 // user preference li nk
-export const createUserPreferencesLink = (token: string) => {
+export const createPreferencesLink = (token: string) => {
   return `${baseUrl}/preferences?token=${token}`
 }
 
