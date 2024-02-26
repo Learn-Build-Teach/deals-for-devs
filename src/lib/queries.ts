@@ -23,20 +23,25 @@ export async function createSubscriber(
   return newSubscriber
 }
 
-export async function getOneSubscriber(token: string) {
-  // const subscriber = await xataClient.db.subscribers.getFirst({
-  //   filter: { token },
-  // })
-
+export async function getOneSubscriberByToken(token: string) {
   const subscriber = await xataClient.db.subscribers
     .filter({
-      token: token,
+      token,
     })
     .getFirst()
 
   return subscriber
 }
 
+export async function getOneSubscriberByEmail(email: string) {
+  const subscriber = await xataClient.db.subscribers
+    .filter({
+      email,
+    })
+    .getFirst()
+
+  return subscriber
+}
 export async function getAllSubscribers(): Promise<Subscribers[]> {
   const subscribers = await xataClient.db.subscribers.getMany({})
 

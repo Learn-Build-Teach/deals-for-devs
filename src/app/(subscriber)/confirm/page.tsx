@@ -2,7 +2,7 @@ import ResendConfirmationButton from '@/components/subscriber/ResendConfirmation
 import { createValidateEmailLink } from '@/lib/utils'
 import { redirect } from 'next/navigation'
 import { createPreferencesLink } from '@/lib/utils'
-import { getOneSubscriber } from '@/lib/queries'
+import { getOneSubscriberByToken } from '@/lib/queries'
 import VerifiedStatus from '@/components/subscriber/VerifiedStatus'
 
 interface ConfirmEmailProps {
@@ -21,7 +21,7 @@ export default async function ConfirmEmail({
     return redirect('/')
   }
 
-  const subscriber = await getOneSubscriber(tokenFromParams)
+  const subscriber = await getOneSubscriberByToken(tokenFromParams)
 
   if (!subscriber || !subscriber.email) {
     return redirect('/')

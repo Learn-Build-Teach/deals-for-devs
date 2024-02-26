@@ -2,22 +2,31 @@
 import React from 'react'
 import { subscribe } from '@/actions/subscriber-subscribe'
 import toast from 'react-hot-toast'
+import { redirect } from 'next/navigation'
+import { createConfirmEmailLink } from '@/lib/utils'
 
 export default function SubscribeForm() {
   return (
     <form
       id="subscribe-form"
       action={async (formData) => {
-        const { error } = await subscribe(formData)
+        const { data: token, error } = await subscribe(formData)
         if (error) {
           console.error(error)
-          return toast.error('Error Sending Confirmation Email: ' + error)
+          return toast.error(error)
+        }
+
+        if (!token) {
+          return toast.error('Failed to subscribe')
         }
 
         const form = document.getElementById(
           'subscribe-form'
         ) as HTMLFormElement
         form.reset()
+        // route subscriber to confirm page
+        const confirmEmailLink = createConfirmEmailLink(token)
+        redirect(confirmEmailLink)
       }}
     >
       <div className="relative h-[44.36px] w-[303px] md:h-[70px] md:w-[476px]">

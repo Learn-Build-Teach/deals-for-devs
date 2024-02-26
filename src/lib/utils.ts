@@ -7,8 +7,6 @@ export function cn(...inputs: ClassValue[]) {
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
-console.info(baseURL)
-
 // validate email link
 export const createValidateEmailLink = (token: string) => {
   return `${baseURL}/api/validate?token=${token}`

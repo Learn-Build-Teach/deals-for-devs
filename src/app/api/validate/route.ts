@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server'
 import { redirect } from 'next/navigation'
-import { getOneSubscriber } from '@/lib/queries'
+import { getOneSubscriberByToken } from '@/lib/queries'
 import { createPreferencesLink } from '@/lib/utils'
 import { updateSubscriberToVerified } from '@/lib/queries'
 
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     redirect('/')
   }
 
-  const subscriber = await getOneSubscriber(token)
+  const subscriber = await getOneSubscriberByToken(token)
 
   if (!subscriber) {
     redirect('/')

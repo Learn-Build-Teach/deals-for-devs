@@ -4,7 +4,11 @@ import { z } from 'zod'
 import { sendConfirmationEmail } from '../utils/resend/email-sendConfirmation'
 import { redirect } from 'next/navigation'
 import { createValidateEmailLink, createConfirmEmailLink } from '@/lib/utils'
-import { createSubscriber } from '@/lib/queries'
+import {
+  createSubscriber,
+  getOneSubscriberByEmail,
+  getOneSubscriberByToken,
+} from '@/lib/queries'
 
 const subscribeSchema = z.object({
   email: z.string().email(),
@@ -15,10 +19,17 @@ export const subscribe = async (formData: FormData) => {
 
   // create unique token
   const token = uuidv4()
-
   try {
     // parse the email
     parsed = subscribeSchema.parse({ email: formData.get('email') })
+
+    const existingSubscriber = await getOneSubscriberByEmail(parsed.email)
+    if (existingSubscriber) {
+      console.log('Subscriber exists')
+      return {
+        error: 'This email already exists',
+      }
+    }
 
     const newSubscriber = {
       email: parsed.email,
@@ -31,19 +42,16 @@ export const subscribe = async (formData: FormData) => {
       conferenceNotifications: true,
     }
 
-    //TODO check if email is already in the database first
-
     // add new subscriber to the database
     await createSubscriber(newSubscriber)
 
     // send confirmation email using resend
     const validateEmailLink = createValidateEmailLink(token)
-    sendConfirmationEmail(parsed.email, validateEmailLink)
-
-    // route subscriber to confirm page
-    const confirmEmailLink = createConfirmEmailLink(token)
-    redirect(confirmEmailLink)
+    await sendConfirmationEmail(parsed.email, validateEmailLink)
+    return { data: token }
   } catch (error) {
-    return { error }
+    //TODO: handle specific errors
+    console.error(error)
+    return { error: 'Failed to send confirmation email.' }
   }
 }

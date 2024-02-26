@@ -2,7 +2,7 @@ import React from 'react'
 import Subscriber from '@/components/subscriber/Subscriber'
 import { redirect } from 'next/navigation'
 import VerifiedStatus from '@/components/subscriber/VerifiedStatus'
-import { getOneSubscriber } from '@/lib/queries'
+import { getOneSubscriberByToken } from '@/lib/queries'
 
 interface SubscriberPreferencesProps {
   searchParams: {
@@ -19,7 +19,7 @@ export default async function SubscriberPreferences({
     return redirect('/')
   }
 
-  const subscriber = await getOneSubscriber(tokenFromParams)
+  const subscriber = await getOneSubscriberByToken(tokenFromParams)
 
   if (!subscriber || !subscriber.email || !subscriber.verified) {
     return redirect('/')
