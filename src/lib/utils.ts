@@ -18,7 +18,7 @@ export const createConfirmEmailLink = (token: string) => {
   return `${baseURL}/confirm?token=${token}`
 }
 
-// user preference li nk
+// user preference link
 export const createPreferencesLink = (token: string) => {
   return `${baseURL}/preferences?token=${token}`
 }
