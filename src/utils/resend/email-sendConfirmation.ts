@@ -6,11 +6,10 @@ import { confirmEmail } from '@/emails/emailConfirmation'
 export const sendConfirmationEmail = async (email: string, link: string) => {
   let data
 
-  const baseURL = process.env.BASE_URL
   const resend = new Resend(process.env.RESEND_API_KEY)
 
   // Set the from email address based on the environment
-  const from = process.env.FROM_EMAIL || 'Deals for Devs<hello@chrisnowicki.io>'
+  const from = process.env.FROM_EMAIL || ''
 
   // Send the confirmation email
   try {
@@ -24,8 +23,16 @@ export const sendConfirmationEmail = async (email: string, link: string) => {
         link,
       }),
       headers: {
-        'List-Unsubscribe': `<${baseURL}/unsubscribe>`,
+        // this is important for if the subscriber has to resend the confirmation email.
+        // the date header ensures there is a change in the email and it is not marked as spam.
+        Date: new Date().toUTCString(),
       },
+      tags: [
+        {
+          name: 'category',
+          value: 'confirm_email',
+        },
+      ],
     })
   } catch (error: unknown) {
     return {

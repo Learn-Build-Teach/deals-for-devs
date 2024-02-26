@@ -1,8 +1,11 @@
 'use server'
 import { revalidatePath } from 'next/cache'
+import { NewSubscriberData } from '@/types/Types'
+
 import { getXataClient, DealsRecord, Subscribers } from '@/xata'
 const xataClient = getXataClient()
 
+// deal queries
 export async function getAllDeals() {
   const deals: DealsRecord[] = await xataClient.db.deals
     .sort('xata.createdAt', 'desc')
@@ -11,13 +14,17 @@ export async function getAllDeals() {
   return JSON.parse(JSON.stringify(deals))
 }
 
-export async function getAllSubscribers() {
-  const subscribers = await xataClient.db.subscribers.getMany({})
+// subscriber queries
+export async function createSubscriber(
+  newSubscriberData: NewSubscriberData
+): Promise<Subscribers> {
+  const newSubscriber =
+    await xataClient.db.subscribers.create(newSubscriberData)
 
-  return JSON.parse(JSON.stringify(subscribers))
+  return newSubscriber
 }
 
-export async function getOneSubscriber(token: string) {
+export async function getOneSubscriber(token: string): Promise<Subscribers> {
   const subscriber = await xataClient.db.subscribers.getFirst({
     filter: { token },
   })
@@ -25,9 +32,10 @@ export async function getOneSubscriber(token: string) {
   return JSON.parse(JSON.stringify(subscriber))
 }
 
-export async function deleteSubscriber(id: string) {
-  const data = await xataClient.db.subscribers.delete(id)
-  revalidatePath('/admin')
+export async function getAllSubscribers(): Promise<Subscribers[]> {
+  const subscribers = await xataClient.db.subscribers.getMany({})
+
+  return JSON.parse(JSON.stringify(subscribers))
 }
 
 export async function updateSubscriberPreferences(
@@ -57,4 +65,9 @@ export async function updateSubscriberPreferences(
   }
 
   await xataClient.db.subscribers.update(id, subscriber)
+}
+
+export async function deleteSubscriber(id: string) {
+  const data = await xataClient.db.subscribers.delete(id)
+  revalidatePath('/admin')
 }

@@ -5,28 +5,33 @@ import toast from 'react-hot-toast'
 
 interface ResendConfirmationProps {
   email: string
-  confirmationLink: string
+  validateEmailLink: string
 }
 
 export default function ResendConfirmation({
   email,
-  confirmationLink,
+  validateEmailLink,
 }: ResendConfirmationProps) {
   return (
-    <button
-      type="button"
-      className="rounded-lg border border-white px-4 py-2 text-lg text-white hover:bg-white hover:text-black"
-      onClick={async () => {
-        const { error } = await sendConfirmationEmail(email, confirmationLink)
+    <form
+      action={async () => {
+        const { data, error } = await sendConfirmationEmail(
+          email,
+          validateEmailLink
+        )
 
         if (error) {
           return toast.error('Error Sending Confirmation Email: ' + error)
         }
-
         toast.success('Confirmation Email Sent!')
       }}
     >
-      Resend Email
-    </button>
+      <button
+        type="submit"
+        className="rounded-lg border border-white px-4 py-2 text-lg text-white hover:bg-white hover:text-black"
+      >
+        Resend Email
+      </button>
+    </form>
   )
 }

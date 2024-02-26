@@ -38,7 +38,7 @@ export default async function ConfirmEmail({
   const validateEmailLink = createValidateEmailLink(token as string)
 
   return (
-    <main className="-mt-24 flex flex-col items-center text-white">
+    <main className="mx-auto -mt-24 flex w-1/3 flex-col items-center rounded-xl border border-white p-6 text-white shadow-xl shadow-white/5">
       {/* email and verified status */}
       <div className="flex items-center justify-center gap-2">
         <span className="underline">{email}</span>
@@ -61,7 +61,7 @@ export default async function ConfirmEmail({
       </span>
 
       {/* resend confirmation email */}
-      <ResendConfirmation email={email} confirmationLink={validateEmailLink} />
+      <ResendConfirmation email={email} validateEmailLink={validateEmailLink} />
     </main>
   )
 }

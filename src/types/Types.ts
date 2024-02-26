@@ -21,3 +21,14 @@ export const FORM_DEAL_SCHEMA = z.object({
   email: z.string().email().optional(),
   category: z.nativeEnum(Category),
 })
+
+export type NewSubscriberData = {
+  email: string
+  token: string
+  courseNotifications: boolean
+  ebookNotifications: boolean
+  miscNotifications: boolean
+  officeEquipmentNotifications: boolean
+  toolNotifications: boolean
+  conferenceNotifications: boolean
+}

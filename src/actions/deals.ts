@@ -1,8 +1,8 @@
-'use server';
+'use server'
 
-import { DealsRecord, getXataClient } from '@/xata';
-import { redirect } from 'next/navigation';
-import { z } from 'zod';
+import { DealsRecord, getXataClient } from '@/xata'
+import { redirect } from 'next/navigation'
+import { z } from 'zod'
 
 const dealSchema = z.object({
   name: z.string(),
@@ -15,10 +15,10 @@ const dealSchema = z.object({
   email: z.string().email().optional(),
   //TODO: don't replicate array
   category: z.enum(['misc', 'ebook', 'video', 'tool', 'conference']),
-});
+})
 
 export async function createDeal(formData: FormData) {
-  let parsed;
+  let parsed
   try {
     parsed = dealSchema.parse({
       name: formData.get('name'),
@@ -30,9 +30,9 @@ export async function createDeal(formData: FormData) {
       couponPercent: formData.get('couponPercent'),
       email: formData.get('email') || undefined,
       category: formData.get('category'),
-    });
+    })
   } catch (error) {
-    return console.error(error);
+    return console.error(error)
   }
   const newDeal = {
     name: parsed.name,
@@ -45,13 +45,13 @@ export async function createDeal(formData: FormData) {
     email: parsed.email,
     category: parsed.category,
     image: { name: parsed.name, mediaType: 'image/png', base64Content: '' },
-  };
+  }
 
-  const xataClient = getXataClient();
+  const xataClient = getXataClient()
   const createdRecord = await xataClient.db.deals.create(newDeal, [
     'image.uploadUrl',
-  ]);
+  ])
 
-  console.log(createdRecord);
-  redirect(`/thank-you`);
+  console.log(createdRecord)
+  redirect(`/thank-you`)
 }
