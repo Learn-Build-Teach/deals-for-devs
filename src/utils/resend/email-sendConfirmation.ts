@@ -10,14 +10,14 @@ export const sendConfirmationEmail = async (email: string, link: string) => {
 
   // Set the from email address based on the environment
   const from = process.env.FROM_EMAIL || ''
+  const reply_to = process.env.REPLY_TO_EMAIL || ''
 
-  // TODO: Add env variable for reply to email
   // Send the confirmation email
   try {
     data = await resend.emails.send({
       from,
       to: email,
-      reply_to: 'support@dealsfordevs.com',
+      reply_to,
       subject: 'Confirm your email',
       react: React.createElement(confirmEmail, {
         email,
