@@ -8,6 +8,8 @@ export function cn(...inputs: ClassValue[]) {
 const baseURL =
   (process.env.BASE_URL_PREFIX || 'https://') + process.env.VERCEL_URL
 
+console.log(baseURL)
+
 // validate email link
 export const createValidateEmailLink = (token: string) => {
   return `${baseURL}/api/validate?token=${token}`
