@@ -18,8 +18,7 @@ export default function Nav() {
     <header>
       <nav
         className={cn(
-          'mt-28 flex w-full items-center  px-6 md:px-24',
-          isUserAuthenticated ? 'justify-between' : 'justify-center'
+          'mb-[79px] flex w-full items-center px-6 md:mb-[153px] md:px-0'
         )}
         aria-label="Global"
       >

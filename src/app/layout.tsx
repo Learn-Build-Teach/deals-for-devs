@@ -43,14 +43,14 @@ export default function RootLayout({
           <PostHogPageview />
         </Suspense>
         <PHProvider>
-          <body>
+          <body className="">
             <div className="flex min-h-screen flex-col justify-between bg-gray-900">
-              <SearchProvider>
-                <GlobalSearch />
-                <Nav />
-              </SearchProvider>
-              <div className="mx-auto flex w-full max-w-[1728px] flex-col justify-start md:justify-center">
-                {children}
+              <div className="mx-auto w-full max-w-[1728px] pt-5 md:px-24 md:pt-[84px]">
+                <SearchProvider>
+                  <GlobalSearch />
+                  <Nav />
+                </SearchProvider>
+                <div>{children}</div>
               </div>
               <Footer />
             </div>
