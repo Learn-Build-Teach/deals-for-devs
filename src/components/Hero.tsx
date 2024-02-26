@@ -2,7 +2,7 @@ import SubscribeForm from './forms/SubscribeForm'
 
 export default function Hero() {
   return (
-    <div className="px-6 md:px-0">
+    <div className="w-full flex items-center px-6 md:px-0">
       <div className="flex flex-col gap-6 md:flex-row md:gap-24 ">
         <h1 className="max-w-80 text-4xl font-semibold leading-10 tracking-tight text-white md:max-w-[861px] md:text-7xl md:leading-[84px]">
           The best <span className="text-teal-500">deals</span> and{' '}

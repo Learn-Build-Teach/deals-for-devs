@@ -13,7 +13,7 @@ export default function Dashboard({ deals, subscribers }: DashboardProps) {
   const [selectedTab, setSelectedTab] = useState('deals')
 
   return (
-    <div className="-mt-28 flex items-start gap-4">
+    <div className="flex items-start gap-4">
       {/* header */}
       <div className="rounded-xl border border-teal-500 p-4 align-top text-white">
         <h1 className="text-center text-4xl font-extralight">

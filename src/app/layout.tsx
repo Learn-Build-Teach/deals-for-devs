@@ -13,53 +13,53 @@ import { Toaster } from 'react-hot-toast'
 
 import { Raleway } from 'next/font/google'
 const raleway = Raleway({
-	subsets: ['latin'],
-	display: 'swap',
+  subsets: ['latin'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
-	title: 'Developer Deals',
-	metadataBase: new URL('https://dealsfordevs.com/'),
-	description:
-		'The Best Black Friday deals on courses, tools, and desk setups for developers!',
-	openGraph: {
-		images: [
-			{
-				url: '/logo-wide.png',
-			},
-		],
-	},
+  title: 'Developer Deals',
+  metadataBase: new URL('https://dealsfordevs.com/'),
+  description:
+    'The Best Black Friday deals on courses, tools, and desk setups for developers!',
+  openGraph: {
+    images: [
+      {
+        url: '/logo-wide.png',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
-	children,
+  children,
 }: {
-	children: React.ReactNode
+  children: React.ReactNode
 }) {
-	return (
-		<ClerkProvider>
-			<html lang='en' className={raleway.className}>
-				<Suspense>
-					<PostHogPageview />
-				</Suspense>
-				<PHProvider>
-					<body className=''>
-						<div className='bg-gray-900 min-h-screen flex justify-between flex-col'>
-							<div className='pt-5 md:px-24 md:pt-[84px] max-w-[1728px] mx-auto w-full'>
-								<SearchProvider>
-									<GlobalSearch />
-									<Nav />
-								</SearchProvider>
-								<div>{children}</div>
-							</div>
-							<Footer />
-						</div>
-						<SpeedInsights />
-						<Analytics />
-						<Toaster position='top-center' toastOptions={{ duration: 5000 }} />
-					</body>
-				</PHProvider>
-			</html>
-		</ClerkProvider>
-	)
+  return (
+    <ClerkProvider>
+      <html lang="en" className={raleway.className}>
+        <Suspense>
+          <PostHogPageview />
+        </Suspense>
+        <PHProvider>
+          <body>
+            <div className="flex min-h-screen flex-col justify-between bg-gray-900">
+              <SearchProvider>
+                <GlobalSearch />
+                <Nav />
+              </SearchProvider>
+              <div className="mx-auto flex w-full max-w-[1728px] flex-col justify-start md:justify-center">
+                {children}
+              </div>
+              <Footer />
+            </div>
+            <SpeedInsights />
+            <Analytics />
+            <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
+          </body>
+        </PHProvider>
+      </html>
+    </ClerkProvider>
+  )
 }

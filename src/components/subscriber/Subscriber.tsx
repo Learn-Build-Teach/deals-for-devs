@@ -109,7 +109,7 @@ export default function Subscriber({
         </ul>
 
         <button
-          className="mb-80 mt-9 w-full rounded-md bg-teal-600 py-3 text-center text-sm font-semibold text-black shadow-sm hover:bg-teal-400 disabled:cursor-not-allowed disabled:border  disabled:border-teal-500 disabled:bg-transparent disabled:text-teal-500 md:mt-20 md:py-5 md:text-2xl"
+          className="mb-40 mt-9 w-full rounded-md bg-teal-600 py-3 text-center text-sm font-semibold text-black shadow-sm hover:bg-teal-400 disabled:cursor-not-allowed disabled:border  disabled:border-teal-500 disabled:bg-transparent disabled:text-teal-500 md:mt-20 md:py-5 md:text-2xl"
           onClick={async () => {
             await updateSubscriberPreferences(subscriberData.id, subscriberData)
             toast.success('Preferences updated!')

@@ -18,13 +18,13 @@ export default function Nav() {
     <header>
       <nav
         className={cn(
-          'mb-[79px] flex w-full items-center px-6 md:mb-[153px] md:px-0',
+          'mt-28 flex w-full items-center  px-6 md:px-24',
           isUserAuthenticated ? 'justify-between' : 'justify-center'
         )}
         aria-label="Global"
       >
         {/* D4D logo */}
-        <Link href="/">
+        {/* <Link href="/">
           <Image
             src="/logo-teal.png"
             alt="me"
@@ -32,7 +32,7 @@ export default function Nav() {
             width="54"
             className="h-[70px] w-[42px]  md:h-[88px] md:w-[54px]"
           />
-        </Link>
+        </Link> */}
 
         {/* nav links */}
         <div className=" flex flex-1 flex-row items-center justify-end gap-x-5 gap-y-2">
