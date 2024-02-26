@@ -24,7 +24,6 @@ export const confirmEmail = (props: EmailTemplateProps) => (
     <Head />
     <Preview>Confirm your email address</Preview>
     <Tailwind>
-      <Head />
       <Body className="mx-auto bg-white p-4">
         <Container>
           <Section>
