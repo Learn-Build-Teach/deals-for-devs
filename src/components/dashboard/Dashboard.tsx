@@ -5,8 +5,8 @@ import DealsList from '../deals/DealsList'
 import SubscriberList from '@/components/subscriber/SubscriberList'
 
 interface DashboardProps {
-  deals: DealsRecord[]
-  subscribers?: Subscribers[]
+  deals: any
+  subscribers?: any
 }
 
 export default function Dashboard({ deals, subscribers }: DashboardProps) {

@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
+import Image from 'next/image'
 
 export default function DragAndDropImage({
   onFileChange,
@@ -44,10 +45,11 @@ export default function DragAndDropImage({
         </small>
         {file && (
           <>
-            <img
+            <Image
               className="absolute bottom-0 left-0 right-0 top-0"
               src={URL.createObjectURL(file)}
               alt="deal"
+              layout="fill"
             />
             <button
               className=" absolute right-2 top-2 rounded bg-black px-2 py-1 text-white"

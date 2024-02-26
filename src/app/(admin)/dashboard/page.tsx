@@ -20,14 +20,17 @@ export default async function Home() {
   }
 
   // fetch all deals and subscribers
-  const dealData = getAllDeals()
-  const subscriberData = getAllSubscribers()
+  const dealsData = getAllDeals()
+  const subscribersData = getAllSubscribers()
 
-  const [deals, subscribers] = await Promise.all([dealData, subscriberData])
+  const [deals, subscribers] = await Promise.all([dealsData, subscribersData])
+
+  const subscriberList = JSON.parse(JSON.stringify(subscribers))
+  const dealsList = JSON.parse(JSON.stringify(deals))
 
   return (
     <main className="mb-10">
-      <Dashboard deals={deals} subscribers={subscribers} />
+      <Dashboard deals={dealsList} subscribers={subscriberList} />
     </main>
   )
 }

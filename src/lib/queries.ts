@@ -1,5 +1,4 @@
 'use server'
-import { revalidatePath } from 'next/cache'
 import { NewSubscriberData } from '@/types/Types'
 
 import { getXataClient, DealsRecord, Subscribers } from '@/xata'
@@ -11,7 +10,7 @@ export async function getAllDeals() {
     .sort('xata.createdAt', 'desc')
     .getMany()
 
-  return JSON.parse(JSON.stringify(deals))
+  return deals
 }
 
 // subscriber queries
@@ -24,18 +23,23 @@ export async function createSubscriber(
   return newSubscriber
 }
 
-export async function getOneSubscriber(token: string): Promise<Subscribers> {
-  const subscriber = await xataClient.db.subscribers.getFirst({
-    filter: { token },
-  })
+export async function getOneSubscriber(token: string) {
+  // const subscriber = await xataClient.db.subscribers.getFirst({
+  //   filter: { token },
+  // })
 
-  return JSON.parse(JSON.stringify(subscriber))
+  const subscriber = await xataClient.db.subscribers.filter({
+   token: token
+  }).getFirst()
+
+ 
+  return subscriber
 }
 
 export async function getAllSubscribers(): Promise<Subscribers[]> {
   const subscribers = await xataClient.db.subscribers.getMany({})
 
-  return JSON.parse(JSON.stringify(subscribers))
+  return subscribers
 }
 
 export async function updateSubscriberToVerified(id: string) {
@@ -78,5 +82,4 @@ export async function updateSubscriberPreferences(
 
 export async function deleteSubscriber(id: string) {
   const data = await xataClient.db.subscribers.delete(id)
-  revalidatePath('/admin')
 }
