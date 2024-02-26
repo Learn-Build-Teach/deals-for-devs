@@ -20,10 +20,10 @@ export const createConfirmEmailLink = (token: string) => {
 
 // user preference li nk
 export const createPreferencesLink = (token: string) => {
-  return `${baseUrl}/preferences?token=${token}`
+  return `${baseURL}/preferences?token=${token}`
 }
 
 // unsubscribe link
 export const createUnsubscribeLink = (token: string) => {
-  return `${baseUrl}/api/unsubscribe?token=${token}`
+  return `${baseURL}/api/unsubscribe?token=${token}`
 }
