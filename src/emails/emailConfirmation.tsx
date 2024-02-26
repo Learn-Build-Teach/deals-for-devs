@@ -21,9 +21,9 @@ const baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
 export const confirmEmail = (props: EmailTemplateProps) => (
   <Html lang="en">
-    <Head />
     <Preview>Confirm your email address</Preview>
     <Tailwind>
+      <Head />
       <Body className="mx-auto bg-white p-4">
         <Container>
           <Section>
