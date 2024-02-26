@@ -46,7 +46,7 @@ export default async function ConfirmEmail({
         Please Verify Your Email!
       </h1>
       <p className=" mb-10 text-center text-xs leading-6 md:mb-20 md:text-2xl md:leading-10">
-        {` we've sent an email to `}
+        {` You'll receive an email shortly at `}
         <span className="font-bold text-teal-500 underline">{email}</span>.
         <br />
         Click the link in your email to verify your account.
