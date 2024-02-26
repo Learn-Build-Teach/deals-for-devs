@@ -18,7 +18,7 @@ export default function VerifiedStatus({
 }: VerifiedStatusProps) {
   return (
     <div className="flex items-center justify-center gap-2">
-      <span className="text-sm font-extralight font-light underline md:text-2xl">
+      <span className="text-sm font-extralight underline md:text-2xl">
         {email}
       </span>
 
