@@ -6,16 +6,16 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // base URL based on development environment (development or production)
-export const baseUrl = process.env.BASE_URL
+const baseURL = process.env.VERCEL_URL || process.env.BASE_URL
 
 // validate email link
 export const createValidateEmailLink = (token: string) => {
-  return `${baseUrl}/api/validate?token=${token}`
+  return `${baseURL}/api/validate?token=${token}`
 }
 
 // confirm email link
 export const createConfirmEmailLink = (token: string) => {
-  return `${baseUrl}/confirm?token=${token}`
+  return `${baseURL}/confirm?token=${token}`
 }
 
 // user preference li nk
