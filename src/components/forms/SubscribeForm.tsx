@@ -1,13 +1,18 @@
 'use client'
 import React from 'react'
 import { subscribe } from '@/actions/subscriber-subscribe'
+import toast from 'react-hot-toast'
 
 export default function SubscribeForm() {
   return (
     <form
       id="subscribe-form"
       action={async (formData) => {
-        await subscribe(formData)
+        const { error } = await subscribe(formData)
+        if (error) {
+          console.error(error)
+          return toast.error('Error Sending Confirmation Email: ' + error)
+        }
 
         const form = document.getElementById(
           'subscribe-form'
