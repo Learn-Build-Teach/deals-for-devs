@@ -98,7 +98,7 @@ export default function Subscriber({
         {/* checkboxes */}
         <ul className="flex flex-col gap-6 md:gap-12">
           {subscribedCategories.map((category, index) => (
-            <li key={index} className="flex gap-8 md:gap-16">
+            <li key={category.name + index} className="flex gap-8 md:gap-16">
               <CategoryCheckbox
                 isChecked={category.subscribed || false}
                 category={category.name}
