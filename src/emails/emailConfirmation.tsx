@@ -17,7 +17,7 @@ interface EmailTemplateProps {
   link: string
 }
 
-const baseURL = process.env.VERCEL_URL
+const baseURL = process.env.BASE_URL
 
 export const confirmEmail = (props: EmailTemplateProps) => (
   <Html lang="en">
