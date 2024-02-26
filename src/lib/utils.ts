@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // base URL based on development environment (development or production)
-const baseURL = process.env.VERCEL_URL || process.env.BASE_URL
+const baseURL = process.env.VERCEL_URL
 
 // validate email link
 export const createValidateEmailLink = (token: string) => {
