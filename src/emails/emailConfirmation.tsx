@@ -20,8 +20,8 @@ interface EmailTemplateProps {
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
 export const confirmEmail = (props: EmailTemplateProps) => (
-  <Html lang="en">
-    <Tailwind>
+  <Tailwind>
+    <Html lang="en">
       <Head />
       <Preview>Confirm your email address</Preview>
       <Body className="mx-auto bg-white p-4">
@@ -52,8 +52,8 @@ export const confirmEmail = (props: EmailTemplateProps) => (
           </Text>
         </Container>
       </Body>
-    </Tailwind>
-  </Html>
+    </Html>
+  </Tailwind>
 )
 
 const h1 = {
