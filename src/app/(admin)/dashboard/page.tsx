@@ -5,7 +5,6 @@ import Dashboard from '@/components/dashboard/Dashboard'
 import { getAllDeals, getAllSubscribers } from '@/lib/queries'
 
 export default async function Home() {
-  // check if user is logged in
   const { userId } = auth()
 
   if (!userId) {
