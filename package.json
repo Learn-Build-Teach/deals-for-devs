@@ -11,7 +11,7 @@
     "lint-commit": "npx --no-install commitlint --edit \"$1\""
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.29.7",
+    "@clerk/nextjs": "^4.29.8",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-select": "^2.0.0",
