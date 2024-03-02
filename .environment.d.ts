@@ -14,6 +14,7 @@ declare global {
       XATA_API_KEY: String;
       NEXT_PUBLIC_POSTHOG_KEY: String;
       NEXT_PUBLIC_POSTHOG_HOST: String;
+      NEXT_PUBLIC_SENTRY_DSN: String;
     }
   }
 }
