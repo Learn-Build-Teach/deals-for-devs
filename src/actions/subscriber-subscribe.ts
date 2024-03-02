@@ -15,8 +15,9 @@ export const subscribe = async (formData: FormData) => {
 
     // parse the email
     const parsed = subscribeSchema.parse({ email: formData.get('email') })
+    const checkedEmail = parsed.email.toLowerCase()
 
-    const existingSubscriber = await getOneSubscriberByEmail(parsed.email)
+    const existingSubscriber = await getOneSubscriberByEmail(checkedEmail)
     if (existingSubscriber) {
       console.log('Subscriber exists')
       return {
@@ -25,7 +26,7 @@ export const subscribe = async (formData: FormData) => {
     }
 
     const newSubscriber = {
-      email: parsed.email,
+      email: checkedEmail,
       token: token,
       courseNotifications: true,
       ebookNotifications: true,
@@ -41,7 +42,7 @@ export const subscribe = async (formData: FormData) => {
     // send confirmation email using resend
     const validateEmailLink = createValidateEmailLink(token)
     const { error } = await sendConfirmationEmail(
-      parsed.email,
+      checkedEmail,
       validateEmailLink
     )
     if (error) {
