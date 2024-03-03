@@ -10,6 +10,11 @@ export enum Category {
   'OFFICE EQUIPMENT' = 'Office Equipment',
 }
 
+export enum Status {
+  SUBSCRIBED = 'subscribed',
+  UNSUBSCRIBED = 'unsubscribed',
+}
+
 export const FORM_DEAL_SCHEMA = z.object({
   name: z.string().max(40),
   link: z.string().url(),
