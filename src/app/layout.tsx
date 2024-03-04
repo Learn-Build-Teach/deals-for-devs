@@ -10,6 +10,8 @@ import { PHProvider, PostHogPageview } from './providers'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/react'
 import { Toaster } from 'react-hot-toast'
+//info: must import env types file so validation is run
+import '../types/env'
 
 import { Raleway } from 'next/font/google'
 const raleway = Raleway({
