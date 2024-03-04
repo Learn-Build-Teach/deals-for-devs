@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-const envVarSchema = z.object({
+const envVariables = z.object({
   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
   CLERK_SECRET_KE: z.string(),
   NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string(),
@@ -12,10 +12,11 @@ const envVarSchema = z.object({
   XATA_API_KEY: z.string(),
   RESEND_API_KEY: z.string(),
   CRON_SECRET: z.string(),
-  FROM_EMAIL: z.literal('Deals for Devs<hello@dealsfordevs.com>'),
+  FROM_EMAIL: z.string(),
   REPLY_TO_EMAIL: z.string().email(),
   NEXT_PUBLIC_BASE_URL: z.string().url(),
   NEXT_PUBLIC_POSTHOG_KEY: z.string(),
+  NEXT_PUBLIC_POSTHOG_HOST: z.string(),
 })
 
 const {
@@ -35,7 +36,7 @@ const {
   NEXT_PUBLIC_BASE_URL,
 } = process.env
 
-const envServerSchema = envVarSchema.safeParse({
+const envServerSchema = envVariables.safeParse({
   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
   CLERK_SECRET_KE,
   NEXT_PUBLIC_CLERK_SIGN_IN_URL,
@@ -57,9 +58,9 @@ if (!envServerSchema.success) {
   throw new Error('There is an error with the environment variables')
 }
 
-export const envVarSchemaData = envServerSchema.data
+export const envVariablesData = envServerSchema.data
 
-type EnvVarSchemaType = z.infer<typeof envVarSchema>
+type EnvVarSchemaType = z.infer<typeof envVariables>
 
 declare global {
   namespace NodeJS {
