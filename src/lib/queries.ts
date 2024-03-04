@@ -1,5 +1,6 @@
 'use server'
 import { NewSubscriberData } from '@/types/Types'
+import { Status } from '@/types/Types'
 
 import { getXataClient, DealsRecord, Subscribers } from '@/xata'
 const xataClient = getXataClient()
@@ -51,7 +52,7 @@ export async function getAllSubscribers(): Promise<Subscribers[]> {
 export async function updateSubscriberToVerified(id: string) {
   const data = await xataClient.db.subscribers.update(id, {
     verified: true,
-    status: 'subscribed',
+    status: Status.SUBSCRIBED,
   })
 
   return data
@@ -80,7 +81,7 @@ export async function updateSubscriberPreferences(
 
   const subscriber = {
     ...subscriberData,
-    status: isSubscribed ? 'subscribed' : 'unsubscribed',
+    status: isSubscribed ? Status.SUBSCRIBED : Status.UNSUBSCRIBED,
   }
 
   await xataClient.db.subscribers.update(id, subscriber)
