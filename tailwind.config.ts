@@ -29,12 +29,9 @@ const config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
       lineHeight: {
-        '16': '4.2rem',
+        '14': '4rem',
+        '16': '5.2rem',
       },
-      maxWidth: {
-        '3xl-plus': '860px',
-        'screen-3xl': '1728px',
-      }
     },
   },
   plugins: [require('tailwindcss-animate')],
