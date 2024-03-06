@@ -1,7 +1,8 @@
 import { useFormStatus } from 'react-dom'
 
 export default function SubscribeFormButton() {
-  const { pending } = useFormStatus()
+  //   const { pending } = useFormStatus()
+  const pending = false
 
   return (
     <button
@@ -30,6 +31,7 @@ export default function SubscribeFormButton() {
               strokeLinejoin="round"
             />
           </svg>
+
       }
     </button>
   )
