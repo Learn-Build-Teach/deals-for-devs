@@ -34,6 +34,7 @@ export const confirmEmail = (props: EmailTemplateProps) => (
             />
           </Section>
           <Heading style={h1}>Confirm your email address</Heading>
+          <button> Confirm Email</button>
           <Text className="mb-[15px] text-xl">
             Your confirmation link is below. Please click it to confirm your
             email:
