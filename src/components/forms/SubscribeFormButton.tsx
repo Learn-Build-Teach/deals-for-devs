@@ -1,7 +1,7 @@
 import { useFormStatus } from 'react-dom'
 
 export default function SubscribeFormButton() {
-  //TODO: update   const { pending } = useFormStatus()
+  //update   const { pending } = useFormStatus()
   const pending = false
 
   return (
