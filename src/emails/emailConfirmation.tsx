@@ -10,8 +10,8 @@ import {
   Section,
   Text,
   Tailwind,
+  Link,
 } from '@react-email/components'
-
 interface EmailTemplateProps {
   email: string
   link: string
@@ -34,7 +34,15 @@ export const confirmEmail = (props: EmailTemplateProps) => (
             />
           </Section>
           <Heading style={h1}>Confirm your email address</Heading>
-          <button> Confirm Email</button>
+          <Section className="py-6">
+            <Link
+              href={props.link}
+              className="rounded-lg border bg-teal-500 px-5 py-3 text-xl text-white no-underline"
+            >
+              {' '}
+              Confirm Email
+            </Link>
+          </Section>
           <Text className="mb-[15px] text-xl">
             Your confirmation link is below. Please click it to confirm your
             email:
