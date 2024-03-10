@@ -58,6 +58,7 @@ Discord](https://www.learnbuildteach.com/) by messaging James (@jamesqquick) on 
 <table>
   <tbody>
     <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.chrisnowicki.io"><img src="https://avatars.githubusercontent.com/u/102450568?v=4?s=100" width="100px;" alt="Chris Nowicki"/><br /><sub><b>Chris Nowicki</b></sub></a><br /><a href="https://github.com/Learn-Build-Teach/deals-for-devs/commits?author=chris-nowicki" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://wipdev.netlify.app"><img src="https://avatars.githubusercontent.com/u/140237026?v=4?s=100" width="100px;" alt="Waseem Medhat"/><br /><sub><b>Waseem Medhat</b></sub></a><br /><a href="https://github.com/Learn-Build-Teach/deals-for-devs/commits?author=wipdev-tech" title="Code">💻</a></td>
     </tr>
   </tbody>
