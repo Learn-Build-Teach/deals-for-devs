@@ -1,0 +1,27 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "CBID2",
+      "name": "Christine Belzie",
+      "avatar_url": "https://avatars.githubusercontent.com/u/105683440?v=4",
+      "profile": "https://www.biodrop.io/CBID2",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "deals-for-devs",
+  "projectOwner": "Learn-Build-Teach"
+}
