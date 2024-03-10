@@ -1,8 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Deals for Devs
+
+**The best deals and giveaways for developers**
+
+Get upcoming and ongoing deals sent straight to your inbox every month!
 
 ## Getting Started
 
-First, run the development server:
+To get a development environment running on your local machine:
+
+1. Clone the repository in a directory of your choice.
+
+2. Create a `.env` file (from `.env.example`) and add all the credentials
+   necessary to run the app. To get those, please send James (jamesqquick) a
+   message on Discord!
+
+```bash
+cp .env.example .env
+```
+
+3. Run the development server.
 
 ```bash
 npm run dev
@@ -14,26 +30,18 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Next.js](https://nextjs.org/)
+- [Xata](https://xata.io/)
+- [Sentry](https://sentry.io/)
+- [Clerk](https://clerk.com/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contributing
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You are welcome to contribute by opening issues or PRs! Also, you can join our
+project channel on the [Learn Build Teach
+Discord](https://www.learnbuildteach.com/).
 
 ## Contributors
 
