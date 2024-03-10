@@ -10,15 +10,21 @@ To get a development environment running on your local machine:
 
 1. Clone the repository in a directory of your choice.
 
-2. Create a `.env` file (from `.env.example`) and add all the credentials
-   necessary to run the app. To get those, please send James (jamesqquick) a
-   message on Discord!
+2. Create a `.env` file (from `.env.example`) and add all the credentials necessary to run the app.
+
+> To get those credentials, please send James (@jamesqquick) a message on Discord!
 
 ```bash
 cp .env.example .env
 ```
 
-3. Run the development server.
+3. Install packages
+
+```bash
+npm install
+```
+
+4. Run the development server.
 
 ```bash
 npm run dev
@@ -26,8 +32,6 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 ## Tech Stack
@@ -41,7 +45,7 @@ bun dev
 
 You are welcome to contribute by opening issues or PRs! Also, you can join our
 project channel on the [Learn Build Teach
-Discord](https://www.learnbuildteach.com/).
+Discord](https://www.learnbuildteach.com/) by messaging James (@jamesqquick) on Discord for access.
 
 ## Contributors
 
