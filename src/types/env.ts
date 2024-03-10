@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 const envVariables = z.object({
   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
+  VERCEL_ENV: z.string().optional().default('development'),
   CLERK_SECRET_KEY: z.string(),
   NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string(),
   NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string(),
@@ -22,6 +23,7 @@ const envVariables = z.object({
 const {
   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
   CLERK_SECRET_KEY,
+  VERCEL_ENV,
   NEXT_PUBLIC_CLERK_SIGN_IN_URL,
   NEXT_PUBLIC_CLERK_SIGN_UP_URL,
   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL,
@@ -39,6 +41,7 @@ const {
 const envServerSchema = envVariables.safeParse({
   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
   CLERK_SECRET_KEY,
+  VERCEL_ENV,
   NEXT_PUBLIC_CLERK_SIGN_IN_URL,
   NEXT_PUBLIC_CLERK_SIGN_UP_URL,
   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL,
