@@ -4,6 +4,7 @@ import { Subscribers } from '@/xata'
 import { updateSubscriberPreferences } from '@/lib/queries'
 import toast from 'react-hot-toast'
 import CategoryCheckbox from './CategoryCheckbox'
+import { Status } from '@/types/Types'
 
 export default function Subscriber({
   subscriber,
@@ -52,7 +53,7 @@ export default function Subscriber({
       toolNotifications: subscribedStatus,
       conferenceNotifications: subscribedStatus,
       miscNotifications: subscribedStatus,
-      status: subscribedStatus ? 'subscribed' : 'unsubscribed',
+      status: subscribedStatus ? Status.SUBSCRIBED : Status.UNSUBSCRIBED,
     }
 
     // Update the state

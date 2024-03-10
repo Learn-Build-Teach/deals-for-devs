@@ -10,6 +10,8 @@ import { PHProvider, PostHogPageview } from './providers'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/react'
 import { Toaster } from 'react-hot-toast'
+//info: must import env types file so validation is run
+import '../types/env'
 
 import { Raleway } from 'next/font/google'
 const raleway = Raleway({
@@ -45,7 +47,7 @@ export default function RootLayout({
         <PHProvider>
           <body className="">
             <div className="flex min-h-screen flex-col justify-between bg-gray-900">
-              <div className="mx-auto w-full max-w-[1728px] pt-5 md:px-24 md:pt-[84px]">
+              <div className="mx-auto w-full max-w-screen-2xl pt-5 md:px-24 xl:pt-20">
                 <SearchProvider>
                   <GlobalSearch />
                   <Nav />

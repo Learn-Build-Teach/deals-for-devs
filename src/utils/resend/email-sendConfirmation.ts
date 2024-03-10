@@ -9,8 +9,8 @@ export const sendConfirmationEmail = async (email: string, link: string) => {
   const resend = new Resend(process.env.RESEND_API_KEY)
 
   // Set the from email address based on the environment
-  const from = process.env.FROM_EMAIL || ''
-  const reply_to = process.env.REPLY_TO_EMAIL || ''
+  const from = `Deals for Devs<${process.env.FROM_EMAIL}>`
+  const reply_to = process.env.REPLY_TO_EMAIL
 
   // Send the confirmation email
   try {
