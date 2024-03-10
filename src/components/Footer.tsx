@@ -23,7 +23,7 @@ const techStack: TechStack[] = [
     className: 'w-20 h-9 md:w-36 md:h-10',
   },
   {
-    Url: 'https://xata.io/',
+    Url: 'https://sentry.io/',
     id: 'sentry',
     size: 221,
     className: 'w-28 h-8 md:w-56 md:h-16',
@@ -51,13 +51,15 @@ export default function Footer() {
           ))}
 
           {/* clerk was too difficult to make into a sprite */}
-          <Image
-            src="/icons/clerk.svg"
-            width={159}
-            height={49}
-            className="h-6 w-20 md:h-12 md:w-40"
-            alt="clerk.dev logo"
-          />
+          <a href="https://clerk.com/" target="_blank">
+            <Image
+              src="/icons/clerk.svg"
+              width={159}
+              height={49}
+              className="h-6 w-20 md:h-12 md:w-40"
+              alt="clerk.dev logo"
+            />
+          </a>
         </div>
 
         {/* james quick social link */}
