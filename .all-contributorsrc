@@ -1,0 +1,50 @@
+{
+  "files": ["README.md"],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "chris-nowicki",
+      "name": "Chris Nowicki",
+      "avatar_url": "https://avatars.githubusercontent.com/u/102450568?v=4",
+      "profile": "https://www.chrisnowicki.io",
+      "contributions": ["code"]
+    },
+    {
+      "login": "wipdev-tech",
+      "name": "Waseem Medhat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/140237026?v=4",
+      "profile": "https://wipdev.netlify.app",
+      "contributions": ["code"]
+    },
+    {
+      "login": "klae32",
+      "name": "klae32",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26855871?v=4",
+      "profile": "https://github.com/klae32",
+      "contributions": ["code"]
+    },
+    {
+      "login": "brwmaster",
+      "name": "Edwin Boon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/117263901?v=4",
+      "profile": "https://www.edwinboon.dev",
+      "contributions": ["code"]
+    },
+    {
+      "login": "CBID2",
+      "name": "Christine Belzie",
+      "avatar_url": "https://avatars.githubusercontent.com/u/105683440?v=4",
+      "profile": "https://www.biodrop.io/CBID2",
+      "contributions": ["code", "doc"]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "deals-for-devs",
+  "projectOwner": "Learn-Build-Teach"
+}
