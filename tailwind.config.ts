@@ -28,6 +28,10 @@ const config = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      lineHeight: {
+        '14': '4rem',
+        '16': '5.2rem',
+      },
     },
   },
   plugins: [require('tailwindcss-animate')],
