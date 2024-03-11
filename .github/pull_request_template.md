@@ -1,10 +1,8 @@
+## Description
+<!-- Describe your contribution and its benefits in a sentence  -->
 
-## Issue 
+## Related Ticket(s) and Documentation(s)
 <!-- Use `Closes #issue number` if your PR fixes an issue or `Relates #issue number` if it connects to the issue number -->
-
-## Changes Proposed 
-
-<!-- List all the proposed changes in your PR -->
 
 ## Screenshots
 
