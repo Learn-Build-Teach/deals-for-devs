@@ -49,6 +49,7 @@ pnpm dev
 You are welcome to contribute by opening issues or PRs! Also, you can join our
 project channel on the [Learn Build Teach
 Discord](https://www.learnbuildteach.com/) by messaging James (@jamesqquick) on Discord for access.
+**Note:** All PRs should target `dev` as the base branch.
 
 ## Contributors
 
