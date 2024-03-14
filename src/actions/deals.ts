@@ -4,6 +4,8 @@ import { DealsRecord, getXataClient } from '@/xata'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
 
+
+
 const dealSchema = z.object({
   name: z.string(),
   link: z.string().url(),
