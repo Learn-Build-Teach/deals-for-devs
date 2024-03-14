@@ -20,7 +20,7 @@ export const subscribe = async (formData: FormData) => {
     const existingSubscriber = await getOneSubscriberByEmail(checkedEmail)
     if (existingSubscriber) {
       console.log('Subscriber exists')
-if (existingSubscriber) {
+      console.error(`Attempted to insert duplicate email: ${checkedEmail}`)
       return {
         error: 'This email already exists',
       }
@@ -36,6 +36,7 @@ if (existingSubscriber) {
       toolNotifications: true,
       conferenceNotifications: true,
     }
+
 
     // add new subscriber to the database
     await createSubscriber(newSubscriber)
