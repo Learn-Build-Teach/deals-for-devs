@@ -20,6 +20,7 @@ export const subscribe = async (formData: FormData) => {
     const existingSubscriber = await getOneSubscriberByEmail(checkedEmail)
     if (existingSubscriber) {
       console.log('Subscriber exists')
+if (existingSubscriber) {
       return {
         error: 'This email already exists',
       }
@@ -53,5 +54,4 @@ export const subscribe = async (formData: FormData) => {
     //TODO: handle specific errors
     console.error(error)
     return { error: 'Failed to send confirmation email.' }
-  }
-}
+  }}
