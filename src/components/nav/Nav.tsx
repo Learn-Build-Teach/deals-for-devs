@@ -20,7 +20,7 @@ export default function Nav() {
         className={cn(
           'mb-[79px] flex w-full items-center px-6 md:mb-[153px] md:px-0'
         )}
-        aria-label="Global"
+        aria-label="main navigation"
       >
         {/* D4D logo */}
         {/* <Link href="/">
