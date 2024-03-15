@@ -316,6 +316,7 @@ export default function DealForm() {
               id="email"
               type="text"
               required
+              aria-label="email"
             />
           </div>
         </div>
