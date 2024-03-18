@@ -20,7 +20,7 @@ const dealSchema = z.object({
 export async function createDeal(formData: FormData) {
   let parsed
   try {
-    parsed = dealSchema.parse({
+    parsed = dealSchema.safeParse({
       name: formData.get('name'),
       coupon: formData.get('coupon'),
       link: formData.get('link'),
@@ -34,17 +34,22 @@ export async function createDeal(formData: FormData) {
   } catch (error) {
     return console.error(error)
   }
+  if (!parsed.success) return { error: parsed.error }
   const newDeal = {
-    name: parsed.name,
-    coupon: parsed.coupon,
-    link: parsed.link,
-    startDate: parsed.startDate,
-    endDate: parsed.endDate,
-    description: parsed.description,
-    couponPercent: parsed.couponPercent,
-    email: parsed.email,
-    category: parsed.category,
-    image: { name: parsed.name, mediaType: 'image/png', base64Content: '' },
+    name: parsed.data.name,
+    coupon: parsed.data.coupon,
+    link: parsed.data.link,
+    startDate: parsed.data.startDate,
+    endDate: parsed.data.endDate,
+    description: parsed.data.description,
+    couponPercent: parsed.data.couponPercent,
+    email: parsed.data.email,
+    category: parsed.data.category,
+    image: {
+      name: parsed.data.name,
+      mediaType: 'image/png',
+      base64Content: '',
+    },
   }
 
   const xataClient = getXataClient()

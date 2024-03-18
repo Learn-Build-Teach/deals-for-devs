@@ -60,6 +60,8 @@
       "profile": "http://elliezub.com",
       "contributions": [
         "code"
+        "doc",
+        "a11y"
       ]
     }
   ],
