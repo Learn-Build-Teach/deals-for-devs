@@ -7,6 +7,7 @@ type TechStack = {
   id: string
   size: number
   className?: string
+  alt: string
 }
 
 const techStack: TechStack[] = [
