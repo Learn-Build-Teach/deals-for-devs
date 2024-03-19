@@ -15,7 +15,7 @@ export const subscribe = async (formData: FormData) => {
 
     // parse the email
     const parsed = subscribeSchema.safeParse({ email: formData.get('email') })
-    if (!parsed.success) return { error: parsed.error }
+    if (!parsed.success) return { error: parsed.error.message }
     const checkedEmail = parsed.data.email.toLowerCase()
 
     const existingSubscriber = await getOneSubscriberByEmail(checkedEmail)
