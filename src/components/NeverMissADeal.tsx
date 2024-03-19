@@ -3,7 +3,7 @@ import SubscribeForm from './forms/SubscribeForm'
 
 export default function NeverMissADeal() {
   return (
-    <div className="mb-20 flex flex-col items-center rounded-2xl bg-[#0C111C] pt-[60px] md:mb-36 md:pt-[97px]">
+    <div className="mb-20 flex flex-col items-center rounded-2xl bg-[#0C111C] py-14 md:mb-36 md:py-24">
       <span className="w-[341px] text-center text-2xl text-white md:w-[635px] md:text-5xl">
         Never miss a <span className="text-teal-500">deal</span> for your
         favorite tools or courses
