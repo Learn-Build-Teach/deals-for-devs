@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { isAdminUser } from '@/utils/auth'
 import Dashboard from '@/components/dashboard/Dashboard'
 import { getAllDeals, getAllSubscribers } from '@/lib/queries'
+import SubscriberList from '@/components/subscriber/SubscriberList'
 
 export default async function Home() {
   const { userId } = auth()
@@ -28,8 +29,17 @@ export default async function Home() {
   const dealsList = JSON.parse(JSON.stringify(deals))
 
   return (
-    <main className="space-y-8 px-4">
-      <Dashboard />
+    <main className="mx-auto space-y-12 px-4 pb-10">
+      <h2 className="text-center text-5xl text-white">Manage Subscribers</h2>
+
+      <section className="mx-auto grid gap-8 lg:grid-cols-3">
+        <div className="mx-auto lg:col-span-1">
+          <Dashboard />
+        </div>
+        <div className="mx-auto lg:col-span-2">
+          <SubscriberList subscribers={subscriberList} />
+        </div>
+      </section>
     </main>
   )
 }

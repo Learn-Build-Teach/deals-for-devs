@@ -8,16 +8,16 @@ interface SubscribersProps {
 
 export default function SubscriberList({ subscribers }: SubscribersProps) {
   return (
-    <div className="flex w-full flex-col items-center justify-start text-white">
-      <h2 className="text-md mb-4 uppercase">Add a Subscriber</h2>
+    <div className="mx-auto flex flex-col items-center space-y-8 text-white">
+      <h3 className="text-md uppercase">Add a Subscriber</h3>
       <SubscribeForm />
-      <div className='border w-1/3 border-teal-500 my-10'></div>
-      <h2 className="text-md mb-4 uppercase">Subscriber List</h2>
-      <ul>
+      <hr className="h-px w-full bg-teal-500"></hr>
+      <h3 className="text-md uppercase">Subscriber List</h3>
+      <ul className="grid w-full gap-2">
         {subscribers.map((subscriber) => (
           <li
             key={subscriber.email + subscriber.id}
-            className="flex w-[400px] justify-between text-white"
+            className="flex w-full justify-between border border-gray-800 px-2 py-1"
           >
             {subscriber.email}
             <DeleteButton id={subscriber.id} />
