@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { sendConfirmationEmail } from '../utils/resend/email-sendConfirmation'
 import { createValidateEmailLink, createConfirmEmailLink } from '@/lib/utils'
 import { createSubscriber, getOneSubscriberByEmail } from '@/lib/queries'
+import { Status } from '@/types/Types'
 
 const subscribeSchema = z.object({
   email: z.string().email(),
@@ -35,6 +36,7 @@ export const subscribe = async (formData: FormData) => {
       officeEquipmentNotifications: true,
       toolNotifications: true,
       conferenceNotifications: true,
+      status: Status.UNSUBSCRIBED,
     }
 
     // add new subscriber to the database

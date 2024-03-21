@@ -11,8 +11,8 @@ export enum Category {
 }
 
 export enum Status {
-  SUBSCRIBED = 'subscribed',
-  UNSUBSCRIBED = 'unsubscribed',
+  SUBSCRIBED = 'SUBSCRIBED',
+  UNSUBSCRIBED = 'UNSUBSCRIBED',
 }
 
 export const FORM_DEAL_SCHEMA = z.object({
@@ -23,7 +23,7 @@ export const FORM_DEAL_SCHEMA = z.object({
   endDate: z.coerce.date(),
   coupon: z.string().optional().optional(),
   couponPercent: z.number().optional(),
-  email: z.string().email().optional(),
+  email: z.string().email(),
   category: z.nativeEnum(Category),
 })
 
@@ -36,4 +36,5 @@ export type NewSubscriberData = {
   officeEquipmentNotifications: boolean
   toolNotifications: boolean
   conferenceNotifications: boolean
+  status: string
 }

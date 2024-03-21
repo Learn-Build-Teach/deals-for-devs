@@ -1,16 +1,18 @@
 import CategoryOptions from '@/components/CategoryOptions'
 import DealsList from '../../components/deals/DealsList'
 import { redirect } from 'next/navigation'
+import { getApprovedDeals, getRecentApprovedDealsByDate } from '@/lib/queries'
 
 export default async function DealsPage() {
-  redirect('/')
+  const deals = await getApprovedDeals(20)
+  //TODO: handle error
   return (
     <div>
       <h1 className="mb-10 text-center text-4xl font-bold text-white">
         Top Deals
       </h1>
       <CategoryOptions />
-      {/* <DealsList deals={dealsList} /> */}
+      <DealsList deals={deals} />
     </div>
   )
 }

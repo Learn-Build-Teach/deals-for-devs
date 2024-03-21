@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Deal {
+  coupon         String?  @db.VarChar(50)
+  approved       Boolean  @default(false)
+  description    String   @db.VarChar(255)
+  couponPercent  Int?     @default(0)
+  featured       Boolean  @default(false)
+  name           String   @db.VarChar(50)
+  link           String   @db.VarChar(255)
+  category       String   @db.VarChar(20)
+  startDate      DateTime @default(now())
+  endDate        DateTime @default(now())
+  email          String   @db.VarChar(50)
+  xata_id        String   @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int      @default(0)
+  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model AdminUser {
+  userId             String   @id @default(uuid())
+  xata_id        String   @unique(map: "AdminUser__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int      @default(0)
+  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model Subscriber {
+  status                       String   @db.VarChar(20)
+  email                        String   @db.VarChar(50)
+  verified                     Boolean  @default(false)
+  token                        String   @db.VarChar(50)
+  conferenceNotifications      Boolean  @default(false)
+  ebookNotifications           Boolean  @default(false)
+  courseNotifications          Boolean  @default(false)
+  toolNotifications            Boolean  @default(false)
+  officeEquipmentNotifications Boolean  @default(false)
+  miscNotifications            Boolean  @default(false)
+  xata_version                 Int      @default(0)
+  xata_createdat               DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat               DateTime @default(now()) @db.Timestamptz(6)
+  xata_id                      String   @unique(map: "Subscriber__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+}

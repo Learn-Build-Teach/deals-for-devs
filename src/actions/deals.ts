@@ -3,6 +3,7 @@
 import { DealsRecord, getXataClient } from '@/xata'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
+import prisma from '@/lib/db'
 
 const dealSchema = z.object({
   name: z.string(),
@@ -12,7 +13,7 @@ const dealSchema = z.object({
   endDate: z.coerce.date(),
   coupon: z.string().optional(),
   couponPercent: z.number().optional(),
-  email: z.string().email().optional(),
+  email: z.string().email(),
   //TODO: don't replicate array
   category: z.enum(['misc', 'ebook', 'video', 'tool', 'conference']),
 })
@@ -45,17 +46,11 @@ export async function createDeal(formData: FormData) {
     couponPercent: parsed.data.couponPercent,
     email: parsed.data.email,
     category: parsed.data.category,
-    image: {
-      name: parsed.data.name,
-      mediaType: 'image/png',
-      base64Content: '',
-    },
   }
 
-  const xataClient = getXataClient()
-  const createdRecord = await xataClient.db.deals.create(newDeal, [
-    'image.uploadUrl',
-  ])
+  const createdRecord = await prisma.deal.create({
+    data: newDeal,
+  })
 
   console.log(createdRecord)
   redirect(`/thank-you`)
