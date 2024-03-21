@@ -61,6 +61,17 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "elliezub",
+      "name": "Ellie",
+      "avatar_url": "https://avatars.githubusercontent.com/u/112726692?v=4",
+      "profile": "http://elliezub.com",
+      "contributions": [
+        "code"
+        "doc",
+        "a11y"
+      ]
     }
   ],
   "contributorsPerLine": 7,
