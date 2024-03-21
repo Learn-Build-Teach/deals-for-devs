@@ -1,5 +1,7 @@
 {
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "imageSize": 100,
   "commit": false,
   "commitType": "docs",
@@ -10,35 +12,55 @@
       "name": "Chris Nowicki",
       "avatar_url": "https://avatars.githubusercontent.com/u/102450568?v=4",
       "profile": "https://www.chrisnowicki.io",
-      "contributions": ["code"]
+      "contributions": [
+        "code"
+      ]
     },
     {
       "login": "wipdev-tech",
       "name": "Waseem Medhat",
       "avatar_url": "https://avatars.githubusercontent.com/u/140237026?v=4",
       "profile": "https://wipdev.netlify.app",
-      "contributions": ["code"]
+      "contributions": [
+        "code"
+      ]
     },
     {
       "login": "klae32",
       "name": "klae32",
       "avatar_url": "https://avatars.githubusercontent.com/u/26855871?v=4",
       "profile": "https://github.com/klae32",
-      "contributions": ["code"]
+      "contributions": [
+        "code"
+      ]
     },
     {
       "login": "brwmaster",
       "name": "Edwin Boon",
       "avatar_url": "https://avatars.githubusercontent.com/u/117263901?v=4",
       "profile": "https://www.edwinboon.dev",
-      "contributions": ["code"]
+      "contributions": [
+        "code"
+      ]
     },
     {
       "login": "CBID2",
       "name": "Christine Belzie",
       "avatar_url": "https://avatars.githubusercontent.com/u/105683440?v=4",
       "profile": "https://www.biodrop.io/CBID2",
-      "contributions": ["code", "doc"]
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "BryanF1nes",
+      "name": "Bryan Fines",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49371751?v=4",
+      "profile": "https://github.com/BryanF1nes",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
