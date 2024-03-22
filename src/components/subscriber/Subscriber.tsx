@@ -70,6 +70,7 @@ export default function Subscriber({
     //TODO: Look if updatePref is REALLY being used as a server action or server component
     // Update the database
     try {
+      //@ts-expect-error
       await updateSubscriberPreferences(subscriberData.id, newData) //TODO: Fix type error for newData
       toast.success(
         `You have been ${
@@ -117,6 +118,7 @@ export default function Subscriber({
         <button
           className="mb-40 mt-9 w-full rounded-md bg-teal-600 py-3 text-center text-sm font-semibold text-black shadow-sm hover:bg-teal-400 disabled:cursor-not-allowed disabled:border  disabled:border-teal-500 disabled:bg-transparent disabled:text-teal-500 md:mt-20 md:py-5 md:text-2xl"
           onClick={async () => {
+            //@ts-expect-error
             await updateSubscriberPreferences(subscriberData.id, subscriberData) //TODO: Fix type error for subscriberData
             toast.success('Preferences updated!')
             setUpdate(false)

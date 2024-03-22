@@ -4,7 +4,6 @@ import { subDays } from 'date-fns'
 import { getXataClient } from '@/xata'
 import {
   getRecentApprovedDealsByDate,
-  getRecentDealsByDate,
 } from '@/lib/queries'
 const client = getXataClient()
 
