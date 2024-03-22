@@ -1,13 +1,20 @@
+<!-- Thank you for offering your contribution with Deals for Devs! -->
+
 ## Description
-<!-- Describe your contribution and its benefits in a sentence  -->
+<!-- Describe your PR's proposed changes. -->
 
-## Related Ticket(s) and Documentation(s)
-<!-- Use `Closes #issue number` if your PR fixes an issue or `Relates #issue number` if it connects to the issue number -->
+## Issue
+<!-- If this PR is related to a specific issue, please list that here. (e.g - "Closes or Relates to: # XXXX") -->
 
-## Screenshots
+## Screenshot
+<!-- Add a screenshot of your contribution here. -->
 
-<!-- Add all the screenshots which support your changes -->
+## PR Requirements
+<!-- Add an X in the [ ] if you have done each task -->
+- [ ] I have carefully read through and understand the [Deals-for-Devs Contributing Guide](https://github.com/Learn-Build-Teach/deals-for-devs/blob/dev/.github/contributing.md)
+- [ ] The title of this PR follows the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) format
+- [ ] The `Description` gives a good representation of the changes made
+- [ ] If this PR addresses an open Issue, it is linked in the `Issue` section
 
-## Note to reviewers
 
-<!-- Add notes to reviewers if applicable -->
+<!-- If you have any additional thoughts, just add them here. -->
