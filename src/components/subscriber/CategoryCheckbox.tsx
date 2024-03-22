@@ -11,9 +11,22 @@ export default function CategoryCheckbox({
   category,
   handleChange,
 }: CategoryCheckboxProps) {
-  let categoryName =
-    category.split('Notifications')[0].charAt(0).toUpperCase() +
-    category.split('Notifications')[0].slice(1)
+  const getCategoryName = (category: string) => {
+    // Return the category name
+    if (category === 'officeEquipmentNotifications') {
+      return 'Office Equipment'
+    } else if (category === 'miscNotifications') {
+      return 'Misc'
+    } else {
+      return (
+        category.split('Notifications')[0].charAt(0).toUpperCase() +
+        category.split('Notifications')[0].slice(1) +
+        's'
+      )
+    }
+  }
+
+  let categoryName = getCategoryName(category)
 
   return (
     <>
@@ -29,7 +42,7 @@ export default function CategoryCheckbox({
         </span>
       </label>
       <span className="mt-[2.5px] text-sm font-extralight md:mt-3 md:text-[28px]">
-        {categoryName != 'Misc' ? categoryName + 's' : 'Misc'}
+        {categoryName}
       </span>
     </>
   )

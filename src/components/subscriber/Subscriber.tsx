@@ -33,6 +33,10 @@ export default function Subscriber({
       subscribed: subscriberData.courseNotifications,
     },
     {
+      name: 'officeEquipmentNotifications',
+      subscribed: subscriberData.officeEquipmentNotifications,
+    },
+    {
       name: 'ebookNotifications',
       subscribed: subscriberData.ebookNotifications,
     },
@@ -49,6 +53,7 @@ export default function Subscriber({
     const newData = {
       ...subscriberData,
       courseNotifications: subscribedStatus,
+      officeEquipmentNotifications: subscribedStatus,
       ebookNotifications: subscribedStatus,
       toolNotifications: subscribedStatus,
       conferenceNotifications: subscribedStatus,
@@ -65,7 +70,7 @@ export default function Subscriber({
     //TODO: Look if updatePref is REALLY being used as a server action or server component
     // Update the database
     try {
-      await updateSubscriberPreferences(subscriberData.id, newData)
+      await updateSubscriberPreferences(subscriberData.id, newData) //TODO: Fix type error for newData
       toast.success(
         `You have been ${
           subscribedStatus ? 'subscribed to' : 'unsubscribed from'
@@ -112,7 +117,7 @@ export default function Subscriber({
         <button
           className="mb-40 mt-9 w-full rounded-md bg-teal-600 py-3 text-center text-sm font-semibold text-black shadow-sm hover:bg-teal-400 disabled:cursor-not-allowed disabled:border  disabled:border-teal-500 disabled:bg-transparent disabled:text-teal-500 md:mt-20 md:py-5 md:text-2xl"
           onClick={async () => {
-            await updateSubscriberPreferences(subscriberData.id, subscriberData)
+            await updateSubscriberPreferences(subscriberData.id, subscriberData) //TODO: Fix type error for subscriberData
             toast.success('Preferences updated!')
             setUpdate(false)
           }}
