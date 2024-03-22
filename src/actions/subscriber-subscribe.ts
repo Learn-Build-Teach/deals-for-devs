@@ -21,7 +21,7 @@ export const subscribe = async (formData: FormData) => {
 
     const existingSubscriber = await getOneSubscriberByEmail(checkedEmail)
     if (existingSubscriber) {
-      console.log('Subscriber exists')
+      console.info(`Subscriber exists: ${checkedEmail}`)
       return {
         error: 'This email already exists',
       }

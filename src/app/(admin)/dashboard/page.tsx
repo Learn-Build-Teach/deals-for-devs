@@ -2,7 +2,11 @@ import { auth } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
 import { isAdminUser } from '@/utils/auth'
 import Dashboard from '@/components/dashboard/Dashboard'
-import { getAllDeals, getAllSubscribers } from '@/lib/queries'
+import {
+  getAllDeals,
+  getAllSubscribers,
+  getAllUnapprovedDeals,
+} from '@/lib/queries'
 
 export default async function Home() {
   const { userId } = auth()
@@ -18,15 +22,13 @@ export default async function Home() {
   }
 
   // fetch all deals and subscribers
-  const dealsPromise = getAllDeals()
+  const dealsPromise = getAllUnapprovedDeals()
   const subscribersPromise = getAllSubscribers()
 
   const [deals, subscribers] = await Promise.all([
     dealsPromise,
     subscribersPromise,
   ])
-
-  console.log(subscribers)
 
   return (
     <main className="mb-10">

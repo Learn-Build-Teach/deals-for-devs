@@ -38,3 +38,5 @@ export type NewSubscriberData = {
   conferenceNotifications: boolean
   status: string
 }
+
+export type ReturnValue<T> = { data: T } | { error: string }

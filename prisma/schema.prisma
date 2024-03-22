@@ -8,17 +8,18 @@ datasource db {
 }
 
 model Deal {
-  coupon         String?  @db.VarChar(50)
+  id         String        @id @default(uuid())
+  coupon         String?  @db.VarChar(255)
   approved       Boolean  @default(false)
   description    String   @db.VarChar(255)
   couponPercent  Int?     @default(0)
   featured       Boolean  @default(false)
-  name           String   @db.VarChar(50)
+  name           String   @db.VarChar(255)
   link           String   @db.VarChar(255)
-  category       String   @db.VarChar(20)
+  category       String   @db.VarChar(50)
   startDate      DateTime @default(now())
   endDate        DateTime @default(now())
-  email          String   @db.VarChar(50)
+  email          String   @db.VarChar(255)
   xata_id        String   @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int      @default(0)
   xata_createdat DateTime @default(now()) @db.Timestamptz(6)
@@ -34,10 +35,11 @@ model AdminUser {
 }
 
 model Subscriber {
-  status                       String   @db.VarChar(20)
-  email                        String   @db.VarChar(50)
+      id         String        @id @default(uuid())
+  status                       String   @db.Text
+  email                        String   @db.VarChar(255)
   verified                     Boolean  @default(false)
-  token                        String   @db.VarChar(50)
+  token                        String   @db.VarChar(255)
   conferenceNotifications      Boolean  @default(false)
   ebookNotifications           Boolean  @default(false)
   courseNotifications          Boolean  @default(false)

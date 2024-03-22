@@ -47,6 +47,7 @@
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "ts-key-enum": "^2.0.12",
+    "ts-node": "^10.9.2",
     "uuid": "^9.0.1",
     "zod": "^3.22.4"
   },

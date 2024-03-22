@@ -13,6 +13,18 @@ export async function getAllDeals() {
   return deals
 }
 
+export async function getAllUnapprovedDeals() {
+  const deals = await prisma.deal.findMany({
+    where: {
+      approved: false,
+    },
+    orderBy: {
+      xata_createdat: 'desc',
+    },
+  })
+  return deals
+}
+
 // subscriber queries
 export async function createSubscriber(
   newSubscriberData: NewSubscriberData
@@ -62,7 +74,7 @@ export async function updateSubscriberToVerified(
 export async function approveDeal(id: string): Promise<Deal> {
   return await prisma.deal.update({
     where: {
-      xata_id: id,
+      id,
     },
     data: {
       approved: true,
