@@ -1,18 +1,8 @@
 'use client'
 import { useState } from 'react'
-// import type { Subscribers, DealsRecord } from '@/xata'
-// import DealsList from '../deals/DealsList'
-// import SubscriberList from '@/components/subscriber/SubscriberList'
 import Link from 'next/link'
 
-interface DashboardProps {
-  deals?: any
-  subscribers?: any
-}
-
-export default function Dashboard({ deals, subscribers }: DashboardProps) {
-  const [selectedTab, setSelectedTab] = useState('deals')
-
+export default function Dashboard() {
   return (
     <div>
       <div className="grid space-y-4 rounded-xl border border-teal-500 p-4 text-white">
