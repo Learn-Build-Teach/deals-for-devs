@@ -16,7 +16,7 @@ export default function SubscriberList({ subscribers }: SubscribersProps) {
         {subscribers.map((subscriber) => (
           <li
             key={subscriber.email + subscriber.id}
-            className="flex w-full justify-between border border-gray-800 px-2 py-1"
+            className="flex w-full justify-between border border-gray-800 px-2 py-1 transition-colors transition-transform duration-300 ease-in-out hover:scale-105 hover:border-teal-500"
           >
             {subscriber.email}
             <DeleteButton id={subscriber.id} />
