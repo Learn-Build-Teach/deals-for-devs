@@ -17,7 +17,7 @@ const categoryToIcon: { [key: string]: JSX.Element } = {
   Conference: <FaCalendar />,
 }
 
-export default function Deal({
+export default function sdDeal({
   deal,
   showAdminOptions = false,
 }: {

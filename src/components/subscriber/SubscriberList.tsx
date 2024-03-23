@@ -8,11 +8,10 @@ interface SubscribersProps {
 
 export default function SubscriberList({ subscribers }: SubscribersProps) {
   return (
-    <div className="mx-auto flex flex-col items-center space-y-8 text-white">
+    <div className="mx-auto flex flex-col space-y-8 text-center text-white">
       <h3 className="text-md uppercase">Add a Subscriber</h3>
       <SubscribeForm />
-      <hr className="h-px w-full bg-teal-500"></hr>
-      <h3 className="text-md uppercase">Subscriber List</h3>
+      <h3 className="text-md pt-8 uppercase">Subscriber List</h3>
       <ul className="grid w-full gap-2">
         {subscribers.map((subscriber) => (
           <li
