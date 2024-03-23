@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 
-export default function Dashboard() {
+export default function AdminNav() {
   return (
     <div>
       <div className="grid space-y-4 rounded-xl border border-teal-500 p-4 text-white">

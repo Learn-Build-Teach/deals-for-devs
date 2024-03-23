@@ -3,7 +3,7 @@ import '../../../types/env'
 import { auth } from '@clerk/nextjs'
 import { isAdminUser } from '@/utils/auth'
 import { redirect } from 'next/navigation'
-import Dashboard from '@/components/dashboard/Dashboard'
+import AdminNav from '@/components/dashboard/AdminNav'
 import '../../globals.css'
 
 export default async function Home({
@@ -30,7 +30,7 @@ export default async function Home({
     <main className="mx-auto space-y-12 px-4 pb-10">
       <section className="mx-auto grid gap-8 space-y-12 px-4  pb-10 lg:grid-cols-3 lg:space-y-0">
         <div className="mx-auto lg:col-span-1">
-          <Dashboard />
+          <AdminNav />
         </div>
         <div className="mx-auto lg:col-span-2">{children}</div>
       </section>
