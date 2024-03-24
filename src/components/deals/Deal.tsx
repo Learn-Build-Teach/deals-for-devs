@@ -7,7 +7,6 @@ import ClickableCouponCode from '../ClickableCouponCode'
 import { FaBeer, FaVideo, FaBook, FaCog, FaCalendar } from 'react-icons/fa'
 import { Category } from '@/types/Types'
 import { format } from 'date-fns'
-import { start } from 'repl'
 
 const categoryToIcon: { [key: string]: JSX.Element } = {
   Misc: <FaBeer />,
@@ -17,7 +16,7 @@ const categoryToIcon: { [key: string]: JSX.Element } = {
   Conference: <FaCalendar />,
 }
 
-export default function sdDeal({
+export default function Deal({
   deal,
   showAdminOptions = false,
 }: {
