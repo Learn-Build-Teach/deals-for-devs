@@ -19,6 +19,7 @@ const envVariables = z.object({
   NEXT_PUBLIC_POSTHOG_KEY: z.string().optional(),
   NEXT_PUBLIC_POSTHOG_HOST: z.string().optional(),
   NEXT_PUBLIC_ENVIRONMENT: z.string(),
+  DATABASE_URL: z.string(),
 })
 
 const {
@@ -38,6 +39,7 @@ const {
   REPLY_TO_EMAIL,
   NEXT_PUBLIC_BASE_URL,
   NEXT_PUBLIC_ENVIRONMENT,
+  DATABASE_URL,
 } = process.env
 
 const envServerSchema = envVariables.safeParse({
@@ -57,6 +59,7 @@ const envServerSchema = envVariables.safeParse({
   REPLY_TO_EMAIL,
   NEXT_PUBLIC_BASE_URL,
   NEXT_PUBLIC_ENVIRONMENT,
+  DATABASE_URL,
 })
 
 if (!envServerSchema.success) {

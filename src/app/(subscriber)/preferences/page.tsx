@@ -25,8 +25,6 @@ export default async function SubscriberPreferences({
     return redirect('/')
   }
 
-  const { xata, ...subscriberData } = subscriber
-
   return (
     <div className="flex w-full flex-col items-center text-white md:-mt-28">
       <div className="mb-4 flex items-center justify-center gap-2 md:mb-6">
@@ -43,7 +41,7 @@ export default async function SubscriberPreferences({
         selected categories below:
       </p>
       <div className="mb-10 w-full max-w-[300px] border border-white/[.31] md:mb-12 md:max-w-[831px]" />
-      <Subscriber subscriber={subscriberData} />
+      <Subscriber subscriber={subscriber} />
     </div>
   )
 }

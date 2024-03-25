@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  * {
+    @apply min-w-0;
+  }
+}
+
 .custom-checkbox {
   display: inline-block;
   position: relative;
@@ -24,4 +30,8 @@
   background-color: #14b8a6;
   color: black;
   border: 1px solid #14b8a6;
+}
+
+.debug {
+  @apply outline outline-red-500;
 }
