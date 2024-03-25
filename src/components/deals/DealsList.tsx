@@ -11,9 +11,9 @@ export default function DealsList({
   isAdmin?: boolean
 }) {
   return (
-    <div>
+    <div className="mx-auto">
       {deals.length > 0 && (
-        <div className="grid w-full grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 sm:justify-items-stretch  md:grid-cols-3 ">
+        <div className="mx-auto grid grid-cols-1 gap-8 lg:grid-cols-2 2xl:grid-cols-3">
           {deals.map((deal) => (
             <DealCard
               key={deal.xata_id}

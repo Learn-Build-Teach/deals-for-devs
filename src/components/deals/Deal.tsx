@@ -7,7 +7,6 @@ import ClickableCouponCode from '../ClickableCouponCode'
 import { FaBeer, FaVideo, FaBook, FaCog, FaCalendar } from 'react-icons/fa'
 import { Category } from '@/types/Types'
 import { format } from 'date-fns'
-import { start } from 'repl'
 import { Deal } from '@prisma/client'
 
 const categoryToIcon: { [key: string]: JSX.Element } = {
