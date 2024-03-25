@@ -3,6 +3,9 @@
 import { DealsRecord, getXataClient } from '@/xata'
 import { redirect } from 'next/navigation'
 import { z } from 'zod'
+import prisma from '@/lib/db'
+import { Deal } from '@prisma/client'
+import { ReturnValue } from '@/types/Types'
 
 const dealSchema = z.object({
   name: z.string(),
@@ -12,46 +15,37 @@ const dealSchema = z.object({
   endDate: z.coerce.date(),
   coupon: z.string().optional(),
   couponPercent: z.number().optional(),
-  email: z.string().email().optional(),
+  email: z.string().email(),
   //TODO: don't replicate array
   category: z.enum(['misc', 'ebook', 'video', 'tool', 'conference']),
 })
 
-export async function createDeal(formData: FormData) {
+export async function createDeal(
+  formData: FormData
+): Promise<ReturnValue<Deal>> {
   let parsed
   try {
-    parsed = dealSchema.parse({
+    parsed = dealSchema.safeParse({
       name: formData.get('name'),
-      coupon: formData.get('coupon'),
+      coupon: formData.get('coupon') || undefined,
       link: formData.get('link'),
       startDate: formData.get('startDate'),
       endDate: formData.get('endDate'),
       description: formData.get('description'),
-      couponPercent: formData.get('couponPercent'),
-      email: formData.get('email') || undefined,
+      couponPercent: formData.get('couponPercent') || undefined,
+      email: formData.get('email'),
       category: formData.get('category'),
     })
   } catch (error) {
-    return console.error(error)
+    console.error(error)
+    return { error: 'Invalid form data' }
   }
-  const newDeal = {
-    name: parsed.name,
-    coupon: parsed.coupon,
-    link: parsed.link,
-    startDate: parsed.startDate,
-    endDate: parsed.endDate,
-    description: parsed.description,
-    couponPercent: parsed.couponPercent,
-    email: parsed.email,
-    category: parsed.category,
-    image: { name: parsed.name, mediaType: 'image/png', base64Content: '' },
-  }
+  if (!parsed.success) return { error: parsed.error.message }
+  const newDeal = parsed.data
 
-  const xataClient = getXataClient()
-  const createdRecord = await xataClient.db.deals.create(newDeal, [
-    'image.uploadUrl',
-  ])
+  const createdRecord = await prisma.deal.create({
+    data: newDeal,
+  })
 
-  console.log(createdRecord)
   redirect(`/thank-you`)
 }
