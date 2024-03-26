@@ -30,10 +30,18 @@ export default function DealForm() {
         {currentStep === 1 && (
           <div className="flex flex-col gap-14 md:w-full md:max-w-[700px]">
             <Input label="Product Name *" />
-            <CategorySelect />
+            <CategorySelect
+              onCategoryChange={() => {
+                console.log('category changed')
+              }}
+            />
             <Input label="Website URL *" />
             <Textarea label="Product Summary *" />
-            <DragAndDropImage />
+            <DragAndDropImage
+              onFileChange={() => {
+                console.log('file changed')
+              }}
+            />
             <button
               type="button"
               className="-mt-8 rounded-lg bg-teal-600 py-7 text-2xl text-black"
