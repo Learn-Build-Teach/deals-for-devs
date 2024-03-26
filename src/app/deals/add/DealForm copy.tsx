@@ -1,5 +1,5 @@
 'use client'
-import CategorySelect from '@/components/forms/CategorySelect'
+import CategorySelect from '@/components/forms/add-a-deal/CategorySelect'
 import { DatePickerWithRange } from '@/components/forms/DatePicker'
 import DragAndDropImage from '@/components/forms/add-a-deal/DragAndDropImage'
 import { Category, FORM_DEAL_SCHEMA } from '@/types/Types'

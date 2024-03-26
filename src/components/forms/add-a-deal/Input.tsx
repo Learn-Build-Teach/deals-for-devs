@@ -18,7 +18,7 @@ export default function Input({ label }: InputProps) {
         id={labelCamelCase}
         name={labelCamelCase}
         type="text"
-        className="h-16 bg-transparent"
+        className="h-16 bg-transparent text-xl"
       />
     </div>
   )

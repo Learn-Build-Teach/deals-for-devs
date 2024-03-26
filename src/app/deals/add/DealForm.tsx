@@ -1,10 +1,8 @@
 'use client'
 import { useState } from 'react'
-import { cn } from '@/lib/utils'
 import StepNavigation from '@/components/forms/add-a-deal/StepNavigation'
-import Icon from '@/components/Icon'
 import Input from '@/components/forms/add-a-deal/Input'
-import CategorySelect from '@/components/forms/CategorySelect'
+import CategorySelect from '@/components/forms/add-a-deal/CategorySelect'
 import Textarea from '@/components/forms/add-a-deal/TextArea'
 import DragAndDropImage from '@/components/forms/add-a-deal/DragAndDropImage'
 
@@ -38,7 +36,7 @@ export default function DealForm() {
             <DragAndDropImage />
             <button
               type="button"
-              className="rounded-lg bg-teal-600 py-7 text-2xl text-black -mt-8"
+              className="-mt-8 rounded-lg bg-teal-600 py-7 text-2xl text-black"
               aria-label="Click to continue"
               onClick={() => setCurrentStep(currentStep + 1)}
             >

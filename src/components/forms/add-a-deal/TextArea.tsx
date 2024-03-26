@@ -17,7 +17,7 @@ export default function Textarea({ label }: InputProps) {
       <TextareaDefault
         id={labelCamelCase}
         name={labelCamelCase}
-        className="h-44 bg-transparent"
+        className="h-44 bg-transparent text-xl"
       />
     </div>
   )
