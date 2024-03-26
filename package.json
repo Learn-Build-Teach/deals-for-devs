@@ -14,6 +14,7 @@
     "@clerk/nextjs": "^4.29.8",
     "@prisma/client": "^5.11.0",
     "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",

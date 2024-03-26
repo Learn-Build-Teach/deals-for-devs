@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import Image from 'next/image'
+import Icon from '@/components/Icon'
 
 export default function DragAndDropImage({
   onFileChange,
@@ -31,18 +32,20 @@ export default function DragAndDropImage({
   })
 
   return (
-    <div>
+    <div className="">
+      <span className="text-2xl font-extralight">Cover Image</span>
       <div
         {...getRootProps({
           className:
-            'dropzone relative overflow-hidden bg-gray-50 rounded-xl p-10 cursor-pointer w-full flex flex-col gap-y-2 items-center aspect-video justify-center',
+            'dropzone -mt-3 relative overflow-hidden bg-transparent bg-dropzone-md bg-no-repeat p-10 cursor-pointer w-full flex flex-col gap-y-4 items-center aspect-video justify-center',
         })}
       >
         <input {...getInputProps()} />
-        <p>Drag n drop or click to select files</p>
-        <small className="text-gray-900">
-          Recommended Ratio: 16:9 | Format: JPG, PNG | Max size: 2MB
-        </small>
+        <Icon id="frame" size={58} />
+        <p className="text-xl">Drag ‘n’ drop or click to upload an image</p>
+        <p className="text-lg font-extralight text-white">
+          PNG, JPEG files accepted
+        </p>
         {file && (
           <>
             <Image

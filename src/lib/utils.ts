@@ -26,3 +26,14 @@ export const createPreferencesLink = (token: string) => {
 export const createUnsubscribeLink = (token: string) => {
   return `${baseURL}/api/unsubscribe?token=${token}`
 }
+
+// convert to camelCase
+export const camelCase = (str: string) => {
+  let camelCase = str
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+      return index == 0 ? word.toLowerCase() : word.toUpperCase()
+    })
+    .replace(/\s+/g, '')
+
+  return camelCase
+}
