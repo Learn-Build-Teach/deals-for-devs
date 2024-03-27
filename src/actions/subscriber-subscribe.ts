@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { sendConfirmationEmail } from '../utils/resend/email-sendConfirmation'
 import { createValidateEmailLink, createConfirmEmailLink } from '@/lib/utils'
 import { createSubscriber, getOneSubscriberByEmail } from '@/lib/queries'
+import { Status } from '@/types/Types'
 
 const subscribeSchema = z.object({
   email: z.string().email(),
@@ -14,12 +15,13 @@ export const subscribe = async (formData: FormData) => {
     const token = uuidv4()
 
     // parse the email
-    const parsed = subscribeSchema.parse({ email: formData.get('email') })
-    const checkedEmail = parsed.email.toLowerCase()
+    const parsed = subscribeSchema.safeParse({ email: formData.get('email') })
+    if (!parsed.success) return { error: parsed.error.message }
+    const checkedEmail = parsed.data.email.toLowerCase()
 
     const existingSubscriber = await getOneSubscriberByEmail(checkedEmail)
     if (existingSubscriber) {
-      console.log('Subscriber exists')
+      console.info(`Subscriber exists: ${checkedEmail}`)
       return {
         error: 'This email already exists',
       }
@@ -34,6 +36,7 @@ export const subscribe = async (formData: FormData) => {
       officeEquipmentNotifications: true,
       toolNotifications: true,
       conferenceNotifications: true,
+      status: Status.UNSUBSCRIBED,
     }
 
     // add new subscriber to the database
