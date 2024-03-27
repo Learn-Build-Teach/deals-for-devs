@@ -105,6 +105,8 @@ Before you begin working on an issue please follow these steps to setup your wor
 
 ### Working on an Issue
 
+Here is the [Figma File](https://www.figma.com/file/IZagx6tJRWHbExsZXmIO2n/Deals-for-devs?type=design&node-id=0-1&mode=design) for reference as needed.
+
 Once you have the repo forked and cloned, the upstream remote has been set, and you are in the `dev` branch you can begin working on your issue:
 
 1. Create a new branch off of the `dev` branch (unless given specific instructions), replacing the `<your branch name>` with an actual branch name that briefly explains the purpose of the branch in some way:
