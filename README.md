@@ -46,9 +46,11 @@ pnpm dev
 
 ## Contributing
 
-You are welcome to contribute by opening issues or PRs! Also, you can join our
-project channel on the [Learn Build Teach
-Discord](https://www.learnbuildteach.com/) by messaging James (@jamesqquick) on Discord for access.
+You are welcome to contribute by opening issues or PRs!
+
+Be sure to check out our [Contribution Guide](https://github.com/Learn-Build-Teach/deals-for-devs/blob/main/.github/contributing.md).
+Also, you can join our project channel on the [Learn Build Teach Discord](https://www.learnbuildteach.com/)
+by messaging James (@jamesqquick) on Discord for access.
 
 > [!IMPORTANT]
 > All PRs should target `dev` as the base branch.
