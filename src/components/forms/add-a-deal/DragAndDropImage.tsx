@@ -37,7 +37,7 @@ export default function DragAndDropImage({
       <div
         {...getRootProps({
           className:
-            'dropzone -mt-3 relative overflow-hidden bg-transparent bg-dropzone-md bg-no-repeat p-10 cursor-pointer w-full flex flex-col gap-y-4 items-center aspect-video justify-center',
+            'dropzone dropzone-border mt-2 relative overflow-hidden rounded-xl bg-transparent p-10 cursor-pointer w-full flex flex-col gap-y-4 items-center aspect-video justify-center',
         })}
       >
         <input {...getInputProps()} />
