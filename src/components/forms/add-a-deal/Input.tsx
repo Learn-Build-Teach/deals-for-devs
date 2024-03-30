@@ -4,9 +4,19 @@ import { camelCase } from '@/lib/utils'
 
 type InputProps = {
   label: string
+  required?: boolean
+  type?: string
+  value?: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function Input({ label }: InputProps) {
+export default function Input({
+  label,
+  required = true,
+  type = 'text',
+  value,
+  onChange,
+}: InputProps) {
   const labelCamelCase = camelCase(label)
 
   return (
@@ -17,8 +27,11 @@ export default function Input({ label }: InputProps) {
       <InputDefault
         id={labelCamelCase}
         name={labelCamelCase}
-        type="text"
+        type={type}
         className="h-16 bg-transparent text-xl"
+        required={required}
+        value={value}
+        onChange={(e) => onChange(e)}
       />
     </div>
   )

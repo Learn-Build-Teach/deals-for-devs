@@ -10,6 +10,13 @@ export enum Category {
   'OFFICE EQUIPMENT' = 'Office Equipment',
 }
 
+export enum AddDealRoutes {
+  PRODUCT_INFO = 'product-info',
+  COUPON_DETAILS = 'coupon-details',
+  CONTACT_INFO = 'contact-info',
+  REVIEW_DEAL = 'review-deal',
+}
+
 export enum Status {
   SUBSCRIBED = 'SUBSCRIBED',
   UNSUBSCRIBED = 'UNSUBSCRIBED',

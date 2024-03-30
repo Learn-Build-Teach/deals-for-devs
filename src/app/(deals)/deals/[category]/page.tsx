@@ -1,6 +1,6 @@
 import { DealsRecord, getXataClient } from '@/xata'
 import CategoryOptions from '@/components/CategoryOptions'
-import DealsList from '../../../components/deals/DealsList'
+import DealsList from '../../../../components/deals/DealsList'
 import { redirect } from 'next/navigation'
 import { getApprovedDealsByCategory } from '@/lib/queries'
 import { Category } from '@/types/Types'
