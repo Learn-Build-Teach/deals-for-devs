@@ -45,7 +45,18 @@ export const AddDealContextProvider = ({
   children: React.ReactNode
 }) => {
   const [currentStep, setCurrentStep] = useState(1)
-  const [newDealData, setNewDealData] = useState<NewDealType>(null)
+  const [newDealData, setNewDealData] = useState<NewDealType>({
+    productName: '',
+    category: 'Select a Category',
+    url: '',
+    summary: '',
+    coverImage: '',
+    dateRange: '',
+    couponCode: '',
+    percentage: 0,
+    contactName: '',
+    contactEmail: '',
+  })
   const [dataLoaded, setDataLoaded] = useState(false)
 
   useEffect(() => {
@@ -76,7 +87,7 @@ export const AddDealContextProvider = ({
   const readFromLocalStorage = () => {
     const defaultData = {
       productName: '',
-      category: '',
+      category: 'Select a Category',
       url: '',
       summary: '',
       coverImage: '',

@@ -19,7 +19,7 @@ export default function Textarea({ label, value, onChange }: InputProps) {
       <TextareaDefault
         id={labelCamelCase}
         name={labelCamelCase}
-        className="h-44 bg-transparent text-xl"
+        className="h-44 bg-transparent text-xl focus-visible:ring-offset-teal-500"
         value={value}
         onChange={(e) => onChange(e)}
         required

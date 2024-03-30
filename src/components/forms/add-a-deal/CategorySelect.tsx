@@ -18,7 +18,7 @@ export default function CategorySelect({
     <div className="flex flex-col gap-2">
       <span className="text-2xl font-extralight">Category *</span>
       <Select onValueChange={onCategoryChange} required>
-        <SelectTrigger className="h-16 w-[334px] bg-transparent text-xl">
+        <SelectTrigger className="h-16 w-[334px] bg-transparent text-xl focus:ring-offset-teal-500">
           <SelectValue placeholder={value} />
         </SelectTrigger>
         <SelectContent>

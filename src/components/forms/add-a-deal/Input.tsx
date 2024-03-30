@@ -28,7 +28,7 @@ export default function Input({
         id={labelCamelCase}
         name={labelCamelCase}
         type={type}
-        className="h-16 bg-transparent text-xl"
+        className="h-16 bg-transparent text-xl focus-visible:outline-none focus-visible:ring-offset-teal-500"
         required={required}
         value={value}
         onChange={(e) => onChange(e)}
