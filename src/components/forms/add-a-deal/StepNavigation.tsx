@@ -18,7 +18,7 @@ export default function StepNavigation() {
   ]
 
   return (
-    <div className="mt-2">
+    <div className="mt-4">
       {/* back button */}
       <button
         className="mb-12 flex items-center gap-5 text-xl disabled:text-white/50"
