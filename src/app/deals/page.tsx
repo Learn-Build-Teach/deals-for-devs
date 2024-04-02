@@ -1,6 +1,5 @@
 import CategoryOptions from '@/components/CategoryOptions'
 import DealsList from '../../components/deals/DealsList'
-import { redirect } from 'next/navigation'
 import { getApprovedDeals, getRecentApprovedDealsByDate } from '@/lib/queries'
 
 export default async function DealsPage() {
