@@ -8,22 +8,25 @@ datasource db {
 }
 
 model Deal {
-  id             String   @id @default(uuid())
-  coupon         String?  @db.VarChar(255)
-  approved       Boolean  @default(false)
-  description    String   @db.VarChar(255)
-  couponPercent  Int?     @default(0)
-  featured       Boolean  @default(false)
-  name           String   @db.VarChar(255)
-  link           String   @db.VarChar(255)
-  category       String   @db.VarChar(50)
-  startDate      DateTime @default(now())
-  endDate        DateTime @default(now())
-  email          String   @db.VarChar(255)
-  xata_id        String   @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
-  xata_version   Int      @default(0)
-  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
-  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+  id             String     @id @default(uuid())
+  coupon         String?    @db.VarChar(255)
+  approved       Boolean    @default(false)
+  description    String     @db.VarChar(255)
+  couponPercent  Int?       @default(0)
+  featured       Boolean    @default(false)
+  name           String     @db.VarChar(255)
+  link           String     @db.VarChar(255)
+  category       String     @db.VarChar(50)
+  startDate      DateTime   @default(now())
+  endDate        DateTime   @default(now())
+  email          String     @db.VarChar(255)
+  coverImageURL  String?    @db.VarChar(255)
+  image          String?    @db.VarChar(255)
+  coverImage     DealImage? @relation(fields: [image], references: [id])
+  xata_id        String     @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int        @default(0)
+  xata_createdat DateTime   @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime   @default(now()) @db.Timestamptz(6)
 }
 
 model AdminUser {
@@ -56,9 +59,10 @@ model Subscriber {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model DealImage {
   id             String   @id @default(uuid())
+  image          Json
   xata_id        String   @unique(map: "_pgroll_new_DealImage_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int      @default(0)
   xata_createdat DateTime @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
-  image          Json?
+  Deal           Deal[]
 }
