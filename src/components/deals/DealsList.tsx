@@ -1,6 +1,5 @@
 'use client'
 import DealCard from '@/components/deals/Deal'
-import { DealsRecord } from '@/xata'
 import { Deal } from '@prisma/client'
 
 export default function DealsList({

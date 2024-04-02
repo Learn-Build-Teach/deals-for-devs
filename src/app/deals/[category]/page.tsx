@@ -1,4 +1,3 @@
-import { DealsRecord, getXataClient } from '@/xata'
 import CategoryOptions from '@/components/CategoryOptions'
 import DealsList from '../../../components/deals/DealsList'
 import { redirect } from 'next/navigation'
