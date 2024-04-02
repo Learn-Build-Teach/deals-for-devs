@@ -21,8 +21,8 @@ model Deal {
   endDate        DateTime   @default(now())
   email          String     @db.VarChar(255)
   coverImageURL  String?    @db.VarChar(255)
-  image          String?    @db.VarChar(255)
-  coverImage     DealImage? @relation(fields: [image], references: [id])
+  coverImageId   String?    @unique @db.VarChar(255)
+  coverImage     DealImage? @relation(fields: [coverImageId], references: [id])
   xata_id        String     @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int        @default(0)
   xata_createdat DateTime   @default(now()) @db.Timestamptz(6)
@@ -60,9 +60,9 @@ model Subscriber {
 model DealImage {
   id             String   @id @default(uuid())
   image          Json
+  Deal           Deal?
   xata_id        String   @unique(map: "_pgroll_new_DealImage_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int      @default(0)
   xata_createdat DateTime @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
-  Deal           Deal[]
 }
