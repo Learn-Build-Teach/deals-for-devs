@@ -11,24 +11,25 @@ export default function DragAndDropImage({
   const [file, setFile] = useState<File | undefined>()
 
   const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
-      // Do something with the files
-      if (acceptedFiles[0]) {
-        console.log(acceptedFiles)
-        setFile(acceptedFiles[0])
-        onFileChange(acceptedFiles[0])
+    (acceptedFile: File[]) => {
+      // Do something with the file
+      if (acceptedFile.length > 0) {
+        console.log(acceptedFile[0])
+        setFile(acceptedFile[0])
+        onFileChange(acceptedFile[0])
       }
     },
     [onFileChange]
   )
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
       'image/png': ['.png'],
       'image/jpeg': ['.jpg', '.jpeg'],
     },
     maxSize: 2 * 1024 * 1024,
+    multiple: false,
   })
 
   return (
@@ -49,10 +50,11 @@ export default function DragAndDropImage({
         {file && (
           <>
             <Image
-              className="absolute bottom-0 left-0 right-0 top-0"
+              className="absolute bottom-0 left-0 right-0 top-0 h-auto w-full"
               src={URL.createObjectURL(file)}
               alt="deal"
-              layout="fill"
+              width={540}
+              height={300}
             />
             <button
               className=" absolute right-2 top-2 rounded bg-black px-2 py-1 text-white"
