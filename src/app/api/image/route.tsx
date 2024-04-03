@@ -1,18 +1,20 @@
 import { z } from 'zod'
 import { getXataClient } from '@/xata'
+import { v4 as uuidv4 } from 'uuid'
 
-const schema = z.array(
-  z.object({
-    name: z.string(),
-    folder: z.string(),
-    fileName: z.string(),
-  })
-)
+const schema = z.object({
+  fileName: z.string(),
+  mediaType: z.string(),
+})
 
-export async function POST(req: Request, res: Response) {
+export async function PUT(req: Request, res: Response) {
   const body = await req.json()
   const xataClient = getXataClient()
+
+  console.log(body)
+
   let parsed
+
   try {
     parsed = schema.parse(body)
   } catch (error) {
@@ -22,22 +24,24 @@ export async function POST(req: Request, res: Response) {
     })
   }
 
-  const newVideos = parsed.map((video) => {
-    return {
-      ...video,
-      video: {
-        name: video.fileName,
-        mediaType: 'video/mp4',
-        base64Content: '',
-      },
-    }
-  })
-
   try {
-    const createdVideos = await xataClient.db.UserVideo.create(newVideos, [
-      'video.uploadUrl',
-    ])
-    return new Response(JSON.stringify(createdVideos), {
+    console.log('Creating uuid')
+    const id = uuidv4()
+    console.log('Created uuid: ', id)
+    console.log('Creating image')
+    const record = await xataClient.db.DealImage.create(
+      id,
+      {
+        image: {
+          name: parsed.fileName,
+          mediaType: parsed.mediaType,
+          base64Content: '',
+        },
+      },
+      ['*', 'image.uploadUrl']
+    )
+    console.log(record)
+    return new Response(JSON.stringify(record), {
       status: 200,
     })
   } catch (err) {

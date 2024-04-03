@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_b6587fde19040f",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Deal\" DROP CONSTRAINT \"Deal_coverImageId_fkey\""
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_b6587fde19040f",
+  "parent": "sql_1e3a62ba3a5994",
+  "startedAt": "2024-04-02T16:05:50.264499Z"
+}

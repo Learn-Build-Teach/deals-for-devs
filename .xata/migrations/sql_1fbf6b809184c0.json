@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_1fbf6b809184c0",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Deal\" DROP image, ADD COLUMN \"coverImageId\" uuid NOT NULL"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_1fbf6b809184c0",
+  "parent": "sql_20c9c327ca0e41",
+  "startedAt": "2024-04-02T16:18:02.814893Z"
+}

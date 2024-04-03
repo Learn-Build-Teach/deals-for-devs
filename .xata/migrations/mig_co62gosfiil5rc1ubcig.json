@@ -1,0 +1,25 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_co62gosfiil5rc1ubcig",
+    "operations": [
+      {
+        "add_column": {
+          "table": "DealImage",
+          "column": {
+            "pk": false,
+            "name": "image",
+            "type": "xata.xata_file",
+            "unique": false,
+            "comment": "{\"xata.file.dpa\":false}",
+            "nullable": true
+          }
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_co62gosfiil5rc1ubcig",
+  "parent": "mig_co62ghsfiil5rc1ubchg",
+  "startedAt": "2024-04-02T15:46:43.950574Z"
+}

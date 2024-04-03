@@ -13,11 +13,9 @@ export default function DragAndDropImage({
   const onDrop = useCallback(
     (acceptedFile: File[]) => {
       // Do something with the file
-      if (acceptedFile.length > 0) {
-        console.log(acceptedFile[0])
-        setFile(acceptedFile[0])
-        onFileChange(acceptedFile[0])
-      }
+      console.log(acceptedFile[0])
+      setFile(acceptedFile[0])
+      onFileChange(acceptedFile[0])
     },
     [onFileChange]
   )
@@ -57,7 +55,7 @@ export default function DragAndDropImage({
               height={300}
             />
             <button
-              className=" absolute right-2 top-2 rounded bg-black px-2 py-1 text-white"
+              className=" absolute right-2 top-2 rounded-full bg-black px-2 py-1 text-white"
               onClick={(e) => {
                 setFile(undefined)
                 e.preventDefault()

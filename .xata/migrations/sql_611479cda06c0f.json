@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_611479cda06c0f",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Deal\" ADD CONSTRAINT \"Deal_coverImageId_fkey\" FOREIGN KEY (\"coverImageId\") REFERENCES \"DealImage\" (id) ON UPDATE CASCADE ON DELETE SET NULL"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_611479cda06c0f",
+  "parent": "sql_dab72400fe7deb",
+  "startedAt": "2024-04-02T16:19:12.520302Z"
+}

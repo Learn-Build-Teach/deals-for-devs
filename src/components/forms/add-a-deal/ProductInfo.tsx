@@ -18,6 +18,19 @@ export default function ProductInfo() {
     router.push(`/deals/add/${AddDealRoutes.COUPON_DETAILS}`)
   }
 
+  const createImage = async (file: any) => {
+    const newImage = {
+      fileName: file.name,
+      mediaType: file.type,
+    }
+
+    const response = await fetch('http://localhost:3000/api/image', {
+      method: 'PUT',
+      body: JSON.stringify(newImage),
+    })
+    console.log(response)
+  }
+
   return (
     <form onSubmit={nextStep} className="flex flex-1 flex-col items-center">
       <div className="flex flex-col gap-14 md:w-full md:max-w-[700px]">
@@ -47,8 +60,8 @@ export default function ProductInfo() {
           onChange={(e) => updateNewDealDetails({ summary: e.target.value })}
         />
         <DragAndDropImage
-          onFileChange={() => {
-            console.log('file changed')
+          onFileChange={(file) => {
+            createImage(file)
           }}
         />
         <button

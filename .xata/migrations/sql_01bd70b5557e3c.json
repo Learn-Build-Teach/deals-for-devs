@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_01bd70b5557e3c",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Deal\" ALTER COLUMN \"coverImageId\" DROP NOT NULL"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_01bd70b5557e3c",
+  "parent": "sql_2c6867d832bca6",
+  "startedAt": "2024-04-02T16:18:40.361927Z"
+}

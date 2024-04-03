@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_dab72400fe7deb",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Deal\" ALTER COLUMN \"coverImageId\" TYPE varchar(255)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_dab72400fe7deb",
+  "parent": "sql_01bd70b5557e3c",
+  "startedAt": "2024-04-02T16:19:12.38393Z"
+}
