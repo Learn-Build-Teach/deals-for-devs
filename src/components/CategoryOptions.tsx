@@ -5,18 +5,11 @@ export default function CategoryOptions() {
   return (
     <div>
       <div className="flex gap-4 mb-10 items-center flex-wrap">
-        <span className="text-xl text-gray-100">Categories:</span>
-        <Link
-          href={`/deals`}
-          className="rounded-xl bg-teal-600 text-teal-100 px-4 py-2"
-        >
-          all
-        </Link>
         {Object.values(Category).map((category) => (
           <Link
-            href={`/deals/${category}`}
+            href={`/deals`}
             key={category}
-            className="rounded-xl bg-teal-600 text-teal-100 px-4 py-2"
+            className="rounded-full border border-white text-white focus:bg-white focus:text-black px-4 py-2 hover:text-teal-600 hover:border-teal-600 transition duration-300 ease-in-out"
           >
             {category}
           </Link>
