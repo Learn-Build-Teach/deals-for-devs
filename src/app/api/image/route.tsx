@@ -11,8 +11,6 @@ export async function PUT(req: Request, res: Response) {
   const body = await req.json()
   const xataClient = getXataClient()
 
-  console.log(body)
-
   let parsed
 
   try {
@@ -33,15 +31,22 @@ export async function PUT(req: Request, res: Response) {
       id,
       {
         image: {
+          enablePublicUrl: true,
           name: parsed.fileName,
           mediaType: parsed.mediaType,
           base64Content: '',
         },
       },
-      ['*', 'image.uploadUrl']
+      ['*', 'image.url', 'image.enablePublicUrl', 'image.uploadUrl']
     )
+
+    const image = {
+      id: record.id,
+      url: record.image?.url,
+      uploadUrl: record.image?.uploadUrl,
+    }
     console.log(record)
-    return new Response(JSON.stringify(record), {
+    return new Response(JSON.stringify(image), {
       status: 200,
     })
   } catch (err) {

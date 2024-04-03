@@ -20,7 +20,8 @@ type NewDealType = {
   category: string
   url: string
   summary: string
-  coverImage?: string
+  coverImageURL?: string
+  coverImageId?: string
   dateRange: string
   couponCode?: string
   percentage: number
@@ -50,7 +51,8 @@ export const AddDealContextProvider = ({
     category: 'Select a Category',
     url: '',
     summary: '',
-    coverImage: '',
+    coverImageURL: '',
+    coverImageId: '',
     dateRange: '',
     couponCode: '',
     percentage: 0,
@@ -71,13 +73,8 @@ export const AddDealContextProvider = ({
   }, [newDealData, dataLoaded])
 
   const updateNewDealDetails = (dealDetails: Partial<NewDealType>) => {
-    setNewDealData(
-      (prev) =>
-        ({
-          ...prev,
-          ...dealDetails,
-        }) as NewDealType
-    )
+    const updateData = {...newDealData}
+    setNewDealData({ ...updateData, ...dealDetails })
   }
 
   const saveDataToLocalStorage = (currentDealData: NewDealType) => {
@@ -90,7 +87,8 @@ export const AddDealContextProvider = ({
       category: 'Select a Category',
       url: '',
       summary: '',
-      coverImage: '',
+      coverImageURL: '',
+      coverImageId: '',
       dateRange: '',
       couponCode: '',
       percentage: 0,

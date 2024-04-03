@@ -6,6 +6,8 @@ import DragAndDropImage from '@/components/forms/add-a-deal/DragAndDropImage'
 import { useRouter } from 'next/navigation'
 import { useAddDealContext } from '@/context/AddDealContext'
 import { AddDealRoutes } from '@/types/Types'
+import { deleteImage } from '@/lib/imageUpload'
+import toast from 'react-hot-toast'
 
 export default function ProductInfo() {
   const { currentStep, setCurrentStep, newDealData, updateNewDealDetails } =
@@ -18,17 +20,40 @@ export default function ProductInfo() {
     router.push(`/deals/add/${AddDealRoutes.COUPON_DETAILS}`)
   }
 
-  const createImage = async (file: any) => {
-    const newImage = {
-      fileName: file.name,
-      mediaType: file.type,
+  const handleImage = async (file: any) => {
+    const { id, uploadUrl, url } = await fetch('/api/image', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        fileName: file.name,
+        mediaType: file.type,
+      }),
+    }).then((res) => res.json())
+
+    if (!uploadUrl) {
+      toast.error('Failed to create image record')
+      throw new Error("Couldn't create image record")
     }
 
-    const response = await fetch('http://localhost:3000/api/image', {
-      method: 'PUT',
-      body: JSON.stringify(newImage),
-    })
-    console.log(response)
+    try {
+      const data = await fetch(uploadUrl, { method: 'PUT', body: file })
+      if (!data.ok) {
+        throw new Error('Failed to upload image')
+      }
+
+      console.log(data)
+
+      updateNewDealDetails({
+        coverImageId: id,
+        coverImageURL: url,
+      })
+    } catch (error) {
+      // Delete the record if the upload fails
+      await deleteImage(id)
+      toast.error("Couldn't upload image")
+    }
   }
 
   return (
@@ -61,7 +86,11 @@ export default function ProductInfo() {
         />
         <DragAndDropImage
           onFileChange={(file) => {
-            createImage(file)
+            handleImage(file)
+          }}
+          handleDelete={() => {
+            deleteImage(newDealData.coverImageId)
+            updateNewDealDetails({ coverImageId: '', coverImageURL: '' })
           }}
         />
         <button

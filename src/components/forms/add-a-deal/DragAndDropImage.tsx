@@ -5,8 +5,10 @@ import Icon from '@/components/Icon'
 
 export default function DragAndDropImage({
   onFileChange,
+  handleDelete,
 }: {
   onFileChange: (file: any) => void
+  handleDelete: () => void
 }) {
   const [file, setFile] = useState<File | undefined>()
 
@@ -58,6 +60,7 @@ export default function DragAndDropImage({
               className=" absolute right-2 top-2 rounded-full bg-black px-2 py-1 text-white"
               onClick={(e) => {
                 setFile(undefined)
+                handleDelete()
                 e.preventDefault()
                 e.stopPropagation()
               }}
