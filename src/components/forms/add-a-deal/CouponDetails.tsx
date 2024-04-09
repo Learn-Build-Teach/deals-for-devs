@@ -53,7 +53,9 @@ export default function CouponDetails() {
             value={newDealData?.percentage}
             required={false}
             onChange={(e) =>
-              updateNewDealDetails({ percentage: Number(e.target.value) })
+              updateNewDealDetails({
+                percentage: e.target.valueAsNumber || undefined,
+              })
             }
           />
         </div>

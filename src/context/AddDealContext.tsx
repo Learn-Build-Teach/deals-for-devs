@@ -12,7 +12,7 @@ const defaultDeal = {
   startDate: '',
   endDate: '',
   couponCode: '',
-  percentage: 0,
+  percentage: undefined,
   contactName: '',
   contactEmail: '',
 }
@@ -27,7 +27,7 @@ const newDealSchema = z.object({
   startDate: z.string(),
   endDate: z.string(),
   couponCode: z.string().optional(),
-  percentage: z.number(),
+  percentage: z.number().optional(),
   contactName: z.string(),
   contactEmail: z.string(),
 })
