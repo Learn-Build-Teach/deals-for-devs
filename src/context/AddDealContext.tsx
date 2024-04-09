@@ -2,32 +2,37 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { z } from 'zod'
 
+const defaultDeal = {
+  productName: '',
+  category: 'Select a Category',
+  url: '',
+  summary: '',
+  coverImageURL: '',
+  coverImageId: '',
+  startDate: '',
+  endDate: '',
+  couponCode: '',
+  percentage: 0,
+  contactName: '',
+  contactEmail: '',
+}
+
 const newDealSchema = z.object({
   productName: z.string(),
   category: z.string(),
   url: z.string(),
   summary: z.string(),
-  coverImage: z.string().optional(),
-  dateRange: z.string(),
+  coverImageURL: z.string().optional(),
+  coverImageId: z.string().optional(),
+  startDate: z.string(),
+  endDate: z.string(),
   couponCode: z.string().optional(),
   percentage: z.number(),
   contactName: z.string(),
   contactEmail: z.string(),
 })
 
-type NewDealType = {
-  productName: string
-  category: string
-  url: string
-  summary: string
-  coverImageURL?: string
-  coverImageId?: string
-  dateRange: string
-  couponCode?: string
-  percentage: number
-  contactName: string
-  contactEmail: string
-} | null
+type NewDealType = z.infer<typeof newDealSchema>
 
 type AddDealContextType = {
   currentStep: number
@@ -38,7 +43,7 @@ type AddDealContextType = {
 }
 
 // prettier-ignore
-export const AddDealContext = createContext < AddDealContextType | null>(null)
+export const AddDealContext = createContext<AddDealContextType | null>(null)
 
 export const AddDealContextProvider = ({
   children,
@@ -46,19 +51,9 @@ export const AddDealContextProvider = ({
   children: React.ReactNode
 }) => {
   const [currentStep, setCurrentStep] = useState(1)
-  const [newDealData, setNewDealData] = useState<NewDealType>({
-    productName: '',
-    category: 'Select a Category',
-    url: '',
-    summary: '',
-    coverImageURL: '',
-    coverImageId: '',
-    dateRange: '',
-    couponCode: '',
-    percentage: 0,
-    contactName: '',
-    contactEmail: '',
-  })
+  const [newDealData, setNewDealData] = useState<NewDealType>(
+    defaultDeal as NewDealType
+  )
   const [dataLoaded, setDataLoaded] = useState(false)
 
   useEffect(() => {
@@ -73,8 +68,10 @@ export const AddDealContextProvider = ({
   }, [newDealData, dataLoaded])
 
   const updateNewDealDetails = (dealDetails: Partial<NewDealType>) => {
-    const updateData = {...newDealData}
-    setNewDealData({ ...updateData, ...dealDetails })
+    setNewDealData((currentData) => {
+      const updatedData = { ...currentData, ...dealDetails }
+      return updatedData as NewDealType
+    })
   }
 
   const saveDataToLocalStorage = (currentDealData: NewDealType) => {
@@ -82,28 +79,15 @@ export const AddDealContextProvider = ({
   }
 
   const readFromLocalStorage = () => {
-    const defaultData = {
-      productName: '',
-      category: 'Select a Category',
-      url: '',
-      summary: '',
-      coverImageURL: '',
-      coverImageId: '',
-      dateRange: '',
-      couponCode: '',
-      percentage: 0,
-      contactName: '',
-      contactEmail: '',
-    }
     const loadedDataString = localStorage.getItem('newDealData')
 
-    if (!loadedDataString) return setNewDealData(defaultData)
+    if (!loadedDataString) return setNewDealData(defaultDeal)
 
     try {
       const parsed = newDealSchema.parse(JSON.parse(loadedDataString))
       setNewDealData(parsed)
     } catch (error) {
-      setNewDealData(defaultData)
+      setNewDealData(defaultDeal)
     }
   }
 

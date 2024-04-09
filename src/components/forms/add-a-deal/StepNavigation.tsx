@@ -5,10 +5,14 @@ import { useAddDealContext } from '@/context/AddDealContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { AddDealRoutes } from '@/types/Types'
+import { usePathname } from 'next/navigation'
+import path from 'path'
 
 export default function StepNavigation() {
   const { currentStep, setCurrentStep } = useAddDealContext()
   const router = useRouter()
+  const pathname = usePathname()
+  const currentPath = path.basename(pathname)
 
   const steps = [
     { id: 1, title: 'Product Info', route: AddDealRoutes.PRODUCT_INFO },
@@ -45,7 +49,7 @@ export default function StepNavigation() {
             <span
               className={cn(
                 'flex h-12 w-12 items-center justify-center rounded-full border transition-colors duration-200 group-hover:border-teal-500 group-hover:text-teal-500',
-                currentStep === step.id &&
+                currentPath === step.route &&
                   'border-none bg-teal-500 text-black group-hover:border-none group-hover:text-black'
               )}
             >
@@ -54,7 +58,7 @@ export default function StepNavigation() {
             <span
               className={cn(
                 'text-white/75 transition-colors duration-200 group-hover:text-white',
-                currentStep === step.id && 'font-semibold text-white'
+                currentPath === step.route && 'font-semibold text-white'
               )}
             >
               {step.title}

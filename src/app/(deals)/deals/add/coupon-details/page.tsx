@@ -1,3 +1,5 @@
+import CouponDetails from '@/components/forms/add-a-deal/CouponDetails'
+
 export default function StepTwo() {
-  return <div>Coupon Details</div>
+  return <CouponDetails />
 }
