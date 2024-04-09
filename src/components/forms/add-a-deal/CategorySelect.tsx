@@ -9,7 +9,7 @@ import { Category } from '@/types/Types'
 
 export default function CategorySelect({
   onCategoryChange,
-  value = 'Select a Category',
+  value,
 }: {
   onCategoryChange: (category: Category) => void
   value?: string
@@ -17,9 +17,9 @@ export default function CategorySelect({
   return (
     <div className="flex flex-col gap-2">
       <span className="text-2xl font-extralight">Category *</span>
-      <Select onValueChange={onCategoryChange} required>
+      <Select onValueChange={onCategoryChange} value={value} required>
         <SelectTrigger className="h-16 w-[334px] bg-transparent text-xl focus:ring-offset-teal-500">
-          <SelectValue placeholder={value} />
+          <SelectValue placeholder="Please select a category" />
         </SelectTrigger>
         <SelectContent>
           {Object.values(Category)
