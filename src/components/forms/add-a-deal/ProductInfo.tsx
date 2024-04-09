@@ -10,8 +10,13 @@ import { deleteImage } from '@/lib/imageUpload'
 import toast from 'react-hot-toast'
 
 export default function ProductInfo() {
-  const { currentStep, setCurrentStep, newDealData, updateNewDealDetails } =
-    useAddDealContext()
+  const {
+    currentStep,
+    setCurrentStep,
+    newDealData,
+    updateNewDealDetails,
+    dataLoaded,
+  } = useAddDealContext()
   const router = useRouter()
 
   const nextStep = (e: React.FormEvent<HTMLFormElement>) => {
@@ -70,7 +75,9 @@ export default function ProductInfo() {
         <CategorySelect
           value={newDealData?.category}
           onCategoryChange={(category) => {
-            updateNewDealDetails({ category: category })
+            if (dataLoaded) {
+              updateNewDealDetails({ category: category })
+            }
           }}
         />
         <Input
