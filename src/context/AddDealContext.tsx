@@ -4,7 +4,7 @@ import { z } from 'zod'
 
 const defaultDeal = {
   productName: '',
-  category: 'Select a Category',
+  category: '',
   url: '',
   summary: '',
   coverImageURL: '',
