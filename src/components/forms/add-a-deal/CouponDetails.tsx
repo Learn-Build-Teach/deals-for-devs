@@ -5,7 +5,6 @@ import { useAddDealContext } from '@/context/AddDealContext'
 import { AddDealRoutes } from '@/types/Types'
 import { DatePickerWithRange } from '../DatePicker'
 import { DateRange } from 'react-day-picker'
-import { addDays } from 'date-fns'
 import toast from 'react-hot-toast'
 
 export default function CouponDetails() {
@@ -41,7 +40,6 @@ export default function CouponDetails() {
             label="Coupon Code"
             value={newDealData?.couponCode}
             onChange={(e) => {
-              console.log(e.target.name, e.target.value)
               updateNewDealDetails({ couponCode: e.target.value })
             }}
             required={false}

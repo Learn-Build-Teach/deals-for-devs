@@ -19,14 +19,14 @@ model Deal {
   category       String     @db.VarChar(50)
   startDate      DateTime   @default(now())
   endDate        DateTime   @default(now())
-  email          String     @db.VarChar(255)
   xata_id        String     @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int        @default(0)
   xata_createdat DateTime   @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime   @default(now()) @db.Timestamptz(6)
   coverImageURL  String?    @db.VarChar(255)
   coverImageId   String?    @unique @db.VarChar(255)
-  coverImage     DealImage? @relation(fields: [coverImageId], references: [xata_id])
+  contactEmail   String     @db.VarChar(255)
+  contactName    String     @db.VarChar(255)
 }
 
 model AdminUser {
@@ -62,6 +62,5 @@ model DealImage {
   xata_version   Int      @default(0)
   xata_createdat DateTime @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
-  image          Json?
-  Deal           Deal?
+  image          Json
 }

@@ -3,11 +3,57 @@ import { useRouter } from 'next/navigation'
 import { useAddDealContext } from '@/context/AddDealContext'
 import { format } from 'date-fns'
 import toast from 'react-hot-toast'
+import z from 'zod'
+import { createDeal } from '@/lib/queries'
 
 export default function ReviewDeal() {
-  const { currentStep, setCurrentStep, newDealData, updateNewDealDetails } =
-    useAddDealContext()
+  const { newDealData } = useAddDealContext()
   const router = useRouter()
+
+  const newDealSchema = z.object({
+    productName: z.string().min(1),
+    category: z.string().min(1),
+    url: z.string().url(),
+    description: z.string().min(1),
+    coverImageURL: z.string().optional(),
+    coverImageId: z.string().optional(),
+    startDate: z.string(),
+    endDate: z.string(),
+    couponCode: z.string().optional(),
+    percentage: z.number().optional(),
+    contactName: z.string().min(1),
+    contactEmail: z.string().min(1),
+  })
+
+  const validateAndSubmit = async () => {
+    try {
+      const parsed = newDealSchema.parse(newDealData)
+      // if the data is valid, submit the deal to db
+
+      const res = await createDeal({
+        name: parsed.productName,
+        category: parsed.category,
+        link: parsed.url,
+        description: parsed.description,
+        coverImageURL: parsed.coverImageURL,
+        coverImageId: parsed.coverImageId,
+        startDate: parsed.startDate,
+        endDate: parsed.endDate,
+        coupon: parsed.couponCode,
+        couponPercent: parsed.percentage,
+        contactName: parsed.contactName,
+        contactEmail: parsed.contactEmail,
+      })
+
+      console.log(res)
+      return toast.success('Deal submitted successfully')
+    } catch (error) {
+      return toast.error('Please fill out all required fields')
+    }
+
+    // submit the deal to the db
+    return toast.success('Deal submitted successfully')
+  }
 
   return (
     <section className="mx-auto">
@@ -74,12 +120,13 @@ export default function ReviewDeal() {
         {/* deal description */}
         <div className="mt-10 flex w-full max-w-[700px] flex-col items-start text-lg ">
           <span className="font-bold uppercase">DESCRIPTION</span>
-          <p className="font-light">{newDealData.summary}</p>
+          <p className="font-light">{newDealData.description}</p>
         </div>
         <button
           type="button"
           className="mt-10 rounded-lg bg-teal-600 py-7 text-2xl text-black"
           aria-label="Click to continue"
+          onClick={validateAndSubmit}
         >
           Continue
         </button>

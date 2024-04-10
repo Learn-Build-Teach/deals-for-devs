@@ -7,7 +7,7 @@ const defaultDeal = {
   productName: '',
   category: '',
   url: '',
-  summary: '',
+  description: '',
   coverImageURL: '',
   coverImageId: '',
   startDate: new Date().toISOString(),
@@ -18,11 +18,11 @@ const defaultDeal = {
   contactEmail: '',
 }
 
-const newDealSchema = z.object({
+export const newDealSchema = z.object({
   productName: z.string(),
   category: z.string(),
-  url: z.string(),
-  summary: z.string(),
+  url: z.string().url(),
+  description: z.string(),
   coverImageURL: z.string().optional(),
   coverImageId: z.string().optional(),
   startDate: z.string(),

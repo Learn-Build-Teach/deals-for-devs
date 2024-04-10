@@ -87,9 +87,11 @@ export default function ProductInfo() {
           onChange={(e) => updateNewDealDetails({ url: e.target.value })}
         />
         <Textarea
-          label="Product Summary *"
-          value={newDealData?.summary}
-          onChange={(e) => updateNewDealDetails({ summary: e.target.value })}
+          label="Product Description *"
+          value={newDealData?.description}
+          onChange={(e) =>
+            updateNewDealDetails({ description: e.target.value })
+          }
         />
         <DragAndDropImage
           onFileChange={(file) => {
