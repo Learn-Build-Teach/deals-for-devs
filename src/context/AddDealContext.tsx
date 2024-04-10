@@ -1,6 +1,7 @@
 'use client'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { z } from 'zod'
+import { addDays } from 'date-fns'
 
 const defaultDeal = {
   productName: '',
@@ -9,8 +10,8 @@ const defaultDeal = {
   summary: '',
   coverImageURL: '',
   coverImageId: '',
-  startDate: '',
-  endDate: '',
+  startDate: new Date().toISOString(),
+  endDate: addDays(new Date(), 7).toISOString(),
   couponCode: '',
   percentage: undefined,
   contactName: '',
@@ -75,11 +76,14 @@ export const AddDealContextProvider = ({
   }
 
   const saveDataToLocalStorage = (currentDealData: NewDealType) => {
-    localStorage.setItem('newDealData', JSON.stringify(currentDealData))
+    localStorage.setItem(
+      'deals-for-devs-newDealData',
+      JSON.stringify(currentDealData)
+    )
   }
 
   const readFromLocalStorage = () => {
-    const loadedDataString = localStorage.getItem('newDealData')
+    const loadedDataString = localStorage.getItem('deals-for-devs-newDealData')
 
     if (!loadedDataString) return setNewDealData(defaultDeal)
 

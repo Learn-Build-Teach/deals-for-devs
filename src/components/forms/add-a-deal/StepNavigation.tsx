@@ -7,6 +7,14 @@ import Link from 'next/link'
 import { AddDealRoutes } from '@/types/Types'
 import { usePathname } from 'next/navigation'
 import path from 'path'
+import { useEffect } from 'react'
+
+const steps = [
+  { id: 1, title: 'Product Info', route: AddDealRoutes.PRODUCT_INFO },
+  { id: 2, title: 'Coupon Details', route: AddDealRoutes.COUPON_DETAILS },
+  { id: 3, title: 'Contact Info', route: AddDealRoutes.CONTACT_INFO },
+  { id: 4, title: 'Review Deal', route: AddDealRoutes.REVIEW_DEAL },
+]
 
 export default function StepNavigation() {
   const { currentStep, setCurrentStep } = useAddDealContext()
@@ -14,12 +22,9 @@ export default function StepNavigation() {
   const pathname = usePathname()
   const currentPath = path.basename(pathname)
 
-  const steps = [
-    { id: 1, title: 'Product Info', route: AddDealRoutes.PRODUCT_INFO },
-    { id: 2, title: 'Coupon Details', route: AddDealRoutes.COUPON_DETAILS },
-    { id: 3, title: 'Contact Info', route: AddDealRoutes.CONTACT_INFO },
-    { id: 4, title: 'Review Deal', route: AddDealRoutes.REVIEW_DEAL },
-  ]
+  useEffect(() => {
+    setCurrentStep(steps.findIndex((step) => step.route === currentPath) + 1)
+  }, [currentPath, setCurrentStep])
 
   return (
     <div className="mt-4">
@@ -48,7 +53,7 @@ export default function StepNavigation() {
           >
             <span
               className={cn(
-                'flex h-12 w-12 items-center justify-center rounded-full border transition-colors duration-200 group-hover:border-teal-500 group-hover:text-teal-500',
+                'flex h-12 w-12 items-center justify-center rounded-full border border-white/75 text-white/75 transition-colors duration-200 group-hover:border-white group-hover:text-white',
                 currentPath === step.route &&
                   'border-none bg-teal-500 text-black group-hover:border-none group-hover:text-black'
               )}

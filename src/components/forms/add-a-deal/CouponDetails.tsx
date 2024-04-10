@@ -31,8 +31,8 @@ export default function CouponDetails() {
                 endDate: range.to?.toISOString(),
               })
             }}
-            initialFrom={new Date()}
-            initialTo={addDays(new Date(), 7)}
+            initialFrom={new Date(newDealData.startDate)}
+            initialTo={new Date(newDealData.endDate)}
           />
         </div>
         <div className="flex items-center gap-12">
