@@ -64,3 +64,5 @@ model DealImage {
   xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
   image          Json
 }
+
+// adding a comment

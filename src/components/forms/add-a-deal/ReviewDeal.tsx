@@ -50,9 +50,6 @@ export default function ReviewDeal() {
     } catch (error) {
       return toast.error('Please fill out all required fields')
     }
-
-    // submit the deal to the db
-    return toast.success('Deal submitted successfully')
   }
 
   return (
