@@ -11,17 +11,23 @@ export const createImage = async (mediaType: string) => {
     id,
     { image: { enablePublicUrl: true, mediaType, base64Content: '' } },
     // Request an uploadUrl from the created record. We can use it to upload a file to replace the empty one
-    ['image.url', 'image.uploadUrl', 'image.enablePublicUrl']
+    ['image.uploadUrl']
   )
-  console.log(record)
 
   return {
     id: record.id,
     uploadUrl: record.image?.uploadUrl,
-    url: record.image?.url,
   }
 }
 
 export const deleteImage = async (id: string) => {
   await xata.db.DealImage.delete(id)
+}
+
+export const getImageUrl = async (id: string) => {
+  console.log('Getting image url')
+  console.log('ID: ', id)
+  const record = await xata.db.DealImage.read(id)
+  console.log(record)
+  return record?.toSerializable().image?.url
 }

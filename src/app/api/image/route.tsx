@@ -23,7 +23,6 @@ export async function PUT(req: Request, res: Response) {
   }
 
   try {
-    console.log('Creating uuid')
     const id = uuidv4()
     console.log('Created uuid: ', id)
     console.log('Creating image')
@@ -37,7 +36,7 @@ export async function PUT(req: Request, res: Response) {
           base64Content: '',
         },
       },
-      ['*', 'image.url', 'image.enablePublicUrl', 'image.uploadUrl']
+      ['image.url', 'image.enablePublicUrl', 'image.uploadUrl']
     )
 
     const image = {

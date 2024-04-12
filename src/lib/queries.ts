@@ -1,7 +1,7 @@
 'use server'
 import { Category, NewSubscriberData, Status } from '@/types/Types'
 import prisma from './db'
-import { Deal, Subscriber } from '@prisma/client'
+import { Deal, Subscriber, DealImage } from '@prisma/client'
 
 // deal queries
 export async function getAllDeals() {

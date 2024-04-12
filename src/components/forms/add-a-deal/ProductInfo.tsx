@@ -8,6 +8,7 @@ import { useAddDealContext } from '@/context/AddDealContext'
 import { AddDealRoutes } from '@/types/Types'
 import { deleteImage } from '@/lib/imageUpload'
 import toast from 'react-hot-toast'
+import { getImageUrl } from '@/lib/imageUpload'
 
 export default function ProductInfo() {
   const {
@@ -26,7 +27,7 @@ export default function ProductInfo() {
   }
 
   const handleImage = async (file: any) => {
-    const { id, uploadUrl, url } = await fetch('/api/image', {
+    const { id, uploadUrl } = await fetch('/api/image', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -42,18 +43,32 @@ export default function ProductInfo() {
       throw new Error("Couldn't create image record")
     }
 
+    // upload the image to the uploadUrl
     try {
-      const data = await fetch(uploadUrl, { method: 'PUT', body: file })
-      if (!data.ok) {
+      const res = await fetch(uploadUrl, { method: 'PUT', body: file })
+
+      if (!res.ok) {
+        toast.error('Failed to upload image')
         throw new Error('Failed to upload image')
       }
 
-      console.log(data)
+      // get the image public url
+      const imageUrl = await getImageUrl(id)
 
+      if (!imageUrl) {
+        toast.error('Failed to get image url')
+        throw new Error('Failed to get image url')
+      }
+
+      console.log(imageUrl)
+
+      // update the deal db with image id and url
       updateNewDealDetails({
         coverImageId: id,
-        coverImageURL: url,
+        coverImageURL: imageUrl,
       })
+
+      toast.success('Image uploaded successfully')
     } catch (error) {
       // Delete the record if the upload fails
       await deleteImage(id)
