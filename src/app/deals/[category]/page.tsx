@@ -1,19 +1,22 @@
-import { DealsRecord, getXataClient } from '@/xata'
 import CategoryOptions from '@/components/CategoryOptions'
 import DealsList from '../../../components/deals/DealsList'
 import { redirect } from 'next/navigation'
+import { getApprovedDealsByCategory } from '@/lib/queries'
+import { Category } from '@/types/Types'
 
 export default async function CategoryPage({
   params,
 }: {
   params: { category: string }
 }) {
-  const { category } = params
-  // const xataClient = getXataClient()
-  // const deals: DealsRecord[] = await xataClient.db.deals
-  //   .filter({ approved: true, category })
-  //   .sort('xata.createdAt', 'desc')
-  //   .getAll()
+  const { category: categoryString } = params
+  //check for valid category
+  if (!(categoryString in Category)) {
+    redirect('/')
+  }
+  //   const category = categoryString as Category;
+
+  //   const deals = await getApprovedDealsByCategory(category);
   redirect('/')
   return (
     <div>

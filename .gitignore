@@ -13,6 +13,8 @@
 /.next/
 /out/
 
+/.frontmatter/
+
 # production
 /build
 

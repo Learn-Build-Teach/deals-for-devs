@@ -5,13 +5,14 @@
   "scripts": {
     "prepare": "husky",
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "lint-commit": "npx --no-install commitlint --edit \"$1\""
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.8",
+    "@prisma/client": "^5.11.0",
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-select": "^2.0.0",
@@ -31,6 +32,7 @@
     "lucide-react": "^0.340.0",
     "next": "14.1.0",
     "posthog-js": "^1.108.3",
+    "prisma": "^5.11.0",
     "react": "^18",
     "react-countdown": "^2.3.5",
     "react-day-picker": "^8.10.0",
@@ -45,6 +47,7 @@
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "ts-key-enum": "^2.0.12",
+    "ts-node": "^10.9.2",
     "uuid": "^9.0.1",
     "zod": "^3.22.4"
   },

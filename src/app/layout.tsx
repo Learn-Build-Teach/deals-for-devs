@@ -21,8 +21,7 @@ const raleway = Raleway({
 export const metadata: Metadata = {
   title: 'Developer Deals',
   metadataBase: new URL('https://dealsfordevs.com/'),
-  description:
-    'The Best Black Friday deals on courses, tools, and desk setups for developers!',
+  description: 'The best deals and giveaways for developers!',
   openGraph: {
     images: [
       {
