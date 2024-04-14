@@ -21,7 +21,8 @@ export const createImage = async (mediaType: string) => {
 }
 
 export const deleteImage = async (id: string) => {
-  await xata.db.DealImage.delete(id)
+  const res = await xata.db.DealImage.delete(id)
+  return res?.toSerializable()
 }
 
 export const getImageUrl = async (id: string) => {

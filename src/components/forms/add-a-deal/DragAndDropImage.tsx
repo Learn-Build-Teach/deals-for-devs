@@ -34,7 +34,6 @@ export default function DragAndDropImage({
 
   return (
     <div className="">
-      <span className="text-2xl font-extralight">Cover Image</span>
       <div
         {...getRootProps({
           className:
@@ -47,28 +46,6 @@ export default function DragAndDropImage({
         <p className="text-lg font-extralight text-white">
           PNG, JPEG files accepted
         </p>
-        {file && (
-          <>
-            <Image
-              className="absolute bottom-0 left-0 right-0 top-0 h-auto w-full"
-              src={URL.createObjectURL(file)}
-              alt="deal"
-              width={540}
-              height={300}
-            />
-            <button
-              className=" absolute right-2 top-2 rounded-full bg-black px-2 py-1 text-white"
-              onClick={(e) => {
-                setFile(undefined)
-                handleDelete()
-                e.preventDefault()
-                e.stopPropagation()
-              }}
-            >
-              X
-            </button>
-          </>
-        )}
       </div>
     </div>
   )

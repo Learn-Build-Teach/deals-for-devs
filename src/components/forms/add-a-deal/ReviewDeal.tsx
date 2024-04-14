@@ -5,20 +5,21 @@ import { format } from 'date-fns'
 import toast from 'react-hot-toast'
 import z from 'zod'
 import { createDeal } from '@/lib/queries'
+import Image from 'next/image'
 
 export default function ReviewDeal() {
   const { newDealData } = useAddDealContext()
   const router = useRouter()
 
-  const newDealSchema = z.object({
+  const submittedDealSchema = z.object({
     productName: z.string().min(1),
     category: z.string().min(1),
     url: z.string(),
     description: z.string().min(1),
     coverImageURL: z.string().optional(),
     coverImageId: z.string().optional(),
-    startDate: z.string(),
-    endDate: z.string(),
+    startDate: z.string().datetime(),
+    endDate: z.string().datetime(),
     couponCode: z.string().optional(),
     percentage: z.number().optional(),
     contactName: z.string().min(1),
@@ -27,7 +28,7 @@ export default function ReviewDeal() {
 
   const validateAndSubmit = async () => {
     try {
-      const parsed = newDealSchema.parse(newDealData)
+      const parsed = submittedDealSchema.parse(newDealData)
       // if the data is valid, submit the deal to db
 
       const res = await createDeal({
@@ -52,22 +53,28 @@ export default function ReviewDeal() {
     }
   }
 
+  const imageSrc =
+    newDealData.coverImageURL ?
+      newDealData.coverImageURL
+    : '/images/defaultImage.jpg'
+
   return (
     <section className="mx-auto">
       <div className="flex max-w-[700px] flex-col">
         <div className="flex gap-8">
           {/* display image & percent badge */}
           <div className="relative flex">
-            {/* DISPLAY IMAGE */}
-            {/* NO IMAGE - display white box with deal name as text */}
-            <div className="flex h-40 w-60 items-center justify-center rounded-xl bg-white">
-              <p className="flex flex-wrap text-center text-3xl font-semibold text-black">
-                {newDealData?.productName}
-              </p>
+            <div className="relative flex h-40 w-60 items-center justify-center aspect-video">
+              <Image
+                src={imageSrc}
+                alt={newDealData.productName}
+                layout="fill"
+                className="rounded-lg"
+              />
             </div>
             {/* display the percent off badge if indicated*/}
             {newDealData?.percentage && (
-              <div className="absolute right-2 top-2 flex h-9 w-9 -rotate-[21deg] flex-col items-center justify-center rounded-full bg-[#C4B97A] text-xs text-black shadow-black drop-shadow-2xl">
+              <div className="absolute right-1 top-1 flex h-9 w-9 -rotate-[21deg] flex-col items-center justify-center rounded-full bg-[#C4B97A] text-xs text-black shadow-black drop-shadow-2xl">
                 <span className="-mb-1 mt-1 text-center font-bold">{`${newDealData.percentage}%`}</span>
                 <span className="text-[6px] font-semibold uppercase">off</span>
               </div>
@@ -125,7 +132,7 @@ export default function ReviewDeal() {
           aria-label="Click to continue"
           onClick={validateAndSubmit}
         >
-          Continue
+          Submit Deal
         </button>
       </div>
     </section>

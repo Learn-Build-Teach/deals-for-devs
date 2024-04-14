@@ -2,6 +2,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { z } from 'zod'
 import { addDays } from 'date-fns'
+import { ImageUploadStatus } from '@/types/Types'
 
 const defaultDeal = {
   productName: '',
@@ -21,7 +22,7 @@ const defaultDeal = {
 export const newDealSchema = z.object({
   productName: z.union([z.string().min(1), z.literal('')]),
   category: z.union([z.string().min(1), z.literal('')]),
-  url: z.union([z.string().url(), z.literal('')]),
+  url: z.union([z.string(), z.literal('')]),
   description: z.union([z.string().min(1), z.literal('')]),
   coverImageURL: z.string().optional(),
   coverImageId: z.string().optional(),
@@ -41,6 +42,10 @@ type AddDealContextType = {
   newDealData: NewDealType
   updateNewDealDetails: (dealDetails: Partial<NewDealType>) => void
   dataLoaded: boolean
+  imageUploadStatus: ImageUploadStatus
+  setImageUploadStatus: (status: ImageUploadStatus) => void
+  imageUploadProgress: number
+  setImageUploadProgress: (progress: number) => void
 }
 
 // prettier-ignore
@@ -56,6 +61,10 @@ export const AddDealContextProvider = ({
     defaultDeal as NewDealType
   )
   const [dataLoaded, setDataLoaded] = useState(false)
+  const [imageUploadStatus, setImageUploadStatus] = useState<ImageUploadStatus>(
+    ImageUploadStatus.PENDING
+  )
+  const [imageUploadProgress, setImageUploadProgress] = useState(0)
 
   useEffect(() => {
     readFromLocalStorage()
@@ -104,8 +113,18 @@ export const AddDealContextProvider = ({
       dataLoaded,
       setDataLoaded,
       updateNewDealDetails,
+      imageUploadStatus,
+      setImageUploadStatus,
+      imageUploadProgress,
+      setImageUploadProgress,
     }),
-    [currentStep, newDealData, dataLoaded]
+    [
+      currentStep,
+      newDealData,
+      dataLoaded,
+      imageUploadStatus,
+      imageUploadProgress,
+    ]
   )
 
   return (
