@@ -19,18 +19,18 @@ const defaultDeal = {
 }
 
 export const newDealSchema = z.object({
-  productName: z.string(),
-  category: z.string(),
-  url: z.string().url(),
-  description: z.string(),
+  productName: z.union([z.string().min(1), z.literal('')]),
+  category: z.union([z.string().min(1), z.literal('')]),
+  url: z.union([z.string().url(), z.literal('')]),
+  description: z.union([z.string().min(1), z.literal('')]),
   coverImageURL: z.string().optional(),
   coverImageId: z.string().optional(),
-  startDate: z.string(),
-  endDate: z.string(),
+  startDate: z.string().datetime(),
+  endDate: z.string().datetime(),
   couponCode: z.string().optional(),
   percentage: z.number().optional(),
-  contactName: z.string(),
-  contactEmail: z.string(),
+  contactName: z.union([z.string().min(1), z.literal('')]),
+  contactEmail: z.union([z.string().min(1), z.literal('')]),
 })
 
 type NewDealType = z.infer<typeof newDealSchema>

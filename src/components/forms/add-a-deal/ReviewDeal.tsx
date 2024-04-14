@@ -13,7 +13,7 @@ export default function ReviewDeal() {
   const newDealSchema = z.object({
     productName: z.string().min(1),
     category: z.string().min(1),
-    url: z.string().url(),
+    url: z.string(),
     description: z.string().min(1),
     coverImageURL: z.string().optional(),
     coverImageId: z.string().optional(),
