@@ -37,13 +37,14 @@ export default function DragAndDropImage({
       <div
         {...getRootProps({
           className:
-            'dropzone dropzone-border mt-2 relative overflow-hidden rounded-xl bg-transparent p-10 cursor-pointer w-full flex flex-col gap-y-4 items-center aspect-video justify-center',
+            'dropzone dropzone-border relative overflow-hidden rounded-xl bg-transparent p-10 cursor-pointer w-full flex flex-col gap-y-4 items-center aspect-video justify-center',
         })}
       >
         <input {...getInputProps()} />
-        <Icon id="frame" size={58} />
-        <p className="text-xl">Drag ‘n’ drop or click to upload an image</p>
-        <p className="text-lg font-extralight text-white">
+        <Icon id="frame" size={58}/>
+
+        <p className="text-base md:text-xl">Drag ‘n’ drop or click to upload an image</p>
+        <p className="text-sm md:text-lg font-extralight text-white">
           PNG, JPEG files accepted
         </p>
       </div>

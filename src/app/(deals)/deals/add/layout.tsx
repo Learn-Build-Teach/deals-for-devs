@@ -10,13 +10,15 @@ export default function DealsLayout({
 }) {
   return (
     <AddDealContextProvider>
-      <div className="w-full">
-        <h1 className="mb-4 text-7xl font-semibold text-white">Share a Deal</h1>
-        <span className="text-2xl font-light text-white">
+      <div className="w-full px-6 md:px-0">
+        <h1 className="mb-4 text-4xl font-semibold text-white md:text-7xl">
+          Share a Deal
+        </h1>
+        <span className="text-sm font-light text-white md:text-2xl">
           Have an amazing deal or discount tailored for developers? Let us know!
         </span>
-        <Separator className="mb-32 mt-14" />
-        <div className="mb-28 flex text-white">
+        <Separator className="mx-0 mb-4 mt-8 md:mb-32 md:mt-14" />
+        <div className="mb-28 flex flex-col text-white md:flex-row">
           <StepNavigation />
           {children}
         </div>

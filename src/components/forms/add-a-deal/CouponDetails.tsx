@@ -20,9 +20,11 @@ export default function CouponDetails() {
 
   return (
     <form onSubmit={nextStep} className="flex flex-1 flex-col items-center">
-      <div className="flex flex-col gap-14 md:w-full md:max-w-[700px]">
+      <div className="flex flex-col gap-7 md:w-full md:max-w-[700px] md:gap-14">
         <div className="flex flex-col gap-2">
-          <span className="text-2xl font-extralight">Valid date range *</span>
+          <span className="text-base font-extralight md:text-2xl">
+            Valid date range *
+          </span>
           <DatePickerWithRange
             onDateRangeChange={(range: DateRange) => {
               updateNewDealDetails({
@@ -46,7 +48,7 @@ export default function CouponDetails() {
           />
           <Input
             className="w-1/5"
-            label="% Discount"
+            label="Discount"
             type="number"
             value={newDealData?.percentage}
             required={false}
@@ -60,7 +62,7 @@ export default function CouponDetails() {
 
         <button
           type="submit"
-          className="-mt-8 rounded-lg bg-teal-600 py-7 text-2xl text-black"
+          className="mt-2 rounded-lg bg-teal-600 py-2 text-lg text-black disabled:bg-teal-600/30 md:-mt-4 md:py-7 md:text-2xl"
           aria-label="Click to continue"
         >
           Continue

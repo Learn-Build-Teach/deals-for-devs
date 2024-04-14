@@ -3,7 +3,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 
 import { ChangeEventHandler, useEffect, useRef, useState } from 'react';
 import Overlay from './Overlay';
-import { DealsRecord } from '@/xata';
+import { DealRecord } from '@/xata';
 import Link from 'next/link';
 import ClickableCouponCode from './ClickableCouponCode';
 import MyLink from './MyLink';
@@ -12,7 +12,7 @@ export default function GlobalSearch() {
   const [searchQuery, setSearchQuery] = useState('');
   const { searchOpen, setSearchOpen } = useSearch();
   const [timer, setTimer] = useState<null | NodeJS.Timeout>(null);
-  const [deals, setDeals] = useState<DealsRecord[] | null>(null);
+  const [deals, setDeals] = useState<DealRecord[] | null>(null);
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<null | HTMLInputElement>(null);
 

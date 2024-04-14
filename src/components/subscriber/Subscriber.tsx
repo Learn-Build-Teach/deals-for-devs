@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { Subscribers } from '@/xata'
+import { Subscriber as SubscriberType } from '@/xata'
 import { updateSubscriberPreferences } from '@/lib/queries'
 import toast from 'react-hot-toast'
 import CategoryCheckbox from './CategoryCheckbox'
@@ -9,7 +9,7 @@ import { Status } from '@/types/Types'
 export default function Subscriber({
   subscriber,
 }: {
-  subscriber: Subscribers
+  subscriber: SubscriberType
 }) {
   const [subscriberData, setSubscriberData] = useState(subscriber)
   const [update, setUpdate] = useState(false)

@@ -16,20 +16,24 @@ export default function CategorySelect({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-2xl font-extralight">Category *</span>
+      <span className="text-base font-extralight md:text-2xl">Category *</span>
       <Select
         onValueChange={onCategoryChange}
         value={value === '' ? undefined : value}
         required
       >
-        <SelectTrigger className="h-16 w-[334px] bg-transparent text-xl focus:ring-offset-teal-500">
+        <SelectTrigger className=" h-8 w-full bg-transparent text-sm focus:ring-offset-teal-500  md:h-16 md:w-[334px] md:text-xl ">
           <SelectValue placeholder="Please select a Category" />
         </SelectTrigger>
         <SelectContent>
           {Object.values(Category)
             .sort()
             .map((dealType) => (
-              <SelectItem key={dealType} value={dealType} className="text-xl">
+              <SelectItem
+                key={dealType}
+                value={dealType}
+                className="text-base md:text-xl"
+              >
                 {dealType}
               </SelectItem>
             ))}

@@ -24,14 +24,14 @@ export default function Input({
 
   return (
     <div className={cn('flex flex-col gap-2', className)}>
-      <Label htmlFor={labelCamelCase} className="text-2xl font-extralight">
+      <Label htmlFor={labelCamelCase} className="text-base md:text-2xl font-extralight">
         {label}
       </Label>
       <InputDefault
         id={labelCamelCase}
         name={labelCamelCase}
         type={type}
-        className="h-16 bg-transparent text-xl focus-visible:outline-none focus-visible:ring-offset-teal-500"
+        className="h-8 md:h-16 bg-transparent text-base md:text-xl focus-visible:outline-none focus-visible:ring-offset-teal-500"
         required={required}
         value={value}
         onChange={(e) => onChange(e)}

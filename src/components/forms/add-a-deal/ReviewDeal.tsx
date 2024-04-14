@@ -46,14 +46,15 @@ export default function ReviewDeal() {
         contactEmail: parsed.contactEmail,
       })
 
-      console.log(res)
-      return toast.success('Deal submitted successfully')
+      toast.success('Deal submitted successfully')
+      localStorage.removeItem('deals-for-devs-newDealData')
+      return router.push('/deals')
     } catch (error) {
       return toast.error('Please fill out all required fields')
     }
   }
 
-  const imageSrc =
+  const coverImage =
     newDealData.coverImageURL ?
       newDealData.coverImageURL
     : '/images/defaultImage.jpg'
@@ -61,18 +62,19 @@ export default function ReviewDeal() {
   return (
     <section className="mx-auto">
       <div className="flex max-w-[700px] flex-col">
-        <div className="flex gap-8">
+        <div className="flex flex-col gap-8 md:flex-row">
           {/* display image & percent badge */}
-          <div className="relative flex">
-            <div className="relative flex h-40 w-60 items-center justify-center aspect-video">
+          <div className="relative">
+            <div className="relative  h-40 w-96 overflow-hidden md:w-60">
               <Image
-                src={imageSrc}
+                src={coverImage}
                 alt={newDealData.productName}
-                layout="fill"
                 className="rounded-lg"
+                fill={true}
+                priority
               />
             </div>
-            {/* display the percent off badge if indicated*/}
+            {/* display the percent off badge if indicated */}
             {newDealData?.percentage && (
               <div className="absolute right-1 top-1 flex h-9 w-9 -rotate-[21deg] flex-col items-center justify-center rounded-full bg-[#C4B97A] text-xs text-black shadow-black drop-shadow-2xl">
                 <span className="-mb-1 mt-1 text-center font-bold">{`${newDealData.percentage}%`}</span>
@@ -82,9 +84,11 @@ export default function ReviewDeal() {
           </div>
           {/* Deal Information */}
           <div className="flex flex-col">
-            <span className="text-3xl">{newDealData.productName}</span>
+            <span className="text-xl md:text-3xl">
+              {newDealData.productName}
+            </span>
             {/* website */}
-            <div className="mt-4 flex gap-2 text-lg">
+            <div className="mt-2 flex gap-2 text-sm md:mt-4 md:text-lg">
               <span className="font-light text-white/70">Website:</span>
               <span className="font-light text-white">
                 <a
@@ -98,14 +102,14 @@ export default function ReviewDeal() {
               </span>
             </div>
             {/* Coupon Code */}
-            <div className="mt-1.5 flex gap-2">
+            <div className="flex gap-2 text-sm md:mt-1.5 md:text-lg">
               <span className="font-light text-white/70">Coupon Code:</span>
               <span className="font-light text-white">
                 {newDealData.couponCode || 'No coupon code required'}
               </span>
             </div>
             {/* Valid From */}
-            <div className="mt-1.5 flex gap-2">
+            <div className="flex gap-2 text-sm md:mt-1.5 md:text-lg">
               <span className="font-light text-white/70">Valid from:</span>
               <span className="font-light text-white">
                 {`${format(new Date(newDealData.startDate), 'MMM d')} - ${format(new Date(newDealData.endDate), 'MMM d, yyyy')}` ||
@@ -113,7 +117,7 @@ export default function ReviewDeal() {
               </span>
             </div>
             {/* Category*/}
-            <div className="mt-1.5 flex gap-2">
+            <div className="flex gap-2 text-sm md:mt-1.5 md:text-lg">
               <span className="font-light text-white/70">Category:</span>
               <span className="font-light text-white">
                 {newDealData.category || 'No coupon code required'}
@@ -122,13 +126,13 @@ export default function ReviewDeal() {
           </div>
         </div>
         {/* deal description */}
-        <div className="mt-10 flex w-full max-w-[700px] flex-col items-start text-lg ">
+        <div className="mt-5 flex w-full max-w-[700px] flex-col items-start text-sm md:mt-10 md:text-lg ">
           <span className="font-bold uppercase">DESCRIPTION</span>
           <p className="font-light">{newDealData.description}</p>
         </div>
         <button
           type="button"
-          className="mt-10 rounded-lg bg-teal-600 py-7 text-2xl text-black"
+          className="mt-5 rounded-lg bg-teal-600 py-2 text-lg text-black disabled:bg-teal-600/30 md:mt-10 md:py-7 md:text-2xl"
           aria-label="Click to continue"
           onClick={validateAndSubmit}
         >

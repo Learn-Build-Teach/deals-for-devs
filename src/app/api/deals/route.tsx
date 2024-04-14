@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
   const xataClient = getXataClient()
   try {
     //TODO: how do we handle this now that we have Prisma?
-    const { records } = await xataClient.db.deals.search(query, {
+    const { records } = await xataClient.db.Deal.search(query, {
       target: ['name', 'description'],
     })
 

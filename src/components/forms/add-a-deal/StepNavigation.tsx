@@ -27,10 +27,10 @@ export default function StepNavigation() {
   }, [currentPath, setCurrentStep])
 
   return (
-    <div className="mt-4">
+    <div className="mb-12 mt-4 md:mb-0">
       {/* back button */}
       <button
-        className="mb-12 flex items-center gap-5 text-xl disabled:text-white/50"
+        className="mb-4 flex items-center gap-2 text-xl disabled:text-white/50 md:mb-12 md:gap-5"
         onClick={() => {
           setCurrentStep(currentStep - 1)
           router.push(`/deals/add/${steps[currentStep - 2].route}`)
@@ -38,22 +38,22 @@ export default function StepNavigation() {
         disabled={currentStep < 2}
       >
         <Icon id="chevron-left" className="h-4 w-2" />
-        <span>Back</span>
+        <span className="text-base md:text-lg">Back</span>
       </button>
 
       {/* list of form steps */}
-      <div className="flex flex-col gap-8">
+      <div className="relative flex flex-row justify-between md:flex-col md:justify-start md:gap-8">
         {steps.map((step) => (
           <Link
             href={`/deals/add/${step.route}`}
             key={step.id}
-            className="group flex items-center gap-3 text-2xl"
+            className="group z-20 flex items-center gap-3 text-2xl"
             onClick={() => setCurrentStep(step.id)}
             prefetch={false}
           >
             <span
               className={cn(
-                'flex h-12 w-12 items-center justify-center rounded-full border border-white/75 text-white/75 transition-colors duration-200 group-hover:border-white group-hover:text-white',
+                'flex h-10 w-10 items-center justify-center rounded-full border border-white/75 bg-gray-900 text-sm text-white/75 transition-colors duration-200 group-hover:border-white group-hover:text-white md:h-12 md:w-12 md:text-lg',
                 currentPath === step.route &&
                   'border-none bg-teal-500 text-black group-hover:border-none group-hover:text-black'
               )}
@@ -62,7 +62,7 @@ export default function StepNavigation() {
             </span>
             <span
               className={cn(
-                'text-white/75 transition-colors duration-200 group-hover:text-white',
+                'hidden text-white/75 transition-colors duration-200 group-hover:text-white md:block',
                 currentPath === step.route && 'font-semibold text-white'
               )}
             >
@@ -70,6 +70,8 @@ export default function StepNavigation() {
             </span>
           </Link>
         ))}
+        {/* mobile background dashes */}
+        <div className="absolute top-4 flex h-1 w-full border-b border-dashed md:hidden" />
       </div>
     </div>
   )

@@ -1,4 +1,3 @@
-import { createDeal } from '@/actions/deals'
 import DevGiveaways from '@/components/DevGiveaways'
 import Hero from '@/components/Hero'
 import NeverMissADeal from '@/components/NeverMissADeal'

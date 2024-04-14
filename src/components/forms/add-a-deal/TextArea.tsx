@@ -13,13 +13,16 @@ export default function Textarea({ label, value, onChange }: InputProps) {
 
   return (
     <div className="flex flex-col gap-2">
-      <Label htmlFor={labelCamelCase} className="text-2xl font-extralight">
+      <Label
+        htmlFor={labelCamelCase}
+        className="text-base font-extralight md:text-2xl"
+      >
         {label}
       </Label>
       <TextareaDefault
         id={labelCamelCase}
         name={labelCamelCase}
-        className="h-44 bg-transparent text-xl focus-visible:ring-offset-teal-500"
+        className="h-22 bg-transparent text-sm focus-visible:ring-offset-teal-500 md:h-44 md:text-xl"
         value={value}
         onChange={(e) => onChange(e)}
         required

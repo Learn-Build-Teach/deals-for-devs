@@ -1,5 +1,4 @@
 'use client'
-import { DealsRecord } from '@/xata'
 import Link from 'next/link'
 import React from 'react'
 import AdminOptions from '../AdminOptions'

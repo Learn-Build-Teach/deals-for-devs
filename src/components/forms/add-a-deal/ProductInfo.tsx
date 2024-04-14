@@ -111,7 +111,7 @@ export default function ProductInfo() {
 
   return (
     <form onSubmit={nextStep} className="flex flex-1 flex-col items-center">
-      <div className="flex flex-col gap-14 md:w-full md:max-w-[700px]">
+      <div className="flex flex-col gap-7 md:w-full md:max-w-[700px] md:gap-14">
         <Input
           label="Product Name *"
           value={newDealData?.productName}
@@ -140,18 +140,20 @@ export default function ProductInfo() {
             updateNewDealDetails({ description: e.target.value })
           }
         />
-
+        
         <div className="flex flex-col gap-4">
-          <span className="text-2xl font-extralight">Cover Image</span>
+          <span className="text-base font-extralight md:text-2xl">
+            Cover Image
+          </span>
           {newDealData.coverImageURL ?
-            <div className="relative flex aspect-video flex-col gap-2 overflow-hidden rounded-lg">
+            <div className="relative aspect-video overflow-hidden rounded-lg w-[376px] md:w-[700px]">
               <Image
                 src={newDealData.coverImageURL}
                 alt="Product Image"
                 width={700}
                 height={400}
-                className="absolute bottom-0 left-0 right-0 top-0 h-auto"
-                layout="responsive"
+                className="absolute bottom-0 left-0 right-0 top-0 h-auto w-full"
+              
               />
               <button
                 type="button"
@@ -182,7 +184,7 @@ export default function ProductInfo() {
         </div>
         <button
           type="submit"
-          className="-mt-4 rounded-lg bg-teal-600 py-7 text-2xl text-black disabled:bg-teal-600/30"
+          className="mt-2 md:-mt-4 rounded-lg bg-teal-600 py-2 md:py-7 text-lg md:text-2xl text-black disabled:bg-teal-600/30"
           aria-label="Click to continue"
           disabled={imageUploadStatus === ImageUploadStatus.UPLOADING}
         >
