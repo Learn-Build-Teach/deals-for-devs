@@ -1,7 +1,7 @@
 'use server'
 import { Category, NewSubscriberData, Status } from '@/types/Types'
 import prisma from './db'
-import { Deal, Subscriber, DealImage } from '@prisma/client'
+import { Deal, Subscriber } from '@prisma/client'
 
 // deal queries
 export async function getAllDeals() {
@@ -37,11 +37,17 @@ export async function createSubscriber(
 export async function getOneSubscriberByToken(
   token: string
 ): Promise<Subscriber | null> {
-  return await prisma.subscriber.findFirst({
+  const res = await prisma.subscriber.findFirst({
     where: {
       token,
     },
   })
+
+  if (!res) {
+    return null
+  }
+
+  return res
 }
 
 export async function getOneSubscriberByEmail(
