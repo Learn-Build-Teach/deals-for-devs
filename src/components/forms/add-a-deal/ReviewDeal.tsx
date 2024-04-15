@@ -62,14 +62,14 @@ export default function ReviewDeal() {
   return (
     <section className="mx-auto">
       <div className="flex max-w-[700px] flex-col">
-        <div className="flex flex-col gap-8 md:flex-row">
+        <div className="flex flex-col gap-10 md:flex-row">
           {/* display image & percent badge */}
           <div className="relative">
-            <div className="relative  h-40 w-96 overflow-hidden md:w-60">
+            <div className="relative aspect-video w-full overflow-hidden md:w-60">
               <Image
                 src={coverImage}
                 alt={newDealData.productName}
-                className="rounded-lg"
+                className=" rounded-lg"
                 fill={true}
                 priority
               />
@@ -132,7 +132,7 @@ export default function ReviewDeal() {
         </div>
         <button
           type="button"
-          className="mt-5 rounded-lg bg-teal-600 py-2 text-lg text-black disabled:bg-teal-600/30 md:mt-10 md:py-7 md:text-2xl"
+          className="mt-5 rounded-lg bg-teal-600 py-2 text-lg text-black disabled:bg-teal-600/30 lg:mt-10 lg:py-7 lg:text-2xl"
           aria-label="Click to continue"
           onClick={validateAndSubmit}
         >

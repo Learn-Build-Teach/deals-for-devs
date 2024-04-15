@@ -1,11 +1,9 @@
 import React, { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import Image from 'next/image'
 import Icon from '@/components/Icon'
 
 export default function DragAndDropImage({
   onFileChange,
-  handleDelete,
 }: {
   onFileChange: (file: any) => void
   handleDelete: () => void
@@ -14,8 +12,6 @@ export default function DragAndDropImage({
 
   const onDrop = useCallback(
     (acceptedFile: File[]) => {
-      // Do something with the file
-      console.log(acceptedFile[0])
       setFile(acceptedFile[0])
       onFileChange(acceptedFile[0])
     },
@@ -41,10 +37,12 @@ export default function DragAndDropImage({
         })}
       >
         <input {...getInputProps()} />
-        <Icon id="frame" size={58}/>
+        <Icon id="frame" size={58} />
 
-        <p className="text-base md:text-xl">Drag ‘n’ drop or click to upload an image</p>
-        <p className="text-sm md:text-lg font-extralight text-white">
+        <p className="text-base md:text-xl">
+          Drag ‘n’ drop or click to upload an image
+        </p>
+        <p className="text-sm font-extralight text-white md:text-lg">
           PNG, JPEG files accepted
         </p>
       </div>

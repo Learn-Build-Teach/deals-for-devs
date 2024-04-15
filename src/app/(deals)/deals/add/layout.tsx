@@ -18,7 +18,7 @@ export default function DealsLayout({
           Have an amazing deal or discount tailored for developers? Let us know!
         </span>
         <Separator className="mx-0 mb-4 mt-8 md:mb-32 md:mt-14" />
-        <div className="mb-28 flex flex-col text-white md:flex-row">
+        <div className="mb-28 flex flex-col gap-x-10 text-white lg:flex-row">
           <StepNavigation />
           {children}
         </div>
