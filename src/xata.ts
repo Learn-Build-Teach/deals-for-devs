@@ -5,6 +5,7 @@ import type {
   SchemaInference,
   XataRecord,
 } from '@xata.io/client'
+import { env } from './env'
 
 const tables = [
   {
@@ -363,7 +364,7 @@ export type DatabaseSchema = {
 const DatabaseClient = buildClient()
 
 const defaultOptions = {
-  databaseURL: process.env.XATA_HTTPS_DATABASE_URL,
+  databaseURL: env.XATA_HTTPS_DATABASE_URL,
 }
 
 export class XataClient extends DatabaseClient<DatabaseSchema> {
