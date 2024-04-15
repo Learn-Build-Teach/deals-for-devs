@@ -47,8 +47,8 @@ export default function CouponDetails() {
             required={false}
           />
           <Input
-            className="w-1/5"
-            label="Discount"
+            className="w-1/4"
+            label="Discount %"
             type="number"
             value={newDealData?.percentage}
             required={false}
@@ -62,7 +62,7 @@ export default function CouponDetails() {
 
         <button
           type="submit"
-          className="mt-2 rounded-lg bg-teal-600 py-2 text-lg text-black disabled:bg-teal-600/30 md:-mt-4 md:py-7 md:text-2xl"
+          className="mt-2 rounded-lg bg-teal-600 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
           aria-label="Click to continue"
         >
           Continue
