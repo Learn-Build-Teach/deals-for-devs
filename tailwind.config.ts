@@ -14,6 +14,9 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        'dropzone-md': "url('/dropzone-md.svg')",
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

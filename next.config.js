@@ -1,5 +1,17 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'us-east-1.storage.xata.sh',
+        port: '',
+        pathname: '/*',
+      },
+    ],
+  },
+}
 
 module.exports = nextConfig
 

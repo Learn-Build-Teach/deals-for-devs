@@ -1,5 +1,5 @@
 {
-  "databaseURL": "https://James-Q-Quick-s-workspace-l5kbra.us-east-1.xata.sh/db/developer-black-friday-deals",
+  "databaseURL": "https://Chris-Wix-fa3idr.us-east-1.xata.sh/db/deals-for-devs",
   "codegen": {
     "output": "src/xata.ts"
   }
