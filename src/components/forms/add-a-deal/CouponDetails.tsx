@@ -20,7 +20,7 @@ export default function CouponDetails() {
 
   return (
     <form onSubmit={nextStep} className="flex flex-1 flex-col items-center">
-      <div className="flex flex-col gap-7 md:w-full md:max-w-[700px] md:gap-14">
+      <div className="flex w-full flex-col gap-7 lg:max-w-[700px] lg:gap-14">
         <div className="flex flex-col gap-2">
           <span className="text-base font-extralight md:text-2xl">
             Valid date range *

@@ -22,7 +22,7 @@ export default function ContactInfo() {
 
   return (
     <form onSubmit={nextStep} className="flex flex-1 flex-col items-center">
-      <div className="flex h-full w-full flex-col justify-between md:max-w-[700px]">
+      <div className="flex h-full w-full flex-col justify-between lg:max-w-[700px]">
         <div className="flex flex-col gap-7">
           <Input
             label="Full Name *"
@@ -42,7 +42,7 @@ export default function ContactInfo() {
         </div>
         <button
           type="submit"
-          className="mt-6 rounded-lg bg-teal-600 py-2 text-lg text-black disabled:bg-teal-600/30 md:-mt-4 md:py-7 md:text-2xl"
+          className="mt-6 rounded-lg bg-teal-600 py-2 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
           aria-label="Click to continue"
         >
           Review Deal

@@ -62,10 +62,10 @@ export default function ReviewDeal() {
   return (
     <section className="mx-auto">
       <div className="flex max-w-[700px] flex-col">
-        <div className="flex flex-col gap-10 md:flex-row">
+        <div className="flex flex-col gap-10 lg:flex-row">
           {/* display image & percent badge */}
           <div className="relative">
-            <div className="relative aspect-video w-full overflow-hidden md:w-60">
+            <div className="relative aspect-video w-full overflow-hidden lg:w-60">
               <Image
                 src={coverImage}
                 alt={newDealData.productName}

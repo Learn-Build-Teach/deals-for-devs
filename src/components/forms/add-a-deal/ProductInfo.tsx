@@ -111,7 +111,7 @@ export default function ProductInfo() {
 
   return (
     <form onSubmit={nextStep} className="flex flex-1 flex-col items-center">
-      <div className="flex flex-col gap-7 md:w-full md:max-w-[700px] md:gap-14">
+      <div className="flex w-full flex-col gap-7 lg:max-w-[700px] lg:gap-14">
         <Input
           label="Product Name *"
           value={newDealData?.productName}
@@ -145,13 +145,13 @@ export default function ProductInfo() {
             Cover Image
           </span>
           {newDealData.coverImageURL ?
-            <div className="relative aspect-video w-[376px] overflow-hidden rounded-lg md:w-[700px]">
+            <div className="relative aspect-video w-full overflow-hidden rounded-lg">
               <Image
                 src={newDealData.coverImageURL}
                 alt="Product Image"
                 width={700}
                 height={400}
-                className="absolute bottom-0 left-0 right-0 top-0 h-auto w-full"
+                className="absolute bottom-0 left-0 right-0 top-0 aspect-video w-full"
               />
               <button
                 type="button"
