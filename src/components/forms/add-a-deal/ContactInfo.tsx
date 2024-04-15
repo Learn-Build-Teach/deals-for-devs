@@ -1,13 +1,8 @@
 'use client'
 import Input from '@/components/forms/add-a-deal/Input'
-import CategorySelect from '@/components/forms/add-a-deal/CategorySelect'
-import Textarea from '@/components/forms/add-a-deal/TextArea'
-import DragAndDropImage from '@/components/forms/add-a-deal/DragAndDropImage'
 import { useRouter } from 'next/navigation'
 import { useAddDealContext } from '@/context/AddDealContext'
 import { AddDealRoutes } from '@/types/Types'
-import { deleteImage } from '@/lib/imageUpload'
-import toast from 'react-hot-toast'
 
 export default function ContactInfo() {
   const { currentStep, setCurrentStep, newDealData, updateNewDealDetails } =
