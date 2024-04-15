@@ -38,7 +38,7 @@ export default function ProductInfo() {
 
     // get the image upload url from xata
     const { id, uploadUrl } = await fetch('/api/image', {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -116,7 +116,6 @@ export default function ProductInfo() {
           label="Product Name *"
           value={newDealData?.productName}
           onChange={(e) => {
-            console.log(e.target.value)
             updateNewDealDetails({ productName: e.target.value })
           }}
         />
@@ -140,20 +139,19 @@ export default function ProductInfo() {
             updateNewDealDetails({ description: e.target.value })
           }
         />
-        
+
         <div className="flex flex-col gap-4">
           <span className="text-base font-extralight md:text-2xl">
             Cover Image
           </span>
           {newDealData.coverImageURL ?
-            <div className="relative aspect-video overflow-hidden rounded-lg w-[376px] md:w-[700px]">
+            <div className="relative aspect-video w-[376px] overflow-hidden rounded-lg md:w-[700px]">
               <Image
                 src={newDealData.coverImageURL}
                 alt="Product Image"
                 width={700}
                 height={400}
                 className="absolute bottom-0 left-0 right-0 top-0 h-auto w-full"
-              
               />
               <button
                 type="button"
@@ -184,7 +182,7 @@ export default function ProductInfo() {
         </div>
         <button
           type="submit"
-          className="mt-2 md:-mt-4 rounded-lg bg-teal-600 py-2 md:py-7 text-lg md:text-2xl text-black disabled:bg-teal-600/30"
+          className="mt-2 rounded-lg bg-teal-600 py-2 text-lg text-black disabled:bg-teal-600/30 md:-mt-4 md:py-7 md:text-2xl"
           aria-label="Click to continue"
           disabled={imageUploadStatus === ImageUploadStatus.UPLOADING}
         >

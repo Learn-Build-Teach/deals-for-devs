@@ -30,7 +30,6 @@ export function DatePickerWithRange({
   })
 
   const handleOnSelect = (range: DateRange | undefined) => {
-    console.log(range)
     setDate(range)
     onDateRangeChange(range || { from: undefined, to: undefined })
   }
@@ -43,7 +42,7 @@ export function DatePickerWithRange({
             id="date"
             variant={'outline'}
             className={cn(
-              'flex h-16 w-full items-center justify-start gap-4 bg-transparent text-left text-sm md:text-xl font-normal hover:bg-transparent hover:text-white',
+              'flex h-16 w-full items-center justify-start gap-4 bg-transparent text-left text-sm font-normal hover:bg-transparent hover:text-white md:text-xl',
               !date && 'text-muted-foreground'
             )}
           >

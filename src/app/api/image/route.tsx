@@ -7,7 +7,7 @@ const schema = z.object({
   mediaType: z.string(),
 })
 
-export async function PUT(req: Request, res: Response) {
+export async function POST(req: Request, res: Response) {
   const body = await req.json()
   const xataClient = getXataClient()
 
@@ -24,8 +24,6 @@ export async function PUT(req: Request, res: Response) {
 
   try {
     const id = uuidv4()
-    console.log('Created uuid: ', id)
-    console.log('Creating image')
     const record = await xataClient.db.DealImage.create(
       id,
       {
@@ -44,7 +42,7 @@ export async function PUT(req: Request, res: Response) {
       url: record.image?.url,
       uploadUrl: record.image?.uploadUrl,
     }
-    console.log(record)
+    console.info('Created initial image record', image)
     return new Response(JSON.stringify(image), {
       status: 200,
     })

@@ -22,13 +22,12 @@ export default function ContactInfo() {
 
   return (
     <form onSubmit={nextStep} className="flex flex-1 flex-col items-center">
-      <div className="flex h-full flex-col justify-between w-full md:max-w-[700px]">
+      <div className="flex h-full w-full flex-col justify-between md:max-w-[700px]">
         <div className="flex flex-col gap-7">
           <Input
             label="Full Name *"
             value={newDealData?.contactName}
             onChange={(e) => {
-              console.log(e.target.value)
               updateNewDealDetails({ contactName: e.target.value })
             }}
           />

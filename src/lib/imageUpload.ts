@@ -26,9 +26,6 @@ export const deleteImage = async (id: string) => {
 }
 
 export const getImageUrl = async (id: string) => {
-  console.log('Getting image url')
-  console.log('ID: ', id)
   const record = await xata.db.DealImage.read(id)
-  console.log(record)
   return record?.toSerializable().image?.url
 }
