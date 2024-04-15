@@ -1,4 +1,3 @@
-
 import CategoryOptions from '@/components/CategoryOptions'
 import { redirect } from 'next/navigation'
 import { Category } from '@/types/Types'

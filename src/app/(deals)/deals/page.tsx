@@ -1,6 +1,6 @@
 import CategoryOptions from '@/components/CategoryOptions'
 import DealsList from '../../../components/deals/DealsList'
-import { getApprovedDeals, getRecentApprovedDealsByDate } from '@/lib/queries'
+import { getApprovedDeals } from '@/lib/queries'
 
 export default async function DealsPage() {
   const deals = await getApprovedDeals(20)

@@ -1,8 +1,6 @@
 import DealsList from '@/components/deals/DealsList'
 import { getApprovedFeaturedDeals } from '@/lib/queries'
 import { Category } from '@/types/Types'
-import { getXataClient } from '@/xata'
-import React from 'react'
 
 export default async function FeaturedDeals({
   category,
