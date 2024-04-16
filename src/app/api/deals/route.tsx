@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
   const xataClient = getXataClient()
   try {
     //TODO: how do we handle this now that we have Prisma?
-    const { records } = await xataClient.db.deals.search(query, {
+    const { records } = await xataClient.db.Deal.search(query, {
       target: ['name', 'description'],
     })
 
@@ -30,10 +30,8 @@ export async function POST(request: Request) {
   let parsed
   try {
     parsed = FORM_DEAL_SCHEMA.parse(body)
-    console.log(parsed)
   } catch (error) {
-    console.log('failed to parse')
-    // console.error(error);
+    console.error('failed to parse', error)
     return new Response('Bad Request', { status: 400 })
   }
 

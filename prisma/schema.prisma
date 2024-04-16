@@ -8,26 +8,29 @@ datasource db {
 }
 
 model Deal {
-  id         String        @id @default(uuid())
-  coupon         String?  @db.VarChar(255)
-  approved       Boolean  @default(false)
-  description    String   @db.VarChar(255)
-  couponPercent  Int?     @default(0)
-  featured       Boolean  @default(false)
-  name           String   @db.VarChar(255)
-  link           String   @db.VarChar(255)
-  category       String   @db.VarChar(50)
-  startDate      DateTime @default(now())
-  endDate        DateTime @default(now())
-  email          String   @db.VarChar(255)
-  xata_id        String   @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
-  xata_version   Int      @default(0)
-  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
-  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+  id             String     @id @default(uuid())
+  coupon         String?    @db.VarChar(255)
+  approved       Boolean    @default(false)
+  description    String     @db.VarChar(255)
+  couponPercent  Int?       @default(0)
+  featured       Boolean    @default(false)
+  name           String     @db.VarChar(255)
+  link           String     @db.VarChar(255)
+  category       String     @db.VarChar(50)
+  startDate      DateTime   @default(now())
+  endDate        DateTime   @default(now())
+  xata_id        String     @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int        @default(0)
+  xata_createdat DateTime   @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime   @default(now()) @db.Timestamptz(6)
+  coverImageURL  String?    @db.VarChar(255)
+  coverImageId   String?    @unique @db.VarChar(255)
+  contactEmail   String     @db.VarChar(255)
+  contactName    String     @db.VarChar(255)
 }
 
 model AdminUser {
-  userId             String   @id @default(uuid())
+  userId         String   @id @default(uuid())
   xata_id        String   @unique(map: "AdminUser__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int      @default(0)
   xata_createdat DateTime @default(now()) @db.Timestamptz(6)
@@ -35,8 +38,8 @@ model AdminUser {
 }
 
 model Subscriber {
-      id         String        @id @default(uuid())
-  status                       String   @db.Text
+  id                           String   @id @default(uuid())
+  status                       String
   email                        String   @db.VarChar(255)
   verified                     Boolean  @default(false)
   token                        String   @db.VarChar(255)
@@ -51,3 +54,15 @@ model Subscriber {
   xata_updatedat               DateTime @default(now()) @db.Timestamptz(6)
   xata_id                      String   @unique(map: "Subscriber__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
 }
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model DealImage {
+  xata_id        String   @unique(map: "_pgroll_new_DealImage_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int      @default(0)
+  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+  image          Json
+}
+
+// adding a comment

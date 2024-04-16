@@ -12,12 +12,13 @@ import {
   Tailwind,
   Link,
 } from '@react-email/components'
+import { env } from '@/env'
 interface EmailTemplateProps {
   email: string
   link: string
 }
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+const baseURL = env.NEXT_PUBLIC_BASE_URL
 
 export const confirmEmail = (props: EmailTemplateProps) => (
   <Tailwind>
