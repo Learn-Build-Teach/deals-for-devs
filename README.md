@@ -1,6 +1,9 @@
 # Deals for Devs
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **The best deals and giveaways for developers**
@@ -27,7 +30,42 @@ cp .env.example .env
 npm install
 ```
 
-4. Run the development server.
+4. Database Setup
+   You'll need to create a free database with [Xata](https://xata.io/) which runs on Postgres. When you create your db, make sure enable the checkbox that says `Enable direct access to Postgres`.
+
+> Since we'll be using Prisma to interact with our database, you need to `Enable direct access to Postgres`.
+
+Then, select your newly created database. On the next page, you'll want to copy the `PostgreSQL endpoint` property. Then add this property to your `.env` file like so.
+
+```bash
+DATABASE_URL=<your_postgresql endpoint>
+```
+
+> You can click on the `Settings` tab later on if you ever need to come back to these settings.
+
+Now, you'll need to push the Prisma schema to your db. In your terminal, run the following command. This will generated the necessary tables.
+
+```bash
+npx prisma db push
+```
+
+You should be able to verify the tables were created successfully inside of the Xata dashboard.
+
+Lastly, you'll need to generate the Xata configuration and typings in your project.
+
+Login to your Xata account. This will pop open a new browser window to handle authentication.
+
+```bash
+xata auth login
+```
+
+Initialize xata in your project directory and choose the database you just created.
+
+```bash
+xata init
+```
+
+5. Run the development server.
 
 ```bash
 npm run dev
