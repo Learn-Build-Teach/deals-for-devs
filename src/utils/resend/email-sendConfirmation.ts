@@ -2,15 +2,16 @@
 import * as React from 'react'
 import { Resend } from 'resend'
 import { confirmEmail } from '@/emails/emailConfirmation'
+import { env } from '@/env'
 
 export const sendConfirmationEmail = async (email: string, link: string) => {
   let data
 
-  const resend = new Resend(process.env.RESEND_API_KEY)
+  const resend = new Resend(env.RESEND_API_KEY)
 
   // Set the from email address based on the environment
-  const from = `Deals for Devs<${process.env.FROM_EMAIL}>`
-  const reply_to = process.env.REPLY_TO_EMAIL
+  const from = `Deals for Devs<${env.FROM_EMAIL}>`
+  const reply_to = env.REPLY_TO_EMAIL
 
   // Send the confirmation email
   try {

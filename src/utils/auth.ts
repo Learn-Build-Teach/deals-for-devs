@@ -1,8 +1,7 @@
-import { getXataClient } from '@/xata';
+import { getAdminUserById } from '@/lib/queries'
 
 export const isAdminUser = async (userId: string): Promise<boolean> => {
-  if (!userId) return false;
-  const xataClient = getXataClient();
-  const adminUser = await xataClient.db.adminUser.read(userId);
-  return !!adminUser;
-};
+  if (!userId) return false
+  const adminUser = await getAdminUserById(userId)
+  return !!adminUser
+}

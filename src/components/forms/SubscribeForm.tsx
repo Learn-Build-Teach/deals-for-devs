@@ -30,7 +30,7 @@ export default function SubscribeForm() {
         redirect(confirmEmailLink)
       }}
     >
-      <div className="relative h-[44.36px] w-[303px] md:h-[70px] md:w-[476px]">
+      <div className="relative h-11 w-80 md:h-16 md:w-[476px]">
         <input
           type="email"
           name="email"
