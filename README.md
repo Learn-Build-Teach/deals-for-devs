@@ -37,6 +37,8 @@ npm install
 
 Then, select your newly created database. On the next page, you'll want to copy the `PostgreSQL endpoint` property. Then add this property to your `.env` file like so.
 
+> You'll need to also create an API Key to include in this DB URL. You can do this in your `account settings`.
+
 ```bash
 DATABASE_URL=<your_postgresql endpoint>
 ```
@@ -59,11 +61,13 @@ Login to your Xata account. This will pop open a new browser window to handle au
 xata auth login
 ```
 
-Initialize xata in your project directory and choose the database you just created.
+Initialize xata in your project directory.
 
 ```bash
 xata init
 ```
+
+Choose the database and the default settings from there.
 
 5. Run the development server.
 
