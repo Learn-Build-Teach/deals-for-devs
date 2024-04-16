@@ -1,13 +1,10 @@
-'use client'
-import { DealsRecord } from '@/xata'
 import Link from 'next/link'
-import React from 'react'
 import AdminOptions from '../AdminOptions'
 import ClickableCouponCode from '../ClickableCouponCode'
 import { FaBeer, FaVideo, FaBook, FaCog, FaCalendar } from 'react-icons/fa'
 import { Category } from '@/types/Types'
 import { format } from 'date-fns'
-import { start } from 'repl'
+import { Deal } from '@prisma/client'
 
 const categoryToIcon: { [key: string]: JSX.Element } = {
   Misc: <FaBeer />,
@@ -17,11 +14,11 @@ const categoryToIcon: { [key: string]: JSX.Element } = {
   Conference: <FaCalendar />,
 }
 
-export default function Deal({
+export default function DealCard({
   deal,
   showAdminOptions = false,
 }: {
-  deal: DealsRecord
+  deal: Deal
   showAdminOptions?: boolean
 }) {
   if (!deal || !deal.startDate) {

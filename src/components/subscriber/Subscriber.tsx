@@ -1,15 +1,15 @@
 'use client'
 import { useState } from 'react'
-import { Subscribers } from '@/xata'
 import { updateSubscriberPreferences } from '@/lib/queries'
 import toast from 'react-hot-toast'
 import CategoryCheckbox from './CategoryCheckbox'
 import { Status } from '@/types/Types'
+import { Subscriber as SubscriberType } from '@prisma/client'
 
 export default function Subscriber({
   subscriber,
 }: {
-  subscriber: Subscribers
+  subscriber: SubscriberType
 }) {
   const [subscriberData, setSubscriberData] = useState(subscriber)
   const [update, setUpdate] = useState(false)
@@ -33,6 +33,10 @@ export default function Subscriber({
       subscribed: subscriberData.courseNotifications,
     },
     {
+      name: 'officeEquipmentNotifications',
+      subscribed: subscriberData.officeEquipmentNotifications,
+    },
+    {
       name: 'ebookNotifications',
       subscribed: subscriberData.ebookNotifications,
     },
@@ -49,6 +53,7 @@ export default function Subscriber({
     const newData = {
       ...subscriberData,
       courseNotifications: subscribedStatus,
+      officeEquipmentNotifications: subscribedStatus,
       ebookNotifications: subscribedStatus,
       toolNotifications: subscribedStatus,
       conferenceNotifications: subscribedStatus,
@@ -65,7 +70,7 @@ export default function Subscriber({
     //TODO: Look if updatePref is REALLY being used as a server action or server component
     // Update the database
     try {
-      await updateSubscriberPreferences(subscriberData.id, newData)
+      await updateSubscriberPreferences(subscriberData.id, newData) //TODO: Fix type error for newData
       toast.success(
         `You have been ${
           subscribedStatus ? 'subscribed to' : 'unsubscribed from'
@@ -78,18 +83,18 @@ export default function Subscriber({
 
   return (
     <>
-      <div className="w-full max-w-[350px] md:max-w-[760px]">
+      <div className="w-full max-w-xs md:max-w-3xl">
         {/* subscribe and unsubscribe from all buttons */}
         <div className="mb-8 flex w-full justify-between">
           <button
-            className="text-xs font-light md:text-[28px]"
+            className="text-xs font-light md:text-3xl"
             onClick={() => updateAllSubscriptions(true)}
           >
             Subscribe to all
           </button>
 
           <button
-            className="rounded-md border border-red-400 bg-transparent px-3.5 py-2.5 text-center text-xs font-light text-red-400 shadow-sm hover:bg-red-400 hover:text-red-900 md:py-6 md:text-[28px]"
+            className="rounded-md border border-red-400 bg-transparent px-3.5 py-2.5 text-center text-xs font-light text-red-400 shadow-sm hover:bg-red-400 hover:text-red-900 md:py-6 md:text-3xl"
             onClick={() => updateAllSubscriptions(false)}
           >
             Unsubscribe from all
@@ -112,7 +117,7 @@ export default function Subscriber({
         <button
           className="mb-40 mt-9 w-full rounded-md bg-teal-600 py-3 text-center text-sm font-semibold text-black shadow-sm hover:bg-teal-400 disabled:cursor-not-allowed disabled:border  disabled:border-teal-500 disabled:bg-transparent disabled:text-teal-500 md:mt-20 md:py-5 md:text-2xl"
           onClick={async () => {
-            await updateSubscriberPreferences(subscriberData.id, subscriberData)
+            await updateSubscriberPreferences(subscriberData.id, subscriberData) //TODO: Fix type error for subscriberData
             toast.success('Preferences updated!')
             setUpdate(false)
           }}
