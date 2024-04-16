@@ -1,5 +1,4 @@
 //info: must import env types file so validation is run
-import '../../../types/env'
 import { auth } from '@clerk/nextjs'
 import { isAdminUser } from '@/utils/auth'
 import { redirect } from 'next/navigation'
