@@ -36,8 +36,10 @@ export const confirmEmail = (props: EmailTemplateProps) => (
           </Section>
           <Heading style={h1}>Confirm your email address</Heading>
           <Section className="py-6">
-            If you are having trouble clicking the button, copy and paste the
-            URL below 👇
+            <Text>
+              If you are having trouble clicking the button, copy and paste the
+              URL below 👇
+            </Text>
             <Link
               href={props.link}
               className="rounded-lg border bg-teal-500 px-5 py-3 text-xl text-white no-underline"
