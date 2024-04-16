@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint-commit": "npx --no-install commitlint --edit \"$1\"",
-    "xata-init": "dotenv -- xata init --db https://James-Q-Quick-s-workspace-l5kbra.us-east-1.xata.sh/db/deals-for-devs --sdk --no-input --yes --codegen src/xata.ts"
+    "xata-init": "xata init --db https://James-Q-Quick-s-workspace-l5kbra.us-east-1.xata.sh/db/deals-for-devs --sdk --no-input --yes --codegen src/xata.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.8",
@@ -33,7 +33,6 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns": "^3.3.1",
-    "dotenv-cli": "^7.4.1",
     "lucide-react": "^0.340.0",
     "next": "14.1.0",
     "posthog-js": "^1.108.3",
