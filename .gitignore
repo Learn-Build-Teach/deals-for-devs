@@ -48,4 +48,5 @@ next-env.d.ts
 
 # Xata
 .xatarc
-src/.xata.ts
+src/xata.ts
+.xata
