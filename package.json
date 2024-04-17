@@ -30,6 +30,7 @@
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "@xata.io/client": "^0.29.4",
+    "@xata.io/codegen": "^0.29.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns": "^3.3.1",
