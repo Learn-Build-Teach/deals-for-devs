@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_31fa3e59d63602",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE UNIQUE INDEX \"AdminUser__pgroll_new_id_key\" ON \"AdminUser\" USING btree (id)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_31fa3e59d63602",
+  "parent": "sql_6afea48168784d",
+  "startedAt": "2024-03-22T19:28:06.428543Z"
+}

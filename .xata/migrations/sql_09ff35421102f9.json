@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_09ff35421102f9",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Deal\" ADD COLUMN \"coverImageId\" varchar(255), ADD COLUMN \"coverImageURL\" varchar(255)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_09ff35421102f9",
+  "parent": "sql_0c6109cbd13f31",
+  "startedAt": "2024-04-03T20:53:44.682093Z"
+}

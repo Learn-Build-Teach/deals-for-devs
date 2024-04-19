@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_28f0e95c2d0b49",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Deal\" DROP CONSTRAINT \"Deal_coverImageId_fkey\""
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_28f0e95c2d0b49",
+  "parent": "mig_co6shk6pe2mbada2v8gg",
+  "startedAt": "2024-04-15T15:15:18.900291Z"
+}

@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_7c010c346ea314",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE TABLE \"Subscriber\" (id text NOT NULL, status varchar(255) NOT NULL, email varchar(255) NOT NULL, verified boolean NOT NULL DEFAULT false, token varchar(255) NOT NULL, \"conferenceNotifications\" boolean NOT NULL DEFAULT false, \"ebookNotifications\" boolean NOT NULL DEFAULT false, \"courseNotifications\" boolean NOT NULL DEFAULT false, \"toolNotifications\" boolean NOT NULL DEFAULT false, \"officeEquipmentNotifications\" boolean NOT NULL DEFAULT false, \"miscNotifications\" boolean NOT NULL DEFAULT false, CONSTRAINT \"Subscriber_pkey\" PRIMARY KEY (id))"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "sql_7c010c346ea314",
+  "parent": "mig_cnu6dbu6sv7thq7toej0",
+  "startedAt": "2024-03-21T17:01:13.372952Z"
+}

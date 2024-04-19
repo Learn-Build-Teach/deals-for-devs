@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_26e40f3db87366",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"DealImage\" ADD COLUMN image jsonb"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_26e40f3db87366",
+  "parent": "mig_co6sgq6pe2mbada2v8cg",
+  "startedAt": "2024-04-03T21:22:17.808888Z"
+}

@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_34963b1d279b45",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE UNIQUE INDEX \"Subscriber__pgroll_new_xata_id_key\" ON \"Subscriber\" USING btree (id)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_34963b1d279b45",
+  "parent": "sql_185286d7f5351f",
+  "startedAt": "2024-03-22T19:29:17.140339Z"
+}

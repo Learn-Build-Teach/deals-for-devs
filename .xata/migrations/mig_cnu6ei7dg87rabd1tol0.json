@@ -1,0 +1,77 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cnu6ei7dg87rabd1tol0",
+    "operations": [
+      {
+        "set_replica_identity": {
+          "table": "Subscriber",
+          "identity": {
+            "type": "full",
+            "index": ""
+          }
+        }
+      },
+      {
+        "add_column": {
+          "table": "Subscriber",
+          "column": {
+            "name": "xata_version",
+            "type": "integer",
+            "default": "0",
+            "nullable": false
+          }
+        }
+      },
+      {
+        "add_column": {
+          "table": "Subscriber",
+          "column": {
+            "name": "xata_createdat",
+            "type": "timestamptz",
+            "default": "now()",
+            "nullable": false
+          }
+        }
+      },
+      {
+        "add_column": {
+          "up": "now()",
+          "table": "Subscriber",
+          "column": {
+            "name": "xata_updatedat",
+            "type": "timestamptz",
+            "default": "now()",
+            "nullable": false
+          }
+        }
+      },
+      {
+        "add_column": {
+          "table": "Subscriber",
+          "column": {
+            "name": "xata_id",
+            "type": "text",
+            "check": {
+              "name": "Subscriber_xata_id_length_xata_id",
+              "constraint": "length(\"xata_id\") < 256"
+            },
+            "unique": true,
+            "default": "'rec_' || xata_private.xid()",
+            "nullable": false
+          }
+        }
+      },
+      {
+        "sql": {
+          "up": "CREATE TRIGGER xata_maintain_metadata_trigger_pgroll\n  BEFORE INSERT OR UPDATE\n  ON \"Subscriber\"\n  FOR EACH ROW\n  EXECUTE FUNCTION xata_private.maintain_metadata_trigger_pgroll()",
+          "onComplete": true
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cnu6ei7dg87rabd1tol0",
+  "parent": "sql_7c010c346ea314",
+  "startedAt": "2024-03-21T17:01:13.59781Z"
+}

@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_268c0c078a3889",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Deal\" ALTER COLUMN coupon TYPE varchar(255), ALTER COLUMN name TYPE varchar(255), ALTER COLUMN category TYPE varchar(50), ALTER COLUMN email TYPE varchar(255)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_268c0c078a3889",
+  "parent": "sql_6e8d0aaffa33b0",
+  "startedAt": "2024-03-21T18:31:08.118256Z"
+}

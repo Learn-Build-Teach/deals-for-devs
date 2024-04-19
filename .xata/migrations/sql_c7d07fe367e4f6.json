@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_c7d07fe367e4f6",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"DealImage\" ALTER COLUMN image SET NOT NULL"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_c7d07fe367e4f6",
+  "parent": "sql_5fefc1e3bb4bea",
+  "startedAt": "2024-04-15T15:15:19.228405Z"
+}

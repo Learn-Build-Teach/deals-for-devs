@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_17f14d668adfb4",
+    "operations": [
+      {
+        "sql": {
+          "up": "DROP TABLE \"Actors\""
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "sql_17f14d668adfb4",
+  "parent": "mig_cntkjg3ij48b5dd5k130",
+  "startedAt": "2024-03-21T17:01:11.66669Z"
+}

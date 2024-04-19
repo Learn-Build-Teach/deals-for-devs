@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_5d96d987756cb8",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE TABLE \"Subscriber\" (status text NOT NULL, email varchar(255) NOT NULL, verified boolean NOT NULL DEFAULT false, token varchar(255) NOT NULL, \"conferenceNotifications\" boolean NOT NULL DEFAULT false, \"ebookNotifications\" boolean NOT NULL DEFAULT false, \"courseNotifications\" boolean NOT NULL DEFAULT false, \"toolNotifications\" boolean NOT NULL DEFAULT false, \"officeEquipmentNotifications\" boolean NOT NULL DEFAULT false, \"miscNotifications\" boolean NOT NULL DEFAULT false, xata_version int NOT NULL DEFAULT 0, xata_createdat timestamptz(6) NOT NULL DEFAULT current_timestamp, xata_updatedat timestamptz(6) NOT NULL DEFAULT current_timestamp, xata_id text NOT NULL DEFAULT 'rec_'::text || xata_private.xid()::text)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_5d96d987756cb8",
+  "parent": "sql_e065c6db2cd640",
+  "startedAt": "2024-03-22T19:30:06.585743Z"
+}

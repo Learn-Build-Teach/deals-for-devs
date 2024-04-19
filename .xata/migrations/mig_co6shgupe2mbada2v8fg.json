@@ -1,0 +1,18 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_co6shgupe2mbada2v8fg",
+    "operations": [
+      {
+        "drop_column": {
+          "table": "DealImage",
+          "column": "image"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_co6shgupe2mbada2v8fg",
+  "parent": "sql_26e40f3db87366",
+  "startedAt": "2024-04-03T21:23:15.896308Z"
+}

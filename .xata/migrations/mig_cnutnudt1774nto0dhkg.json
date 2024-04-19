@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cnutnudt1774nto0dhkg",
+    "operations": [
+      {
+        "drop_table": {
+          "name": "AdminUser"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cnutnudt1774nto0dhkg",
+  "parent": "sql_e5ae21901f2c72",
+  "startedAt": "2024-03-22T19:28:57.36605Z"
+}

@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_fe509883e37b68",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Subscriber\" ALTER COLUMN status TYPE varchar(20), ALTER COLUMN email TYPE varchar(50), ALTER COLUMN token TYPE varchar(50)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_fe509883e37b68",
+  "parent": "sql_e1b38a4629347f",
+  "startedAt": "2024-03-21T17:20:04.321966Z"
+}

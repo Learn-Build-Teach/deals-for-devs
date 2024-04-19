@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_cnutoadt1774nto0dhmg",
+    "operations": [
+      {
+        "drop_table": {
+          "name": "Subscriber"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_cnutoadt1774nto0dhmg",
+  "parent": "sql_34963b1d279b45",
+  "startedAt": "2024-03-22T19:29:45.70887Z"
+}

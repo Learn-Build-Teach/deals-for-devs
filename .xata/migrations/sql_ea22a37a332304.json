@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_ea22a37a332304",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Deal\" ADD CONSTRAINT \"Deal_coverImageId_fkey\" FOREIGN KEY (\"coverImageId\") REFERENCES \"DealImage\" (xata_id) ON UPDATE CASCADE ON DELETE SET NULL"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_ea22a37a332304",
+  "parent": "sql_df91aca96bcc93",
+  "startedAt": "2024-04-03T20:53:45.134146Z"
+}

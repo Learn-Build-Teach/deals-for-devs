@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_41dc55551ce1c1",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE TABLE \"Deal\" (id text NOT NULL, coupon varchar(255) NOT NULL, approved boolean NOT NULL DEFAULT false, description varchar(255) NOT NULL, \"couponPercent\" int NOT NULL DEFAULT 0, featured boolean NOT NULL DEFAULT false, name varchar(255) NOT NULL, link varchar(255) NOT NULL, category varchar(255) NOT NULL, \"startDate\" timestamp(3) NOT NULL DEFAULT current_timestamp, \"endDate\" timestamp(3) NOT NULL DEFAULT current_timestamp, email varchar(255) NOT NULL, CONSTRAINT \"Deal_pkey\" PRIMARY KEY (id))"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "sql_41dc55551ce1c1",
+  "parent": "sql_17f14d668adfb4",
+  "startedAt": "2024-03-21T17:01:11.891092Z"
+}

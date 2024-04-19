@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_382617cb6962a5",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Deal\" DROP CONSTRAINT \"Deal_pkey\", DROP id"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_382617cb6962a5",
+  "parent": "sql_68b8fd6e846cb6",
+  "startedAt": "2024-03-21T18:03:53.992342Z"
+}

@@ -1,0 +1,16 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_2aa26bac940913",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE TABLE IF NOT EXISTS \"Actors\" (id text PRIMARY KEY NOT NULL, name text, city text)"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "sql_2aa26bac940913",
+  "startedAt": "2024-03-21T17:01:10.919295Z"
+}

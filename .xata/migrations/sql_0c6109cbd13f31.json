@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_0c6109cbd13f31",
+    "operations": [
+      {
+        "sql": {
+          "up": "ALTER TABLE \"Subscriber\" ADD COLUMN id text NOT NULL, ADD CONSTRAINT \"Subscriber_pkey\" PRIMARY KEY (id)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_0c6109cbd13f31",
+  "parent": "sql_7f6ab15882ae6b",
+  "startedAt": "2024-03-22T19:31:43.195104Z"
+}

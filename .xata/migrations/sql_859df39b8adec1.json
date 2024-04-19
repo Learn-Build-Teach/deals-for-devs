@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_859df39b8adec1",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE TABLE \"AdminUser\" (\"userId\" text NOT NULL, id text NOT NULL DEFAULT 'rec_'::text || xata_private.xid()::text, xata_version int NOT NULL DEFAULT 0, xata_createdat timestamptz(6) NOT NULL DEFAULT current_timestamp, xata_updatedat timestamptz(6) NOT NULL DEFAULT current_timestamp, CONSTRAINT \"AdminUser_pkey\" PRIMARY KEY (\"userId\"))"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_859df39b8adec1",
+  "parent": "sql_c36f5aca22198d",
+  "startedAt": "2024-03-22T19:28:06.088296Z"
+}
