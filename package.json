@@ -54,9 +54,7 @@
     "ts-key-enum": "^2.0.12",
     "ts-node": "^10.9.2",
     "uuid": "^9.0.1",
-    "zod": "^3.22.4"
-  },
-  "devDependencies": {
+    "zod": "^3.22.4",
     "@commitlint/cli": "19.0.3",
     "@commitlint/config-conventional": "19.0.3",
     "@types/node": "^20",
@@ -73,6 +71,7 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
+  "devDependencies": {},
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
