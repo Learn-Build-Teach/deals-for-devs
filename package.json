@@ -5,11 +5,12 @@
   "scripts": {
     "prepare": "husky",
     "dev": "next dev",
-    "build": "npm run xata-init && prisma generate && next build",
+    "build": "npm run xata-codegen && prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "lint-commit": "npx --no-install commitlint --edit \"$1\"",
-    "xata-init": "xata init --db https://James-Q-Quick-s-workspace-l5kbra.us-east-1.xata.sh/db/deals-for-devs --no-input --yes --codegen src/xata.ts --force"
+    "xata-init": "xata init --db https://James-Q-Quick-s-workspace-l5kbra.us-east-1.xata.sh/db/deals-for-devs --no-input --yes --codegen src/xata.ts --force",
+    "xata-codegen": "xata codegen --db https://James-Q-Quick-s-workspace-l5kbra.us-east-1.xata.sh/db/deals-for-devs -o src/xata.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.8",
@@ -27,6 +28,7 @@
     "@sentry/nextjs": "^7.106.1",
     "@t3-oss/env-nextjs": "^0.9.2",
     "@tanstack/react-table": "^8.12.0",
+    "@types/uuid": "^9.0.8",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "@xata.io/cli": "^0.15.11",
