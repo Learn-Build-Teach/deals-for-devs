@@ -5,7 +5,7 @@
   "scripts": {
     "prepare": "husky",
     "dev": "next dev",
-    "build": "npm run xata-init && prisma generate && next build",
+    "build": "npm install && npm run xata-init && prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "lint-commit": "npx --no-install commitlint --edit \"$1\"",
