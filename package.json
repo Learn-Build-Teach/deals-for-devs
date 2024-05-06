@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint-commit": "npx --no-install commitlint --edit \"$1\"",
-    "xata-init": "xata init --db https://James-Q-Quick-s-workspace-l5kbra.us-east-1.xata.sh/db/deals-for-devs --sdk --no-input --yes --package-manager=npm --codegen src/xata.ts --force"
+    "xata-init": "xata init --db https://James-Q-Quick-s-workspace-l5kbra.us-east-1.xata.sh/db/deals-for-devs --no-input --yes --package-manager=npm --codegen src/xata.ts --force"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.8",
