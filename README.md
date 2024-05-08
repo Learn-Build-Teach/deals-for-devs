@@ -64,6 +64,9 @@ npx prisma db push
 
 You should be able to verify the tables were created successfully inside of the Xata dashboard.
 
+![CleanShot 2024-05-08 at 09 18 14](https://github.com/Learn-Build-Teach/deals-for-devs/assets/5391915/32641b1f-fb10-4da4-b462-20c90bb8e077)
+
+
 ### Connect Project To Xata Using the Xata CLI
 
 Lastly, you'll need to generate the Xata configuration and typings in your project. To do this, you'll use the Xata CLI. This should have been installed during the `npm install`. If you have issues, you can manually install like so:
