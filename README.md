@@ -40,11 +40,13 @@ Now, you'll need to create a new database. Give it a name, and make sure to enab
 
 Then, select your newly created database. On the next page, you'll want to copy the `PostgreSQL endpoint` property. It will look something like this.
 
+> If this is your first project, you may have the ability to generate a new API key during the creation of the new DB. This will automatically populate into the Postgres URL that is shown to you. If so, you can skip the next step of creating an API Key.
+
 `postgresql://l5kbra:<YOUR_API_KEY>@us-east-1.sql.xata.sh/<DB_NAME>:main?sslmode=require`
 
-> Xata has branches to create multiple instance of a database. The default branch is `main`. These onboarding steps will assume you are using this default `main` branch. Learn more about [Xata branching](https://xata.io/branching).
-
 You'll need to replace `<YOUR_API_KEY>` with a new API key. You can create your API key in your `Account Settings` which can be found in the dropdown menu on your profile icon in the top right corner of the dashboard.
+
+> Xata uses branches to create multiple instance of a database. The default branch is `main`. These onboarding steps will assume you are using this default `main` branch. Learn more about [Xata branching](https://xata.io/branching).
 
 Then, you'll need to update the `DATABASE_URL` environment variable in your `.env` file.
 
