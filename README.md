@@ -32,29 +32,25 @@ npm install
 
 To get started, you'll need to create a **free** account with [Xata](https://xata.io/).
 
-Xata runs on Postgres, but to get access to the Postgres layer, youll need to enable this in your workspace settings. Find your workspace settings and toggle to enable `Direct Access to Postgres (BETA)`.
+Xata runs on PostgreSQL, but to get access to the PostgreSQL layer, youll need to enable this in your workspace settings. Find your workspace settings and toggle to enable `Direct Access to PostgreSQL (BETA)`.
 
-Now, you'll need to create a new database. Give it a name, and make sure to enable the checkbox that says `Enable direct access to Postgres`.
+Now, you'll need to create a new database. Give it a name, and make sure to enable the checkbox that says `Enable direct access to PostgreSQL`.
 
-> In this project, we'll be connecting to our db in two different ways: using Prisma ORM and the Xata client SDK. All standard CRUD (Create, read, update, and delete) db interactions will be run through Prisma. We'll only be using the Xata client to take advantage of Xata specific features like search and file uploads.
+If this is your first db, you'll be prompted to create an API key and `Select a platform`. Make sure to copy your API key. You can then skip the platform section.
 
-Then, select your newly created database. On the next page, you'll want to copy the `PostgreSQL endpoint` property. It will look something like this.
-
-> If this is your first project, you may have the ability to generate a new API key during the creation of the new DB. This will automatically populate into the Postgres URL that is shown to you. If so, you can skip the next step of creating an API Key.
+Open your database settings and copy the `PostgreSQL endpoint` property. You'll need to replace `<YOUR_API_KEY>` with a new API key. If you haven't already done so, you can create your API key in your `Account Settings` which can be found in the dropdown menu on your profile icon in the top right corner of the dashboard. Your endpoint will look like this.
 
 `postgresql://l5kbra:<YOUR_API_KEY>@us-east-1.sql.xata.sh/<DB_NAME>:main?sslmode=require`
 
-You'll need to replace `<YOUR_API_KEY>` with a new API key. You can create your API key in your `Account Settings` which can be found in the dropdown menu on your profile icon in the top right corner of the dashboard.
-
 > Xata uses branches to create multiple instance of a database. The default branch is `main`. These onboarding steps will assume you are using this default `main` branch. Learn more about [Xata branching](https://xata.io/branching).
 
-Then, you'll need to update the `DATABASE_URL` environment variable in your `.env` file.
+Update the `DATABASE_URL` environment variable in your `.env` file. Make sure to replace `<YOUR_API_KEY>` with the API key you just created.
 
 ```bash
 DATABASE_URL=postgresql://l5kbra:<YOUR_API_KEY>@us-east-1.sql.xata.sh/<DB_NAME>:main?sslmode=require
 ```
 
-> You can click on the `Settings` tab later on if you ever need to come back to these settings.
+### Generate DB Tables Using Prisma
 
 Now, you'll need to push the Prisma schema to your db. In your terminal, run the following command. This will generate the necessary tables in your Xata db.
 
@@ -66,10 +62,11 @@ You should be able to verify the tables were created successfully inside of the 
 
 ![CleanShot 2024-05-08 at 09 18 14](https://github.com/Learn-Build-Teach/deals-for-devs/assets/5391915/32641b1f-fb10-4da4-b462-20c90bb8e077)
 
-
 ### Connect Project To Xata Using the Xata CLI
 
-Lastly, you'll need to generate the Xata configuration and typings in your project. To do this, you'll use the Xata CLI. This should have been installed during the `npm install`. If you have issues, you can manually install like so:
+In this project, we'll be connecting to our db in two different ways: using Prisma ORM and the Xata client SDK. All standard CRUD (Create, read, update, and delete) db interactions will be run through Prisma. We'll use the Xata client to take advantage of Xata specific features like search and file uploads.
+
+You'll need to generate the Xata configuration and typings in your project. To do this, you'll use the Xata CLI. This should have been installed during the `npm install`. If you have issues, you can manually install like so:
 
 ```bash
 npm install @xata.io/cli
@@ -79,6 +76,18 @@ Log in to your Xata account by running the follwing command. This will pop open 
 
 ```bash
 xata auth login
+```
+
+If you run into an issue `xata command not found` you may have a permissions error that prevented you from installing the xata cli. Either run:
+
+```bash
+sudo npm install
+```
+
+or install the cli manually
+
+```bash
+sudo npm install -g @xata.io/cli@latest
 ```
 
 Initialize xata in your project directory with the following command.
