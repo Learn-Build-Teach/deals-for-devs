@@ -67,12 +67,12 @@ export default function Footer() {
         </div>
 
         {/* james quick social link */}
-        <Link
+        {/* <Link
           className="mt-8 text-sm font-medium text-teal-500 md:text-xl"
           href="https://jamesqquick.com/"
         >
           @jamesqquick
-        </Link>
+        </Link> */}
       </div>
     </div>
   )
