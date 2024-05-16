@@ -20,9 +20,8 @@ export default async function CategoryPage({
     redirect('/')
   }
   const category = categoryString as Category
-  console.log(category)
   const deals = await getApprovedDealsByCategory(category)
-  console.log(deals)
+
   return (
     <div>
       <div className="pb-10">
