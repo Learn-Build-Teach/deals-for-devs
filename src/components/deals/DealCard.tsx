@@ -5,6 +5,7 @@ import { FaBeer, FaVideo, FaBook, FaCog, FaCalendar } from 'react-icons/fa'
 import { Category } from '@/types/Types'
 import { format } from 'date-fns'
 import { Deal } from '@prisma/client'
+import Image from 'next/image'
 
 const categoryToIcon: { [key: string]: JSX.Element } = {
   Misc: <FaBeer />,
@@ -35,33 +36,29 @@ export default function DealCard({
   return (
     <Link
       href={deal.link}
-      className="relative max-w-sm cursor-pointer rounded-lg border border-gray-200 bg-gray-800 px-4 py-8 shadow transition duration-300 ease-in-out hover:rotate-1 hover:scale-105 hover:border-4 hover:border-teal-500"
+      className="group relative text-white hover:text-teal-500"
       target="_blank"
       rel="noopener noreferrer"
     >
-      <h2 className="text-2xl font-bold tracking-tight text-gray-200">
-        {deal.name}
-      </h2>
-      {deal.category && (
-        <div className="absolute right-2 top-2 text-teal-500">
-          {categoryToIcon[deal.category] as unknown as Category}
-        </div>
-      )}
-      {deal.startDate && (
-        <small className="text-gray-300">
-          {startDate} - {endDate || '??'}
-        </small>
-      )}
-      <p className="text-md mt-2 line-clamp-4 font-normal text-gray-300">
-        {deal.description}
-      </p>
-      {deal.coupon && (
-        <p className="mt-4 text-sm font-medium text-gray-400">
-          Coupon Code: <ClickableCouponCode coupon={deal.coupon} />
-          {deal.couponPercent && <span>{`(${deal.couponPercent}% off)`}</span>}
+      <Image
+        src={deal.coverImageURL}
+        alt={deal.name}
+        width={480}
+        height={270}
+        className="mb-3 aspect-video rounded-2xl transition duration-300 ease-in-out group-hover:outline group-hover:outline-teal-500"
+      />
+      <h2 className="text-lg font-semibold tracking-tight">{deal.name}</h2>
+      {deal.coupon && deal.couponPercent && (
+        <p className="-gap-y-1 bg-pale-gold absolute right-3 top-3 flex h-14 w-14 -rotate-12 flex-col items-center justify-center rounded-full  text-black shadow-md">
+          <span className="text-md -mb-1 font-bold">{deal.couponPercent}%</span>
+          <span className="text-xs uppercase">off</span>
         </p>
       )}
       {showAdminOptions && <AdminOptions id={deal.id} />}
     </Link>
   )
+}
+
+{
+  /* Coupon Code: <ClickableCouponCode coupon={deal.coupon} /> */
 }

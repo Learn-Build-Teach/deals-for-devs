@@ -14,6 +14,9 @@ const config = {
       },
     },
     extend: {
+      colors: {
+        'pale-gold': '#C4B97AE5',
+      },
       backgroundImage: {
         'dropzone-md': "url('/dropzone-md.svg')",
       },

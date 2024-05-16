@@ -1,5 +1,5 @@
 'use client'
-import DealCard from '@/components/deals/Deal'
+import DealCard from '@/components/deals/DealCard'
 import { Deal } from '@prisma/client'
 
 export default function DealsList({
@@ -10,9 +10,9 @@ export default function DealsList({
   isAdmin?: boolean
 }) {
   return (
-    <div className="mx-auto">
+    <div className="mx-auto py-10">
       {deals.length > 0 && (
-        <div className="mx-auto grid grid-cols-1 gap-8 lg:grid-cols-2 2xl:grid-cols-3">
+        <div className="mx-auto grid grid-cols-1 justify-items-center gap-12 lg:grid-cols-2 xl:grid-cols-3">
           {deals.map((deal) => (
             <DealCard
               key={deal.xata_id}
