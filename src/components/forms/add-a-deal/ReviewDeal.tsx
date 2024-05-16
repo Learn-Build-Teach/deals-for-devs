@@ -6,6 +6,8 @@ import toast from 'react-hot-toast'
 import z from 'zod'
 import { createDeal } from '@/lib/queries'
 import Image from 'next/image'
+import DealGradientPlaceholder from '@/components/DealGradientPlaceholder'
+import { Category } from '@/types/Types'
 
 export default function ReviewDeal() {
   const { newDealData } = useAddDealContext()
@@ -66,13 +68,20 @@ export default function ReviewDeal() {
           {/* display image & percent badge */}
           <div className="relative">
             <div className="relative aspect-video w-full overflow-hidden lg:w-60">
-              <Image
-                src={coverImage}
-                alt={newDealData.productName}
-                className=" rounded-lg"
-                fill={true}
-                priority
-              />
+              {!newDealData.coverImageURL && (
+                <DealGradientPlaceholder
+                  category={newDealData.category as Category}
+                />
+              )}
+              {newDealData.coverImageURL && (
+                <Image
+                  src={coverImage}
+                  alt={newDealData.productName}
+                  className=" rounded-lg"
+                  fill={true}
+                  priority
+                />
+              )}
             </div>
             {/* display the percent off badge if indicated */}
             {newDealData?.percentage && (
