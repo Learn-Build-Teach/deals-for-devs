@@ -115,7 +115,7 @@ export async function getApprovedDealsByCategory(
   return await prisma.deal.findMany({
     where: {
       approved: true,
-      category,
+      category: category.toUpperCase(),
     },
   })
 }

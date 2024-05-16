@@ -3,30 +3,31 @@ import { redirect } from 'next/navigation'
 import { Category } from '@/types/Types'
 import { getApprovedDealsByCategory } from '@/lib/queries'
 import PageHeader from '@/components/PageHeader'
+import DealsList from '@/components/deals/DealsList'
 
 export default async function CategoryPage({
   params,
 }: {
   params: { category: string }
 }) {
-  const { category: categoryString } = params
-  console.log(categoryString)
-  //check for valid category
-  if (
-    !categoryString ||
-    Object.keys(Category).indexOf(categoryString.toUpperCase()) === -1
-  ) {
+  if (!params.category) {
+    redirect('/')
+  }
+
+  const categoryString = decodeURIComponent(params.category).toUpperCase()
+
+  if (Object.keys(Category).indexOf(categoryString as Category) === -1) {
     redirect('/')
   }
   const category = categoryString as Category
-
+  console.log(category)
   const deals = await getApprovedDealsByCategory(category)
   console.log(deals)
   return (
     <div>
       <div className="pb-10">
         <PageHeader
-          title={category}
+          title={category.toLocaleLowerCase()}
           subtitle={`The best ${category.toLowerCase()} deals`}
         />
       </div>
@@ -38,7 +39,7 @@ export default async function CategoryPage({
           No deals found for this category
         </div>
       )}
-      {/* <DealsList deals={deals} /> */}
+      <DealsList deals={deals} />
     </div>
   )
 }
