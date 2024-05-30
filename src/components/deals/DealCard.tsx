@@ -6,6 +6,7 @@ import { Category } from '@/types/Types'
 import { format } from 'date-fns'
 import { Deal } from '@prisma/client'
 import Image from 'next/image'
+import DealGradientPlaceholder from '../DealGradientPlaceholder'
 
 const categoryToIcon: { [key: string]: JSX.Element } = {
   Misc: <FaBeer />,
@@ -36,17 +37,22 @@ export default function DealCard({
   return (
     <Link
       href={deal.link}
-      className="group relative text-white hover:text-teal-500"
+      className="group relative w-full text-white hover:text-teal-500"
       target="_blank"
       rel="noopener noreferrer"
     >
-      <Image
-        src={deal.coverImageURL || ''}
-        alt={deal.name}
-        width={480}
-        height={270}
-        className="mb-3 aspect-video rounded-2xl transition duration-300 ease-in-out group-hover:outline group-hover:outline-teal-500"
-      />
+      {!deal.coverImageURL && (
+        <DealGradientPlaceholder category={deal.category as Category} />
+      )}
+      {deal.coverImageURL && (
+        <Image
+          src={deal.coverImageURL}
+          alt={deal.name}
+          width={480}
+          height={270}
+          className="aspect-video rounded-2xl transition duration-300 ease-in-out group-hover:outline group-hover:outline-teal-500"
+        />
+      )}
       <h2 className="text-lg font-semibold tracking-tight">{deal.name}</h2>
       {deal.coupon && deal.couponPercent && (
         <p className="-gap-y-1 absolute right-3 top-3 flex h-14 w-14 -rotate-12 flex-col items-center justify-center rounded-full bg-pale-gold  text-black shadow-md">
