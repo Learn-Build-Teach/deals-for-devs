@@ -31,7 +31,7 @@ export default function CategorySelect({
             .map((dealType) => (
               <SelectItem
                 key={dealType}
-                value={dealType}
+                value={dealType.toUpperCase()}
                 className="text-base md:text-xl"
               >
                 {dealType}

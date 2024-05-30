@@ -1,12 +1,12 @@
 import { z } from 'zod'
 
 export enum Category {
-  EBOOK = 'Ebook',
-  COURSE = 'Course',
-  TOOL = 'Tool',
-  CONFERENCE = 'Conference',
+  EBOOKS = 'Ebooks',
+  COURSES = 'Courses',
+  TOOLS = 'Tools',
+  CONFERENCES = 'Conferences',
   MISC = 'Misc',
-  BOOTCAMP = 'Bootcamp',
+  BOOTCAMPS = 'Bootcamps',
   'OFFICE EQUIPMENT' = 'Office Equipment',
 }
 

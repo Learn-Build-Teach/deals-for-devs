@@ -1,28 +1,44 @@
 import CategoryOptions from '@/components/CategoryOptions'
 import { redirect } from 'next/navigation'
 import { Category } from '@/types/Types'
+import { getApprovedDealsByCategory } from '@/lib/queries'
+import PageHeader from '@/components/PageHeader'
+import DealsList from '@/components/deals/DealsList'
 
 export default async function CategoryPage({
   params,
 }: {
   params: { category: string }
 }) {
-  const { category: categoryString } = params
-  //check for valid category
-  if (!(categoryString in Category)) {
+  if (!params.category) {
     redirect('/')
   }
-  //   const category = categoryString as Category;
 
-  //   const deals = await getApprovedDealsByCategory(category);
-  redirect('/')
+  const categoryString = decodeURIComponent(params.category).toUpperCase()
+
+  if (Object.keys(Category).indexOf(categoryString as Category) === -1) {
+    redirect('/')
+  }
+  const category = categoryString as Category
+  const deals = await getApprovedDealsByCategory(category)
+
   return (
     <div>
-      <h1 className="mb-10 text-center text-4xl font-bold text-white">
-        Top <span className="text-teal-500">{params.category}</span> Deals
-      </h1>
-      <CategoryOptions />
-      {/* <DealsList deals={deals} /> */}
+      <div className="pb-10">
+        <PageHeader
+          title={category.toLocaleLowerCase()}
+          subtitle={`The best ${category.toLowerCase()} deals`}
+        />
+      </div>
+      <div className="pb-10">
+        <CategoryOptions />
+      </div>
+      {deals.length === 0 && (
+        <div className="text-center text-lg text-gray-500">
+          No deals found for this category
+        </div>
+      )}
+      <DealsList deals={deals} />
     </div>
   )
 }
