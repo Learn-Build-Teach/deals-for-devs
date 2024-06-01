@@ -9,7 +9,6 @@ export default function AdminOptions({ id }: { id: string }) {
   const handleApprove = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     e.preventDefault()
-    console.log(id)
     await fetch('/api/deals/approve', {
       method: 'POST',
       body: JSON.stringify({ id }),

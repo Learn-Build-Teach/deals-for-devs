@@ -3,6 +3,7 @@ import Subscriber from '@/components/subscriber/Subscriber'
 import { redirect } from 'next/navigation'
 import VerifiedStatus from '@/components/subscriber/VerifiedStatus'
 import { getOneSubscriberByToken } from '@/lib/queries'
+import { Subscriber as SubscriberType } from '@prisma/client'
 
 interface SubscriberPreferencesProps {
   searchParams: {
@@ -19,7 +20,8 @@ export default async function SubscriberPreferences({
     return redirect('/')
   }
 
-  const subscriber = await getOneSubscriberByToken(tokenFromParams)
+  const subscriber: SubscriberType | null =
+    await getOneSubscriberByToken(tokenFromParams)
 
   if (!subscriber || !subscriber.email || !subscriber.verified) {
     return redirect('/')

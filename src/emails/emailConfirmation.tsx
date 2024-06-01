@@ -12,12 +12,13 @@ import {
   Tailwind,
   Link,
 } from '@react-email/components'
+import { env } from '@/env'
 interface EmailTemplateProps {
   email: string
   link: string
 }
 
-const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+const baseURL = env.NEXT_PUBLIC_BASE_URL
 
 export const confirmEmail = (props: EmailTemplateProps) => (
   <Tailwind>
@@ -35,8 +36,6 @@ export const confirmEmail = (props: EmailTemplateProps) => (
           </Section>
           <Heading style={h1}>Confirm your email address</Heading>
           <Section className="py-6">
-            If you are having trouble clicking the button, copy and paste the
-            URL below 👇
             <Link
               href={props.link}
               className="rounded-lg border bg-teal-500 px-5 py-3 text-xl text-white no-underline"
@@ -45,21 +44,21 @@ export const confirmEmail = (props: EmailTemplateProps) => (
               Confirm Email
             </Link>
           </Section>
-          <Text className="mb-[15px] text-xl">
-            Your confirmation link is below. Please click it to confirm your
-            email:
-          </Text>
 
+          <Text className="text-lg">
+            If you are having trouble clicking the button, copy and paste the
+            URL below 👇
+          </Text>
           <Section style={codeBox}>
-            <Text className="text-xl">{props.link}</Text>
+            <Text className="text-lg">{props.link}</Text>
           </Section>
 
-          <Text className="text-xl">
-            If you {`didn't`} request this email, {`there's`} nothing to worry
-            about, you can safely ignore it.
+          <Text className="font-sans text-xl">
+            <strong>Deals for Devs Team</strong>
           </Text>
-          <Text className="font-sans text-3xl">
-            <strong>{`Deals for Devs Team`}</strong>
+          <Text className="text-sm">
+            Ps. If you {`didn't`} request this email, {`there's`} nothing to
+            worry about, you can safely ignore it.
           </Text>
         </Container>
       </Body>

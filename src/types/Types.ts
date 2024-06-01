@@ -1,13 +1,20 @@
 import { z } from 'zod'
 
 export enum Category {
-  EBOOK = 'Ebook',
-  COURSE = 'Course',
-  TOOL = 'Tool',
-  CONFERENCE = 'Conference',
+  EBOOKS = 'Ebooks',
+  COURSES = 'Courses',
+  TOOLS = 'Tools',
+  CONFERENCES = 'Conferences',
   MISC = 'Misc',
-  BOOTCAMP = 'Bootcamp',
+  BOOTCAMPS = 'Bootcamps',
   'OFFICE EQUIPMENT' = 'Office Equipment',
+}
+
+export enum AddDealRoutes {
+  PRODUCT_INFO = 'product-info',
+  COUPON_DETAILS = 'coupon-details',
+  CONTACT_INFO = 'contact-info',
+  REVIEW_DEAL = 'review-deal',
 }
 
 export enum Status {
@@ -40,3 +47,9 @@ export type NewSubscriberData = {
 }
 
 export type ReturnValue<T> = { data: T } | { error: string }
+
+export enum ImageUploadStatus {
+  PENDING = 'PENDING',
+  UPLOADING = 'UPLOADING',
+  UPLOADED = 'UPLOADED',
+}

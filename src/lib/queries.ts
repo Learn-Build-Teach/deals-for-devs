@@ -37,11 +37,17 @@ export async function createSubscriber(
 export async function getOneSubscriberByToken(
   token: string
 ): Promise<Subscriber | null> {
-  return await prisma.subscriber.findFirst({
+  const res = await prisma.subscriber.findFirst({
     where: {
       token,
     },
   })
+
+  if (!res) {
+    return null
+  }
+
+  return res
 }
 
 export async function getOneSubscriberByEmail(
@@ -109,16 +115,18 @@ export async function getApprovedDealsByCategory(
   return await prisma.deal.findMany({
     where: {
       approved: true,
-      category,
+      category: category.toUpperCase(),
     },
   })
 }
 
 //TODO: get a type from prisma for new deal
 export const createDeal = async (newDeal: any) => {
-  return await prisma.deal.create({
+  const data = await prisma.deal.create({
     data: newDeal,
   })
+
+  return data
 }
 
 export const getAdminUserById = async (userId: string) => {

@@ -45,3 +45,8 @@ next-env.d.ts
 
 # Sentry Config File
 .sentryclirc
+
+# Xata
+.xatarc
+src/xata.ts
+.xata
