@@ -2,7 +2,6 @@
 import '../../../types/env'
 import '../../globals.css'
 import { ClerkProvider, auth } from '@clerk/nextjs'
-import { auth } from '@clerk/nextjs'
 import { isAdminUser } from '@/utils/auth'
 import { redirect } from 'next/navigation'
 import AdminNav from '@/components/dashboard/AdminNav'

@@ -1,10 +1,11 @@
-import type { Metadata } from 'next'
 import './globals.css'
-import Nav from '@/components/nav/Nav'
+import { SearchProvider } from '@/components/SearchContext'
+import { Suspense } from 'react'
+import { Toaster } from 'react-hot-toast'
 import Footer from '@/components/Footer'
 import GlobalSearch from '@/components/GlobalSearch'
-import { SearchProvider } from '@/components/SearchContext'
-import { Toaster } from 'react-hot-toast'
+import Nav from '@/components/nav/Nav'
+import type { Metadata } from 'next'
 
 import { Raleway } from 'next/font/google'
 const raleway = Raleway({
