@@ -1,0 +1,16 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_26d3607766a1dc",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE TABLE \"Deal\" (id text NOT NULL, coupon varchar(255), approved boolean NOT NULL DEFAULT false, description varchar(255) NOT NULL, \"couponPercent\" int DEFAULT 0, featured boolean NOT NULL DEFAULT false, name varchar(255) NOT NULL, link varchar(255) NOT NULL, category varchar(50) NOT NULL, \"startDate\" timestamp(3) NOT NULL DEFAULT current_timestamp, \"endDate\" timestamp(3) NOT NULL DEFAULT current_timestamp, xata_id text NOT NULL DEFAULT 'rec_'::text || xata_private.xid()::text, xata_version int NOT NULL DEFAULT 0, xata_createdat timestamptz(6) NOT NULL DEFAULT current_timestamp, xata_updatedat timestamptz(6) NOT NULL DEFAULT current_timestamp, \"coverImageURL\" varchar(255), \"coverImageId\" varchar(255), \"contactEmail\" varchar(255) NOT NULL, \"contactName\" varchar(255) NOT NULL, CONSTRAINT \"Deal_pkey\" PRIMARY KEY (id))"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_26d3607766a1dc",
+  "startedAt": "2024-05-08T00:19:07.387258Z"
+}

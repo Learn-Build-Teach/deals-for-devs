@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_e53d75a32d28e8",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE UNIQUE INDEX \"_pgroll_new_DealImage_xata_id_key\" ON \"DealImage\" USING btree (xata_id)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_e53d75a32d28e8",
+  "parent": "sql_cd4744b3d5e2ee",
+  "startedAt": "2024-05-08T00:19:08.418488Z"
+}

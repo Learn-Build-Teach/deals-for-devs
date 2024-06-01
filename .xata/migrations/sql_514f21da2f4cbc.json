@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_514f21da2f4cbc",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE TABLE \"DealImage\" (xata_id text NOT NULL DEFAULT 'rec_'::text || xata_private.xid()::text, xata_version int NOT NULL DEFAULT 0, xata_createdat timestamptz(6) NOT NULL DEFAULT current_timestamp, xata_updatedat timestamptz(6) NOT NULL DEFAULT current_timestamp, image jsonb NOT NULL)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_514f21da2f4cbc",
+  "parent": "sql_e4e9656a6e92f7",
+  "startedAt": "2024-05-08T00:19:07.985542Z"
+}

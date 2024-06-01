@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_5a34d14708ce43",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE UNIQUE INDEX \"Deal_coverImageId_key\" ON \"Deal\" USING btree (\"coverImageId\")"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_5a34d14708ce43",
+  "parent": "sql_6e61fe9e4199d3",
+  "startedAt": "2024-05-08T00:19:08.24632Z"
+}
