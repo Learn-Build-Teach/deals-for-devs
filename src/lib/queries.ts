@@ -13,6 +13,15 @@ export async function getAllDeals() {
   return deals
 }
 
+export async function getDealById(id: string): Promise<Deal | null> {
+  return await prisma.deal.findUnique({
+    where: {
+      id,
+      approved: true,
+    },
+  })
+}
+
 export async function getAllUnapprovedDeals() {
   const deals = await prisma.deal.findMany({
     where: {
