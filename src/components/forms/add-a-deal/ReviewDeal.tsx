@@ -8,6 +8,7 @@ import { createDeal } from '@/lib/queries'
 import Image from 'next/image'
 import DealGradientPlaceholder from '@/components/DealGradientPlaceholder'
 import { Category } from '@/types/Types'
+import DealPreview from '@/components/DealPreview'
 
 export default function ReviewDeal() {
   const { newDealData } = useAddDealContext()
@@ -56,89 +57,20 @@ export default function ReviewDeal() {
     }
   }
 
-  const coverImage =
-    newDealData.coverImageURL ?
-      newDealData.coverImageURL
-    : '/images/defaultImage.jpg'
-
   return (
-    <section className="mx-auto">
-      <div className="flex max-w-[700px] flex-col">
-        <div className="flex flex-col gap-10 lg:flex-row">
-          {/* display image & percent badge */}
-          <div className="relative">
-            <div className="relative aspect-video w-full overflow-hidden lg:w-60">
-              {!newDealData.coverImageURL && (
-                <DealGradientPlaceholder
-                  category={newDealData.category as Category}
-                />
-              )}
-              {newDealData.coverImageURL && (
-                <Image
-                  src={coverImage}
-                  alt={newDealData.productName}
-                  className=" rounded-lg"
-                  fill={true}
-                  priority
-                />
-              )}
-            </div>
-            {/* display the percent off badge if indicated */}
-            {newDealData?.percentage && (
-              <div className="absolute right-1 top-1 flex h-9 w-9 -rotate-[21deg] flex-col items-center justify-center rounded-full bg-[#C4B97A] text-xs text-black shadow-black drop-shadow-2xl">
-                <span className="-mb-1 mt-1 text-center font-bold">{`${newDealData.percentage}%`}</span>
-                <span className="text-[6px] font-semibold uppercase">off</span>
-              </div>
-            )}
-          </div>
-          {/* Deal Information */}
-          <div className="flex flex-col">
-            <span className="text-xl md:text-3xl">
-              {newDealData.productName}
-            </span>
-            {/* website */}
-            <div className="mt-2 flex gap-2 text-sm md:mt-4 md:text-lg">
-              <span className="font-light text-white/70">Website:</span>
-              <span className="font-light text-white">
-                <a
-                  href={newDealData.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="underline"
-                >
-                  {newDealData.url}
-                </a>
-              </span>
-            </div>
-            {/* Coupon Code */}
-            <div className="flex gap-2 text-sm md:mt-1.5 md:text-lg">
-              <span className="font-light text-white/70">Coupon Code:</span>
-              <span className="font-light text-white">
-                {newDealData.couponCode || 'No coupon code required'}
-              </span>
-            </div>
-            {/* Valid From */}
-            <div className="flex gap-2 text-sm md:mt-1.5 md:text-lg">
-              <span className="font-light text-white/70">Valid from:</span>
-              <span className="font-light text-white">
-                {`${format(new Date(newDealData.startDate), 'MMM d')} - ${format(new Date(newDealData.endDate), 'MMM d, yyyy')}` ||
-                  'No coupon code required'}
-              </span>
-            </div>
-            {/* Category*/}
-            <div className="flex gap-2 text-sm md:mt-1.5 md:text-lg">
-              <span className="font-light text-white/70">Category:</span>
-              <span className="font-light text-white">
-                {newDealData.category || 'No coupon code required'}
-              </span>
-            </div>
-          </div>
-        </div>
-        {/* deal description */}
-        <div className="mt-5 flex w-full max-w-[700px] flex-col items-start text-sm md:mt-10 md:text-lg ">
-          <span className="font-bold uppercase">DESCRIPTION</span>
-          <p className="font-light">{newDealData.description}</p>
-        </div>
+    <section className="w-full">
+      <div className="flex flex-col">
+        <DealPreview
+          name={newDealData.productName}
+          url={newDealData.url}
+          couponCode={newDealData.couponCode}
+          couponPercent={newDealData.percentage}
+          coverImageURL={newDealData.coverImageURL}
+          startDate={new Date(newDealData.startDate)}
+          endDate={new Date(newDealData.endDate)}
+          category={newDealData.category}
+          description={newDealData.description}
+        />
         <button
           type="button"
           className="mt-5 rounded-lg bg-teal-600 py-4 text-lg text-black disabled:bg-teal-600/30 lg:mt-10 lg:py-7 lg:text-2xl"

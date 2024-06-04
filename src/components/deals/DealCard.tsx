@@ -36,7 +36,7 @@ export default function DealCard({
 
   return (
     <Link
-      href={deal.link}
+      href={`/deals/${deal.id}`}
       className="group relative w-full text-white hover:text-teal-500"
       target="_blank"
       rel="noopener noreferrer"
