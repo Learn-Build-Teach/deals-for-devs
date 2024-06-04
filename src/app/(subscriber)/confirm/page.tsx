@@ -68,7 +68,7 @@ export default async function ConfirmEmail({
             href="/deals"
             className="mt-2 rounded-lg bg-teal-600 p-4 py-4 text-xl hover:bg-teal-600/40 lg:text-4xl"
           >
-            View All Deals
+            Start Shopping Deals!
           </Link>
         </>
       )}
