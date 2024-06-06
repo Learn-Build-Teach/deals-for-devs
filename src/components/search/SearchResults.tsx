@@ -42,7 +42,7 @@ export default function SearchResults({
       )}
 
       {!loading && deals && deals.length > 0 && (
-        <div className="hide-scrollbar overflow-y-scroll px-1">
+        <div className=" px-1">
           <p className="pb-4 text-gray-400">{deals.length} results found</p>
           <div className="flex max-h-[100%] grow flex-col items-stretch gap-y-4  ">
             {deals.map((deal) => (
