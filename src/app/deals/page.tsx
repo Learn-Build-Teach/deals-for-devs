@@ -11,10 +11,7 @@ export default async function DealsPage() {
   return (
     <div>
       <div>
-        <PageHeader
-          title="View all deals"
-          subtitle="From online courses to conference tickets, we've curated the best ongoing deals!"
-        />
+        <PageHeader title="All deals" />
       </div>
       <Separator className="my-16" />
 
