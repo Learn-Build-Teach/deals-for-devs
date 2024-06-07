@@ -38,7 +38,6 @@ model AdminUser {
 }
 
 model Subscriber {
-  id                           String   @id @default(uuid())
   status                       String
   email                        String   @db.VarChar(255)
   verified                     Boolean  @default(false)
