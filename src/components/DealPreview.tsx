@@ -35,7 +35,7 @@ export default function DealPreview({
           <Image
             src={coverImageURL}
             alt={name}
-            className=" rounded-lg"
+            className="rounded-lg object-cover"
             fill={true}
             priority
           />

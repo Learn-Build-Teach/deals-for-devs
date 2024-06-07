@@ -38,7 +38,6 @@ export default function DealCard({
     <Link
       href={`/deals/${deal.id}`}
       className="group relative w-full text-white hover:text-teal-500"
-      target="_blank"
       rel="noopener noreferrer"
     >
       {!deal.coverImageURL && (
@@ -50,7 +49,7 @@ export default function DealCard({
           alt={deal.name}
           width={480}
           height={270}
-          className="aspect-video rounded-2xl transition duration-300 ease-in-out group-hover:outline group-hover:outline-teal-500"
+          className="aspect-video rounded-2xl object-cover transition duration-300 ease-in-out group-hover:outline group-hover:outline-teal-500"
         />
       )}
       <h2 className="text-lg font-semibold tracking-tight">{deal.name}</h2>
