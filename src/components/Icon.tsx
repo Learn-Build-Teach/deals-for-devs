@@ -2,7 +2,7 @@
 
 interface IconProps {
   id: string
-  size: number
+  size?: number
   className?: string
 }
 

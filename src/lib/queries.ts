@@ -1,67 +1,128 @@
 'use server'
-import { NewSubscriberData } from '@/types/Types'
-import { Status } from '@/types/Types'
+import { Category, NewSubscriberData, Status } from '@/types/Types'
+import prisma from './db'
+import { Deal, Subscriber } from '@prisma/client'
+import { DealRecord } from '@/xata'
 
-import { getXataClient, DealsRecord, Subscribers } from '@/xata'
-const xataClient = getXataClient()
-
-// deal queries
+// DEAL QUERIES
 export async function getAllDeals() {
-  const deals: DealsRecord[] = await xataClient.db.deals
-    .sort('xata.createdAt', 'desc')
-    .getMany()
-
+  const deals = await prisma.deal.findMany({
+    orderBy: {
+      xata_createdat: 'desc',
+    },
+  })
   return deals
 }
 
-// subscriber queries
-export async function createSubscriber(
-  newSubscriberData: NewSubscriberData
-): Promise<Subscribers> {
-  const newSubscriber =
-    await xataClient.db.subscribers.create(newSubscriberData)
-
-  return newSubscriber
+export async function getDealById(id: string): Promise<Deal | null> {
+  return await prisma.deal.findUnique({
+    where: {
+      id,
+      approved: true,
+    },
+  })
 }
 
-export async function getOneSubscriberByToken(token: string) {
-  const subscriber = await xataClient.db.subscribers
-    .filter({
-      token,
-    })
-    .getFirst()
-
-  return subscriber
+export async function getAllUnapprovedDeals() {
+  const deals = await prisma.deal.findMany({
+    where: {
+      approved: false,
+    },
+    orderBy: {
+      xata_createdat: 'desc',
+    },
+  })
+  return deals
 }
 
-export async function getOneSubscriberByEmail(email: string) {
-  const subscriber = await xataClient.db.subscribers
-    .filter({
-      email,
-    })
-    .getFirst()
-
-  return subscriber
-}
-export async function getAllSubscribers(): Promise<Subscribers[]> {
-  const subscribers = await xataClient.db.subscribers.getMany({})
-
-  return subscribers
+export async function approveDeal(id: string): Promise<Deal> {
+  return await prisma.deal.update({
+    where: {
+      id,
+    },
+    data: {
+      approved: true,
+    },
+  })
 }
 
-export async function updateSubscriberToVerified(id: string) {
-  const data = await xataClient.db.subscribers.update(id, {
-    verified: true,
-    status: Status.SUBSCRIBED,
+export async function getRecentApprovedDealsByDate(
+  date: Date
+): Promise<Deal[]> {
+  return await prisma.deal.findMany({
+    where: {
+      approved: true,
+      xata_createdat: {
+        gte: date,
+      },
+    },
+  })
+}
+
+export async function getApprovedDeals(limit: number = 20): Promise<Deal[]> {
+  return await prisma.deal.findMany({
+    where: {
+      approved: true,
+    },
+    take: limit,
+    orderBy: {
+      xata_createdat: 'desc',
+    },
+  })
+}
+export async function getApprovedDealsByCategory(
+  category: Category,
+  limit: number = 20
+): Promise<Deal[]> {
+  return await prisma.deal.findMany({
+    where: {
+      approved: true,
+      category: category.toUpperCase(),
+    },
+    take: limit,
+    orderBy: {
+      xata_createdat: 'desc',
+    },
+  })
+}
+
+//TODO: get a type from prisma for new deal
+export const createDeal = async (newDeal: any) => {
+  const data = await prisma.deal.create({
+    data: newDeal,
   })
 
   return data
 }
 
+export async function getApprovedFeaturedDeals(
+  limit: number = 20
+): Promise<Deal[]> {
+  return await prisma.deal.findMany({
+    where: {
+      approved: true,
+      featured: true,
+    },
+    take: limit,
+    orderBy: {
+      xata_createdat: 'desc',
+    },
+  })
+}
+
+export async function deleteDeal(id: string): Promise<Deal> {
+  return await prisma.deal.delete({
+    where: {
+      id,
+    },
+  })
+}
+
+//SUBSCRIBER QUERIES
 export async function updateSubscriberPreferences(
   id: string,
-  subscriberData: Subscribers
-) {
+  subscriberData: Subscriber
+): Promise<Subscriber> {
   const {
     courseNotifications,
     ebookNotifications,
@@ -84,9 +145,78 @@ export async function updateSubscriberPreferences(
     status: isSubscribed ? Status.SUBSCRIBED : Status.UNSUBSCRIBED,
   }
 
-  await xataClient.db.subscribers.update(id, subscriber)
+  return await prisma.subscriber.update({
+    where: {
+      id,
+    },
+    data: subscriber,
+  })
 }
 
-export async function deleteSubscriber(id: string) {
-  const data = await xataClient.db.subscribers.delete(id)
+export async function deleteSubscriber(id: string): Promise<Subscriber> {
+  return await prisma.subscriber.delete({
+    where: {
+      id,
+    },
+  })
+}
+
+export async function createSubscriber(
+  newSubscriberData: NewSubscriberData
+): Promise<Subscriber | null> {
+  return await prisma.subscriber.create({
+    data: newSubscriberData,
+  })
+}
+
+export async function getOneSubscriberByToken(
+  token: string
+): Promise<Subscriber | null> {
+  const res = await prisma.subscriber.findFirst({
+    where: {
+      token,
+    },
+  })
+
+  if (!res) {
+    return null
+  }
+
+  return res
+}
+
+export async function getOneSubscriberByEmail(
+  email: string
+): Promise<Subscriber | null> {
+  return await prisma.subscriber.findFirst({
+    where: {
+      email,
+    },
+  })
+}
+export async function getAllSubscribers(): Promise<Subscriber[]> {
+  return await prisma.subscriber.findMany()
+}
+
+export async function updateSubscriberToVerified(
+  id: string
+): Promise<Subscriber> {
+  return await prisma.subscriber.update({
+    where: {
+      id,
+    },
+    data: {
+      verified: true,
+      status: Status.SUBSCRIBED,
+    },
+  })
+}
+
+//ADMIN QUERIES
+export const getAdminUserById = async (userId: string) => {
+  return await prisma.adminUser.findUnique({
+    where: {
+      userId,
+    },
+  })
 }

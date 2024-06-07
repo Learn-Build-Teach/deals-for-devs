@@ -7,6 +7,7 @@ type TechStack = {
   id: string
   size: number
   className?: string
+  alt: string
 }
 
 const techStack: TechStack[] = [
@@ -14,18 +15,21 @@ const techStack: TechStack[] = [
     Url: 'https://nextjs.org/',
     id: 'nextjs',
     size: 173.58,
+    alt: 'Next.js',
     className: 'w-20 h-3.5 md:w-44 md:h-7',
   },
   {
     Url: 'https://xata.io/',
     id: 'xata',
     size: 142,
+    alt: 'Xata',
     className: 'w-20 h-9 md:w-36 md:h-10',
   },
   {
     Url: 'https://sentry.io/',
     id: 'sentry',
     size: 221,
+    alt: 'Sentry',
     className: 'w-28 h-8 md:w-56 md:h-16',
   },
 ]
@@ -63,12 +67,12 @@ export default function Footer() {
         </div>
 
         {/* james quick social link */}
-        <Link
+        {/* <Link
           className="mt-8 text-sm font-medium text-teal-500 md:text-xl"
           href="https://jamesqquick.com/"
         >
           @jamesqquick
-        </Link>
+        </Link> */}
       </div>
     </div>
   )
