@@ -24,7 +24,7 @@ model Deal {
   xata_createdat DateTime   @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime   @default(now()) @db.Timestamptz(6)
   coverImageURL  String?    @db.VarChar(255)
-  coverImageId   String?    @unique @db.VarChar(255)
+  coverImageId   String?    @db.VarChar(255)
   contactEmail   String     @db.VarChar(255)
   contactName    String     @db.VarChar(255)
 }
