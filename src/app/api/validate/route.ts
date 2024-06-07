@@ -19,9 +19,9 @@ export async function GET(request: NextRequest) {
     redirect('/')
   }
 
-  const { id } = subscriber
+  const { xata_id } = subscriber
 
-  const data = await updateSubscriberToVerified(id)
+  const data = await updateSubscriberToVerified(xata_id)
 
   if (!data) {
     //TODO: handle not found (return's null)
