@@ -33,7 +33,7 @@ export default function ProductInfo() {
     router.push(`/deals/add/${AddDealRoutes.COUPON_DETAILS}`)
   }
 
-  const handleImageUpload = async (file: any) => {
+  const handleImageUpload = async (file: File) => {
     setImageUploadStatus(ImageUploadStatus.UPLOADING)
 
     // get the image upload url from xata

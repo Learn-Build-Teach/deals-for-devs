@@ -1,25 +1,42 @@
 import React, { useCallback, useState } from 'react'
-import { useDropzone } from 'react-dropzone'
+import { DropEvent, FileRejection, useDropzone } from 'react-dropzone'
 import Icon from '@/components/Icon'
+import toast from 'react-hot-toast'
 
 export default function DragAndDropImage({
   onFileChange,
 }: {
-  onFileChange: (file: any) => void
+  onFileChange: (file: File) => void
   handleDelete: () => void
 }) {
   const [file, setFile] = useState<File | undefined>()
 
   const onDrop = useCallback(
-    (acceptedFile: File[]) => {
-      setFile(acceptedFile[0])
-      onFileChange(acceptedFile[0])
+    (acceptedFiles: File[]) => {
+      console.log(acceptedFiles)
+      if (acceptedFiles.length === 0) return
+
+      setFile(acceptedFiles[0])
+      onFileChange(acceptedFiles[0])
     },
     [onFileChange]
   )
 
+  const onDropRejected = useCallback(
+    (fileRejections: FileRejection[], event: DropEvent) => {
+      console.log(fileRejections)
+      const fileRejection = fileRejections[0]
+      const fileError = fileRejection.errors[0]
+      if (fileError.code === 'file-too-large') {
+        toast.error('File is too large. Max file size is 2MB')
+      }
+    },
+    []
+  )
+
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
+    onDropRejected,
     accept: {
       'image/png': ['.png'],
       'image/jpeg': ['.jpg', '.jpeg'],
@@ -43,7 +60,7 @@ export default function DragAndDropImage({
           Drag ‘n’ drop or click to upload an image
         </p>
         <p className="text-sm font-extralight text-white md:text-lg">
-          PNG, JPEG files accepted
+          Formats: PNG, JPEG (2mb max)
         </p>
       </div>
     </div>
