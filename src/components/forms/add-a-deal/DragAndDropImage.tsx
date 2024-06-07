@@ -13,7 +13,6 @@ export default function DragAndDropImage({
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      console.log(acceptedFiles)
       if (acceptedFiles.length === 0) return
 
       setFile(acceptedFiles[0])
@@ -24,7 +23,6 @@ export default function DragAndDropImage({
 
   const onDropRejected = useCallback(
     (fileRejections: FileRejection[], event: DropEvent) => {
-      console.log(fileRejections)
       const fileRejection = fileRejections[0]
       const fileError = fileRejection.errors[0]
       if (fileError.code === 'file-too-large') {
