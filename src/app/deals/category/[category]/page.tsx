@@ -19,22 +19,26 @@ export default async function CategoryPage({
   if (Object.keys(Category).indexOf(categoryString as Category) === -1) {
     redirect('/')
   }
+  //TODO move logic for converting deals to capitalized and singular to a helper function
   const category = categoryString as Category
   const deals = await getApprovedDealsByCategory(category)
-
+  let capitalizedCategory = category
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.toLowerCase().slice(1))
+    .join(' ')
+  if (capitalizedCategory.endsWith('s')) {
+    capitalizedCategory = capitalizedCategory.slice(0, -1)
+  }
   return (
     <div>
       <div className="pb-10">
-        <PageHeader
-          title={category.toLocaleLowerCase()}
-          subtitle={`The best ${category.toLowerCase()} deals`}
-        />
+        <PageHeader title={`${capitalizedCategory} Deals`} />
       </div>
       <div className="pb-10">
         <CategoryOptions />
       </div>
       {deals.length === 0 && (
-        <div className="text-center text-lg text-gray-500">
+        <div className="text-center text-xl text-gray-300">
           No deals found for this category
         </div>
       )}

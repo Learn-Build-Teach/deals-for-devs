@@ -120,7 +120,7 @@ export async function deleteDeal(id: string): Promise<Deal> {
 
 //SUBSCRIBER QUERIES
 export async function updateSubscriberPreferences(
-  id: string,
+  xata_id: string,
   subscriberData: Subscriber
 ): Promise<Subscriber> {
   const {
@@ -147,16 +147,16 @@ export async function updateSubscriberPreferences(
 
   return await prisma.subscriber.update({
     where: {
-      id,
+      xata_id,
     },
     data: subscriber,
   })
 }
 
-export async function deleteSubscriber(id: string): Promise<Subscriber> {
+export async function deleteSubscriber(xata_id: string): Promise<Subscriber> {
   return await prisma.subscriber.delete({
     where: {
-      id,
+      xata_id,
     },
   })
 }
@@ -199,11 +199,11 @@ export async function getAllSubscribers(): Promise<Subscriber[]> {
 }
 
 export async function updateSubscriberToVerified(
-  id: string
+  xata_id: string
 ): Promise<Subscriber> {
   return await prisma.subscriber.update({
     where: {
-      id,
+      xata_id,
     },
     data: {
       verified: true,

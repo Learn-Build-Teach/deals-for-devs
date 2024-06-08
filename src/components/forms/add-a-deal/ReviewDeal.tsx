@@ -53,6 +53,7 @@ export default function ReviewDeal() {
       localStorage.removeItem('deals-for-devs-newDealData')
       return router.push('/deals')
     } catch (error) {
+      console.error(error)
       return toast.error('Please fill out all required fields')
     }
   }
