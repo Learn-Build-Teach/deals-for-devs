@@ -11,7 +11,7 @@ model Deal {
   id             String     @id @default(uuid())
   coupon         String?    @db.VarChar(255)
   approved       Boolean    @default(false)
-  description    String     @db.VarChar(255)
+  description    String     @db.Text
   couponPercent  Int?       @default(0)
   featured       Boolean    @default(false)
   name           String     @db.VarChar(255)
