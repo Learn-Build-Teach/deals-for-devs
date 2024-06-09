@@ -4,6 +4,7 @@ import DealGradientPlaceholder from '../DealGradientPlaceholder'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import DealImage from '../deals/DealImage'
 
 interface ISearchedDealProps {
   deal: Deal
@@ -19,19 +20,11 @@ export default function SearchedDeal({ deal }: ISearchedDealProps) {
       rel="noopener noreferrer"
     >
       <div className="w-full">
-        {!deal.coverImageURL && (
-          <DealGradientPlaceholder category={deal.category as Category} />
-        )}
-        {deal.coverImageURL && (
-          <Image
-            src={deal.coverImageURL}
-            alt={deal.name}
-            className="aspect-video rounded-lg object-cover transition-colors group-hover:outline group-hover:outline-teal-500"
-            width={960}
-            height={540}
-            priority
-          />
-        )}
+        <DealImage
+          name={deal.name}
+          coverImageURL={deal.coverImageURL}
+          category={deal.category as Category}
+        />
       </div>
       <div className="SearchedDealTextContainer col-span-4 space-y-1">
         <h2 className="text-2xl font-bold tracking-tight text-gray-200 transition-colors group-hover:text-teal-500 group-hover:underline">
