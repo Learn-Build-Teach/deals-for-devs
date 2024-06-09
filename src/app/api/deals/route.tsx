@@ -16,7 +16,14 @@ export async function GET(request: NextRequest) {
       target: ['name', 'description'],
     })
 
-    return new Response(JSON.stringify(records), {
+    console.log(records[0])
+    //TODO: fix this hack based on weird data from search api
+    const formattedRecords = records.map((record) => ({
+      ...record,
+      xata_id: record.id,
+    }))
+
+    return new Response(JSON.stringify(formattedRecords), {
       headers: { 'content-type': 'application/json' },
     })
   } catch (error) {

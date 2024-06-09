@@ -4,6 +4,7 @@ import DealGradientPlaceholder from './DealGradientPlaceholder'
 import { Category } from '@/types/Types'
 import Image from 'next/image'
 import ClickableCouponCode from './ClickableCouponCode'
+import DealImage from './deals/DealImage'
 
 export default function DealPreview({
   url,
@@ -28,18 +29,11 @@ export default function DealPreview({
   return (
     <div className="flex flex-col items-start gap-10 text-white lg:flex-row lg:items-center">
       <div className="align-center relative aspect-video w-full max-w-[600px] self-center">
-        {!coverImageURL && (
-          <DealGradientPlaceholder category={category as Category} />
-        )}
-        {coverImageURL && (
-          <Image
-            src={coverImageURL}
-            alt={name}
-            className="rounded-lg object-cover"
-            fill={true}
-            priority
-          />
-        )}
+        <DealImage
+          name={name}
+          coverImageURL={coverImageURL || null}
+          category={category as Category}
+        />
       </div>
       <div className="flex  flex-col gap-y-1">
         <span className="text-xl md:text-3xl">{name}</span>
