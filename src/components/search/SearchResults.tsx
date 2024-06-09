@@ -1,7 +1,5 @@
 import { Deal } from '@prisma/client'
-import Link from 'next/link'
 import React from 'react'
-import ClickableCouponCode from '../ClickableCouponCode'
 import SearchedDeal from './SearchedDeal'
 
 export default function SearchResults({

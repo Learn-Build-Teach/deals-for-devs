@@ -10,18 +10,18 @@ export default async function DealsPage() {
   //TODO: handle error
   return (
     <div>
-      <div>
-        <PageHeader
-          title="View all deals"
-          subtitle="From online courses to conference tickets, we've curated the best ongoing deals!"
-        />
+      <div className="pb-10">
+        <PageHeader title="All Deals" />
       </div>
-      <Separator className="my-16" />
-
-      <CategoryOptions />
-      <div className="py-10">
-        <DealsList deals={deals} />
+      <div className="pb-10">
+        <CategoryOptions />
       </div>
+      {deals.length === 0 && (
+        <div className="text-center text-xl text-gray-300">
+          No deals found for this category
+        </div>
+      )}
+      <DealsList deals={deals} />
       <NeverMissADeal />
     </div>
   )
