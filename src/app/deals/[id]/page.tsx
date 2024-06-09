@@ -10,9 +10,7 @@ export default async function CategoryPage({
   if (!params.id) {
     //not found
   }
-  console.log(params.id)
   const deal = await getDealById(params.id)
-  console.log(deal)
   if (!deal) {
     notFound()
   }
