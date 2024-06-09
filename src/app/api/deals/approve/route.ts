@@ -1,6 +1,5 @@
 import { approveDeal } from '@/lib/queries'
 import { isAdminUser } from '@/utils/auth'
-import { getXataClient } from '@/xata'
 import { auth } from '@clerk/nextjs'
 import { z } from 'zod'
 

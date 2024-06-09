@@ -45,7 +45,7 @@ export default function SearchResults({
           <p className="pb-4 text-gray-400">{deals.length} results found</p>
           <div className="flex max-h-[100%] grow flex-col items-stretch gap-y-4  ">
             {deals.map((deal) => (
-              <SearchedDeal key={deal.id} deal={deal} />
+              <SearchedDeal key={deal.xata_id} deal={deal} />
             ))}
           </div>
         </div>

@@ -17,7 +17,7 @@ export async function getAllDeals() {
 export async function getDealById(id: string): Promise<Deal | null> {
   return prisma.deal.findUnique({
     where: {
-      id,
+      xata_id: id,
       approved: true,
     },
   })
@@ -38,7 +38,7 @@ export async function getAllUnapprovedDeals() {
 export async function approveDeal(id: string): Promise<Deal> {
   return await prisma.deal.update({
     where: {
-      id,
+      xata_id: id,
     },
     data: {
       approved: true,
@@ -113,7 +113,7 @@ export async function getApprovedFeaturedDeals(
 export async function deleteDeal(id: string): Promise<Deal> {
   return await prisma.deal.delete({
     where: {
-      id,
+      xata_id: id,
     },
   })
 }

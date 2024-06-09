@@ -12,8 +12,8 @@ interface ISearchedDealProps {
 export default function SearchedDeal({ deal }: ISearchedDealProps) {
   return (
     <Link
-      key={deal.id}
-      href={`/deals/${deal.id}`}
+      key={deal.xata_id}
+      href={`/deals/${deal.xata_id}`}
       className="group relative grid cursor-pointer grid-cols-1 gap-y-4 border-b-2 border-b-gray-700 pb-8 pt-4 shadow transition duration-300 ease-in-out  md:grid-cols-5 md:place-items-center md:gap-x-6 md:gap-y-0"
       target="_blank"
       rel="noopener noreferrer"

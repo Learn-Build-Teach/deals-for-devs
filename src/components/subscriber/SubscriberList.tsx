@@ -1,6 +1,6 @@
+import { Subscriber } from '@prisma/client'
 import DeleteButton from './DeleteButton'
 import SubscribeForm from '@/components/forms/SubscribeForm'
-import type { Subscriber } from '@/xata'
 
 interface SubscribersProps {
   subscribers: Subscriber[]
@@ -15,11 +15,11 @@ export default function SubscriberList({ subscribers }: SubscribersProps) {
       <ul className="grid w-full gap-2">
         {subscribers.map((subscriber) => (
           <li
-            key={subscriber.email + subscriber.id}
+            key={subscriber.email + subscriber.xata_id}
             className="flex w-full justify-between border border-gray-800 px-2 py-1 transition-all duration-300 ease-in-out hover:scale-105 hover:border-teal-500"
           >
             {subscriber.email}
-            <DeleteButton id={subscriber.id} />
+            <DeleteButton id={subscriber.xata_id} />
           </li>
         ))}
       </ul>

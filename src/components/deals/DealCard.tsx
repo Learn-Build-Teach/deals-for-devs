@@ -36,7 +36,7 @@ export default function DealCard({
 
   return (
     <Link
-      href={`/deals/${deal.id}`}
+      href={`/deals/${deal.xata_id}`}
       className="group relative w-full text-white hover:text-teal-500"
       rel="noopener noreferrer"
     >
@@ -59,7 +59,7 @@ export default function DealCard({
           <span className="text-xs uppercase">off</span>
         </p>
       )}
-      {showAdminOptions && <AdminOptions id={deal.id} />}
+      {showAdminOptions && <AdminOptions id={deal.xata_id} />}
     </Link>
   )
 }
