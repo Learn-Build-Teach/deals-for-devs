@@ -15,7 +15,7 @@ export async function getAllDeals() {
 }
 
 export async function getDealById(id: string): Promise<Deal | null> {
-  return await prisma.deal.findUnique({
+  return prisma.deal.findUnique({
     where: {
       id,
       approved: true,

@@ -1,7 +1,6 @@
 import { Deal } from '@prisma/client'
-import Link from 'next/link'
 import React from 'react'
-import ClickableCouponCode from '../ClickableCouponCode'
+import SearchedDeal from './SearchedDeal'
 
 export default function SearchResults({
   loading,
@@ -46,29 +45,7 @@ export default function SearchResults({
           <p className="pb-4 text-gray-400">{deals.length} results found</p>
           <div className="flex max-h-[100%] grow flex-col items-stretch gap-y-4  ">
             {deals.map((deal) => (
-              <Link
-                key={deal.id}
-                href={deal.link}
-                className=" relative block cursor-pointer rounded-lg bg-gray-800 px-4 py-8 shadow transition duration-300 ease-in-out  hover:outline hover:outline-teal-500"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <h2 className="text-2xl font-bold tracking-tight text-gray-200">
-                  {deal.name}
-                </h2>
-                <p className="text-md mt-2 line-clamp-4 font-normal text-gray-300">
-                  {deal.description}
-                </p>
-                {deal.coupon && (
-                  <p className="mt-2 flex gap-x-2 text-sm font-medium text-gray-400">
-                    <span>Coupon Code: </span>
-                    <ClickableCouponCode coupon={deal.coupon} />
-                    {deal.couponPercent && (
-                      <span>{`(${deal.couponPercent}% off)`}</span>
-                    )}
-                  </p>
-                )}
-              </Link>
+              <SearchedDeal key={deal.id} deal={deal} />
             ))}
           </div>
         </div>

@@ -1,7 +1,5 @@
-import CategoryOptions from '@/components/CategoryOptions'
 import { notFound } from 'next/navigation'
 import { getDealById } from '@/lib/queries'
-import PageHeader from '@/components/PageHeader'
 import DealPreview from '@/components/DealPreview'
 
 export default async function CategoryPage({
@@ -12,7 +10,6 @@ export default async function CategoryPage({
   if (!params.id) {
     //not found
   }
-
   const deal = await getDealById(params.id)
   if (!deal) {
     notFound()

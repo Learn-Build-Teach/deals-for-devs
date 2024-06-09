@@ -151,7 +151,7 @@ export default function ProductInfo() {
                 alt="Product Image"
                 width={700}
                 height={400}
-                className="absolute bottom-0 left-0 right-0 top-0 aspect-video w-full"
+                className="absolute bottom-0 left-0 right-0 top-0 aspect-video w-full object-cover"
               />
               <button
                 type="button"
