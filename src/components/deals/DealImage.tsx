@@ -23,7 +23,7 @@ export default function DealImage({
           alt={name}
           width={1920}
           height={1080}
-          className="aspect-video rounded-2xl object-cover transition duration-300 ease-in-out group-hover:outline group-hover:outline-teal-500"
+          className="aspect-video rounded-2xl border-4 border-slate-500 object-cover transition duration-300 ease-in-out  group-hover:border-teal-500"
         />
       )}
     </>
