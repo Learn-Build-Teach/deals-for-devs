@@ -1,11 +1,11 @@
-import type { Metadata } from 'next'
 import './globals.css'
-import { ClerkProvider } from '@clerk/nextjs'
-import Nav from '@/components/nav/Nav'
-import Footer from '@/components/Footer'
-import GlobalSearch from '@/components/search/GlobalSearch'
-import { SearchProvider } from '@/components/search/SearchContext'
+import { SearchProvider } from '@/components/SearchContext'
+import { Suspense } from 'react'
 import { Toaster } from 'react-hot-toast'
+import Footer from '@/components/Footer'
+import GlobalSearch from '@/components/GlobalSearch'
+import Nav from '@/components/nav/Nav'
+import type { Metadata } from 'next'
 
 import { Raleway } from 'next/font/google'
 const raleway = Raleway({
@@ -32,11 +32,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" className={raleway.className}>
+    <html lang="en" className={raleway.className}>
+      <Suspense>
+        <PostHogPageview />
+      </Suspense>
+      <PHProvider>
         <body className="">
           <div className="flex min-h-screen flex-col justify-between bg-gray-900">
-            <div className="mx-auto w-full max-w-screen-2xl px-8 pt-5 md:px-24 xl:pt-20">
+            <div className="mx-auto w-full max-w-screen-2xl pt-5 md:px-24 xl:pt-20">
               <SearchProvider>
                 <GlobalSearch />
                 <Nav />
@@ -45,9 +48,11 @@ export default function RootLayout({
             </div>
             <Footer />
           </div>
+          <SpeedInsights />
+          <Analytics />
           <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
         </body>
-      </html>
-    </ClerkProvider>
+      </PHProvider>
+    </html>
   )
 }
