@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Deal {
-  id             String     @id @default(uuid())
+  xata_id        String     @id @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   coupon         String?    @db.VarChar(255)
   approved       Boolean    @default(false)
   description    String     @db.Text
@@ -18,8 +18,7 @@ model Deal {
   link           String     @db.VarChar(255)
   category       String     @db.VarChar(50)
   startDate      DateTime   @default(now())
-  endDate        DateTime   @default(now())
-  xata_id        String     @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  endDate        DateTime?  @db.Date
   xata_version   Int        @default(0)
   xata_createdat DateTime   @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime   @default(now()) @db.Timestamptz(6)
@@ -51,13 +50,13 @@ model Subscriber {
   xata_version                 Int      @default(0)
   xata_createdat               DateTime @default(now()) @db.Timestamptz(6)
   xata_updatedat               DateTime @default(now()) @db.Timestamptz(6)
-  xata_id                      String   @unique(map: "Subscriber__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_id                      String   @id @unique(map: "Subscriber__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model DealImage {
-  xata_id        String   @unique(map: "_pgroll_new_DealImage_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_id        String   @id @unique(map: "_pgroll_new_DealImage_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int      @default(0)
   xata_createdat DateTime @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime @default(now()) @db.Timestamptz(6)

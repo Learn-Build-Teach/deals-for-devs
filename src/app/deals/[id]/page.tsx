@@ -1,7 +1,5 @@
-import CategoryOptions from '@/components/CategoryOptions'
 import { notFound } from 'next/navigation'
 import { getDealById } from '@/lib/queries'
-import PageHeader from '@/components/PageHeader'
 import DealPreview from '@/components/DealPreview'
 
 export default async function CategoryPage({
@@ -12,7 +10,6 @@ export default async function CategoryPage({
   if (!params.id) {
     //not found
   }
-
   const deal = await getDealById(params.id)
   if (!deal) {
     notFound()
@@ -28,7 +25,7 @@ export default async function CategoryPage({
           couponPercent={deal.couponPercent}
           coverImageURL={deal.coverImageURL}
           startDate={deal.startDate}
-          endDate={deal.endDate}
+          endDate={deal.endDate || undefined}
           category={deal.category}
           description={deal.description}
         />

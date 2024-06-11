@@ -11,7 +11,7 @@ export default function DealsLayout({
 }) {
   return (
     <AddDealContextProvider>
-      <div className="w-full px-6 lg:px-0">
+      <div className="w-full px-2 lg:px-0">
         <PageHeader
           title="Share a Deal"
           subtitle="Have an amazing deal or discount tailored for developers? Let us know!"

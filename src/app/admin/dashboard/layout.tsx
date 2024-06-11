@@ -1,21 +1,14 @@
-//info: must import env types file so validation is run
 import { auth } from '@clerk/nextjs'
 import { isAdminUser } from '@/utils/auth'
 import { redirect } from 'next/navigation'
 import AdminNav from '@/components/dashboard/AdminNav'
-import '../../globals.css'
 
 export default async function Home({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const { userId } = auth()
-
-  // If userID is not found, redirects them to the homepage
-  if (!userId) {
-    return redirect('/')
-  }
+  const { userId } = auth().protect()
 
   // If user is logged in check if user is an admin
   const isAdmin = await isAdminUser(userId)

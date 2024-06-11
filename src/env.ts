@@ -21,10 +21,10 @@ export const env = createEnv({
 
   client: {
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
-    NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string().default('/sign-in'),
-    NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string().default('/sign-up'),
-    NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: z.string().default('/dashboard'),
-    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: z.string().default('/dashboard'),
+    NEXT_PUBLIC_CLERK_SIGN_IN_URL: z.string().default('/admin/sign-in'),
+    NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.string().default('/admin/sign-up'),
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: z.string().default('/admin/dashboard'),
+    NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: z.string().default('/admin/dashboard'),
     NEXT_PUBLIC_BASE_URL: z.string(),
     NEXT_PUBLIC_ENVIRONMENT: z.string().default('development'),
     NEXT_PUBLIC_SENTRY_DSN: z.string().optional(),

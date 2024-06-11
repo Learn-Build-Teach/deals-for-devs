@@ -47,13 +47,11 @@ export default function DealGradientPlaceholder({
   return (
     <div
       className={twMerge(
-        'flex aspect-video w-full items-center justify-center rounded-2xl bg-gradient-to-r group-hover:outline group-hover:outline-teal-500',
+        'flex aspect-video w-full items-center justify-center rounded-xl border-4 border-slate-500 bg-gradient-to-r  group-hover:border-teal-500',
         categoryToGradient[category || 'MISC']
       )}
     >
-      <div className="h-16 w-16 text-gray-900">
-        {categoryToIcon[category || 'MISC']}
-      </div>
+      <div className="text-gray-900">{categoryToIcon[category || 'MISC']}</div>
     </div>
   )
 }

@@ -7,6 +7,7 @@ import { format } from 'date-fns'
 import { Deal } from '@prisma/client'
 import Image from 'next/image'
 import DealGradientPlaceholder from '../DealGradientPlaceholder'
+import DealImage from './DealImage'
 
 const categoryToIcon: { [key: string]: JSX.Element } = {
   Misc: <FaBeer />,
@@ -23,36 +24,22 @@ export default function DealCard({
   deal: Deal
   showAdminOptions?: boolean
 }) {
+  console.log(deal)
   if (!deal || !deal.startDate) {
     return null
   }
 
-  const startDate = format(new Date(deal.startDate), 'MMM d, yyyy')
-  let endDate
-
-  if (deal.endDate) {
-    endDate = format(new Date(deal.endDate), 'MMM d, yyyy')
-  }
-
   return (
     <Link
-      href={`/deals/${deal.id}`}
+      href={`/deals/${deal.xata_id}`}
       className="group relative w-full text-white hover:text-teal-500"
-      target="_blank"
       rel="noopener noreferrer"
     >
-      {!deal.coverImageURL && (
-        <DealGradientPlaceholder category={deal.category as Category} />
-      )}
-      {deal.coverImageURL && (
-        <Image
-          src={deal.coverImageURL}
-          alt={deal.name}
-          width={480}
-          height={270}
-          className="aspect-video rounded-2xl transition duration-300 ease-in-out group-hover:outline group-hover:outline-teal-500"
-        />
-      )}
+      <DealImage
+        name={deal.name}
+        coverImageURL={deal.coverImageURL}
+        category={deal.category as Category}
+      />
       <h2 className="text-lg font-semibold tracking-tight">{deal.name}</h2>
       {deal.coupon && deal.couponPercent && (
         <p className="-gap-y-1 absolute right-3 top-3 flex h-14 w-14 -rotate-12 flex-col items-center justify-center rounded-full bg-pale-gold  text-black shadow-md">
@@ -60,11 +47,7 @@ export default function DealCard({
           <span className="text-xs uppercase">off</span>
         </p>
       )}
-      {showAdminOptions && <AdminOptions id={deal.id} />}
+      {showAdminOptions && <AdminOptions id={deal.xata_id} />}
     </Link>
   )
-}
-
-{
-  /* Coupon Code: <ClickableCouponCode coupon={deal.coupon} /> */
 }

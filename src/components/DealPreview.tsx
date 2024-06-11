@@ -4,6 +4,7 @@ import DealGradientPlaceholder from './DealGradientPlaceholder'
 import { Category } from '@/types/Types'
 import Image from 'next/image'
 import ClickableCouponCode from './ClickableCouponCode'
+import DealImage from './deals/DealImage'
 
 export default function DealPreview({
   url,
@@ -19,7 +20,7 @@ export default function DealPreview({
   couponCode?: string | null
   couponPercent?: number | null
   startDate: Date
-  endDate: Date
+  endDate?: Date
   category: string
   name: string
   description: string
@@ -28,18 +29,11 @@ export default function DealPreview({
   return (
     <div className="flex flex-col items-start gap-10 text-white lg:flex-row lg:items-center">
       <div className="align-center relative aspect-video w-full max-w-[600px] self-center">
-        {!coverImageURL && (
-          <DealGradientPlaceholder category={category as Category} />
-        )}
-        {coverImageURL && (
-          <Image
-            src={coverImageURL}
-            alt={name}
-            className=" rounded-lg"
-            fill={true}
-            priority
-          />
-        )}
+        <DealImage
+          name={name}
+          coverImageURL={coverImageURL || null}
+          category={category as Category}
+        />
       </div>
       <div className="flex  flex-col gap-y-1">
         <span className="text-xl md:text-3xl">{name}</span>
@@ -65,7 +59,7 @@ export default function DealPreview({
         <div className="flex flex-wrap gap-2 text-sm font-light md:mt-1.5 md:text-lg">
           <span className=" text-white/70 ">Valid from:</span>
           <span className="font-normal">
-            {`${format(new Date(startDate), 'MMM d')} - ${format(new Date(endDate), 'MMM d, yyyy')}` ||
+            {`${format(new Date(startDate), 'MMM d')} - ${endDate ? format(new Date(endDate), 'MMM d, yyyy') : '(no end date)'}` ||
               'No coupon code required'}
           </span>
         </div>

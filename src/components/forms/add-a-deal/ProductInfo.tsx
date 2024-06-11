@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 import { ImageUploadStatus } from '@/types/Types'
 import Image from 'next/image'
+import Loading from '@/components/Loading'
 
 export default function ProductInfo() {
   const {
@@ -110,85 +111,94 @@ export default function ProductInfo() {
   }
 
   return (
-    <form onSubmit={nextStep} className="flex flex-1 flex-col items-center">
-      <div className="flex w-full flex-col gap-7 lg:max-w-[700px] lg:gap-14">
-        <Input
-          label="Product Name *"
-          value={newDealData?.productName}
-          onChange={(e) => {
-            updateNewDealDetails({ productName: e.target.value })
-          }}
-        />
-        <CategorySelect
-          value={newDealData?.category}
-          onCategoryChange={(category) => {
-            if (dataLoaded) {
-              updateNewDealDetails({ category: category })
-            }
-          }}
-        />
-        <Input
-          label="Website URL *"
-          value={newDealData?.url}
-          onChange={(e) => updateNewDealDetails({ url: e.target.value })}
-        />
-        <Textarea
-          label="Product Description *"
-          value={newDealData?.description}
-          onChange={(e) =>
-            updateNewDealDetails({ description: e.target.value })
-          }
-        />
-
-        <div className="flex flex-col gap-4">
-          <span className="text-base font-extralight md:text-2xl">
-            Cover Image
-          </span>
-          {newDealData.coverImageURL ?
-            <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-              <Image
-                src={newDealData.coverImageURL}
-                alt="Product Image"
-                width={700}
-                height={400}
-                className="absolute bottom-0 left-0 right-0 top-0 aspect-video w-full"
-              />
-              <button
-                type="button"
-                onClick={handleImageDelete}
-                className="absolute right-0 top-0 rounded-bl-lg rounded-tr-lg bg-black bg-opacity-50 px-3.5 py-1.5 text-white hover:bg-teal-500"
-              >
-                X
-              </button>
-            </div>
-          : <>
-              <DragAndDropImage
-                onFileChange={(file) => {
-                  handleImageUpload(file)
-                }}
-                handleDelete={handleImageDelete}
-              />
-
-              <Progress
-                value={imageUploadProgress}
-                className={cn(
-                  imageUploadStatus === ImageUploadStatus.UPLOADING ?
-                    'w-full'
-                  : 'hidden'
-                )}
-              />
-            </>
-          }
+    <>
+      {!dataLoaded && (
+        <div className="mx-auto">
+          <Loading />
         </div>
-        <button
-          type="submit"
-          className="mt-2 rounded-lg bg-teal-600 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
-          aria-label="Click to continue"
-          disabled={imageUploadStatus === ImageUploadStatus.UPLOADING}
-        >
-          Continue
-        </button>
-      </div>
-    </form>
+      )}
+      {dataLoaded && (
+        <form onSubmit={nextStep} className="flex flex-1 flex-col items-center">
+          <div className="flex w-full flex-col gap-7 lg:max-w-[700px] lg:gap-14">
+            <Input
+              label="Product Name *"
+              value={newDealData?.productName}
+              onChange={(e) => {
+                updateNewDealDetails({ productName: e.target.value })
+              }}
+            />
+            <CategorySelect
+              value={newDealData?.category}
+              onCategoryChange={(category) => {
+                if (dataLoaded) {
+                  updateNewDealDetails({ category: category })
+                }
+              }}
+            />
+            <Input
+              label="Website URL *"
+              value={newDealData?.url}
+              onChange={(e) => updateNewDealDetails({ url: e.target.value })}
+            />
+            <Textarea
+              label="Product Description *"
+              value={newDealData?.description}
+              onChange={(e) =>
+                updateNewDealDetails({ description: e.target.value })
+              }
+            />
+
+            <div className="flex flex-col gap-4">
+              <span className="text-base font-extralight md:text-2xl">
+                Cover Image
+              </span>
+              {newDealData.coverImageURL ?
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+                  <Image
+                    src={newDealData.coverImageURL}
+                    alt="Product Image"
+                    width={700}
+                    height={400}
+                    className="absolute bottom-0 left-0 right-0 top-0 aspect-video w-full object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleImageDelete}
+                    className="absolute right-0 top-0 rounded-bl-lg rounded-tr-lg bg-black bg-opacity-50 px-3.5 py-1.5 text-white hover:bg-teal-500"
+                  >
+                    X
+                  </button>
+                </div>
+              : <>
+                  <DragAndDropImage
+                    onFileChange={(file) => {
+                      handleImageUpload(file)
+                    }}
+                    handleDelete={handleImageDelete}
+                  />
+
+                  <Progress
+                    value={imageUploadProgress}
+                    className={cn(
+                      imageUploadStatus === ImageUploadStatus.UPLOADING ?
+                        'w-full'
+                      : 'hidden'
+                    )}
+                  />
+                </>
+              }
+            </div>
+            <button
+              type="submit"
+              className="mt-2 rounded-lg bg-teal-600 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
+              aria-label="Click to continue"
+              disabled={imageUploadStatus === ImageUploadStatus.UPLOADING}
+            >
+              Continue
+            </button>
+          </div>
+        </form>
+      )}
+    </>
   )
 }

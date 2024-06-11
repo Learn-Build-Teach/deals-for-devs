@@ -31,7 +31,7 @@
     "@types/uuid": "^9.0.8",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
-    "@xata.io/cli": "^0.15.11",
+    "@xata.io/cli": "^0.15.15",
     "@xata.io/client": "^0.29.5",
     "autoprefixer": "^10.4.19",
     "class-variance-authority": "^0.7.0",
@@ -39,6 +39,7 @@
     "date-fns": "^3.3.1",
     "lucide-react": "^0.340.0",
     "next": "^14.2.3",
+    "next-plausible": "^3.12.0",
     "posthog-js": "^1.108.3",
     "prisma": "^5.12.1",
     "react": "^18",
@@ -57,7 +58,7 @@
     "ts-key-enum": "^2.0.12",
     "ts-node": "^10.9.2",
     "uuid": "^9.0.1",
-    "zod": "^3.22.4"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@commitlint/cli": "19.0.3",
