@@ -24,15 +24,9 @@ export default function DealCard({
   deal: Deal
   showAdminOptions?: boolean
 }) {
+  console.log(deal)
   if (!deal || !deal.startDate) {
     return null
-  }
-
-  const startDate = format(new Date(deal.startDate), 'MMM d, yyyy')
-  let endDate
-
-  if (deal.endDate) {
-    endDate = format(new Date(deal.endDate), 'MMM d, yyyy')
   }
 
   return (
@@ -56,8 +50,4 @@ export default function DealCard({
       {showAdminOptions && <AdminOptions id={deal.xata_id} />}
     </Link>
   )
-}
-
-{
-  /* Coupon Code: <ClickableCouponCode coupon={deal.coupon} /> */
 }
