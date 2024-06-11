@@ -1,18 +1,13 @@
 'use client'
-import { UserButton, useUser } from '@clerk/nextjs'
+import { cn } from '@/lib/utils'
+import { GoSearch } from 'react-icons/go'
 import Image from 'next/image'
 import Link from 'next/link'
-import { GoSearch } from 'react-icons/go'
-import { useSearch } from '../search/SearchContext'
-import NavLink from './NavLink'
-import Separator from './Separator'
-import { cn } from '@/lib/utils'
+import NavLink from '@/components/nav/NavLink'
+import { useSearch } from '@/components/search/SearchContext'
 
 export default function Nav() {
-  const { user, isLoaded } = useUser()
   const { setSearchOpen } = useSearch()
-
-  const isUserAuthenticated = user && isLoaded
 
   return (
     <header>
@@ -38,25 +33,10 @@ export default function Nav() {
           <NavLink href="/deals">Shop All Deals</NavLink>
           <NavLink href="/deals/add">Add a deal</NavLink>
 
-          {/* admin dashboard */}
-          {isUserAuthenticated && (
-            <>
-              <NavLink href="/dashboard">Dashboard</NavLink>
-              <Separator />
-            </>
-          )}
-
           {/* search */}
           <button className="text-white" onClick={() => setSearchOpen(true)}>
             <GoSearch className="h-4 w-4 md:h-7 md:w-7" />
           </button>
-
-          {/* user logout */}
-          {isUserAuthenticated && (
-            <>
-              <UserButton afterSignOutUrl="/" />
-            </>
-          )}
         </div>
       </nav>
     </header>
