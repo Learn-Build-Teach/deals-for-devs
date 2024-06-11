@@ -25,7 +25,7 @@ export default async function CategoryPage({
           couponPercent={deal.couponPercent}
           coverImageURL={deal.coverImageURL}
           startDate={deal.startDate}
-          endDate={deal.endDate}
+          endDate={deal.endDate || undefined}
           category={deal.category}
           description={deal.description}
         />
