@@ -5,14 +5,8 @@ import Nav from '@/components/nav/Nav'
 import Footer from '@/components/Footer'
 import GlobalSearch from '@/components/GlobalSearch'
 import { SearchProvider } from '@/components/SearchContext'
-import { Suspense } from 'react'
-import { PHProvider, PostHogPageview } from './providers'
-import { SpeedInsights } from '@vercel/speed-insights/next'
-import { Analytics } from '@vercel/analytics/react'
 import { Toaster } from 'react-hot-toast'
-//info: must import env types file so validation is run
-import '../types/env'
-
+import PlausibleProvider from 'next-plausible'
 import { Raleway } from 'next/font/google'
 const raleway = Raleway({
   subsets: ['latin'],
@@ -39,29 +33,26 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" className={raleway.className}>
-        <Suspense>
-          <PostHogPageview />
-        </Suspense>
-        <PHProvider>
-          <body className="">
-            <div className="flex min-h-screen flex-col justify-between bg-gray-900">
-              <div className="mx-auto w-full max-w-screen-2xl pt-5 md:px-24 xl:pt-20">
-                <SearchProvider>
-                  <GlobalSearch />
-                  <Nav />
-                </SearchProvider>
-                <div>{children}</div>
-              </div>
-              <Footer />
+    <html lang="en" className={raleway.className}>
+      <head>
+        <PlausibleProvider domain="dealsfordevs.com" />
+      </head>
+
+      <body className="">
+        <ClerkProvider>
+          <div className="flex min-h-screen flex-col justify-between bg-gray-900">
+            <div className="mx-auto w-full max-w-screen-2xl pt-5 md:px-24 xl:pt-20">
+              <SearchProvider>
+                <GlobalSearch />
+                <Nav />
+              </SearchProvider>
+              <div>{children}</div>
             </div>
-            <SpeedInsights />
-            <Analytics />
-            <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
-          </body>
-        </PHProvider>
-      </html>
-    </ClerkProvider>
+            <Footer />
+          </div>
+          <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
+        </ClerkProvider>
+      </body>
+    </html>
   )
 }
