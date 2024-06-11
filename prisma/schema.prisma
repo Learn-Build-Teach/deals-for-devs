@@ -12,7 +12,7 @@ model Deal {
   coupon         String?    @db.VarChar(255)
   approved       Boolean    @default(false)
   description    String     @db.Text
-  couponPercent  Int?       @default(0)
+  couponPercent  Int?       
   featured       Boolean    @default(false)
   name           String     @db.VarChar(255)
   link           String     @db.VarChar(255)
