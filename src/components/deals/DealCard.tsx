@@ -24,7 +24,6 @@ export default function DealCard({
   deal: Deal
   showAdminOptions?: boolean
 }) {
-  console.log(deal)
   if (!deal || !deal.startDate) {
     return null
   }

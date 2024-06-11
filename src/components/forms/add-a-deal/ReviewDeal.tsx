@@ -30,7 +30,6 @@ export default function ReviewDeal() {
     try {
       const parsed = submittedDealSchema.parse(newDealData)
       // if the data is valid, submit the deal to db
-      console.log(parsed)
       const res = await createDeal({
         name: parsed.productName,
         category: parsed.category,
