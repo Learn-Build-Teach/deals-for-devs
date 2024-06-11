@@ -35,7 +35,7 @@ export default function CouponDetails() {
             <div className="grid gap-x-4 gap-y-4 md:grid-cols-2">
               <div className="flex flex-col gap-2">
                 <span className="text-base font-extralight md:text-2xl">
-                  Start date
+                  Start date*
                 </span>
                 <DatePicker
                   onDateChange={(date: Date | undefined) => {
