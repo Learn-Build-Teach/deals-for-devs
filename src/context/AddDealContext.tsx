@@ -1,10 +1,9 @@
 'use client'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { z } from 'zod'
-import { addDays } from 'date-fns'
 import { ImageUploadStatus } from '@/types/Types'
 
-const defaultDeal = {
+const defaultDeal: NewDealType = {
   productName: '',
   category: '',
   url: '',
@@ -12,7 +11,7 @@ const defaultDeal = {
   coverImageURL: '',
   coverImageId: '',
   startDate: new Date().toISOString(),
-  endDate: addDays(new Date(), 7).toISOString(),
+  endDate: undefined,
   couponCode: '',
   percentage: undefined,
   contactName: '',
@@ -27,7 +26,7 @@ export const newDealSchema = z.object({
   coverImageURL: z.string().optional(),
   coverImageId: z.string().optional(),
   startDate: z.string().datetime(),
-  endDate: z.string().datetime(),
+  endDate: z.string().datetime().optional(),
   couponCode: z.string().optional(),
   percentage: z.number().optional(),
   contactName: z.union([z.string().min(1), z.literal('')]),
@@ -93,13 +92,12 @@ export const AddDealContextProvider = ({
 
   const readFromLocalStorage = () => {
     const loadedDataString = localStorage.getItem('deals-for-devs-newDealData')
-
     if (!loadedDataString) return setNewDealData(defaultDeal)
-
     try {
       const parsed = newDealSchema.parse(JSON.parse(loadedDataString))
       setNewDealData(parsed)
     } catch (error) {
+      console.error('Failed to load local data', error)
       setNewDealData(defaultDeal)
     }
   }
