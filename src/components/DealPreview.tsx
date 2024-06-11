@@ -20,7 +20,7 @@ export default function DealPreview({
   couponCode?: string | null
   couponPercent?: number | null
   startDate: Date
-  endDate: Date
+  endDate?: Date
   category: string
   name: string
   description: string
@@ -59,7 +59,7 @@ export default function DealPreview({
         <div className="flex flex-wrap gap-2 text-sm font-light md:mt-1.5 md:text-lg">
           <span className=" text-white/70 ">Valid from:</span>
           <span className="font-normal">
-            {`${format(new Date(startDate), 'MMM d')} - ${format(new Date(endDate), 'MMM d, yyyy')}` ||
+            {`${format(new Date(startDate), 'MMM d')} - ${endDate ? format(new Date(endDate), 'MMM d, yyyy') : 'ongoing'}` ||
               'No coupon code required'}
           </span>
         </div>

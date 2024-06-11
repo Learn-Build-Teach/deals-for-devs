@@ -1,13 +1,9 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useAddDealContext } from '@/context/AddDealContext'
-import { format } from 'date-fns'
 import toast from 'react-hot-toast'
 import z from 'zod'
 import { createDeal } from '@/lib/queries'
-import Image from 'next/image'
-import DealGradientPlaceholder from '@/components/DealGradientPlaceholder'
-import { Category } from '@/types/Types'
 import DealPreview from '@/components/DealPreview'
 
 export default function ReviewDeal() {
@@ -22,7 +18,7 @@ export default function ReviewDeal() {
     coverImageURL: z.string().optional(),
     coverImageId: z.string().optional(),
     startDate: z.string().datetime(),
-    endDate: z.string().datetime(),
+    endDate: z.string().datetime().optional(),
     couponCode: z.string().optional(),
     percentage: z.number().optional(),
     contactName: z.string().min(1),
