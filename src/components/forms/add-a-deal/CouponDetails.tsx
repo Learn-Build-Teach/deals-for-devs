@@ -14,7 +14,6 @@ export default function CouponDetails() {
     updateNewDealDetails,
     dataLoaded,
   } = useAddDealContext()
-  console.log(newDealData)
   const router = useRouter()
 
   const nextStep = (e: React.FormEvent<HTMLFormElement>) => {
