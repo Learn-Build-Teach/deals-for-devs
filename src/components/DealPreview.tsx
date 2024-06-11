@@ -59,7 +59,7 @@ export default function DealPreview({
         <div className="flex flex-wrap gap-2 text-sm font-light md:mt-1.5 md:text-lg">
           <span className=" text-white/70 ">Valid from:</span>
           <span className="font-normal">
-            {`${format(new Date(startDate), 'MMM d')} - ${endDate ? format(new Date(endDate), 'MMM d, yyyy') : 'ongoing'}` ||
+            {`${format(new Date(startDate), 'MMM d')} - ${endDate ? format(new Date(endDate), 'MMM d, yyyy') : '(no end date)'}` ||
               'No coupon code required'}
           </span>
         </div>
