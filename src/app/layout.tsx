@@ -38,7 +38,7 @@ export default function RootLayout({
       </head>
       <body className="">
         <div className="flex min-h-screen flex-col justify-between bg-gray-900">
-          <div className="mx-auto w-full max-w-screen-2xl px-2 pt-5 md:px-24 xl:pt-20">
+          <div className="mx-auto w-full max-w-screen-2xl px-4 pt-5 md:px-24 xl:pt-20">
             <SearchProvider>
               <GlobalSearch />
               <Nav />

@@ -27,7 +27,7 @@ export default function DealPreview({
   coverImageURL?: string | null
 }) {
   return (
-    <div className="flex flex-col items-start gap-10 text-white lg:flex-row lg:items-center">
+    <div className="flex flex-col items-start gap-10 text-white xl:flex-row xl:items-center">
       <div className="align-center relative aspect-video w-full max-w-[600px] self-center">
         <DealImage
           name={name}

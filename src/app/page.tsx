@@ -13,7 +13,9 @@ export default async function Home() {
 
       <FeaturedDeals deals={deals} />
       <Separator className="mb-20" />
-      <NeverMissADeal />
+      <div className="mb-20">
+        <NeverMissADeal />
+      </div>
       <Separator className="mb-20" />
       <DevGiveaways />
     </main>
