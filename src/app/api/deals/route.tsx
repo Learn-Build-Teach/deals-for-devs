@@ -16,7 +16,6 @@ export async function GET(request: NextRequest) {
       target: ['name', 'description'],
     })
 
-    console.log(records[0])
     //TODO: fix this hack based on weird data from search api
     const formattedRecords = records.map((record) => ({
       ...record,
