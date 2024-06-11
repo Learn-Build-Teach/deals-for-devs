@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import GlobalSearch from '@/components/search/GlobalSearch'
 import { SearchProvider } from '@/components/search/SearchContext'
 import { Toaster } from 'react-hot-toast'
+import PlausibleProvider from 'next-plausible'
 
 import { Raleway } from 'next/font/google'
 const raleway = Raleway({
@@ -32,9 +33,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" className={raleway.className}>
-        <body className="">
+    <html lang="en" className={raleway.className}>
+      <head>
+        <PlausibleProvider domain="dealsfordevs.com" />
+      </head>
+      <body className="">
+        <ClerkProvider>
           <div className="flex min-h-screen flex-col justify-between bg-gray-900">
             <div className="mx-auto w-full max-w-screen-2xl px-2 pt-5 md:px-24 xl:pt-20">
               <SearchProvider>
@@ -46,8 +50,8 @@ export default function RootLayout({
             <Footer />
           </div>
           <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
-        </body>
-      </html>
-    </ClerkProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   )
 }
