@@ -39,6 +39,7 @@
     "date-fns": "^3.3.1",
     "lucide-react": "^0.340.0",
     "next": "^14.2.3",
+    "next-plausible": "^3.12.0",
     "posthog-js": "^1.108.3",
     "prisma": "^5.12.1",
     "react": "^18",
