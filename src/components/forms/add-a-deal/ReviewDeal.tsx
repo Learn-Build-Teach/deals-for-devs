@@ -5,9 +5,10 @@ import toast from 'react-hot-toast'
 import z from 'zod'
 import { createDeal } from '@/lib/queries'
 import DealPreview from '@/components/DealPreview'
+import Loading from '@/components/Loading'
 
 export default function ReviewDeal() {
-  const { newDealData } = useAddDealContext()
+  const { newDealData, dataLoaded } = useAddDealContext()
   const router = useRouter()
 
   const submittedDealSchema = z.object({
@@ -56,27 +57,36 @@ export default function ReviewDeal() {
 
   return (
     <section className="w-full">
-      <div className="flex flex-col">
-        <DealPreview
-          name={newDealData.productName}
-          url={newDealData.url}
-          couponCode={newDealData.couponCode}
-          couponPercent={newDealData.percentage}
-          coverImageURL={newDealData.coverImageURL}
-          startDate={new Date(newDealData.startDate)}
-          endDate={new Date(newDealData.endDate)}
-          category={newDealData.category}
-          description={newDealData.description}
-        />
-        <button
-          type="button"
-          className="mt-5 rounded-lg bg-teal-600 py-4 text-lg text-black disabled:bg-teal-600/30 lg:mt-10 lg:py-7 lg:text-2xl"
-          aria-label="Click to continue"
-          onClick={validateAndSubmit}
-        >
-          Submit Deal
-        </button>
-      </div>
+      {!dataLoaded && (
+        <div className="mx-auto">
+          <Loading />
+        </div>
+      )}
+      {dataLoaded && (
+        <div className="flex flex-col">
+          <DealPreview
+            name={newDealData.productName}
+            url={newDealData.url}
+            couponCode={newDealData.couponCode}
+            couponPercent={newDealData.percentage}
+            coverImageURL={newDealData.coverImageURL}
+            startDate={new Date(newDealData.startDate)}
+            endDate={
+              newDealData?.endDate ? new Date(newDealData.endDate) : undefined
+            }
+            category={newDealData.category}
+            description={newDealData.description}
+          />
+          <button
+            type="button"
+            className="mt-5 rounded-lg bg-teal-600 py-4 text-lg text-black disabled:bg-teal-600/30 lg:mt-10 lg:py-7 lg:text-2xl"
+            aria-label="Click to continue"
+            onClick={validateAndSubmit}
+          >
+            Submit Deal
+          </button>
+        </div>
+      )}
     </section>
   )
 }

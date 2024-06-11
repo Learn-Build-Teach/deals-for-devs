@@ -13,7 +13,7 @@ import {
 
 interface DatePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   onDateChange: (date: Date | undefined) => void
-  initialDate: Date
+  initialDate: Date | undefined
 }
 
 export function DatePicker({
