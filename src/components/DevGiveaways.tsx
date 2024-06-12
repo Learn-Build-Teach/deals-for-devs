@@ -8,8 +8,7 @@ export default function DevGiveaways() {
       </span>
       <span className="mt-4 text-xl font-light  text-white/70 md:pl-1">
         <span className="font-semibold text-teal-500">Coming Soon!</span>{' '}
-        {`We're`}
-        giving away some of the best tools and courses for developers.
+        {`We're`} giving away some of the best tools and courses for developers.
       </span>
     </div>
   )

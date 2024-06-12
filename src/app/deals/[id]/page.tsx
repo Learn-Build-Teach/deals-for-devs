@@ -2,11 +2,9 @@ import { notFound } from 'next/navigation'
 import { getDealById } from '@/lib/queries'
 import DealPreview from '@/components/DealPreview'
 
-export default async function CategoryPage({
-  params,
-}: {
-  params: { id: string }
-}) {
+export const revalidate = 120
+
+export default async function DealPage({ params }: { params: { id: string } }) {
   if (!params.id) {
     //not found
   }

@@ -5,6 +5,8 @@ import { getApprovedDealsByCategory } from '@/lib/queries'
 import PageHeader from '@/components/PageHeader'
 import DealsList from '@/components/deals/DealsList'
 
+export const revalidate = 120
+
 export default async function CategoryPage({
   params,
 }: {

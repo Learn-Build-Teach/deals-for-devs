@@ -71,7 +71,7 @@ export default function DealPreview({
         </div>
         <div className="mt-5 flex w-full flex-col items-start text-sm md:mt-10 md:text-lg ">
           <span className="font-bold uppercase">DESCRIPTION</span>
-          <p className="font-light">{description}</p>
+          <p className="whitespace-pre-wrap font-light">{description}</p>
         </div>
       </div>
     </div>
