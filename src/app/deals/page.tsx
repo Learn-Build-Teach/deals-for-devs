@@ -1,9 +1,10 @@
 import CategoryOptions from '@/components/CategoryOptions'
 import { getApprovedDeals } from '@/lib/queries'
 import NeverMissADeal from '@/components/NeverMissADeal'
-import Separator from '@/components/Separator'
 import PageHeader from '@/components/PageHeader'
 import DealsList from '@/components/deals/DealsList'
+
+export const revalidate = 120
 
 export default async function DealsPage() {
   const deals = await getApprovedDeals(20)

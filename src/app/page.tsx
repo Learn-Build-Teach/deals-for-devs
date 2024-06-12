@@ -5,6 +5,8 @@ import NeverMissADeal from '@/components/NeverMissADeal'
 import Separator from '@/components/Separator'
 import { getApprovedFeaturedDeals } from '@/lib/queries'
 
+export const revalidate = 120
+
 export default async function Home() {
   const deals = await getApprovedFeaturedDeals()
   return (
