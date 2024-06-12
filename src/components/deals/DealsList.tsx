@@ -1,20 +1,24 @@
 'use client'
-import Deal from '@/components/deals/Deal'
-import { DealsRecord } from '@/xata'
+import DealCard from '@/components/deals/DealCard'
+import { Deal } from '@prisma/client'
 
 export default function DealsList({
   deals,
   isAdmin = false,
 }: {
-  deals: DealsRecord[]
+  deals: Deal[]
   isAdmin?: boolean
 }) {
   return (
-    <div>
+    <div className="mx-auto py-10">
       {deals.length > 0 && (
-        <div className="grid w-full grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 sm:justify-items-stretch  md:grid-cols-3 ">
+        <div className="mx-auto grid grid-cols-1 justify-items-center gap-x-4 gap-y-12 sm:grid-cols-2  lg:gap-x-12 xl:grid-cols-3">
           {deals.map((deal) => (
-            <Deal key={deal.id} deal={deal} showAdminOptions={isAdmin} />
+            <DealCard
+              key={deal.xata_id}
+              deal={deal}
+              showAdminOptions={isAdmin}
+            />
           ))}
         </div>
       )}

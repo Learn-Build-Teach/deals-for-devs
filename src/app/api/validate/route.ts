@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server'
 import { redirect } from 'next/navigation'
 import { getOneSubscriberByToken } from '@/lib/queries'
-import { createPreferencesLink } from '@/lib/utils'
+import { createConfirmEmailLink } from '@/lib/utils'
 import { updateSubscriberToVerified } from '@/lib/queries'
 
 //TODO: Add error checking
@@ -19,9 +19,9 @@ export async function GET(request: NextRequest) {
     redirect('/')
   }
 
-  const { id } = subscriber
+  const { xata_id } = subscriber
 
-  const data = await updateSubscriberToVerified(id)
+  const data = await updateSubscriberToVerified(xata_id)
 
   if (!data) {
     //TODO: handle not found (return's null)
@@ -29,5 +29,5 @@ export async function GET(request: NextRequest) {
     return
   }
 
-  return redirect(createPreferencesLink(token))
+  return redirect(createConfirmEmailLink(token))
 }

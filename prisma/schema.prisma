@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Deal {
+  xata_id        String     @id @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  coupon         String?    @db.VarChar(255)
+  approved       Boolean    @default(false)
+  description    String     @db.Text
+  couponPercent  Int?       
+  featured       Boolean    @default(false)
+  name           String     @db.VarChar(255)
+  link           String     @db.VarChar(255)
+  category       String     @db.VarChar(50)
+  startDate      DateTime   @default(now())
+  endDate        DateTime?  @db.Date
+  xata_version   Int        @default(0)
+  xata_createdat DateTime   @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime   @default(now()) @db.Timestamptz(6)
+  coverImageURL  String?    @db.VarChar(255)
+  coverImageId   String?    @db.VarChar(255)
+  contactEmail   String     @db.VarChar(255)
+  contactName    String     @db.VarChar(255)
+}
+
+model AdminUser {
+  userId         String   @id @default(uuid())
+  xata_id        String   @unique(map: "AdminUser__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int      @default(0)
+  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model Subscriber {
+  status                       String
+  email                        String   @db.VarChar(255)
+  verified                     Boolean  @default(false)
+  token                        String   @db.VarChar(255)
+  conferenceNotifications      Boolean  @default(false)
+  ebookNotifications           Boolean  @default(false)
+  courseNotifications          Boolean  @default(false)
+  toolNotifications            Boolean  @default(false)
+  officeEquipmentNotifications Boolean  @default(false)
+  miscNotifications            Boolean  @default(false)
+  xata_version                 Int      @default(0)
+  xata_createdat               DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat               DateTime @default(now()) @db.Timestamptz(6)
+  xata_id                      String   @id @unique(map: "Subscriber__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model DealImage {
+  xata_id        String   @id @unique(map: "_pgroll_new_DealImage_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int      @default(0)
+  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+  image          Json
+}
+
+// adding a comment

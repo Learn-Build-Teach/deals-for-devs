@@ -1,27 +1,27 @@
-import { Category } from '@/types/Types';
-import Link from 'next/link';
+'use client'
+import { Category } from '@/types/Types'
+import CategoryOption from './CategoryOption'
+import { usePathname } from 'next/navigation'
 
 export default function CategoryOptions() {
+  const pathname = usePathname()
+  const lastRoute = pathname.split('/').pop()
   return (
     <div>
-      <div className="flex gap-4 mb-10 items-center flex-wrap">
-        <span className="text-xl text-gray-100">Categories:</span>
-        <Link
-          href={`/deals`}
-          className="rounded-xl bg-teal-600 text-teal-100 px-4 py-2"
-        >
-          all
-        </Link>
+      <div className="flex flex-wrap items-center gap-4">
+        <CategoryOption
+          category="all"
+          path="/deals"
+          selected={lastRoute?.toLowerCase() === 'deals'}
+        />
         {Object.values(Category).map((category) => (
-          <Link
-            href={`/deals/${category}`}
+          <CategoryOption
+            category={category}
             key={category}
-            className="rounded-xl bg-teal-600 text-teal-100 px-4 py-2"
-          >
-            {category}
-          </Link>
+            selected={lastRoute?.toLowerCase() == category.toLowerCase()}
+          />
         ))}
       </div>
     </div>
-  );
+  )
 }
