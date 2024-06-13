@@ -62,6 +62,10 @@ You should be able to verify the tables were created successfully inside of the 
 
 ![CleanShot 2024-05-08 at 09 18 14](https://github.com/Learn-Build-Teach/deals-for-devs/assets/5391915/32641b1f-fb10-4da4-b462-20c90bb8e077)
 
+Unfortunately, the `image` column in the `DealImage` table that is generated from Prisma will not be the correct format. You'll need to delete that column and recreate as a `file` type. Make sure to deselect `Allow multiple files` and select `Make files public by default`.
+
+![CleanShot 2024-06-13 at 10 12 05](https://github.com/Learn-Build-Teach/deals-for-devs/assets/5391915/f80f540e-4352-4238-9d6a-6865c018ca26)
+
 ### Connect Project To Xata Using the Xata CLI
 
 In this project, we'll be connecting to our db in two different ways: using Prisma ORM and the Xata client SDK. All standard CRUD (Create, read, update, and delete) db interactions will be run through Prisma. We'll use the Xata client to take advantage of Xata specific features like search and file uploads.
