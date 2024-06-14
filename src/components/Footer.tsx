@@ -36,7 +36,7 @@ const techStack: TechStack[] = [
 
 export default function Footer() {
   return (
-    <div className="bg-[#0C111C] py-16">
+    <footer className="bg-[#0C111C] py-16">
       <div className="mx-auto flex max-w-56 flex-col items-center md:max-w-4xl">
         <span className="mb-2 text-sm font-medium leading-8 text-white md:text-3xl">
           Built With
@@ -79,6 +79,6 @@ export default function Footer() {
           @jamesqquick
         </Link> */}
       </div>
-    </div>
+    </footer>
   )
 }
