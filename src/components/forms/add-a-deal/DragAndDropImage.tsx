@@ -9,13 +9,19 @@ export default function DragAndDropImage({
   onFileChange: (file: File) => void
   handleDelete: () => void
 }) {
-  const [file, setFile] = useState<File | undefined>()
-
   const onDrop = useCallback(
-    (acceptedFiles: File[]) => {
+    async (acceptedFiles: File[]) => {
       if (acceptedFiles.length === 0) return
-      setFile(acceptedFiles[0])
-      onFileChange(acceptedFiles[0])
+      const file = acceptedFiles[0]
+
+      //* custom validation for aspect ratio
+      const img = await loadImage(file)
+      const aspectRatio = img.width / img.height
+      if (aspectRatio !== 16 / 9) {
+        return toast.error('Image should be in 16:9 aspect ratio')
+      }
+      //validation passed
+      onFileChange(file)
     },
     [onFileChange]
   )
@@ -42,6 +48,15 @@ export default function DragAndDropImage({
     multiple: false,
   })
 
+  const loadImage = (file: File): Promise<HTMLImageElement> => {
+    return new Promise((resolve, reject) => {
+      const img = new Image()
+      img.src = URL.createObjectURL(file)
+      img.onload = () => resolve(img)
+      img.onerror = () => reject(new Error('Failed to load image'))
+    })
+  }
+
   return (
     <div className="">
       <div
@@ -58,6 +73,9 @@ export default function DragAndDropImage({
         </p>
         <p className="text-sm font-extralight text-white md:text-lg">
           Formats: PNG, JPEG (2mb max)
+        </p>
+        <p className="text-sm font-extralight text-white md:text-lg">
+          Image Ratio: 16:9
         </p>
       </div>
     </div>
