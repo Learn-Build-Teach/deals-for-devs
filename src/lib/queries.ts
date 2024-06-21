@@ -70,6 +70,7 @@ export async function getApprovedDeals(limit: number = 20): Promise<Deal[]> {
     },
   })
 }
+
 export async function getApprovedDealsByCategory(
   category: Category,
   limit: number = 20

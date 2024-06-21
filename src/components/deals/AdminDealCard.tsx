@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import AdminOptions from '../AdminOptions'
 import { FaBeer, FaVideo, FaBook, FaCog, FaCalendar } from 'react-icons/fa'
 import { Category } from '@/types/Types'
 import { Deal } from '@prisma/client'
@@ -14,8 +15,7 @@ const categoryToIcon: { [key: string]: JSX.Element } = {
 
 export default function DealCard({ deal }: { deal: Deal }) {
   return (
-    <Link
-      href={`/deals/${deal.xata_id}`}
+    <div
       className="group relative w-full text-white hover:text-teal-500"
       rel="noopener noreferrer"
     >
@@ -31,6 +31,7 @@ export default function DealCard({ deal }: { deal: Deal }) {
           <span className="text-xs uppercase">off</span>
         </p>
       )}
-    </Link>
+      <AdminOptions id={deal.xata_id} />
+    </div>
   )
 }
