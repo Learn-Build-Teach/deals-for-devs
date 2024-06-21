@@ -9,5 +9,4 @@ export const approveDealAction = async (id: string) => {
 
 export const deleteDealAction = async (id: string) => {
   await deleteDeal(id)
-  revalidatePath('/deals')
 }
