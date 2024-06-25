@@ -63,6 +63,9 @@ export async function getApprovedDeals(limit: number = 20): Promise<Deal[]> {
   return await prisma.deal.findMany({
     where: {
       approved: true,
+      endDate: {
+        gte: new Date(),
+      },
     },
     take: limit,
     orderBy: {
@@ -79,6 +82,9 @@ export async function getApprovedDealsByCategory(
     where: {
       approved: true,
       category: category.toUpperCase(),
+      endDate: {
+        gte: new Date(),
+      },
     },
     take: limit,
     orderBy: {
