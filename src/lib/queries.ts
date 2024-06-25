@@ -2,7 +2,6 @@
 import { Category, NewSubscriberData, Status } from '@/types/Types'
 import prisma from './db'
 import { Deal, Subscriber } from '@prisma/client'
-import { DealRecord } from '@/xata'
 
 // DEAL QUERIES
 export async function getAllDeals() {
@@ -63,6 +62,9 @@ export async function getApprovedDeals(limit: number = 20): Promise<Deal[]> {
   return await prisma.deal.findMany({
     where: {
       approved: true,
+      endDate: {
+        gte: new Date(),
+      },
     },
     take: limit,
     orderBy: {
@@ -78,6 +80,9 @@ export async function getApprovedDealsByCategory(
     where: {
       approved: true,
       category: category.toUpperCase(),
+      endDate: {
+        gte: new Date(),
+      },
     },
     take: limit,
     orderBy: {
