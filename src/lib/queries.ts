@@ -2,7 +2,6 @@
 import { Category, NewSubscriberData, Status } from '@/types/Types'
 import prisma from './db'
 import { Deal, Subscriber } from '@prisma/client'
-import { DealRecord } from '@/xata'
 
 // DEAL QUERIES
 export async function getAllDeals() {
