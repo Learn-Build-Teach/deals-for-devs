@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getDealById } from '@/lib/queries'
+import { getAllDeals, getDealById } from '@/lib/queries'
 import DealPreview from '@/components/DealPreview'
 import { Metadata, ResolvingMetadata } from 'next'
 
@@ -8,6 +8,18 @@ export const revalidate = 120
 type Props = {
   params: { id: string }
   searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function getStaticProps() {
+  const deals = await getAllDeals()
+
+  return {
+    props: {
+      deals,
+    },
+
+    revalidate, // In seconds
+  }
 }
 
 export async function generateMetadata(
