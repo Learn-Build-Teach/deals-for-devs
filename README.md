@@ -10,11 +10,15 @@ An application to send upcoming and ongoing deals straight to your inbox every m
 
 ## Getting Started
 
+Prerequisites: Node 18.17.0
+
 To get a development environment running on your local machine:
 
-1. Clone the repository in a directory of your choice.
+1. Fork the repository. Make sure to uncheck the `Copy the main branch only` option so you have access to the `dev` branch in your fork.
 
-2. Create a `.env` file (from `.env.example`) and add all the credentials necessary to run the app.
+2. Clone the repository in a directory of your choice.
+
+3. Create a `.env` file (from `.env.example`) and add all the credentials necessary to run the app.
 
 > To get those credentials, please send James (@jamesqquick) a message on Discord!
 
@@ -38,6 +42,8 @@ Now, you'll need to create a new database. Give it a name, and make sure to enab
 
 If this is your first db, you'll be prompted to create an API key and `Select a platform`. Make sure to copy your API key. You can then skip the platform section.
 
+You'll be asked how you want to connect. Choose `Typescript` and `Xata SDK`.
+
 Open your database settings and copy the `PostgreSQL endpoint` property. You'll need to replace `<YOUR_API_KEY>` with a new API key. If you haven't already done so, you can create your API key in your `Account Settings` which can be found in the dropdown menu on your profile icon in the top right corner of the dashboard. Your endpoint will look like this.
 
 `postgresql://l5kbra:<YOUR_API_KEY>@us-east-1.sql.xata.sh/<DB_NAME>:main?sslmode=require`
@@ -60,12 +66,11 @@ npx prisma db push
 
 You should be able to verify the tables were created successfully inside of the Xata dashboard.
 
-![CleanShot 2024-05-08 at 09 18 14](https://github.com/Learn-Build-Teach/deals-for-devs/assets/5391915/32641b1f-fb10-4da4-b462-20c90bb8e077)
+![Screenshot of an empty Subscriber table in the Xata database](https://github.com/Learn-Build-Teach/deals-for-devs/assets/5391915/32641b1f-fb10-4da4-b462-20c90bb8e077)
 
 Unfortunately, the `image` column in the `DealImage` table that is generated from Prisma will not be the correct format. You'll need to delete that column and recreate as a `file` type. Make sure to deselect `Allow multiple files` and select `Make files public by default`.
 
-![CleanShot 2024-06-13 at 10 12 05](https://github.com/Learn-Build-Teach/deals-for-devs/assets/5391915/f80f540e-4352-4238-9d6a-6865c018ca26)
-
+![Create new column popup showing column name of image, column type of file and the make files public by default option checked](https://github.com/Learn-Build-Teach/deals-for-devs/assets/5391915/f80f540e-4352-4238-9d6a-6865c018ca26)
 
 ### Connect Project To Xata Using the Xata CLI
 
@@ -103,7 +108,7 @@ xata init
 
 Choose your newly created database. Then, choose `TypeScript` for the `Generate code and types from your Xata database` option. Lastly, choose the default of `src/xata.ts` for the output path of the generated code.
 
-### Run the development server.
+### Run the development server
 
 ```bash
 npm run dev
