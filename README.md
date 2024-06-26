@@ -20,7 +20,7 @@ To get a development environment running on your local machine:
 
 3. Create a `.env` file (from `.env.example`) and add all the credentials necessary to run the app.
 
-> To get those credentials, please send James (@jamesqquick) a message on Discord!
+> To get those credentials, please send James (@jamesqquick) a message in our [Discord community](https://discord.gg/vM2bagU)!
 
 ```bash
 cp .env.example .env
