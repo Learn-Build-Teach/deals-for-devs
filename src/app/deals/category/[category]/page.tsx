@@ -32,7 +32,7 @@ export default async function CategoryPage({
     capitalizedCategory = capitalizedCategory.slice(0, -1)
   }
   return (
-    <div>
+    <main>
       <div className="pb-10">
         <PageHeader title={`${capitalizedCategory} Deals`} />
       </div>
@@ -45,6 +45,6 @@ export default async function CategoryPage({
         </div>
       )}
       <DealsList deals={deals} />
-    </div>
+    </main>
   )
 }

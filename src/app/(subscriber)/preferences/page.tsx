@@ -28,7 +28,7 @@ export default async function SubscriberPreferences({
   }
 
   return (
-    <div className="flex w-full flex-col items-center px-2 text-white md:-mt-28">
+    <main className="flex w-full flex-col items-center px-2 text-white md:-mt-28">
       <div className="mb-4 flex items-center justify-center gap-2 md:mb-6">
         <VerifiedStatus
           email={subscriber.email}
@@ -44,6 +44,6 @@ export default async function SubscriberPreferences({
       </p>
       <div className="mb-10 w-full max-w-72 border border-white/[.31] md:mb-12 md:max-w-4xl" />
       <Subscriber subscriber={subscriber} />
-    </div>
+    </main>
   )
 }

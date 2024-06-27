@@ -45,7 +45,7 @@ export default async function DealPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div>
+    <main>
       <div className="pb-10">
         <DealPreview
           name={deal.name}
@@ -59,6 +59,6 @@ export default async function DealPage({ params }: { params: { id: string } }) {
           description={deal.description}
         />
       </div>
-    </div>
+    </main>
   )
 }
