@@ -78,7 +78,7 @@ export default function ReviewDeal() {
           />
           <button
             type="button"
-            className="mt-5 rounded-lg bg-teal-600 py-4 text-lg text-black disabled:bg-teal-600/30 lg:mt-10 lg:py-7 lg:text-2xl"
+            className="mt-5 rounded-lg bg-teal-500 py-4 text-lg text-black disabled:bg-teal-600/30 lg:mt-10 lg:py-7 lg:text-2xl"
             aria-label="Click to continue"
             onClick={validateAndSubmit}
           >

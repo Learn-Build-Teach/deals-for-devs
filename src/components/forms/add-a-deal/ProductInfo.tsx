@@ -190,7 +190,7 @@ export default function ProductInfo() {
             </div>
             <button
               type="submit"
-              className="mt-2 rounded-lg bg-teal-600 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
+              className="mt-2 rounded-lg bg-teal-500 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
               aria-label="Click to continue"
               disabled={imageUploadStatus === ImageUploadStatus.UPLOADING}
             >
