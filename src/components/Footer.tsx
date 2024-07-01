@@ -64,16 +64,7 @@ export default function Footer() {
             />
           </a>
         </div>
-        <span className="mb-2 text-sm font-medium leading-8 text-white/70 md:text-3xl">
-          Found a bug or want a new feature?{' '}
-          <a
-            href="https://github.com/Learn-Build-Teach/deals-for-devs/issues/new/choose"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Raise your issue on GitHub
-          </a>
-  </span>
+       
         {/* james quick social link */}
         {/* <Link
           className="mt-8 text-sm font-medium text-teal-500 md:text-xl"
