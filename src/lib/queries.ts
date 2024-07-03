@@ -4,15 +4,6 @@ import prisma from './db'
 import { Deal, Subscriber } from '@prisma/client'
 
 // DEAL QUERIES
-export async function getAllDeals() {
-  const deals = await prisma.deal.findMany({
-    orderBy: {
-      xata_createdat: 'desc',
-    },
-  })
-  return deals
-}
-
 export async function getDealById(id: string): Promise<Deal | null> {
   return prisma.deal.findUnique({
     where: {
@@ -41,19 +32,6 @@ export async function approveDeal(id: string): Promise<Deal> {
     },
     data: {
       approved: true,
-    },
-  })
-}
-
-export async function getRecentApprovedDealsByDate(
-  date: Date
-): Promise<Deal[]> {
-  return await prisma.deal.findMany({
-    where: {
-      approved: true,
-      xata_createdat: {
-        gte: date,
-      },
     },
   })
 }
@@ -108,6 +86,9 @@ export async function getApprovedFeaturedDeals(
     where: {
       approved: true,
       featured: true,
+      endDate: {
+        gte: new Date(),
+      },
     },
     take: limit,
     orderBy: {
