@@ -36,7 +36,7 @@ const techStack: TechStack[] = [
 
 export default function Footer() {
   return (
-    <div className="bg-[#0C111C] py-16">
+    <footer className="bg-[#0C111C] py-16">
       <div className="mx-auto flex max-w-56 flex-col items-center md:max-w-4xl">
         <span className="mb-2 text-sm font-medium leading-8 text-white md:text-3xl">
           Built With
@@ -45,7 +45,12 @@ export default function Footer() {
         {/* built with logos */}
         <div className="flex flex-wrap items-center justify-center gap-4 md:gap-10">
           {techStack.map((sponsor, index) => (
-            <a key={index} href={sponsor.Url} target="_blank">
+            <a
+              key={index}
+              href={sponsor.Url}
+              target="_blank"
+              aria-label={sponsor.alt}
+            >
               <Icon
                 id={sponsor.id}
                 size={sponsor.size}
@@ -61,7 +66,7 @@ export default function Footer() {
               width={159}
               height={49}
               className="h-6 w-20"
-              alt="clerk.dev logo"
+              alt="clerk.dev"
             />
           </a>
         </div>
@@ -74,6 +79,6 @@ export default function Footer() {
           @jamesqquick
         </Link> */}
       </div>
-    </div>
+    </footer>
   )
 }

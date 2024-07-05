@@ -10,7 +10,7 @@ export default async function DealsPage() {
   const deals = await getApprovedDeals(20)
   //TODO: handle error
   return (
-    <div>
+    <main>
       <div className="pb-10">
         <PageHeader title="All Deals" />
       </div>
@@ -24,6 +24,6 @@ export default async function DealsPage() {
       )}
       <DealsList deals={deals} />
       <NeverMissADeal />
-    </div>
+    </main>
   )
 }

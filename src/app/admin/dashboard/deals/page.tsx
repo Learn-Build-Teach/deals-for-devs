@@ -1,4 +1,4 @@
-import { getAllDeals, getAllUnapprovedDeals } from '@/lib/queries'
+import { getAllUnapprovedDeals } from '@/lib/queries'
 import DealsList from '@/components/deals/DealsList'
 
 export default async function Deals() {

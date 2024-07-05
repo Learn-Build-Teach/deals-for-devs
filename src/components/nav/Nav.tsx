@@ -34,7 +34,11 @@ export default function Nav() {
           <NavLink href="/deals/add">Add a deal</NavLink>
 
           {/* search */}
-          <button className="text-white" onClick={() => setSearchOpen(true)}>
+          <button
+            className="text-white"
+            onClick={() => setSearchOpen(true)}
+            aria-label="search"
+          >
             <GoSearch className="h-4 w-4 md:h-7 md:w-7" />
           </button>
         </div>
