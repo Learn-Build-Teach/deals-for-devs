@@ -14,6 +14,10 @@ export async function GET(request: NextRequest) {
     //TODO: how do we handle this now that we have Prisma?
     const { records } = await xataClient.db.Deal.search(query, {
       target: ['name', 'description'],
+      filter: {
+        approved: true,
+        //TODO: add filter for endDate
+      },
     })
 
     //TODO: fix this hack based on weird data from search api
