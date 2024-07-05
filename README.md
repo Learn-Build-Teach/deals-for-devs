@@ -20,7 +20,7 @@ To get a development environment running on your local machine:
 
 3. Create a `.env` file (from `.env.example`) and add all the credentials necessary to run the app.
 
-> To get those credentials, please send James (@jamesqquick) a message in our [Discord community](https://discord.gg/vM2bagU)!
+> Most of the example values can be left as-is. Each variable in the example file is annotated with whether or not it needs to be updated. The only truly required variables to get started are the ones associated with the database.
 
 ```bash
 cp .env.example .env
@@ -40,7 +40,7 @@ Xata runs on PostgreSQL, but to get access to the PostgreSQL layer, youll need t
 
 Now, you'll need to create a new database. Give it a name, and make sure to enable the checkbox that says `Enable direct access to PostgreSQL`.
 
-If this is your first db, you'll be prompted to create an API key and `Select a platform`. Make sure to copy your API key. You can then skip the platform section.
+> If this is your first db, you'll be prompted to create an API key and `Select a platform`. Make sure to copy your API key. You can then skip the platform section.
 
 You'll be asked how you want to connect. Choose `Typescript` and `Xata SDK`.
 
