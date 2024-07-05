@@ -136,7 +136,8 @@ export default function ProductInfo() {
               }}
             />
             <Input
-              label="Website URL *"
+              label="Website URL*"
+              placeholder="https://example.com"
               value={newDealData?.url}
               onChange={(e) => updateNewDealDetails({ url: e.target.value })}
             />
