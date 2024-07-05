@@ -8,8 +8,8 @@ export default function Page() {
   }
 
   return (
-    <div className="flex justify-center">
+    <main className="flex justify-center">
       <SignIn />
-    </div>
+    </main>
   )
 }

@@ -12,6 +12,7 @@ export const env = createEnv({
     FROM_EMAIL: z.string().email(),
     REPLY_TO_EMAIL: z.string().email(),
     DATABASE_URL: z.string(),
+    REVALIDATE_SECRET: z.string(),
   },
 
   /**

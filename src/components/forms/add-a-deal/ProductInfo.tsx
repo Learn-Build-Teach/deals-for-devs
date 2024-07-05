@@ -157,8 +157,8 @@ export default function ProductInfo() {
                   <Image
                     src={newDealData.coverImageURL}
                     alt="Product Image"
-                    width={700}
-                    height={400}
+                    width={1280}
+                    height={720}
                     className="absolute bottom-0 left-0 right-0 top-0 aspect-video w-full object-cover"
                   />
                   <button
@@ -190,7 +190,7 @@ export default function ProductInfo() {
             </div>
             <button
               type="submit"
-              className="mt-2 rounded-lg bg-teal-600 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
+              className="mt-2 rounded-lg bg-teal-500 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
               aria-label="Click to continue"
               disabled={imageUploadStatus === ImageUploadStatus.UPLOADING}
             >

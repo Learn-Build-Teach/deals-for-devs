@@ -8,6 +8,7 @@ export default function SubscribeFormButton() {
       type="submit"
       className="h absolute right-1 top-4 pr-[19px] hover:translate-x-1 md:top-6"
       disabled={pending}
+      aria-label="Submit"
     >
       {
         pending ?
