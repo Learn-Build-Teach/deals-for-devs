@@ -49,8 +49,8 @@ export default async function DealPage({ params }: { params: { id: string } }) {
       <div className="pb-10">
         <DealPreview
           name={deal.name}
-          url={deal.link}
-          couponCode={deal.coupon}
+          link={deal.link}
+          coupon={deal.coupon}
           couponPercent={deal.couponPercent}
           coverImageURL={deal.coverImageURL}
           startDate={deal.startDate}

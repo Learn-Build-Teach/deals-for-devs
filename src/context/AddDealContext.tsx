@@ -1,50 +1,40 @@
 'use client'
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
-import { z } from 'zod'
-import { ImageUploadStatus } from '@/types/Types'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
+import {
+  NewDealInitialValuesType,
+  NewDealType,
+  newDealInitialValuesSchema,
+} from '@/app/deals/add/schemas'
 
-const defaultDeal: NewDealType = {
-  productName: '',
+//TODO: separate the context into smaller contexts
+const defaultDeal: NewDealInitialValuesType = {
+  name: '',
   category: '',
-  url: '',
+  link: '',
   description: '',
   coverImageURL: '',
   coverImageId: '',
   startDate: new Date().toISOString(),
   endDate: undefined,
-  couponCode: '',
-  percentage: undefined,
+  coupon: '',
+  couponPercent: undefined,
   contactName: '',
   contactEmail: '',
 }
 
-export const newDealSchema = z.object({
-  productName: z.union([z.string().min(1), z.literal('')]),
-  category: z.union([z.string().min(1), z.literal('')]),
-  url: z.union([z.string(), z.literal('')]),
-  description: z.union([z.string().min(1), z.literal('')]),
-  coverImageURL: z.string().optional(),
-  coverImageId: z.string().optional(),
-  startDate: z.string().datetime(),
-  endDate: z.string().datetime().optional(),
-  couponCode: z.string().optional(),
-  percentage: z.number().optional(),
-  contactName: z.union([z.string().min(1), z.literal('')]),
-  contactEmail: z.union([z.string().min(1), z.literal('')]),
-})
-
-type NewDealType = z.infer<typeof newDealSchema>
-
 type AddDealContextType = {
   currentStep: number
   setCurrentStep: (step: number) => void
-  newDealData: NewDealType
+  newDealData: NewDealInitialValuesType
   updateNewDealDetails: (dealDetails: Partial<NewDealType>) => void
   dataLoaded: boolean
-  imageUploadStatus: ImageUploadStatus
-  setImageUploadStatus: (status: ImageUploadStatus) => void
-  imageUploadProgress: number
-  setImageUploadProgress: (progress: number) => void
 }
 
 // prettier-ignore
@@ -56,14 +46,9 @@ export const AddDealContextProvider = ({
   children: React.ReactNode
 }) => {
   const [currentStep, setCurrentStep] = useState(1)
-  const [newDealData, setNewDealData] = useState<NewDealType>(
-    defaultDeal as NewDealType
-  )
+  const [newDealData, setNewDealData] =
+    useState<NewDealInitialValuesType>(defaultDeal)
   const [dataLoaded, setDataLoaded] = useState(false)
-  const [imageUploadStatus, setImageUploadStatus] = useState<ImageUploadStatus>(
-    ImageUploadStatus.PENDING
-  )
-  const [imageUploadProgress, setImageUploadProgress] = useState(0)
 
   useEffect(() => {
     readFromLocalStorage()
@@ -76,14 +61,17 @@ export const AddDealContextProvider = ({
     }
   }, [newDealData, dataLoaded])
 
-  const updateNewDealDetails = (dealDetails: Partial<NewDealType>) => {
-    setNewDealData((currentData) => {
-      const updatedData = { ...currentData, ...dealDetails }
-      return updatedData as NewDealType
-    })
-  }
+  //TODO handle memoization
+  const updateNewDealDetails = useCallback(
+    (dealDetails: Partial<NewDealType>) => {
+      setNewDealData({ ...newDealData, ...dealDetails })
+    },
+    [newDealData]
+  )
 
-  const saveDataToLocalStorage = (currentDealData: NewDealType) => {
+  const saveDataToLocalStorage = (
+    currentDealData: NewDealInitialValuesType
+  ) => {
     localStorage.setItem(
       'deals-for-devs-newDealData',
       JSON.stringify(currentDealData)
@@ -93,11 +81,13 @@ export const AddDealContextProvider = ({
   const readFromLocalStorage = () => {
     const loadedDataString = localStorage.getItem('deals-for-devs-newDealData')
     if (!loadedDataString) return setNewDealData(defaultDeal)
-    try {
-      const parsed = newDealSchema.parse(JSON.parse(loadedDataString))
-      setNewDealData(parsed)
-    } catch (error) {
-      console.error('Failed to load local data', error)
+    const validated = newDealInitialValuesSchema.safeParse(
+      JSON.parse(loadedDataString)
+    )
+
+    if (validated.success) {
+      setNewDealData(validated.data)
+    } else {
       setNewDealData(defaultDeal)
     }
   }
@@ -107,22 +97,10 @@ export const AddDealContextProvider = ({
       currentStep,
       setCurrentStep,
       newDealData,
-      setNewDealData,
       dataLoaded,
-      setDataLoaded,
       updateNewDealDetails,
-      imageUploadStatus,
-      setImageUploadStatus,
-      imageUploadProgress,
-      setImageUploadProgress,
     }),
-    [
-      currentStep,
-      newDealData,
-      dataLoaded,
-      imageUploadStatus,
-      imageUploadProgress,
-    ]
+    [currentStep, newDealData, dataLoaded, updateNewDealDetails]
   )
 
   return (

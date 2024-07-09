@@ -2,55 +2,25 @@
 import { useRouter } from 'next/navigation'
 import { useAddDealContext } from '@/context/AddDealContext'
 import toast from 'react-hot-toast'
-import z from 'zod'
-import { createDeal } from '@/lib/queries'
 import DealPreview from '@/components/DealPreview'
 import Loading from '@/components/Loading'
+import { submitDealAction } from '@/app/deals/add/actions'
 
 export default function ReviewDeal() {
   const { newDealData, dataLoaded } = useAddDealContext()
   const router = useRouter()
 
-  const submittedDealSchema = z.object({
-    productName: z.string().min(1),
-    category: z.string().min(1),
-    url: z.string().url(),
-    description: z.string().min(1),
-    coverImageURL: z.string().optional(),
-    coverImageId: z.string().optional(),
-    startDate: z.string().datetime(),
-    endDate: z.string().datetime().optional(),
-    couponCode: z.string().optional(),
-    percentage: z.number().optional(),
-    contactName: z.string().min(1),
-    contactEmail: z.string().min(1),
-  })
-
   const validateAndSubmit = async () => {
-    try {
-      const parsed = submittedDealSchema.parse(newDealData)
-      // if the data is valid, submit the deal to db
-      const res = await createDeal({
-        name: parsed.productName,
-        category: parsed.category,
-        link: parsed.url,
-        description: parsed.description,
-        coverImageURL: parsed.coverImageURL,
-        coverImageId: parsed.coverImageId,
-        startDate: parsed.startDate,
-        endDate: parsed.endDate,
-        coupon: parsed.couponCode,
-        couponPercent: parsed.percentage,
-        contactName: parsed.contactName,
-        contactEmail: parsed.contactEmail,
-      })
-
+    const { error, redirect } = await submitDealAction(newDealData)
+    if (error) {
+      toast.error(error)
+      if (redirect) {
+        return router.push(redirect + '?validate=true')
+      }
+    } else {
       toast.success('Deal submitted successfully')
       localStorage.removeItem('deals-for-devs-newDealData')
       return router.push('/deals')
-    } catch (error) {
-      console.error(error)
-      return toast.error('Please fill out all required fields')
     }
   }
 
@@ -63,11 +33,12 @@ export default function ReviewDeal() {
       )}
       {dataLoaded && (
         <div className="flex flex-col">
+          {/* TODO: how to fix TypeScript errors here */}
           <DealPreview
-            name={newDealData.productName}
-            url={newDealData.url}
-            couponCode={newDealData.couponCode}
-            couponPercent={newDealData.percentage}
+            name={newDealData.name}
+            link={newDealData.link}
+            coupon={newDealData.coupon}
+            couponPercent={newDealData.couponPercent}
             coverImageURL={newDealData.coverImageURL}
             startDate={new Date(newDealData.startDate)}
             endDate={
