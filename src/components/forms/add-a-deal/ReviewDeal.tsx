@@ -5,13 +5,19 @@ import toast from 'react-hot-toast'
 import DealPreview from '@/components/DealPreview'
 import Loading from '@/components/Loading'
 import { submitDealAction } from '@/app/deals/add/actions'
+import { NewDealType } from '@/app/deals/add/schemas'
 
 export default function ReviewDeal() {
   const { newDealData, dataLoaded } = useAddDealContext()
+
+  //* cast deal data to final submission type
+  const dataToSubmit = newDealData as NewDealType
   const router = useRouter()
 
   const validateAndSubmit = async () => {
-    const { error, redirect } = await submitDealAction(newDealData)
+    const { error, redirect } = await submitDealAction(
+      newDealData as NewDealType
+    )
     if (error) {
       toast.error(error)
       if (redirect) {
@@ -33,19 +39,18 @@ export default function ReviewDeal() {
       )}
       {dataLoaded && (
         <div className="flex flex-col">
-          {/* TODO: how to fix TypeScript errors here */}
           <DealPreview
-            name={newDealData.name}
-            link={newDealData.link}
-            coupon={newDealData.coupon}
-            couponPercent={newDealData.couponPercent}
-            coverImageURL={newDealData.coverImageURL}
-            startDate={new Date(newDealData.startDate)}
+            name={dataToSubmit.name}
+            link={dataToSubmit.link}
+            coupon={dataToSubmit.coupon}
+            couponPercent={dataToSubmit.couponPercent}
+            coverImageURL={dataToSubmit.coverImageURL}
+            startDate={new Date(dataToSubmit.startDate)}
             endDate={
-              newDealData?.endDate ? new Date(newDealData.endDate) : undefined
+              dataToSubmit?.endDate ? new Date(dataToSubmit.endDate) : undefined
             }
-            category={newDealData.category}
-            description={newDealData.description}
+            category={dataToSubmit.category}
+            description={dataToSubmit.description}
           />
           <button
             type="button"
