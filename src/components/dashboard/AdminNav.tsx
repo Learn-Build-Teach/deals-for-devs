@@ -13,9 +13,9 @@ export default function AdminNav() {
           <UserButton />
           <Link
             className="hover:text-teal-500 hover:underline"
-            href="/admin/dashboard/deals"
+            href="/admin/dashboard/pending"
           >
-            Manage Deals
+            Pending Deals
           </Link>
           <Link
             className="hover:text-teal-500 hover:underline"
