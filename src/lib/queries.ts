@@ -48,9 +48,14 @@ export async function getApprovedDeals(limit: number = 20): Promise<Deal[]> {
   return await prisma.deal.findMany({
     where: {
       approved: true,
-      endDate: {
-        gte: new Date(),
-      },
+      OR: [
+        {
+          endDate: {
+            gte: new Date(),
+          },
+        },
+        { endDate: null },
+      ],
     },
     take: limit,
     orderBy: {
@@ -67,9 +72,14 @@ export async function getApprovedDealsByCategory(
     where: {
       approved: true,
       category: category.toUpperCase(),
-      endDate: {
-        gte: new Date(),
-      },
+      OR: [
+        {
+          endDate: {
+            gte: new Date(),
+          },
+        },
+        { endDate: null },
+      ],
     },
     take: limit,
     orderBy: {
@@ -94,14 +104,28 @@ export async function getApprovedFeaturedDeals(
     where: {
       approved: true,
       featured: true,
-      endDate: {
-        gte: new Date(),
-      },
+      OR: [
+        {
+          endDate: {
+            gte: new Date(),
+          },
+        },
+        { endDate: null },
+      ],
     },
     take: limit,
     orderBy: {
       xata_createdat: 'desc',
     },
+  })
+}
+
+export async function updateDeal(id: string, dealData: Deal): Promise<Deal> {
+  return await prisma.deal.update({
+    where: {
+      xata_id: id,
+    },
+    data: dealData,
   })
 }
 

@@ -1,8 +1,11 @@
 import { notFound } from 'next/navigation'
-import { getDealById, getDealByIdAsAdmin } from '@/lib/queries'
-import DealPreview from '@/components/DealPreview'
+import { getDealByIdAsAdmin } from '@/lib/queries'
 import { Metadata, ResolvingMetadata } from 'next'
 import EditDealForm from '@/components/dashboard/EditDealForm'
+import RejectDealButton from '@/components/dashboard/RejectDealButton'
+import ApproveDealButton from '@/components/dashboard/ApproveDealButton'
+import { Delete } from 'lucide-react'
+import DeleteDealButton from '@/components/dashboard/DeleteDealButton'
 
 export const revalidate = 120
 
@@ -37,14 +40,14 @@ export async function generateMetadata(
 }
 
 export default async function EditDealPage({
-  params,
+  params: { id },
 }: {
   params: { id: string }
 }) {
-  if (!params.id) {
+  if (!id) {
     notFound()
   }
-  const deal = await getDealByIdAsAdmin(params.id)
+  const deal = await getDealByIdAsAdmin(id)
   if (!deal) {
     notFound()
   }
@@ -52,7 +55,16 @@ export default async function EditDealPage({
   return (
     <main>
       <section className="mx-auto space-y-12 px-4 pb-10">
-        <h2 className="text-center text-5xl text-white">{deal.name}</h2>
+        <div className="flex items-center justify-between">
+          <h1 className="text-center text-5xl text-white">Edit Deal</h1>
+          {!deal.approved && (
+            <div className="flex justify-end gap-x-4 py-4">
+              <RejectDealButton id={id} />
+              <ApproveDealButton id={id} />
+            </div>
+          )}
+          {deal.approved && <DeleteDealButton id={id} />}
+        </div>
         <EditDealForm deal={deal} />
       </section>
     </main>

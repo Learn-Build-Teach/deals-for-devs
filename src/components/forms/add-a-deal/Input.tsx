@@ -9,7 +9,7 @@ type InputProps = {
   type?: string
   value?: string | number
   name: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   className?: string
   placeholder?: string
   error?: string
@@ -51,7 +51,7 @@ export default function Input({
           )}
           required={required}
           value={value}
-          onChange={(e) => onChange(e)}
+          onChange={(e) => onChange && onChange(e)}
           placeholder={placeholder}
           onBlur={onBlur}
         />

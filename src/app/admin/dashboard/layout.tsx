@@ -24,7 +24,7 @@ export default async function Home({
         <div className="mx-auto lg:col-span-1">
           <AdminNav />
         </div>
-        <main className="mx-auto lg:col-span-2">{children}</main>
+        <main className=" lg:col-span-2">{children}</main>
       </section>
     </div>
   )

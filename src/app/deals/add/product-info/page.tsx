@@ -1,5 +1,10 @@
 import ProductInfo from '@/components/forms/add-a-deal/ProductInfo'
+import { Suspense } from 'react'
 
 export default function StepOne() {
-  return <ProductInfo />
+  return (
+    <Suspense>
+      <ProductInfo />
+    </Suspense>
+  )
 }
