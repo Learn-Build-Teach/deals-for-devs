@@ -31,13 +31,13 @@ export const newDealSchema = z.object({
 
 export const updateDealSchema = z.object({
   xata_id: z.string(),
-  xata_createdat: z.string().datetime(),
-  xata_updatedat: z.string().datetime(),
+  xata_createdat: z.date(),
+  xata_updatedat: z.date(),
   ...productInfoSchema.shape,
   ...couponDetailsSchema.shape,
   ...contactDetailsSchema.shape,
-  endDate: z.coerce.date().optional(),
-  startDate: z.coerce.date(),
+  endDate: z.date().nullable(),
+  startDate: z.date(),
 })
 
 export const newDealInitialValuesSchema = z.object({

@@ -120,12 +120,12 @@ export async function getApprovedFeaturedDeals(
   })
 }
 
-export async function updateDeal(id: string, dealData: Deal): Promise<Deal> {
+export async function updateDeal(deal: Deal): Promise<Deal> {
   return await prisma.deal.update({
     where: {
-      xata_id: id,
+      xata_id: deal.xata_id,
     },
-    data: dealData,
+    data: deal,
   })
 }
 

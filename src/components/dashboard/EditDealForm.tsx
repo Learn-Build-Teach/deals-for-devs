@@ -10,104 +10,71 @@ import { DatePicker } from '../forms/DatePicker'
 import { updateDealAction } from '@/app/admin/dashboard/actions'
 import { useFormState } from 'react-dom'
 import toast from 'react-hot-toast'
+import { set } from 'date-fns'
 
 interface EditDealFormProps {
   deal: Deal
 }
-const initialState = {
-  error: undefined,
-  success: false,
-}
 
 export default function EditDealForm({ deal }: EditDealFormProps) {
-  const [category, setCategory] = useState<Category>(deal.category as Category)
-  const [startDate, setStartDate] = useState<string | undefined>(
-    deal.startDate.toISOString()
-  )
-  const [endDate, setEndDate] = useState<string | undefined>(
-    deal.endDate?.toISOString() || undefined
-  )
+  const [updatedDeal, setUpdatedDeal] = useState<Deal>(deal)
+
   const [blurs, setBlurs] = useState<FormBlurs>({})
   const [errors, setErrors] = useState<FormErrors>({})
-  const [name, setName] = useState<string>(deal.name)
-  const [description, setDescription] = useState<string>(deal.description)
-  const [coupon, setCoupon] = useState<string>(deal.coupon || '')
-  const [couponPercent, setCouponPercent] = useState<number | null>(
-    deal.couponPercent
-  )
-  const [contactName, setContactName] = useState<string>(deal.contactName)
-  const [contactEmail, setContactEmail] = useState<string>(deal.contactEmail)
-  const [link, setLink] = useState<string>(deal.link)
 
-  const [{ error, success }, formAction] = useFormState(
-    updateDealAction,
-    initialState
-  )
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
 
-  useEffect(() => {
-    if (error) {
+    const { successMessage, error } = await updateDealAction(updatedDeal)
+    if (successMessage) {
+      toast.success('Deal updated successfully')
+    } else if (error) {
       toast.error(error)
     }
-  }, [error])
+  }
 
-  useEffect(() => {
-    if (success) {
-      toast.success('Deal updated successfully')
-    }
-  }, [success])
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setUpdatedDeal((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
 
   return (
-    <form action={formAction}>
-      <input type="hidden" value={deal.xata_id} name="xata_id" />
-      <input
-        type="hidden"
-        value={deal.xata_createdat.toISOString()}
-        name="xata_createdat"
-      />
-      <input
-        type="hidden"
-        value={deal.xata_updatedat.toISOString()}
-        name="xata_updatedat"
-      />
+    <form onSubmit={handleFormSubmit}>
       <div className="flex w-full flex-col gap-7 lg:max-w-[700px] lg:gap-14">
         <Input
           label="Product Name *"
           name="name"
-          value={name}
-          onChange={(e) => {
-            setName(e.target.value)
-          }}
+          value={updatedDeal.name}
+          onChange={handleInputChange}
         />
         <CategorySelect
-          value={category}
+          value={updatedDeal.category}
           onCategoryChange={(category) => {
-            setCategory(category)
+            setUpdatedDeal((prev) => ({ ...prev, category: category }))
           }}
         />
-        <input type="hidden" name="category" value={category} />
+        <input type="hidden" name="category" value={updatedDeal.category} />
         <Input
           label="Website URL*"
           placeholder="https://example.com"
           name="link"
-          value={link}
-          onChange={(e) => {
-            setLink(e.target.value)
-          }}
+          value={updatedDeal.link}
+          onChange={handleInputChange}
         />
         <Textarea
           label="Product Description *"
           name="description"
-          value={description}
-          onChange={(e) => {
-            setDescription(e.target.value)
-          }}
+          value={updatedDeal.description}
+          onChange={handleInputChange}
         />
 
         <div className="flex flex-col gap-4">
+          {/* 
           <span className="text-base font-extralight md:text-2xl">
             Cover Image
           </span>
-          {/* {deal.coverImageURL ?
+          {deal.coverImageURL ?
             <div className="relative aspect-video w-full overflow-hidden rounded-lg">
               <Image
                 src={deal.coverImageURL}
@@ -151,20 +118,27 @@ export default function EditDealForm({ deal }: EditDealFormProps) {
               </span>
               <DatePicker
                 onDateChange={(date: Date | undefined) => {
-                  setStartDate(date?.toISOString() || undefined)
+                  if (date === undefined) {
+                    date = new Date()
+                  }
+                  setUpdatedDeal((prev) => ({
+                    ...prev,
+                    startDate: date,
+                  }))
                 }}
                 initialDate={new Date(deal.startDate)}
               />
             </div>
-            <input type="hidden" name="startDate" value={startDate} />
-            <input type="hidden" name="endDate" value={endDate} />
             <div className="flex flex-col gap-2">
               <span className="text-base font-extralight md:text-2xl">
                 End date
               </span>
               <DatePicker
                 onDateChange={(date: Date | undefined) => {
-                  setEndDate(date?.toISOString() || undefined)
+                  setUpdatedDeal((prev) => ({
+                    ...prev,
+                    endDate: date || null,
+                  }))
                 }}
                 initialDate={deal.endDate ? new Date(deal.endDate) : undefined}
               />
@@ -174,22 +148,25 @@ export default function EditDealForm({ deal }: EditDealFormProps) {
             <Input
               label="Coupon Code"
               name="coupon"
-              value={coupon}
+              value={updatedDeal.coupon || undefined}
               onBlur={() => setBlurs({ ...blurs, coupon: true })}
               required={false}
               error={blurs.coupon ? errors.coupon : undefined}
-              onChange={(e) => {
-                setCoupon(e.target.value)
-              }}
+              onChange={handleInputChange}
             />
             <Input
               label="Discount %"
               name="couponPercent"
-              value={couponPercent || undefined}
+              value={updatedDeal.couponPercent || undefined}
               onBlur={() => setBlurs({ ...blurs, couponPercent: true })}
               required={false}
+              type="number"
               onChange={(e) => {
-                setCouponPercent(Number(e.target.value))
+                const numValue = Number(e.target.value)
+                setUpdatedDeal((prev) => ({
+                  ...prev,
+                  couponPercent: Number.isNaN(numValue) ? null : numValue,
+                }))
               }}
             />
           </div>
@@ -197,24 +174,20 @@ export default function EditDealForm({ deal }: EditDealFormProps) {
             <Input
               label="Full Name *"
               name="contactName"
-              value={contactName}
+              value={updatedDeal.contactName}
               onBlur={() => setBlurs({ ...blurs, contactName: true })}
               required={true}
               error={blurs.contactName ? errors.contactName : undefined}
-              onChange={(e) => {
-                setContactName(e.target.value)
-              }}
+              onChange={handleInputChange}
             />
             <Input
               label="Email *"
               name="contactEmail"
-              value={contactEmail}
+              value={updatedDeal.contactEmail}
               onBlur={() => setBlurs({ ...blurs, contactEmail: true })}
               required={true}
               error={blurs.contactEmail ? errors.contactEmail : undefined}
-              onChange={(e) => {
-                setContactEmail(e.target.value)
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
