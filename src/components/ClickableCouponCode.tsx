@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { FaCopy, FaTag } from 'react-icons/fa'
 
-export default function ClickableCouponCode({ coupon }: { coupon: string }) {
+export default function ClickableCoupon({ coupon }: { coupon: string }) {
   const [showPopup, setShowPopup] = useState(false)
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation()

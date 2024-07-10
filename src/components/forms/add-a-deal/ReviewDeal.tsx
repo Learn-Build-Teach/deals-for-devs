@@ -2,55 +2,31 @@
 import { useRouter } from 'next/navigation'
 import { useAddDealContext } from '@/context/AddDealContext'
 import toast from 'react-hot-toast'
-import z from 'zod'
-import { createDeal } from '@/lib/queries'
 import DealPreview from '@/components/DealPreview'
 import Loading from '@/components/Loading'
+import { submitDealAction } from '@/app/deals/add/actions'
+import { NewDealType } from '@/app/deals/add/schemas'
 
 export default function ReviewDeal() {
   const { newDealData, dataLoaded } = useAddDealContext()
+
+  //* cast deal data to final submission type
+  const dataToSubmit = newDealData as NewDealType
   const router = useRouter()
 
-  const submittedDealSchema = z.object({
-    productName: z.string().min(1),
-    category: z.string().min(1),
-    url: z.string().url(),
-    description: z.string().min(1),
-    coverImageURL: z.string().optional(),
-    coverImageId: z.string().optional(),
-    startDate: z.string().datetime(),
-    endDate: z.string().datetime().optional(),
-    couponCode: z.string().optional(),
-    percentage: z.number().optional(),
-    contactName: z.string().min(1),
-    contactEmail: z.string().min(1),
-  })
-
   const validateAndSubmit = async () => {
-    try {
-      const parsed = submittedDealSchema.parse(newDealData)
-      // if the data is valid, submit the deal to db
-      const res = await createDeal({
-        name: parsed.productName,
-        category: parsed.category,
-        link: parsed.url,
-        description: parsed.description,
-        coverImageURL: parsed.coverImageURL,
-        coverImageId: parsed.coverImageId,
-        startDate: parsed.startDate,
-        endDate: parsed.endDate,
-        coupon: parsed.couponCode,
-        couponPercent: parsed.percentage,
-        contactName: parsed.contactName,
-        contactEmail: parsed.contactEmail,
-      })
-
+    const { error, redirect } = await submitDealAction(
+      newDealData as NewDealType
+    )
+    if (error) {
+      toast.error(error)
+      if (redirect) {
+        return router.push(redirect + '?validate=true')
+      }
+    } else {
       toast.success('Deal submitted successfully')
       localStorage.removeItem('deals-for-devs-newDealData')
       return router.push('/deals')
-    } catch (error) {
-      console.error(error)
-      return toast.error('Please fill out all required fields')
     }
   }
 
@@ -64,17 +40,17 @@ export default function ReviewDeal() {
       {dataLoaded && (
         <div className="flex flex-col">
           <DealPreview
-            name={newDealData.productName}
-            url={newDealData.url}
-            couponCode={newDealData.couponCode}
-            couponPercent={newDealData.percentage}
-            coverImageURL={newDealData.coverImageURL}
-            startDate={new Date(newDealData.startDate)}
+            name={dataToSubmit.name}
+            link={dataToSubmit.link}
+            coupon={dataToSubmit.coupon}
+            couponPercent={dataToSubmit.couponPercent}
+            coverImageURL={dataToSubmit.coverImageURL}
+            startDate={new Date(dataToSubmit.startDate)}
             endDate={
-              newDealData?.endDate ? new Date(newDealData.endDate) : undefined
+              dataToSubmit?.endDate ? new Date(dataToSubmit.endDate) : undefined
             }
-            category={newDealData.category}
-            description={newDealData.description}
+            category={dataToSubmit.category}
+            description={dataToSubmit.description}
           />
           <button
             type="button"
