@@ -24,9 +24,12 @@ export default function CategorySelect({
   return (
     <div>
       <div className="flex flex-col gap-2">
-        <span className="text-base font-extralight md:text-2xl">
+        <label
+          className="text-base font-extralight md:text-2xl"
+          htmlFor="category"
+        >
           Category *
-        </span>
+        </label>
         <Select
           onValueChange={onCategoryChange}
           name="category"
@@ -40,6 +43,8 @@ export default function CategorySelect({
                 'border-red-500 focus:ring-offset-red-500 '
               : 'focus:ring-offset-teal-500 '
             )}
+            aria-label="Category"
+            id="category"
           >
             <SelectValue placeholder="Please select a Category" />
           </SelectTrigger>
