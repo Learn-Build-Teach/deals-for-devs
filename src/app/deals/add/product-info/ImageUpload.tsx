@@ -28,8 +28,12 @@ export default function ImageUpload() {
         fileName: file.name,
         mediaType: file.type,
       }),
-    }).then((res) => res.json())
-
+    })
+      .then((res) => res.json())
+      .catch((error) => {
+        console.error('Failed to create image record', error)
+        resetProgress()
+      })
     if (!uploadUrl) {
       resetProgress()
       toast.error('Failed to create image record')

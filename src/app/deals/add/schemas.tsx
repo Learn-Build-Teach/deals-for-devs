@@ -29,6 +29,17 @@ export const newDealSchema = z.object({
   ...contactDetailsSchema.shape,
 })
 
+export const updateDealSchema = z.object({
+  xata_id: z.string(),
+  xata_createdat: z.date(),
+  xata_updatedat: z.date(),
+  ...productInfoSchema.shape,
+  ...couponDetailsSchema.shape,
+  ...contactDetailsSchema.shape,
+  endDate: z.date().nullable(),
+  startDate: z.date(),
+})
+
 export const newDealInitialValuesSchema = z.object({
   name: z.string().optional(),
   category: z.string().optional(),

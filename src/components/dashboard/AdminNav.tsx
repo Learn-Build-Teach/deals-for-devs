@@ -13,7 +13,7 @@ export default function AdminNav() {
           <UserButton />
           <Link
             className="hover:text-teal-500 hover:underline"
-            href="/admin/dashboard/deals"
+            href="/admin/dashboard"
           >
             Manage Deals
           </Link>

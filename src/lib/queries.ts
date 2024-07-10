@@ -13,7 +13,15 @@ export async function getDealById(id: string): Promise<Deal | null> {
   })
 }
 
-export async function getAllUnapprovedDeals() {
+export async function getDealByIdAsAdmin(id: string): Promise<Deal | null> {
+  return prisma.deal.findUnique({
+    where: {
+      xata_id: id,
+    },
+  })
+}
+
+export async function getAllPendingDeals() {
   const deals = await prisma.deal.findMany({
     where: {
       approved: false,
@@ -40,9 +48,14 @@ export async function getApprovedDeals(limit: number = 20): Promise<Deal[]> {
   return await prisma.deal.findMany({
     where: {
       approved: true,
-      endDate: {
-        gte: new Date(),
-      },
+      OR: [
+        {
+          endDate: {
+            gte: new Date(),
+          },
+        },
+        { endDate: null },
+      ],
     },
     take: limit,
     orderBy: {
@@ -59,9 +72,14 @@ export async function getApprovedDealsByCategory(
     where: {
       approved: true,
       category: category.toUpperCase(),
-      endDate: {
-        gte: new Date(),
-      },
+      OR: [
+        {
+          endDate: {
+            gte: new Date(),
+          },
+        },
+        { endDate: null },
+      ],
     },
     take: limit,
     orderBy: {
@@ -86,14 +104,28 @@ export async function getApprovedFeaturedDeals(
     where: {
       approved: true,
       featured: true,
-      endDate: {
-        gte: new Date(),
-      },
+      OR: [
+        {
+          endDate: {
+            gte: new Date(),
+          },
+        },
+        { endDate: null },
+      ],
     },
     take: limit,
     orderBy: {
       xata_createdat: 'desc',
     },
+  })
+}
+
+export async function updateDeal(deal: Deal): Promise<Deal> {
+  return await prisma.deal.update({
+    where: {
+      xata_id: deal.xata_id,
+    },
+    data: deal,
   })
 }
 

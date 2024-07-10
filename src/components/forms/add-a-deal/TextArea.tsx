@@ -8,8 +8,8 @@ type InputProps = {
   name: string
   error?: string
   required?: boolean
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-  onBlur: () => void
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+  onBlur?: () => void
 }
 
 export default function Textarea({
@@ -42,9 +42,9 @@ export default function Textarea({
             : 'focus-visible:ring-offset-teal-500'
           )}
           value={value}
-          onChange={(e) => onChange(e)}
+          onChange={(e) => onChange && onChange(e)}
           required={required}
-          onBlur={onBlur}
+          onBlur={() => onBlur && onBlur()}
         />
       </div>
       <div className="h-6">
