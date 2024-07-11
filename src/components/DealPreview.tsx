@@ -3,12 +3,12 @@ import React from 'react'
 import DealGradientPlaceholder from './DealGradientPlaceholder'
 import { Category } from '@/types/Types'
 import Image from 'next/image'
-import ClickableCouponCode from './ClickableCouponCode'
+import ClickableCoupon from './ClickableCouponCode'
 import DealImage from './deals/DealImage'
 
 export default function DealPreview({
-  url,
-  couponCode,
+  link,
+  coupon,
   startDate,
   endDate,
   category,
@@ -16,8 +16,8 @@ export default function DealPreview({
   description,
   coverImageURL,
 }: {
-  url: string
-  couponCode?: string | null
+  link: string
+  coupon?: string | null
   couponPercent?: number | null
   startDate: Date
   endDate?: Date
@@ -40,19 +40,19 @@ export default function DealPreview({
         <div className="mt-2 flex flex-wrap gap-2 text-sm md:mt-4 md:text-lg">
           <span className="font-light text-white/70">Website:</span>
           <a
-            href={url}
+            href={link}
             target="_blank"
             rel="noreferrer"
             className="font-normal underline hover:text-teal-500"
           >
-            {url}
+            {link}
           </a>
         </div>
         <div className="flex flex-wrap gap-2 text-sm font-light md:mt-1.5 md:text-lg">
           <span className="text-white/70">Coupon Code:</span>
           <span className="">
-            {couponCode ?
-              <ClickableCouponCode coupon={couponCode} />
+            {coupon ?
+              <ClickableCoupon coupon={coupon} />
             : 'No coupon code required'}
           </span>
         </div>
@@ -65,9 +65,7 @@ export default function DealPreview({
         </div>
         <div className="flex flex-wrap gap-2 text-sm font-light md:mt-1.5 md:text-lg">
           <span className=" text-white/70">Category:</span>
-          <span className="font-normal">
-            {category || 'No coupon code required'}
-          </span>
+          <span className="font-normal">{category || ''}</span>
         </div>
         <div className="mt-5 flex w-full flex-col items-start text-sm md:mt-10 md:text-lg ">
           <span className="font-bold uppercase">DESCRIPTION</span>
