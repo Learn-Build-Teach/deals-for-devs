@@ -134,9 +134,11 @@ export default function ProductInfo() {
               onBlur={() => setBlurs({ ...blurs, category: true })}
               error={blurs.category ? errors.category : undefined}
             />
+
             <Input
               label="Website URL*"
               name="link"
+              description='Must start with "https://"'
               required={false}
               placeholder="https://example.com"
               error={blurs.link ? errors.link : undefined}

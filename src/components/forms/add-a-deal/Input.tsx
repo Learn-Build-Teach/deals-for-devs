@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 
 type InputProps = {
   label: string
+  description?: string
   required?: boolean
   type?: string
   value?: string | number
@@ -19,6 +20,7 @@ type InputProps = {
 export default function Input({
   label,
   required = false,
+  description,
   type = 'text',
   name,
   value,
@@ -38,6 +40,9 @@ export default function Input({
           className="text-base font-extralight md:text-2xl"
         >
           {label}
+          {description && (
+            <span className="block text-sm text-gray-300">{description}</span>
+          )}
         </Label>
         <InputDefault
           id={labelCamelCase}
