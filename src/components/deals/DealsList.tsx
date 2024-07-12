@@ -1,7 +1,6 @@
 'use client'
 import DealCard from '@/components/deals/DealCard'
 import { Deal } from '@prisma/client'
-import AdminDealCard from './AdminDealCard'
 
 export default function DealsList({
   deals,
