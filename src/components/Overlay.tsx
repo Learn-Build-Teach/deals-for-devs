@@ -24,7 +24,7 @@ const Overlay = ({
   return (
     <dialog
       ref={dialogRef}
-      className="hide-scrollbar relative h-[90vh]  w-full max-w-4xl rounded-xl  bg-gray-900 px-4 pt-16 shadow-lg backdrop:bg-gray-950/[.80] md:px-8 md:pt-16"
+      className="hide-scrollbar h-100vh fixed w-full  max-w-4xl rounded-xl bg-gray-900  px-4 pt-16 shadow-lg backdrop:bg-gray-950/[.80] md:h-[90vh] md:px-8 md:pt-16"
     >
       <button
         onClick={onClose}
