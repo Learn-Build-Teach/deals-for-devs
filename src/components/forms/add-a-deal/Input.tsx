@@ -20,10 +20,7 @@ type InputProps = {
 export default function Input({
   label,
   required = false,
-<<<<<<< HEAD
-=======
   description,
->>>>>>> d8d0b678304720107b5b8a5e8d1b511ce4bb3652
   type = 'text',
   name,
   value,
@@ -43,12 +40,9 @@ export default function Input({
           className="text-base font-extralight md:text-2xl"
         >
           {label}
-<<<<<<< HEAD
-=======
           {description && (
             <span className="block text-sm text-gray-300">{description}</span>
           )}
->>>>>>> d8d0b678304720107b5b8a5e8d1b511ce4bb3652
         </Label>
         <InputDefault
           id={labelCamelCase}
