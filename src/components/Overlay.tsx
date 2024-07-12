@@ -29,6 +29,7 @@ const Overlay = ({
       <button
         onClick={onClose}
         className="fixed right-3 top-3 text-gray-400 transition-colors hover:text-white"
+        aria-label="Close"
       >
         <FaTimes className="h-10" />
       </button>
