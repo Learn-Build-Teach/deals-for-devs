@@ -17,17 +17,6 @@ export async function generateStaticParams() {
     deal: deal.xata_id,
   }))
 }
-// export async function getStaticProps() {
-//   const deals = await getApprovedDeals()
-
-//   return {
-//     props: {
-//       deals,
-//     },
-
-//     revalidate, // In seconds
-//   }
-// }
 
 export async function generateMetadata(
   { params, searchParams }: Props,
