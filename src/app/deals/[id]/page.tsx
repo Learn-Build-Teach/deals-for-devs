@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getAllDeals, getDealById } from '@/lib/queries'
+import { getApprovedDeals, getDealById } from '@/lib/queries'
 import DealPreview from '@/components/DealPreview'
 import { Metadata, ResolvingMetadata } from 'next'
 
@@ -10,17 +10,24 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export async function getStaticProps() {
-  const deals = await getAllDeals()
+export async function generateStaticParams() {
+  const deals = await getApprovedDeals()
 
-  return {
-    props: {
-      deals,
-    },
-
-    revalidate, // In seconds
-  }
+  return deals.map((deal) => ({
+    deal: deal.xata_id,
+  }))
 }
+// export async function getStaticProps() {
+//   const deals = await getApprovedDeals()
+
+//   return {
+//     props: {
+//       deals,
+//     },
+
+//     revalidate, // In seconds
+//   }
+// }
 
 export async function generateMetadata(
   { params, searchParams }: Props,
