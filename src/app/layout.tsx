@@ -43,7 +43,7 @@ export default function RootLayout({
               <GlobalSearch />
               <Nav />
             </SearchProvider>
-            <div>{children}</div>
+            <div className="text-white">{children}</div>
           </div>
           <Footer />
         </div>

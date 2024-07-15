@@ -2,18 +2,8 @@
 import { Category, NewSubscriberData, Status } from '@/types/Types'
 import prisma from './db'
 import { Deal, Subscriber } from '@prisma/client'
-import { DealRecord } from '@/xata'
 
 // DEAL QUERIES
-export async function getAllDeals() {
-  const deals = await prisma.deal.findMany({
-    orderBy: {
-      xata_createdat: 'desc',
-    },
-  })
-  return deals
-}
-
 export async function getDealById(id: string): Promise<Deal | null> {
   return prisma.deal.findUnique({
     where: {
@@ -23,7 +13,15 @@ export async function getDealById(id: string): Promise<Deal | null> {
   })
 }
 
-export async function getAllUnapprovedDeals() {
+export async function getDealByIdAsAdmin(id: string): Promise<Deal | null> {
+  return prisma.deal.findUnique({
+    where: {
+      xata_id: id,
+    },
+  })
+}
+
+export async function getAllPendingDeals() {
   const deals = await prisma.deal.findMany({
     where: {
       approved: false,
@@ -46,23 +44,18 @@ export async function approveDeal(id: string): Promise<Deal> {
   })
 }
 
-export async function getRecentApprovedDealsByDate(
-  date: Date
-): Promise<Deal[]> {
-  return await prisma.deal.findMany({
-    where: {
-      approved: true,
-      xata_createdat: {
-        gte: date,
-      },
-    },
-  })
-}
-
 export async function getApprovedDeals(limit: number = 20): Promise<Deal[]> {
   return await prisma.deal.findMany({
     where: {
       approved: true,
+      OR: [
+        {
+          endDate: {
+            gte: new Date(),
+          },
+        },
+        { endDate: null },
+      ],
     },
     take: limit,
     orderBy: {
@@ -70,6 +63,7 @@ export async function getApprovedDeals(limit: number = 20): Promise<Deal[]> {
     },
   })
 }
+
 export async function getApprovedDealsByCategory(
   category: Category,
   limit: number = 20
@@ -78,6 +72,14 @@ export async function getApprovedDealsByCategory(
     where: {
       approved: true,
       category: category.toUpperCase(),
+      OR: [
+        {
+          endDate: {
+            gte: new Date(),
+          },
+        },
+        { endDate: null },
+      ],
     },
     take: limit,
     orderBy: {
@@ -102,11 +104,28 @@ export async function getApprovedFeaturedDeals(
     where: {
       approved: true,
       featured: true,
+      OR: [
+        {
+          endDate: {
+            gte: new Date(),
+          },
+        },
+        { endDate: null },
+      ],
     },
     take: limit,
     orderBy: {
       xata_createdat: 'desc',
     },
+  })
+}
+
+export async function updateDeal(deal: Deal): Promise<Deal> {
+  return await prisma.deal.update({
+    where: {
+      xata_id: deal.xata_id,
+    },
+    data: deal,
   })
 }
 

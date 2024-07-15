@@ -1,4 +1,3 @@
-import { DealRecord } from '@/xata'
 import React from 'react'
 import DealsList from './deals/DealsList'
 import Link from 'next/link'

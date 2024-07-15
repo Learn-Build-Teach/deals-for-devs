@@ -1,27 +1,90 @@
 'use client'
 import Input from '@/components/forms/add-a-deal/Input'
-import { useRouter } from 'next/navigation'
 import { useAddDealContext } from '@/context/AddDealContext'
-import { AddDealRoutes } from '@/types/Types'
 import { DatePicker } from '../DatePicker'
 import Loading from '@/components/Loading'
+import { useFormState } from 'react-dom'
+import { FormBlurs, FormErrors } from '@/app/deals/add/types'
+import { submitCouponDetailsAction } from '@/app/deals/add/actions'
+import { contactDetailsSchema } from '@/app/deals/add/schemas'
+import { useState, useCallback, useEffect } from 'react'
+import toast from 'react-hot-toast'
+import { useSearchParams } from 'next/navigation'
+
+const initialState: FormErrors = {}
+const inputNames = ['startDate', 'endDate', 'coupon', 'couponPercent']
 
 export default function CouponDetails() {
-  const {
-    currentStep,
-    setCurrentStep,
-    newDealData,
-    updateNewDealDetails,
-    dataLoaded,
-  } = useAddDealContext()
-  const router = useRouter()
+  const { newDealData, updateNewDealDetails, dataLoaded } = useAddDealContext()
+  const searchParams = useSearchParams()
 
-  const nextStep = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setCurrentStep(currentStep + 1)
-    router.push(`/deals/add/${AddDealRoutes.CONTACT_INFO}`)
+  const [serverErrors, formAction] = useFormState(
+    submitCouponDetailsAction,
+    initialState
+  )
+
+  const [errors, setErrors] = useState<FormErrors>({})
+
+  const [blurs, setBlurs] = useState<FormBlurs>({})
+
+  const setAllBlurred = useCallback(() => {
+    const allBlurred = inputNames.reduce((acc: FormBlurs, name) => {
+      acc[name] = true
+      return acc
+    }, {})
+    setBlurs(allBlurred)
+  }, [])
+
+  useEffect(() => {
+    if (searchParams.get('validate') === 'true') {
+      setAllBlurred()
+      validateFormInput()
+    }
+  }, [])
+
+  useEffect(() => {
+    setErrors((prevErrors) => {
+      return { ...prevErrors, ...serverErrors }
+    })
+  }, [serverErrors, setAllBlurred])
+
+  const handleInputChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    updateNewDealDetails({ [e.target.name]: e.target.value })
+    validateFormInput(e.target.name, e.target.value)
   }
 
+  const validateFormInput = (name?: string, value?: string): boolean => {
+    const tempFormData: any = {
+      contactName: newDealData.contactName,
+      contactEmail: newDealData.contactEmail,
+    }
+    if (name) {
+      tempFormData[name] = value
+    }
+
+    const validated = contactDetailsSchema.safeParse(tempFormData)
+    if (!validated.success) {
+      const errors = validated.error.issues.reduce((acc: FormErrors, issue) => {
+        const path = issue.path[0] as string
+        acc[path] = issue.message
+        return acc
+      }, {})
+      setErrors(errors)
+      return false
+    } else {
+      if (name) {
+        setErrors({
+          ...errors,
+          [name]: undefined,
+        })
+      }
+      return true
+    }
+  }
   return (
     <>
       {!dataLoaded && (
@@ -30,7 +93,14 @@ export default function CouponDetails() {
         </div>
       )}
       {dataLoaded && (
-        <form onSubmit={nextStep} className="flex flex-1 flex-col items-center">
+        <form
+          action={(formData) => {
+            setAllBlurred()
+            formAction(formData)
+            toast.error('Please review your inputs')
+          }}
+          className="flex flex-1 flex-col items-center"
+        >
           <div className="flex w-full flex-col gap-7 lg:max-w-[700px] lg:gap-14">
             <div className="grid gap-x-4 gap-y-4 md:grid-cols-2">
               <div className="flex flex-col gap-2">
@@ -39,22 +109,32 @@ export default function CouponDetails() {
                 </span>
                 <DatePicker
                   onDateChange={(date: Date | undefined) => {
-                    updateNewDealDetails({
-                      startDate: date?.toISOString(),
-                    })
+                    if (dataLoaded) {
+                      updateNewDealDetails({
+                        startDate: date?.toISOString(),
+                      })
+                    }
                   }}
                   initialDate={new Date(newDealData.startDate)}
                 />
               </div>
+              <input
+                type="hidden"
+                name="startDate"
+                value={newDealData.startDate}
+              />
+              <input type="hidden" name="endDate" value={newDealData.endDate} />
               <div className="flex flex-col gap-2">
                 <span className="text-base font-extralight md:text-2xl">
                   End date
                 </span>
                 <DatePicker
                   onDateChange={(date: Date | undefined) => {
-                    updateNewDealDetails({
-                      endDate: date?.toISOString(),
-                    })
+                    if (dataLoaded) {
+                      updateNewDealDetails({
+                        endDate: date?.toISOString() || undefined,
+                      })
+                    }
                   }}
                   initialDate={
                     newDealData.endDate ?
@@ -64,33 +144,30 @@ export default function CouponDetails() {
                 />
               </div>
             </div>
-            <div className="flex items-center gap-12">
+            <div className="grid gap-x-4 gap-y-4 md:grid-cols-2">
               <Input
-                className="flex-1"
                 label="Coupon Code"
-                value={newDealData?.couponCode}
-                onChange={(e) => {
-                  updateNewDealDetails({ couponCode: e.target.value })
-                }}
+                name="coupon"
+                value={newDealData?.coupon}
+                onChange={handleInputChange}
+                onBlur={() => setBlurs({ ...blurs, coupon: true })}
                 required={false}
+                error={blurs.coupon ? errors.coupon : undefined}
               />
               <Input
-                className="w-1/4"
                 label="Discount %"
-                type="number"
-                value={newDealData?.percentage}
+                name="couponPercent"
+                value={newDealData?.couponPercent}
+                onChange={handleInputChange}
+                onBlur={() => setBlurs({ ...blurs, couponPercent: true })}
                 required={false}
-                onChange={(e) =>
-                  updateNewDealDetails({
-                    percentage: e.target.valueAsNumber || undefined,
-                  })
-                }
+                error={blurs.couponPercent ? errors.couponPercent : undefined}
               />
             </div>
 
             <button
               type="submit"
-              className="mt-2 rounded-lg bg-teal-600 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
+              className="mt-2 rounded-lg bg-teal-500 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
               aria-label="Click to continue"
             >
               Continue

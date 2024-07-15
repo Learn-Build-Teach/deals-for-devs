@@ -1,12 +1,7 @@
 import Link from 'next/link'
-import AdminOptions from '../AdminOptions'
-import ClickableCouponCode from '../ClickableCouponCode'
 import { FaBeer, FaVideo, FaBook, FaCog, FaCalendar } from 'react-icons/fa'
 import { Category } from '@/types/Types'
-import { format } from 'date-fns'
 import { Deal } from '@prisma/client'
-import Image from 'next/image'
-import DealGradientPlaceholder from '../DealGradientPlaceholder'
 import DealImage from './DealImage'
 
 const categoryToIcon: { [key: string]: JSX.Element } = {
@@ -17,17 +12,7 @@ const categoryToIcon: { [key: string]: JSX.Element } = {
   Conference: <FaCalendar />,
 }
 
-export default function DealCard({
-  deal,
-  showAdminOptions = false,
-}: {
-  deal: Deal
-  showAdminOptions?: boolean
-}) {
-  if (!deal || !deal.startDate) {
-    return null
-  }
-
+export default function DealCard({ deal }: { deal: Deal }) {
   return (
     <Link
       href={`/deals/${deal.xata_id}`}
@@ -46,7 +31,6 @@ export default function DealCard({
           <span className="text-xs uppercase">off</span>
         </p>
       )}
-      {showAdminOptions && <AdminOptions id={deal.xata_id} />}
     </Link>
   )
 }
