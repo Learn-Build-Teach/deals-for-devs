@@ -7,19 +7,20 @@ export const revalidate = 120
 
 type Props = {
   params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
 }
+
+export const dynamicParams = true
 
 export async function generateStaticParams() {
   const deals = await getApprovedDeals()
 
   return deals.map((deal) => ({
-    deal: deal.xata_id,
+    id: deal.xata_id,
   }))
 }
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   // read route params
