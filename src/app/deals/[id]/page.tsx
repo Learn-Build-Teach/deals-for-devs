@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getDealById } from '@/lib/queries'
+import { getApprovedDeals, getDealById } from '@/lib/queries'
 import DealPreview from '@/components/DealPreview'
 import { Metadata, ResolvingMetadata } from 'next'
 
@@ -7,11 +7,20 @@ export const revalidate = 120
 
 type Props = {
   params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export const dynamicParams = true
+
+export async function generateStaticParams() {
+  const deals = await getApprovedDeals()
+
+  return deals.map((deal) => ({
+    id: deal.xata_id,
+  }))
 }
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
+  { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   // read route params
