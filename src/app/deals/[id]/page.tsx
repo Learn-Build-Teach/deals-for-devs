@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { getApprovedDeals, getDealById } from '@/lib/queries'
-import DealPreview from '@/components/DealPreview'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
+import DealPreview from '@/components/deals/DealPreview'
 
 export const revalidate = 120
 
@@ -19,14 +19,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  // read route params
-  const id = params.id
-
-  // fetch data
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const deal = await getDealById(params.id)
 
   if (!deal) {
@@ -44,10 +37,15 @@ export async function generateMetadata(
   }
 }
 
+//sleep function
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
 export default async function DealPage({ params }: { params: { id: string } }) {
   if (!params.id) {
-    //not found
+    notFound()
   }
+
   const deal = await getDealById(params.id)
   if (!deal) {
     notFound()

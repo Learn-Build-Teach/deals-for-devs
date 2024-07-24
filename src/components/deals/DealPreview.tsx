@@ -1,10 +1,7 @@
 import { format } from 'date-fns'
-import React from 'react'
-import DealGradientPlaceholder from './DealGradientPlaceholder'
 import { Category } from '@/types/Types'
-import Image from 'next/image'
-import ClickableCoupon from './ClickableCouponCode'
-import DealImage from './deals/DealImage'
+import DealImage from './DealImage'
+import ClickableCoupon from '../ClickableCouponCode'
 
 export default function DealPreview({
   link,
@@ -35,8 +32,8 @@ export default function DealPreview({
           category={category as Category}
         />
       </div>
-      <div className="flex  flex-col gap-y-1">
-        <span className="text-xl md:text-3xl">{name}</span>
+      <div className="flex flex-col gap-y-1">
+        <h1 className="text-xl md:text-3xl">{name}</h1>
         <div className="mt-2 flex flex-wrap gap-2 text-sm md:mt-4 md:text-lg">
           <span className="font-light text-white/70">Website:</span>
           <a
