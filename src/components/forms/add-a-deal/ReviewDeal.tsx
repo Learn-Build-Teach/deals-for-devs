@@ -2,10 +2,10 @@
 import { useRouter } from 'next/navigation'
 import { useAddDealContext } from '@/context/AddDealContext'
 import toast from 'react-hot-toast'
-import DealPreview from '@/components/DealPreview'
 import Loading from '@/components/Loading'
 import { submitDealAction } from '@/app/deals/add/actions'
 import { NewDealType } from '@/app/deals/add/schemas'
+import DealPreview from '@/components/deals/DealPreview'
 
 export default function ReviewDeal() {
   const { newDealData, dataLoaded } = useAddDealContext()
