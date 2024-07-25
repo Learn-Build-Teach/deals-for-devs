@@ -1,16 +1,7 @@
 import Link from 'next/link'
-import { FaBeer, FaVideo, FaBook, FaCog, FaCalendar } from 'react-icons/fa'
 import { Category } from '@/types/Types'
 import { Deal } from '@prisma/client'
 import DealImage from './DealImage'
-
-const categoryToIcon: { [key: string]: JSX.Element } = {
-  Misc: <FaBeer />,
-  Ebook: <FaBook />,
-  Video: <FaVideo />,
-  Tool: <FaCog />,
-  Conference: <FaCalendar />,
-}
 
 export default function DealCard({ deal }: { deal: Deal }) {
   return (
@@ -24,7 +15,7 @@ export default function DealCard({ deal }: { deal: Deal }) {
         coverImageURL={deal.coverImageURL}
         category={deal.category as Category}
       />
-      <h2 className="text-lg font-semibold tracking-tight">{deal.name}</h2>
+      <h2 className="mt-1 text-lg font-semibold tracking-tight">{deal.name}</h2>
       {deal.coupon && deal.couponPercent && (
         <p className="-gap-y-1 absolute right-3 top-3 flex h-14 w-14 -rotate-12 flex-col items-center justify-center rounded-full bg-pale-gold  text-black shadow-md">
           <span className="text-md -mb-1 font-bold">{deal.couponPercent}%</span>

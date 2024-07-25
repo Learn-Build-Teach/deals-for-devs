@@ -1,7 +1,7 @@
 import { Category } from '@/types/Types'
 import { Deal } from '@prisma/client'
 import React from 'react'
-import DealGradientPlaceholder from '../DealGradientPlaceholder'
+import DealGradientPlaceholder from './DealGradientPlaceholder'
 import Image from 'next/image'
 
 interface IDealImageProps {

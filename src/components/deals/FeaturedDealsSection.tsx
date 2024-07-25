@@ -1,9 +1,9 @@
-import React from 'react'
-import DealsList from './deals/DealsList'
 import Link from 'next/link'
-import { Deal } from '@prisma/client'
+import FeaturedDeals from './FeaturedDeals'
+import { Suspense } from 'react'
+import LoadingDealsList from './loading/LoadingDealsList'
 
-export default function FeaturedDeals({ deals }: { deals: Deal[] }) {
+export default function FeaturedDealsSection() {
   return (
     <section className="py-20">
       <div className="flex flex-col items-center gap-x-8 gap-y-4 pb-10 md:flex-row">
@@ -18,7 +18,9 @@ export default function FeaturedDeals({ deals }: { deals: Deal[] }) {
           View all deals
         </Link>
       </div>
-      <DealsList deals={deals} />
+      <Suspense fallback={<LoadingDealsList count={3} />}>
+        <FeaturedDeals />
+      </Suspense>
     </section>
   )
 }

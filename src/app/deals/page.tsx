@@ -1,13 +1,13 @@
 import CategoryOptions from '@/components/CategoryOptions'
-import { getApprovedDeals } from '@/lib/queries'
 import NeverMissADeal from '@/components/NeverMissADeal'
 import PageHeader from '@/components/PageHeader'
-import DealsList from '@/components/deals/DealsList'
+import ApprovedDeals from '@/components/deals/ApprovedDeals'
+import LoadingDealsList from '@/components/deals/loading/LoadingDealsList'
+import { Suspense } from 'react'
 
 export const revalidate = 120
 
 export default async function DealsPage() {
-  const deals = await getApprovedDeals(20)
   //TODO: handle error
   return (
     <main>
@@ -17,12 +17,9 @@ export default async function DealsPage() {
       <div className="pb-10">
         <CategoryOptions />
       </div>
-      {deals.length === 0 && (
-        <div className="text-center text-xl text-gray-300">
-          No deals found for this category
-        </div>
-      )}
-      <DealsList deals={deals} />
+      <Suspense fallback={<LoadingDealsList count={3} />}>
+        <ApprovedDeals />
+      </Suspense>
       <NeverMissADeal />
     </main>
   )
