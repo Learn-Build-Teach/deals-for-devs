@@ -31,7 +31,7 @@ export default function SearchResults({
       )}
 
       {!loading && deals && deals.length === 0 && (
-        <div className="text-center text-gray-100">
+        <div className="text-center text-gray-100" role="alert">
           <p className="mt-8 pb-1 text-center text-xl font-bold ">
             No results for search{' '}
             <span className="font-normal">{'"' + searchQuery + '"'}</span>

@@ -88,6 +88,7 @@ export default function GlobalSearch() {
             <button
               className="absolute right-4 top-6"
               onClick={handleClearSearch}
+              aria-label="Clear search query"
             >
               <FaTimes className="text-gray-400 hover:text-gray-100" />
             </button>
