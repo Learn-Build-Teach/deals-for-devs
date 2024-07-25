@@ -4,6 +4,9 @@ import { Category } from '@/types/Types'
 import { getApprovedDealsByCategory } from '@/lib/queries'
 import PageHeader from '@/components/PageHeader'
 import DealsList from '@/components/deals/DealsList'
+import ApprovedDealsByCategory from '@/components/deals/ApprovedDealsByCategory'
+import { Suspense } from 'react'
+import LoadingDealsList from '@/components/deals/loading/LoadingDealsList'
 
 export const revalidate = 120
 
@@ -23,7 +26,6 @@ export default async function CategoryPage({
   }
   //TODO move logic for converting deals to capitalized and singular to a helper function
   const category = categoryString as Category
-  const deals = await getApprovedDealsByCategory(category)
   let capitalizedCategory = category
     .split(' ')
     .map((word) => word.charAt(0).toUpperCase() + word.toLowerCase().slice(1))
@@ -39,12 +41,9 @@ export default async function CategoryPage({
       <div className="pb-10">
         <CategoryOptions />
       </div>
-      {deals.length === 0 && (
-        <div className="text-center text-xl text-gray-300">
-          No deals found for this category
-        </div>
-      )}
-      <DealsList deals={deals} />
+      <Suspense fallback={<LoadingDealsList count={3} />}>
+        <ApprovedDealsByCategory category={category} />
+      </Suspense>
     </main>
   )
 }

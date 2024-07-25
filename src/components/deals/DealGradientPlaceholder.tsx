@@ -1,19 +1,13 @@
 import { Category } from '@/types/Types'
 import React from 'react'
 import {
-  FaBeer,
   FaBook,
-  FaCalendar,
   FaChair,
   FaCog,
-  FaCompactDisc,
-  FaDeskpro,
   FaDesktop,
   FaMicrophone,
   FaSchool,
-  FaTable,
   FaTag,
-  FaVideo,
 } from 'react-icons/fa'
 import { twMerge } from 'tailwind-merge'
 
