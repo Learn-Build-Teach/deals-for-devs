@@ -115,7 +115,8 @@ export default function CouponDetails() {
                       })
                     }
                   }}
-                  initialDate={new Date(newDealData.startDate)}
+                  initialDate={new Date()}
+                  disableDates={{before: new Date()}}
                 />
               </div>
               <input
@@ -141,6 +142,7 @@ export default function CouponDetails() {
                       new Date(newDealData.endDate)
                     : undefined
                   }
+                  disableDates={{before: new Date(newDealData.startDate)}}
                 />
               </div>
             </div>
