@@ -140,7 +140,6 @@ export default function ProductInfo() {
               name="link"
               description='Must start with "https://"'
               required={false}
-              placeholder="https://example.com"
               error={blurs.link ? errors.link : undefined}
               value={newDealData?.link}
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
