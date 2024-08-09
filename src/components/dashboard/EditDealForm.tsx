@@ -57,7 +57,6 @@ export default function EditDealForm({ deal }: EditDealFormProps) {
         <input type="hidden" name="category" value={updatedDeal.category} />
         <Input
           label="Website URL*"
-          placeholder="https://example.com"
           name="link"
           value={updatedDeal.link}
           onChange={handleInputChange}
