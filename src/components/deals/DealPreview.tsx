@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import { Category } from '@/types/Types'
 import DealImage from './DealImage'
 import ClickableCoupon from '../ClickableCouponCode'
+import TagsList from '../forms/add-a-deal/TagsList'
 
 export default function DealPreview({
   link,
@@ -12,9 +13,11 @@ export default function DealPreview({
   name,
   description,
   coverImageURL,
+  tags,
 }: {
   link: string
   coupon?: string | null
+  tags?: string[]
   couponPercent?: number | null
   startDate: Date
   endDate?: Date
@@ -34,6 +37,7 @@ export default function DealPreview({
       </div>
       <div className="flex flex-col gap-y-1">
         <h1 className="text-xl md:text-3xl">{name}</h1>
+        <TagsList tags={tags} />
         <div className="mt-2 flex flex-wrap gap-2 text-sm md:mt-4 md:text-lg">
           <span className="font-light text-white/70">Website:</span>
           <a

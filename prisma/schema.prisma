@@ -26,6 +26,16 @@ model Deal {
   coverImageId   String?    @db.VarChar(255)
   contactEmail   String     @db.VarChar(255)
   contactName    String     @db.VarChar(255)
+  tags Tag[]
+}
+
+model Tag {
+  xata_version                 Int      @default(0)
+  xata_createdat               DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat               DateTime @default(now()) @db.Timestamptz(6)
+  xata_id                      String   @id @unique(map: "Tag__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))   
+  text                        String   @db.VarChar(255)
+  deal Deal[]
 }
 
 model AdminUser {

@@ -16,7 +16,16 @@ export const submitProductInfoAction = (
   prevState: any,
   formData: FormData
 ): FormErrors | undefined => {
-  const productInfo = Object.fromEntries(formData.entries())
+  const productInfo = {
+    name: formData.get('name'),
+    category: formData.get('category'),
+    link: formData.get('link'),
+    description: formData.get('description'),
+    coverImageURL: formData.get('coverImageURL'),
+    coverImageId: formData.get('coverImageId'),
+    tags: Array.from(formData.getAll('tag')),
+  }
+
   const validated = productInfoSchema.safeParse(productInfo)
   if (!validated.success) {
     const errors = validated.error.issues.reduce((acc: FormErrors, issue) => {
@@ -24,7 +33,7 @@ export const submitProductInfoAction = (
       acc[path] = issue.message
       return acc
     }, {})
-
+    console.log(errors)
     return errors
   }
 
@@ -73,6 +82,7 @@ export const submitDealAction = async (
   data: NewDealType
 ): Promise<{ error: string | undefined; redirect?: AddDealRoutes }> => {
   const validated = newDealSchema.safeParse(data)
+
   if (validated.success) {
     try {
       await createDeal(validated.data)

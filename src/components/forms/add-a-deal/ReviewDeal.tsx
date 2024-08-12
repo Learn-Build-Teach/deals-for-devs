@@ -49,6 +49,7 @@ export default function ReviewDeal() {
             endDate={
               dataToSubmit?.endDate ? new Date(dataToSubmit.endDate) : undefined
             }
+            tags={dataToSubmit.tags}
             category={dataToSubmit.category}
             description={dataToSubmit.description}
           />
