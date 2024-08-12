@@ -12,6 +12,7 @@ import ImageUpload from '@/app/deals/add/product-info/ImageUpload'
 import toast from 'react-hot-toast'
 import { useSearchParams } from 'next/navigation'
 import Loading from '@/components/Loading'
+import CommaSeparatedTags from './CommaSeparatedTagsInput'
 
 const initialState: FormErrors = {}
 const inputNames = [
@@ -66,6 +67,7 @@ export default function ProductInfo() {
     const tempFormData: any = {
       name: newDealData.name,
       category: newDealData.category,
+      tags: newDealData.tags,
       link: newDealData.link,
       description: newDealData.description,
       coverImageURL: newDealData.coverImageURL,
@@ -83,6 +85,7 @@ export default function ProductInfo() {
         return acc
       }, {})
       setErrors(errors)
+      console.log(errors)
       return false
     } else {
       if (name) {
@@ -134,7 +137,7 @@ export default function ProductInfo() {
               onBlur={() => setBlurs({ ...blurs, category: true })}
               error={blurs.category ? errors.category : undefined}
             />
-
+            <CommaSeparatedTags />
             <Input
               label="Website URL*"
               name="link"

@@ -21,6 +21,7 @@ const defaultDeal: NewDealInitialValuesType = {
   description: '',
   coverImageURL: '',
   coverImageId: '',
+  tags: [],
   startDate: new Date().toISOString(),
   endDate: undefined,
   coupon: '',

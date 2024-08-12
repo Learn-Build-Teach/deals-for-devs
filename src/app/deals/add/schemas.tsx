@@ -6,6 +6,7 @@ export const productInfoSchema = z.object({
   link: z
     .string()
     .url('Please enter a valid URL including starting with https://'),
+  tags: z.array(z.string()).optional(),
   description: z.string().min(1, 'Please enter a product description'),
   coverImageURL: z.string().optional(),
   coverImageId: z.string().optional(),
@@ -44,6 +45,7 @@ export const newDealInitialValuesSchema = z.object({
   name: z.string().optional(),
   category: z.string().optional(),
   link: z.string().optional(),
+  tags: z.array(z.string()).optional(),
   description: z.string().optional(),
   coverImageURL: z.string().optional(),
   coverImageId: z.string().optional(),

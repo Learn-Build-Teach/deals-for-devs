@@ -10,6 +10,9 @@ export async function getDealById(id: string): Promise<Deal | null> {
       xata_id: id,
       approved: true,
     },
+    include: {
+      tags: true,
+    },
   })
 }
 
@@ -17,6 +20,9 @@ export async function getDealByIdAsAdmin(id: string): Promise<Deal | null> {
   return prisma.deal.findUnique({
     where: {
       xata_id: id,
+    },
+    include: {
+      tags: true,
     },
   })
 }
@@ -28,6 +34,9 @@ export async function getAllPendingDeals() {
     },
     orderBy: {
       xata_createdat: 'desc',
+    },
+    include: {
+      tags: true,
     },
   })
   return deals
@@ -57,6 +66,9 @@ export async function getApprovedDeals(limit: number = 20): Promise<Deal[]> {
         { endDate: null },
       ],
     },
+    include: {
+      tags: true,
+    },
     take: limit,
     orderBy: {
       xata_createdat: 'desc',
@@ -81,6 +93,9 @@ export async function getApprovedDealsByCategory(
         { endDate: null },
       ],
     },
+    include: {
+      tags: true,
+    },
     take: limit,
     orderBy: {
       xata_createdat: 'desc',
@@ -90,10 +105,16 @@ export async function getApprovedDealsByCategory(
 
 //TODO: get a type from prisma for new deal
 export const createDeal = async (newDeal: any) => {
-  const data = await prisma.deal.create({
-    data: newDeal,
-  })
+  const tags = newDeal.tags.map((tag: string) => ({ text: tag }))
 
+  const data = await prisma.deal.create({
+    data: {
+      ...newDeal,
+      tags: {
+        create: tags,
+      },
+    },
+  })
   return data
 }
 
@@ -112,6 +133,9 @@ export async function getApprovedFeaturedDeals(
         },
         { endDate: null },
       ],
+    },
+    include: {
+      tags: true,
     },
     take: limit,
     orderBy: {
