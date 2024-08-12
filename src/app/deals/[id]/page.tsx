@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { getApprovedDeals, getDealById } from '@/lib/queries'
 import { Metadata } from 'next'
 import DealPreview from '@/components/deals/DealPreview'
+import { Tag } from '@prisma/client'
 
 export const revalidate = 120
 
@@ -43,9 +44,11 @@ export default async function DealPage({ params }: { params: { id: string } }) {
   }
 
   const deal = await getDealById(params.id)
+  console.log(deal)
   if (!deal) {
     notFound()
   }
+  const tags = deal.tags.map((tag: Tag) => tag.text)
 
   return (
     <main>
@@ -60,7 +63,7 @@ export default async function DealPage({ params }: { params: { id: string } }) {
           endDate={deal.endDate || undefined}
           category={deal.category}
           description={deal.description}
-          tags={deal.tags}
+          tags={tags}
         />
       </div>
     </main>
