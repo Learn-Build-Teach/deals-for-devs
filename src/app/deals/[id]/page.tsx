@@ -37,10 +37,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-//sleep function
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms))
-}
 export default async function DealPage({ params }: { params: { id: string } }) {
   if (!params.id) {
     notFound()
@@ -64,6 +60,7 @@ export default async function DealPage({ params }: { params: { id: string } }) {
           endDate={deal.endDate || undefined}
           category={deal.category}
           description={deal.description}
+          tags={deal.tags}
         />
       </div>
     </main>
