@@ -39,7 +39,7 @@ export default function Textarea({
             `h-22 bg-transparent text-sm  md:h-44 md:text-xl`,
             error ?
               'border-red-500 focus-visible:ring-offset-red-500'
-            : 'focus-visible:ring-offset-teal-500'
+            : 'focus-visible:ring-offset-4 focus-visible:ring-offset-teal-500'
           )}
           value={value}
           onChange={(e) => onChange && onChange(e)}

@@ -80,7 +80,6 @@ export default function GlobalSearch() {
               type="text"
               value={searchQuery}
               className="mb-8 w-full rounded-md border-2 border-gray-400  bg-transparent p-4 px-10 text-lg text-gray-100"
-              placeholder="Search Deals"
               onChange={handleSearchOnChange}
               ref={inputRef}
             />

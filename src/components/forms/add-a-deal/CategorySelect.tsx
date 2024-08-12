@@ -41,7 +41,7 @@ export default function CategorySelect({
               `h-8 w-full bg-transparent text-sm  md:h-16 md:w-[334px] md:text-xl`,
               error ?
                 'border-red-500 focus:ring-offset-red-500 '
-              : 'focus:ring-offset-teal-500 '
+              : 'focus:ring-offset-teal-500 focus-visible:ring-offset-4 '
             )}
             aria-label="Category"
             id="category"
