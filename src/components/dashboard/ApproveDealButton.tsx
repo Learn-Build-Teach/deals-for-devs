@@ -27,7 +27,7 @@ export default function ApproveDealButton({ id }: RejectDealButtonProps) {
       className="rounded-md border border-teal-500 px-4 py-2 text-teal-500 hover:bg-teal-500 hover:text-teal-50"
       onClick={handleApproveClick}
     >
-      Approve Deal
+      Approve
     </button>
   )
 }

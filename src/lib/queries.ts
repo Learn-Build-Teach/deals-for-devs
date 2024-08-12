@@ -6,7 +6,7 @@ import {
   Status,
 } from '@/types/Types'
 import prisma from './db'
-import { Deal, Subscriber } from '@prisma/client'
+import { Deal, Subscriber, Tag } from '@prisma/client'
 
 // DEAL QUERIES
 export async function getDealById(id: string): Promise<DealWithTags | null> {
@@ -130,6 +130,45 @@ export const createDeal = async (newDeal: any) => {
   return data
 }
 
+export async function updateDeal(
+  deal: DealWithTags,
+  newTags: string[]
+): Promise<DealWithTags> {
+  const tagsToDelete = deal.tags.filter((tag) => !newTags.includes(tag.text))
+  return await prisma.deal.update({
+    where: {
+      xata_id: deal.xata_id,
+    },
+    include: {
+      tags: true,
+    },
+    data: {
+      ...deal,
+      tags: {
+        connectOrCreate: newTags.map((tag) => ({
+          where: {
+            text: tag,
+          },
+          create: {
+            text: tag,
+          },
+        })),
+        deleteMany: tagsToDelete.map((tag) => ({
+          text: tag.text,
+        })),
+      },
+    },
+  })
+}
+
+//  connectOrCreate: {
+//         where: {
+//           text: 'viola@prisma.io',
+//         },
+//         create: {
+//           text: 'viola@prisma.io',
+//         },
+//     }
 export async function getApprovedFeaturedDeals(
   limit: number = 20
 ): Promise<DealWithTags[]> {
@@ -153,15 +192,6 @@ export async function getApprovedFeaturedDeals(
     orderBy: {
       xata_createdat: 'desc',
     },
-  })
-}
-
-export async function updateDeal(deal: Deal): Promise<Deal> {
-  return await prisma.deal.update({
-    where: {
-      xata_id: deal.xata_id,
-    },
-    data: deal,
   })
 }
 

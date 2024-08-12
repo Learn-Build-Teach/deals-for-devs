@@ -1,31 +1,37 @@
 'use client'
-import { Deal } from '@prisma/client'
-import React, { useEffect, useState } from 'react'
-import { Category } from '@/types/Types'
+import React, { useState } from 'react'
+import { DealWithTags, ImageUploadStatus } from '@/types/Types'
 import CategorySelect from '../forms/add-a-deal/CategorySelect'
 import Input from '../forms/add-a-deal/Input'
 import Textarea from '../forms/add-a-deal/TextArea'
 import { FormBlurs, FormErrors } from '@/app/deals/add/types'
 import { DatePicker } from '../forms/DatePicker'
 import { updateDealAction } from '@/app/admin/dashboard/actions'
-import { useFormState } from 'react-dom'
 import toast from 'react-hot-toast'
-import { set } from 'date-fns'
+import { Progress } from '../ui/progress'
+import { cn } from '@/lib/utils'
+import DragAndDropImage from '../forms/add-a-deal/DragAndDropImage'
+import Image from 'next/image'
+import ImageUpload from '@/app/deals/add/product-info/ImageUpload'
+import ApprovedSelect from '../forms/add-a-deal/ApprovedSelect'
+import CommaSeparatedTags from '../forms/add-a-deal/CommaSeparatedTagsInput'
+import TagsList from '../forms/add-a-deal/TagsList'
+import FeaturedSelect from '../forms/add-a-deal/FeaturedSelect'
+import SubmitButton from './SubmitButton'
 
 interface EditDealFormProps {
-  deal: Deal
+  deal: DealWithTags
 }
 
 export default function EditDealForm({ deal }: EditDealFormProps) {
-  const [updatedDeal, setUpdatedDeal] = useState<Deal>(deal)
+  const [updatedDeal, setUpdatedDeal] = useState<DealWithTags>(deal)
+  const [tags, setTags] = useState<string[]>(deal.tags.map((tag) => tag.text))
 
   const [blurs, setBlurs] = useState<FormBlurs>({})
   const [errors, setErrors] = useState<FormErrors>({})
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    const { successMessage, error } = await updateDealAction(updatedDeal)
+  const handleFormSubmit = async () => {
+    const { successMessage, error } = await updateDealAction(updatedDeal, tags)
     if (successMessage) {
       toast.success('Deal updated successfully')
     } else if (error) {
@@ -39,15 +45,57 @@ export default function EditDealForm({ deal }: EditDealFormProps) {
     setUpdatedDeal((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
+  const handleImageUpload = (coverImageId: string, coverImageURL: string) => {
+    console.log(coverImageId, coverImageURL)
+    setUpdatedDeal((prev) => ({ ...prev, coverImageId, coverImageURL }))
+  }
+
+  const handleImageDeleted = (coverImageId: string) => {
+    setUpdatedDeal((prev) => ({ ...prev, coverImageId: '', coverImageURL: '' }))
+  }
+
+  const handleTagsUpdated = (tags: string[]) => {
+    setTags(tags)
+  }
+
   return (
-    <form onSubmit={handleFormSubmit}>
-      <div className="flex w-full flex-col gap-7 lg:max-w-[700px] lg:gap-14">
+    <form action={handleFormSubmit}>
+      <div className="flex w-full flex-col gap-7 lg:gap-14">
+        <div className="flex flex-col gap-x-4 md:flex-row ">
+          <div className=" grow">
+            <ApprovedSelect
+              value={updatedDeal.approved}
+              onApprovedChange={(approvedStr: string) => {
+                setUpdatedDeal((prev) => ({
+                  ...prev,
+                  approved: approvedStr === 'true' ? true : false,
+                }))
+              }}
+            />
+          </div>
+          <div className=" grow">
+            <FeaturedSelect
+              value={updatedDeal.featured}
+              onFeaturedChange={(featuredStr: string) => {
+                setUpdatedDeal((prev) => ({
+                  ...prev,
+                  featured: featuredStr === 'true' ? true : false,
+                }))
+              }}
+            />
+          </div>
+        </div>
         <Input
           label="Product Name *"
           name="name"
           value={updatedDeal.name}
           onChange={handleInputChange}
         />
+        <CommaSeparatedTags
+          handleTagsUpdated={handleTagsUpdated}
+          initialTags={tags}
+        />
+
         <CategorySelect
           value={updatedDeal.category}
           onCategoryChange={(category) => {
@@ -67,49 +115,14 @@ export default function EditDealForm({ deal }: EditDealFormProps) {
           value={updatedDeal.description}
           onChange={handleInputChange}
         />
+        <ImageUpload
+          onImageUploaded={handleImageUpload}
+          onImageDeleted={handleImageDeleted}
+          initialCoverImageId={deal.coverImageId || undefined}
+          initialCoverImageURL={deal.coverImageURL || undefined}
+        />
 
-        <div className="flex flex-col gap-4">
-          {/* 
-          <span className="text-base font-extralight md:text-2xl">
-            Cover Image
-          </span>
-          {deal.coverImageURL ?
-            <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-              <Image
-                src={deal.coverImageURL}
-                alt="Product Image"
-                width={1280}
-                height={720}
-                className="absolute bottom-0 left-0 right-0 top-0 aspect-video w-full object-cover"
-              />
-              <button
-                type="button"
-                onClick={handleImageDelete}
-                className="absolute right-0 top-0 rounded-bl-lg rounded-tr-lg bg-black bg-opacity-50 px-3.5 py-1.5 text-white hover:bg-teal-500"
-              >
-                X
-              </button>
-            </div>
-          : <>
-              <DragAndDropImage
-                onFileChange={(file) => {
-                  handleImageUpload(file)
-                }}
-                handleDelete={handleImageDelete}
-              />
-
-              <Progress
-                value={imageUploadProgress}
-                className={cn(
-                  imageUploadStatus === ImageUploadStatus.UPLOADING ?
-                    'w-full'
-                  : 'hidden'
-                )}
-              />
-            </>
-          } */}
-        </div>
-        <div className="flex w-full flex-col gap-7 lg:max-w-[700px] lg:gap-14">
+        <div className="flex w-full flex-col gap-7 lg:gap-14">
           <div className="grid gap-x-4 gap-y-4 md:grid-cols-2">
             <div className="flex flex-col gap-2">
               <span className="text-base font-extralight md:text-2xl">
@@ -190,12 +203,7 @@ export default function EditDealForm({ deal }: EditDealFormProps) {
             />
           </div>
         </div>
-        <button
-          type="submit"
-          className="mt-2 rounded-lg bg-teal-500 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
-        >
-          Update
-        </button>
+        <SubmitButton text="Update" handleClick={() => {}} />
       </div>
     </form>
   )

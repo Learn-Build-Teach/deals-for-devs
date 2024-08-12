@@ -98,6 +98,24 @@ export default function ProductInfo() {
     }
   }
 
+  const handleImageUpload = (coverImageId: string, coverImageURL: string) => {
+    updateNewDealDetails({
+      coverImageId,
+      coverImageURL,
+    })
+  }
+
+  const handleImageDeleted = (coverImageId: string) => {
+    updateNewDealDetails({
+      coverImageId: '',
+      coverImageURL: '',
+    })
+  }
+
+  const handleTagsUpdated = (tags: string[]) => {
+    updateNewDealDetails({ tags })
+  }
+
   return (
     <>
       {!dataLoaded && (
@@ -137,7 +155,10 @@ export default function ProductInfo() {
               onBlur={() => setBlurs({ ...blurs, category: true })}
               error={blurs.category ? errors.category : undefined}
             />
-            <CommaSeparatedTags />
+            <CommaSeparatedTags
+              handleTagsUpdated={handleTagsUpdated}
+              initialTags={newDealData.tags}
+            />
             <Input
               label="Website URL*"
               name="link"
@@ -157,7 +178,12 @@ export default function ProductInfo() {
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
               onBlur={() => setBlurs({ ...blurs, description: true })}
             />
-            <ImageUpload />
+            <ImageUpload
+              onImageUploaded={handleImageUpload}
+              onImageDeleted={handleImageDeleted}
+              initialCoverImageId={newDealData.coverImageId}
+              initialCoverImageURL={newDealData.coverImageURL}
+            />
             <button
               type="submit"
               className="mt-2 rounded-lg bg-teal-500 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"

@@ -1,6 +1,7 @@
 'use server'
 import { updateDealSchema } from '@/app/deals/add/schemas'
 import { approveDeal, deleteDeal, updateDeal } from '@/lib/queries'
+import { DealWithTags } from '@/types/Types'
 import { isAdminUser } from '@/utils/auth'
 import { auth } from '@clerk/nextjs'
 import { Deal } from '@prisma/client'
@@ -14,7 +15,8 @@ export type ReturnValue<T> = {
 }
 
 export const updateDealAction = async (
-  deal: Deal
+  deal: DealWithTags,
+  tags: string[]
 ): Promise<ReturnValue<undefined>> => {
   const { userId } = auth().protect()
   const isAdmin = await isAdminUser(userId)
@@ -22,11 +24,15 @@ export const updateDealAction = async (
     return redirect('/')
   }
 
-  const validated = updateDealSchema.safeParse(deal)
+  console.log(tags)
+
+  const dealNoTags = { ...deal, tags: undefined }
+
+  const validated = updateDealSchema.safeParse(dealNoTags)
 
   if (validated.success) {
     try {
-      await updateDeal(deal)
+      await updateDeal(deal, tags)
       return { error: undefined, successMessage: 'Updated successfully' }
     } catch (error) {
       console.error(error)
@@ -60,7 +66,7 @@ export const approveDealAction = async (
   }
 }
 
-export const rejectDealAction = async (
+export const deleteDealAction = async (
   id: string
 ): Promise<ReturnValue<undefined>> => {
   const { userId } = auth().protect()
