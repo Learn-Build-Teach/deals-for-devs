@@ -1,5 +1,5 @@
 'use server'
-import { updateDealSchema } from '@/app/deals/add/schemas'
+import { updateDealSchema } from '@/app/(public-pages)/deals/add/schemas'
 import { approveDeal, deleteDeal, updateDeal } from '@/lib/queries'
 import { DealWithTags } from '@/types/Types'
 import { isAdminUser } from '@/utils/auth'

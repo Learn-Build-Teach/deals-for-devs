@@ -1,5 +1,5 @@
 'use client'
-import { deleteDealAction } from '@/app/admin/dashboard/actions'
+import { deleteDealAction } from '@/app/(admin)/dashboard/actions'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import toast from 'react-hot-toast'

@@ -11,11 +11,11 @@ export default async function Home() {
     <main>
       <Hero />
       <FeaturedDealsSection />
-      <Separator className="mb-20" />
+      <Separator className="mx-6 mb-20 md:mx-0" />
       <div className="mb-20">
         <NeverMissADeal />
       </div>
-      <Separator className="mb-20" />
+      <Separator className="mx-6 mb-20 md:mx-0" />
       <DevGiveaways />
     </main>
   )

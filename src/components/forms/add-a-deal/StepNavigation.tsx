@@ -27,7 +27,7 @@ export default function StepNavigation() {
   }, [currentPath, setCurrentStep])
 
   return (
-    <div className="mb-12 mt-4 min-w-[300px] lg:mb-0">
+    <div className="mb-12 mt-4 hidden min-w-[300px] sm:block lg:mb-0">
       {/* back button */}
       <button
         className="mb-4 flex items-center gap-2 text-xl disabled:text-white/50 lg:mb-12 lg:gap-5"

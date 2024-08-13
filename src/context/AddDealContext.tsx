@@ -11,7 +11,7 @@ import {
   NewDealInitialValuesType,
   NewDealType,
   newDealInitialValuesSchema,
-} from '@/app/deals/add/schemas'
+} from '@/app/(public-pages)/deals/add/schemas'
 
 //TODO: separate the context into smaller contexts
 const defaultDeal: NewDealInitialValuesType = {
