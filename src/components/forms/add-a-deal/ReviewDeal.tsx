@@ -5,13 +5,16 @@ import toast from 'react-hot-toast'
 import Loading from '@/components/Loading'
 import { submitDealAction } from '@/app/(public-pages)/deals/add/actions'
 import { NewDealType } from '@/app/(public-pages)/deals/add/schemas'
-import DealPreview from '@/components/deals/DealPreview'
+import DealDetails from '@/components/deals/DealDetails'
+import { DealWithTags } from '@/types/Types'
 
 export default function ReviewDeal() {
   const { newDealData, dataLoaded } = useAddDealContext()
 
   //* cast deal data to final submission type
-  const dataToSubmit = newDealData as NewDealType
+  //! there has to be a btter way
+  const dataToSubmit = newDealData as unknown as DealWithTags
+  console.log(dataToSubmit.tags)
   const router = useRouter()
 
   const validateAndSubmit = async () => {
@@ -39,20 +42,7 @@ export default function ReviewDeal() {
       )}
       {dataLoaded && (
         <div>
-          <DealPreview
-            name={dataToSubmit.name}
-            link={dataToSubmit.link}
-            coupon={dataToSubmit.coupon}
-            couponPercent={dataToSubmit.couponPercent}
-            coverImageURL={dataToSubmit.coverImageURL}
-            startDate={new Date(dataToSubmit.startDate)}
-            endDate={
-              dataToSubmit?.endDate ? new Date(dataToSubmit.endDate) : undefined
-            }
-            tags={dataToSubmit.tags || []}
-            category={dataToSubmit.category}
-            description={dataToSubmit.description}
-          />
+          <DealDetails deal={dataToSubmit} />
           <div className=" mx-auto max-w-[800px]">
             <button
               type="button"

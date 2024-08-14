@@ -23,8 +23,11 @@ export const submitProductInfoAction = (
     description: formData.get('description'),
     coverImageURL: formData.get('coverImageURL'),
     coverImageId: formData.get('coverImageId'),
-    tags: Array.from(formData.getAll('tag')),
+    tags: Array.from(formData.getAll('tag')).map((tag) => ({
+      text: tag.toString().trim().toLocaleLowerCase(),
+    })),
   }
+  console.log(productInfo)
 
   const validated = productInfoSchema.safeParse(productInfo)
   if (!validated.success) {
@@ -85,6 +88,7 @@ export const submitDealAction = async (
 
   if (validated.success) {
     try {
+      console.log(validated.data)
       await createDeal(validated.data)
       return { error: undefined }
     } catch (error) {

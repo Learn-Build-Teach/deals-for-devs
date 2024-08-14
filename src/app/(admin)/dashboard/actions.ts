@@ -4,7 +4,6 @@ import { approveDeal, deleteDeal, updateDeal } from '@/lib/queries'
 import { DealWithTags } from '@/types/Types'
 import { isAdminUser } from '@/utils/auth'
 import { auth } from '@clerk/nextjs'
-import { Deal } from '@prisma/client'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
@@ -16,15 +15,13 @@ export type ReturnValue<T> = {
 
 export const updateDealAction = async (
   deal: DealWithTags,
-  tags: string[]
+  tags: { text: string }[]
 ): Promise<ReturnValue<undefined>> => {
   const { userId } = auth().protect()
   const isAdmin = await isAdminUser(userId)
   if (!isAdmin) {
     return redirect('/')
   }
-
-  console.log(tags)
 
   const dealNoTags = { ...deal, tags: undefined }
 

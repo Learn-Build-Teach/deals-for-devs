@@ -172,12 +172,12 @@ export const createDeal = async (newDeal: any) => {
     data: {
       ...newDeal,
       tags: {
-        connectOrCreate: newDeal.tags.map((tag: string) => ({
+        connectOrCreate: newDeal.tags.map((tag: { text: string }) => ({
           where: {
-            text: tag,
+            text: tag.text,
           },
           create: {
-            text: tag,
+            text: tag.text,
           },
         })),
       },
@@ -188,9 +188,11 @@ export const createDeal = async (newDeal: any) => {
 
 export async function updateDeal(
   deal: DealWithTags,
-  newTags: string[]
+  newTags: { text: string }[]
 ): Promise<DealWithTags> {
-  const tagsToDelete = deal.tags.filter((tag) => !newTags.includes(tag.text))
+  const tagsToDelete = deal.tags.filter(
+    (tag) => !newTags.find((t) => t.text === tag.text)
+  )
   return await prisma.deal.update({
     where: {
       xata_id: deal.xata_id,
@@ -203,10 +205,10 @@ export async function updateDeal(
       tags: {
         connectOrCreate: newTags.map((tag) => ({
           where: {
-            text: tag,
+            text: tag.text,
           },
           create: {
-            text: tag,
+            text: tag.text,
           },
         })),
         deleteMany: tagsToDelete.map((tag) => ({

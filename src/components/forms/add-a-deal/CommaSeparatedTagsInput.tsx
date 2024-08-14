@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Input from './Input'
 import Tag from './Tag'
 import TagsList from './TagsList'
 
 interface CommaSeparatedTagsProps {
-  handleTagsUpdated: (tags: string[]) => void
-  initialTags?: string[]
+  handleTagsUpdated: (tags: { text: string }[]) => void
+  initialTags?: { text: string }[]
 }
 
 export default function CommaSeparatedTags({
@@ -13,23 +13,24 @@ export default function CommaSeparatedTags({
   initialTags = [],
 }: CommaSeparatedTagsProps) {
   const [tagsInput, setTagsInput] = useState('')
-  const [tags, setTags] = useState<string[]>(initialTags)
+  const [tags, setTags] = useState<{ text: string }[]>(initialTags)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const lastLetter = e.target.value.slice(-1)
     setTagsInput(e.target.value)
     if (lastLetter === ',') {
       const tag = e.target.value.trim().toLowerCase().slice(0, -1)
-
-      const updatedTags = [...tags, tag]
-      setTags(updatedTags)
-      handleTagsUpdated(updatedTags)
+      if (!tags.find((t) => t.text === tag)) {
+        const updatedTags = [...tags, { text: tag }]
+        setTags(updatedTags)
+        handleTagsUpdated(updatedTags)
+      }
       setTagsInput('')
     }
   }
 
   const handleDelete = (tag: string) => {
-    const updatedTags = tags.filter((t) => t !== tag)
+    const updatedTags = tags.filter((t) => t.text !== tag)
     setTags(updatedTags)
     handleTagsUpdated(updatedTags)
   }
@@ -46,11 +47,11 @@ export default function CommaSeparatedTags({
       />
       {tags?.map((tag, index) => (
         <input
-          key={tag}
+          key={tag.text}
           type="text"
           hidden
           name={`tag`}
-          defaultValue={tag}
+          defaultValue={tag.text}
         ></input>
       ))}
       <TagsList tags={tags || []} handleDelete={handleDelete} />

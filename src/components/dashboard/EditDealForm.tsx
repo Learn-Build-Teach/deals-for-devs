@@ -25,7 +25,7 @@ interface EditDealFormProps {
 
 export default function EditDealForm({ deal }: EditDealFormProps) {
   const [updatedDeal, setUpdatedDeal] = useState<DealWithTags>(deal)
-  const [tags, setTags] = useState<string[]>(deal.tags.map((tag) => tag.text))
+  const [tags, setTags] = useState<{ text: string }[]>(deal.tags)
 
   const [blurs, setBlurs] = useState<FormBlurs>({})
   const [errors, setErrors] = useState<FormErrors>({})
@@ -54,7 +54,7 @@ export default function EditDealForm({ deal }: EditDealFormProps) {
     setUpdatedDeal((prev) => ({ ...prev, coverImageId: '', coverImageURL: '' }))
   }
 
-  const handleTagsUpdated = (tags: string[]) => {
+  const handleTagsUpdated = (tags: { text: string }[]) => {
     setTags(tags)
   }
 
