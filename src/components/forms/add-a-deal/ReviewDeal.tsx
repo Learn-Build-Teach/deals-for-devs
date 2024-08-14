@@ -38,7 +38,7 @@ export default function ReviewDeal() {
         </div>
       )}
       {dataLoaded && (
-        <div className="flex flex-col">
+        <div>
           <DealPreview
             name={dataToSubmit.name}
             link={dataToSubmit.link}
@@ -49,18 +49,20 @@ export default function ReviewDeal() {
             endDate={
               dataToSubmit?.endDate ? new Date(dataToSubmit.endDate) : undefined
             }
-            tags={dataToSubmit.tags}
+            tags={dataToSubmit.tags || []}
             category={dataToSubmit.category}
             description={dataToSubmit.description}
           />
-          <button
-            type="button"
-            className="mt-5 rounded-lg bg-teal-500 py-4 text-lg text-black disabled:bg-teal-600/30 lg:mt-10 lg:py-7 lg:text-2xl"
-            aria-label="Click to continue"
-            onClick={validateAndSubmit}
-          >
-            Submit Deal
-          </button>
+          <div className=" mx-auto max-w-[800px]">
+            <button
+              type="button"
+              className="mt-5 w-full rounded-lg bg-teal-500 px-10 py-4 text-lg text-black disabled:bg-teal-600/30 lg:mt-10 lg:py-7 lg:text-2xl"
+              aria-label="Click to continue"
+              onClick={validateAndSubmit}
+            >
+              Submit Deal
+            </button>
+          </div>
         </div>
       )}
     </section>

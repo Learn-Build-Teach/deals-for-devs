@@ -7,7 +7,7 @@ interface TagProps {
 }
 export default function Tag({ text, handleDelete }: TagProps) {
   return (
-    <span className="border-1 flex items-center gap-x-1 rounded-2xl bg-gray-800 px-3 py-2">
+    <span className="border-1 flex items-center gap-x-1 rounded-2xl bg-gray-700 px-3 py-2">
       <span>{text}</span>
       {handleDelete && (
         <button

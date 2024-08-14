@@ -27,7 +27,7 @@ export default function StepNavigation() {
   }, [currentPath, setCurrentStep])
 
   return (
-    <div className="mb-12 mt-4 lg:mb-0">
+    <div className="mb-12 mt-4 min-w-[300px] lg:mb-0">
       {/* back button */}
       <button
         className="mb-4 flex items-center gap-2 text-xl disabled:text-white/50 lg:mb-12 lg:gap-5"
@@ -42,7 +42,7 @@ export default function StepNavigation() {
       </button>
 
       {/* list of form steps */}
-      <div className="relative flex flex-row justify-between lg:flex-col lg:justify-start lg:gap-8">
+      <div className="relative flex  flex-row justify-between lg:flex-col lg:justify-start lg:gap-8">
         {steps.map((step) => (
           <Link
             href={`/deals/add/${step.route}`}
