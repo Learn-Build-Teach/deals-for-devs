@@ -85,7 +85,6 @@ export default function ProductInfo() {
         return acc
       }, {})
       setErrors(errors)
-      console.log(errors)
       return false
     } else {
       if (name) {
@@ -112,7 +111,7 @@ export default function ProductInfo() {
     })
   }
 
-  const handleTagsUpdated = (tags: string[]) => {
+  const handleTagsUpdated = (tags: { text: string }[]) => {
     updateNewDealDetails({ tags })
   }
 

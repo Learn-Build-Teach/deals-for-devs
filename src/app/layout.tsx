@@ -4,7 +4,6 @@ import { Toaster } from 'react-hot-toast'
 import PlausibleProvider from 'next-plausible'
 
 import { Raleway } from 'next/font/google'
-import Nav from '@/components/nav/Nav'
 const raleway = Raleway({
   subsets: ['latin'],
   display: 'swap',
