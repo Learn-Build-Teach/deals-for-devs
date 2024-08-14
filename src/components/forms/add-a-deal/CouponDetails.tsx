@@ -4,9 +4,9 @@ import { useAddDealContext } from '@/context/AddDealContext'
 import { DatePicker } from '../DatePicker'
 import Loading from '@/components/Loading'
 import { useFormState } from 'react-dom'
-import { FormBlurs, FormErrors } from '@/app/deals/add/types'
-import { submitCouponDetailsAction } from '@/app/deals/add/actions'
-import { contactDetailsSchema } from '@/app/deals/add/schemas'
+import { FormBlurs, FormErrors } from '@/app/(public-pages)/deals/add/types'
+import { submitCouponDetailsAction } from '@/app/(public-pages)/deals/add/actions'
+import { contactDetailsSchema } from '@/app/(public-pages)/deals/add/schemas'
 import { useState, useCallback, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { useSearchParams } from 'next/navigation'
@@ -116,7 +116,7 @@ export default function CouponDetails() {
                     }
                   }}
                   initialDate={new Date()}
-                  disableDates={{before: new Date()}}
+                  disableDates={{ before: new Date() }}
                 />
               </div>
               <input
@@ -142,7 +142,7 @@ export default function CouponDetails() {
                       new Date(newDealData.endDate)
                     : undefined
                   }
-                  disableDates={{before: new Date(newDealData.startDate)}}
+                  disableDates={{ before: new Date(newDealData.startDate) }}
                 />
               </div>
             </div>

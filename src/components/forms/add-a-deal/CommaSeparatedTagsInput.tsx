@@ -1,27 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import Input from './Input'
 import Tag from './Tag'
-import { useAddDealContext } from '@/context/AddDealContext'
 import TagsList from './TagsList'
 
-export default function CommaSeparatedTags() {
-  const { newDealData, updateNewDealDetails } = useAddDealContext()
+interface CommaSeparatedTagsProps {
+  handleTagsUpdated: (tags: string[]) => void
+  initialTags?: string[]
+}
 
+export default function CommaSeparatedTags({
+  handleTagsUpdated,
+  initialTags = [],
+}: CommaSeparatedTagsProps) {
   const [tagsInput, setTagsInput] = useState('')
+  const [tags, setTags] = useState<string[]>(initialTags)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const lastLetter = e.target.value.slice(-1)
     setTagsInput(e.target.value)
     if (lastLetter === ',') {
       const tag = e.target.value.trim().toLowerCase().slice(0, -1)
-      console.log(tag)
-      updateNewDealDetails({ tags: [...(newDealData.tags || []), tag] })
+
+      const updatedTags = [...tags, tag]
+      setTags(updatedTags)
+      handleTagsUpdated(updatedTags)
       setTagsInput('')
     }
   }
 
   const handleDelete = (tag: string) => {
-    updateNewDealDetails({ tags: newDealData.tags?.filter((t) => t !== tag) })
+    const updatedTags = tags.filter((t) => t !== tag)
+    setTags(updatedTags)
+    handleTagsUpdated(updatedTags)
   }
 
   return (
@@ -34,7 +44,7 @@ export default function CommaSeparatedTags() {
         value={tagsInput}
         onChange={handleInputChange}
       />
-      {newDealData.tags?.map((tag, index) => (
+      {tags?.map((tag, index) => (
         <input
           key={tag}
           type="text"
@@ -43,7 +53,7 @@ export default function CommaSeparatedTags() {
           defaultValue={tag}
         ></input>
       ))}
-      <TagsList tags={newDealData.tags || []} handleDelete={handleDelete} />
+      <TagsList tags={tags || []} handleDelete={handleDelete} />
     </div>
   )
 }

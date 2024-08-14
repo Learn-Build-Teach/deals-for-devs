@@ -4,11 +4,11 @@ import Input from '@/components/forms/add-a-deal/Input'
 import Textarea from '@/components/forms/add-a-deal/TextArea'
 import { useAddDealContext } from '@/context/AddDealContext'
 import { useCallback, useEffect, useState } from 'react'
-import { FormBlurs, FormErrors } from '@/app/deals/add/types'
-import { productInfoSchema } from '@/app/deals/add/schemas'
+import { FormBlurs, FormErrors } from '@/app/(public-pages)/deals/add/types'
+import { productInfoSchema } from '@/app/(public-pages)/deals/add/schemas'
 import { useFormState } from 'react-dom'
-import { submitProductInfoAction } from '@/app/deals/add/actions'
-import ImageUpload from '@/app/deals/add/product-info/ImageUpload'
+import { submitProductInfoAction } from '@/app/(public-pages)/deals/add/actions'
+import ImageUpload from '@/app/(public-pages)/deals/add/product-info/ImageUpload'
 import toast from 'react-hot-toast'
 import { useSearchParams } from 'next/navigation'
 import Loading from '@/components/Loading'
@@ -98,6 +98,24 @@ export default function ProductInfo() {
     }
   }
 
+  const handleImageUpload = (coverImageId: string, coverImageURL: string) => {
+    updateNewDealDetails({
+      coverImageId,
+      coverImageURL,
+    })
+  }
+
+  const handleImageDeleted = (coverImageId: string) => {
+    updateNewDealDetails({
+      coverImageId: '',
+      coverImageURL: '',
+    })
+  }
+
+  const handleTagsUpdated = (tags: string[]) => {
+    updateNewDealDetails({ tags })
+  }
+
   return (
     <>
       {!dataLoaded && (
@@ -137,7 +155,10 @@ export default function ProductInfo() {
               onBlur={() => setBlurs({ ...blurs, category: true })}
               error={blurs.category ? errors.category : undefined}
             />
-            <CommaSeparatedTags />
+            <CommaSeparatedTags
+              handleTagsUpdated={handleTagsUpdated}
+              initialTags={newDealData.tags}
+            />
             <Input
               label="Website URL*"
               name="link"
@@ -157,7 +178,12 @@ export default function ProductInfo() {
               onChange={(e) => handleInputChange(e.target.name, e.target.value)}
               onBlur={() => setBlurs({ ...blurs, description: true })}
             />
-            <ImageUpload />
+            <ImageUpload
+              onImageUploaded={handleImageUpload}
+              onImageDeleted={handleImageDeleted}
+              initialCoverImageId={newDealData.coverImageId}
+              initialCoverImageURL={newDealData.coverImageURL}
+            />
             <button
               type="submit"
               className="mt-2 rounded-lg bg-teal-500 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"

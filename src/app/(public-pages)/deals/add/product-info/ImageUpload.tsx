@@ -4,16 +4,29 @@ import { useAddDealContext } from '@/context/AddDealContext'
 import { getImageUrl, deleteImage } from '@/lib/imageUpload'
 import { cn } from '@/lib/utils'
 import { ImageUploadStatus } from '@/types/Types'
+import { on } from 'events'
 import Image from 'next/image'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 
-export default function ImageUpload() {
+interface ImageUploadProps {
+  onImageUploaded: (coverImageId: string, coverImageURL: string) => void
+  onImageDeleted: (coverImageId: string) => void
+  initialCoverImageURL?: string
+  initialCoverImageId?: string
+}
+export default function ImageUpload({
+  onImageUploaded,
+  onImageDeleted,
+  initialCoverImageURL = '',
+  initialCoverImageId = '',
+}: ImageUploadProps) {
   const [imageUploadStatus, setImageUploadStatus] = useState<ImageUploadStatus>(
     ImageUploadStatus.PENDING
   )
   const [imageUploadProgress, setImageUploadProgress] = useState(0)
-  const { updateNewDealDetails, newDealData } = useAddDealContext()
+  const [coverImageId, setCoverImageId] = useState(initialCoverImageId)
+  const [coverImageURL, setCoverImageURL] = useState(initialCoverImageURL)
 
   const handleImageUpload = async (file: File) => {
     setImageUploadStatus(ImageUploadStatus.UPLOADING)
@@ -61,12 +74,9 @@ export default function ImageUpload() {
       }
 
       setImageUploadProgress(66)
-
-      // update the new deal data with the image id and public url
-      updateNewDealDetails({
-        coverImageId: id,
-        coverImageURL: imageUrl,
-      })
+      onImageUploaded(id, imageUrl)
+      setCoverImageId(id)
+      setCoverImageURL(imageUrl)
 
       toast.success('Image uploaded successfully')
       setImageUploadProgress(100)
@@ -80,12 +90,12 @@ export default function ImageUpload() {
   }
 
   const handleImageDelete = async () => {
-    const res = await deleteImage(newDealData.coverImageId as string)
-    if (!res) {
-      toast.error('Failed to delete image')
-      return
-    }
-    updateNewDealDetails({ coverImageId: '', coverImageURL: '' })
+    await deleteImage(coverImageId as string)
+
+    setCoverImageId('')
+    setCoverImageURL('')
+
+    onImageDeleted(coverImageId as string)
     resetProgress()
     toast.success('Image deleted successfully')
   }
@@ -96,22 +106,14 @@ export default function ImageUpload() {
   }
   return (
     <div className="flex flex-col gap-4">
-      <input
-        type="hidden"
-        name="coverImageURL"
-        value={newDealData.coverImageURL}
-      />
-      <input
-        type="hidden"
-        name="coverImageId"
-        value={newDealData.coverImageId}
-      />
+      <input type="hidden" name="coverImageURL" value={coverImageURL} />
+      <input type="hidden" name="coverImageId" value={coverImageId} />
 
       <span className="text-base font-extralight md:text-2xl">Cover Image</span>
-      {newDealData.coverImageURL ?
+      {coverImageURL ?
         <div className="relative aspect-video w-full overflow-hidden rounded-lg">
           <Image
-            src={newDealData.coverImageURL}
+            src={coverImageURL}
             alt="Product Image"
             width={1280}
             height={720}

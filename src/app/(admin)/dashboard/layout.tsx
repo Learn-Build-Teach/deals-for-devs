@@ -19,13 +19,11 @@ export default async function Home({
   }
 
   return (
-    <div className="mx-auto space-y-12 px-4 pb-10">
-      <section className="mx-auto grid gap-8 space-y-12 px-4  pb-10 lg:grid-cols-3 lg:space-y-0">
-        <div className="mx-auto lg:col-span-1">
-          <AdminNav />
-        </div>
-        <main className=" lg:col-span-2">{children}</main>
-      </section>
+    <div className="min-h-screen bg-gray-900 text-white">
+      <div className="h-full w-52 md:w-80">
+        <AdminNav />
+      </div>
+      <main className=" ml-52 px-8 py-20 md:ml-80">{children}</main>
     </div>
   )
 }

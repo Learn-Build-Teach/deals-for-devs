@@ -44,7 +44,6 @@ export default async function DealPage({ params }: { params: { id: string } }) {
   }
 
   const deal = await getDealById(params.id)
-  console.log(deal)
   if (!deal) {
     notFound()
   }
