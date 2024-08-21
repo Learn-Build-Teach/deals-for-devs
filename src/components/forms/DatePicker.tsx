@@ -14,12 +14,16 @@ import {
 interface DatePickerProps extends React.HTMLAttributes<HTMLDivElement> {
   onDateChange: (date: Date | undefined) => void
   initialDate: Date | undefined
+  disableDates?: {
+    before: Date
+  }
 }
 
 export function DatePicker({
   className,
   onDateChange,
   initialDate,
+  disableDates
 }: DatePickerProps) {
   const [date, setDate] = React.useState<Date | undefined>(initialDate)
 
@@ -47,6 +51,7 @@ export function DatePicker({
           selected={date}
           onSelect={handleOnSelect}
           initialFocus
+          disabled={disableDates}
         />
       </PopoverContent>
     </Popover>

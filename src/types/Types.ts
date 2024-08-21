@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { Prisma } from '@prisma/client'
 
 export enum Category {
   EBOOKS = 'Ebooks',
@@ -53,3 +54,7 @@ export enum ImageUploadStatus {
   UPLOADING = 'UPLOADING',
   UPLOADED = 'UPLOADED',
 }
+
+export type DealWithTags = Prisma.DealGetPayload<{
+  include: { tags: true }
+}>

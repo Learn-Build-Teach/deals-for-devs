@@ -1,27 +1,42 @@
 'use server'
-import { Category, NewSubscriberData, Status } from '@/types/Types'
+import {
+  Category,
+  DealWithTags,
+  NewSubscriberData,
+  Status,
+} from '@/types/Types'
 import prisma from './db'
-import { Deal, Subscriber } from '@prisma/client'
+import { Deal, Subscriber, Tag } from '@prisma/client'
 
 // DEAL QUERIES
-export async function getDealById(id: string): Promise<Deal | null> {
+export async function getDealById(id: string): Promise<DealWithTags | null> {
   return prisma.deal.findUnique({
     where: {
       xata_id: id,
       approved: true,
     },
-  })
-}
-
-export async function getDealByIdAsAdmin(id: string): Promise<Deal | null> {
-  return prisma.deal.findUnique({
-    where: {
-      xata_id: id,
+    include: {
+      tags: true,
     },
   })
 }
 
-export async function getAllPendingDeals() {
+export async function getDealByIdAsAdmin(
+  id: string
+): Promise<DealWithTags | null> {
+  return prisma.deal.findUnique({
+    where: {
+      xata_id: id,
+    },
+    include: {
+      tags: true,
+    },
+  })
+}
+
+export async function getPendingAdminDeals(
+  limit: number = 50
+): Promise<DealWithTags[]> {
   const deals = await prisma.deal.findMany({
     where: {
       approved: false,
@@ -29,14 +44,69 @@ export async function getAllPendingDeals() {
     orderBy: {
       xata_createdat: 'desc',
     },
+    include: {
+      tags: true,
+    },
+    take: limit,
   })
   return deals
 }
 
-export async function approveDeal(id: string): Promise<Deal> {
+export async function getAllAdminDeals(
+  limit: number = 50
+): Promise<DealWithTags[]> {
+  const deals = await prisma.deal.findMany({
+    orderBy: {
+      xata_createdat: 'desc',
+    },
+    include: {
+      tags: true,
+    },
+    take: limit,
+  })
+  return deals
+}
+
+export async function getApprovedAdminDeals(
+  limit: number = 50
+): Promise<DealWithTags[]> {
+  return await prisma.deal.findMany({
+    where: {
+      approved: true,
+    },
+    include: {
+      tags: true,
+    },
+    take: limit,
+    orderBy: {
+      xata_createdat: 'desc',
+    },
+  })
+}
+export async function getFeaturedAdminDeals(
+  limit: number = 50
+): Promise<DealWithTags[]> {
+  return await prisma.deal.findMany({
+    where: {
+      featured: true,
+    },
+    include: {
+      tags: true,
+    },
+    take: limit,
+    orderBy: {
+      xata_createdat: 'desc',
+    },
+  })
+}
+
+export async function approveDeal(id: string): Promise<DealWithTags> {
   return await prisma.deal.update({
     where: {
       xata_id: id,
+    },
+    include: {
+      tags: true,
     },
     data: {
       approved: true,
@@ -44,7 +114,9 @@ export async function approveDeal(id: string): Promise<Deal> {
   })
 }
 
-export async function getApprovedDeals(limit: number = 20): Promise<Deal[]> {
+export async function getApprovedDeals(
+  limit: number = 50
+): Promise<DealWithTags[]> {
   return await prisma.deal.findMany({
     where: {
       approved: true,
@@ -57,6 +129,9 @@ export async function getApprovedDeals(limit: number = 20): Promise<Deal[]> {
         { endDate: null },
       ],
     },
+    include: {
+      tags: true,
+    },
     take: limit,
     orderBy: {
       xata_createdat: 'desc',
@@ -67,7 +142,7 @@ export async function getApprovedDeals(limit: number = 20): Promise<Deal[]> {
 export async function getApprovedDealsByCategory(
   category: Category,
   limit: number = 20
-): Promise<Deal[]> {
+): Promise<DealWithTags[]> {
   return await prisma.deal.findMany({
     where: {
       approved: true,
@@ -81,6 +156,9 @@ export async function getApprovedDealsByCategory(
         { endDate: null },
       ],
     },
+    include: {
+      tags: true,
+    },
     take: limit,
     orderBy: {
       xata_createdat: 'desc',
@@ -91,15 +169,67 @@ export async function getApprovedDealsByCategory(
 //TODO: get a type from prisma for new deal
 export const createDeal = async (newDeal: any) => {
   const data = await prisma.deal.create({
-    data: newDeal,
+    data: {
+      ...newDeal,
+      tags: {
+        connectOrCreate: newDeal.tags.map((tag: { text: string }) => ({
+          where: {
+            text: tag.text,
+          },
+          create: {
+            text: tag.text,
+          },
+        })),
+      },
+    },
   })
-
   return data
 }
 
+export async function updateDeal(
+  deal: DealWithTags,
+  newTags: { text: string }[]
+): Promise<DealWithTags> {
+  const tagsToDelete = deal.tags.filter(
+    (tag) => !newTags.find((t) => t.text === tag.text)
+  )
+  return await prisma.deal.update({
+    where: {
+      xata_id: deal.xata_id,
+    },
+    include: {
+      tags: true,
+    },
+    data: {
+      ...deal,
+      tags: {
+        connectOrCreate: newTags.map((tag) => ({
+          where: {
+            text: tag.text,
+          },
+          create: {
+            text: tag.text,
+          },
+        })),
+        deleteMany: tagsToDelete.map((tag) => ({
+          text: tag.text,
+        })),
+      },
+    },
+  })
+}
+
+//  connectOrCreate: {
+//         where: {
+//           text: 'viola@prisma.io',
+//         },
+//         create: {
+//           text: 'viola@prisma.io',
+//         },
+//     }
 export async function getApprovedFeaturedDeals(
   limit: number = 20
-): Promise<Deal[]> {
+): Promise<DealWithTags[]> {
   return await prisma.deal.findMany({
     where: {
       approved: true,
@@ -113,19 +243,13 @@ export async function getApprovedFeaturedDeals(
         { endDate: null },
       ],
     },
+    include: {
+      tags: true,
+    },
     take: limit,
     orderBy: {
       xata_createdat: 'desc',
     },
-  })
-}
-
-export async function updateDeal(deal: Deal): Promise<Deal> {
-  return await prisma.deal.update({
-    where: {
-      xata_id: deal.xata_id,
-    },
-    data: deal,
   })
 }
 

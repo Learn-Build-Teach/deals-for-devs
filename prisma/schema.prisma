@@ -8,24 +8,34 @@ datasource db {
 }
 
 model Deal {
-  xata_id        String     @id @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
-  coupon         String?    @db.VarChar(255)
-  approved       Boolean    @default(false)
-  description    String     @db.Text
-  couponPercent  Int?       
-  featured       Boolean    @default(false)
-  name           String     @db.VarChar(255)
-  link           String     @db.VarChar(255)
-  category       String     @db.VarChar(50)
-  startDate      DateTime   @default(now())
-  endDate        DateTime?  @db.Date
-  xata_version   Int        @default(0)
-  xata_createdat DateTime   @default(now()) @db.Timestamptz(6)
-  xata_updatedat DateTime   @default(now()) @db.Timestamptz(6)
-  coverImageURL  String?    @db.VarChar(255)
-  coverImageId   String?    @db.VarChar(255)
-  contactEmail   String     @db.VarChar(255)
-  contactName    String     @db.VarChar(255)
+  approved       Boolean   @default(false)
+  category       String    @db.VarChar(50)
+  coupon         String?   @db.VarChar(255)
+  couponPercent  Int?
+  description    String
+  featured       Boolean   @default(false)
+  link           String    @db.VarChar(255)
+  name           String    @db.VarChar(255)
+  contactEmail   String    @db.VarChar(255)
+  contactName    String    @db.VarChar(255)
+  coverImageId   String?   @db.VarChar(255)
+  coverImageURL  String?   @db.VarChar(255)
+  xata_updatedat DateTime  @default(now()) @db.Timestamptz(6)
+  xata_id        String    @id @unique(map: "Deal__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int       @default(0)
+  xata_createdat DateTime  @default(now()) @db.Timestamptz(6)
+  endDate        DateTime? @db.Date
+  startDate      DateTime  @default(now())
+  tags           Tag[]     @relation("DealToTag")
+}
+
+model Tag {
+  xata_version   Int      @default(0)
+  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+  xata_id        String   @id @unique(map: "Tag__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  text           String   @db.VarChar(255) @unique
+  deal           Deal[]   @relation("DealToTag")
 }
 
 model AdminUser {
@@ -62,5 +72,3 @@ model DealImage {
   xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
   image          Json
 }
-
-// adding a comment
