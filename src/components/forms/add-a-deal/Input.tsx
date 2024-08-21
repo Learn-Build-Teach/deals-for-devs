@@ -49,10 +49,10 @@ export default function Input({
           name={name}
           type={type}
           className={cn(
-            `h-8 bg-transparent text-base focus-visible:outline-none  md:h-16 md:text-xl`,
+            `h-8 bg-transparent text-base focus-visible:outline-none md:h-16 md:text-xl`,
             error ?
               'border-red-500 focus-visible:ring-offset-red-500'
-            : 'focus-visible:ring-offset-teal-500'
+            : 'focus-visible:ring-offset-4 focus-visible:ring-offset-teal-500'
           )}
           required={required}
           value={value}
