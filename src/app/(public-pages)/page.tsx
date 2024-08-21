@@ -8,7 +8,7 @@ export const revalidate = 120
 
 export default async function Home() {
   return (
-    <main>
+    <main className="mx-auto max-w-7xl">
       <Hero />
       <FeaturedDealsSection />
       <Separator className="mx-6 mb-20 md:mx-0" />

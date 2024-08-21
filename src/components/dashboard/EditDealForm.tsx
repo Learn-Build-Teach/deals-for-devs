@@ -11,7 +11,7 @@ import { Progress } from '../ui/progress'
 import { cn } from '@/lib/utils'
 import DragAndDropImage from '../forms/add-a-deal/DragAndDropImage'
 import Image from 'next/image'
-import ImageUpload from '@/app/(public-pages)/deals/add/product-info/ImageUpload'
+import ImageUpload from '@/app/(public-pages)/deals/add/ImageUpload'
 import ApprovedSelect from '../forms/add-a-deal/ApprovedSelect'
 import CommaSeparatedTags from '../forms/add-a-deal/CommaSeparatedTagsInput'
 import TagsList from '../forms/add-a-deal/TagsList'
@@ -46,7 +46,6 @@ export default function EditDealForm({ deal }: EditDealFormProps) {
   }
 
   const handleImageUpload = (coverImageId: string, coverImageURL: string) => {
-    console.log(coverImageId, coverImageURL)
     setUpdatedDeal((prev) => ({ ...prev, coverImageId, coverImageURL }))
   }
 

@@ -1,22 +1,14 @@
 'use server'
 
-import { redirect } from 'next/navigation'
-import {
-  NewDealType,
-  contactDetailsSchema,
-  couponDetailsSchema,
-  newDealSchema,
-  productInfoSchema,
-} from './schemas'
-import { FormErrors } from './types'
-import { AddDealRoutes } from '@/types/Types'
+import { newDealSchema } from './schemas'
+import { DealFormServerState, FormErrors } from './types'
 import { createDeal } from '@/lib/queries'
 
-export const submitProductInfoAction = (
-  prevState: any,
+export const submitDealAction = async (
+  prevState: DealFormServerState,
   formData: FormData
-): FormErrors | undefined => {
-  const productInfo = {
+): Promise<DealFormServerState> => {
+  const dealFromForm = {
     name: formData.get('name'),
     category: formData.get('category'),
     link: formData.get('link'),
@@ -26,122 +18,36 @@ export const submitProductInfoAction = (
     tags: Array.from(formData.getAll('tag')).map((tag) => ({
       text: tag.toString().trim().toLocaleLowerCase(),
     })),
-  }
-  console.log(productInfo)
-
-  const validated = productInfoSchema.safeParse(productInfo)
-  if (!validated.success) {
-    const errors = validated.error.issues.reduce((acc: FormErrors, issue) => {
-      const path = issue.path[0] as string
-      acc[path] = issue.message
-      return acc
-    }, {})
-    console.log(errors)
-    return errors
+    startDate: formData.get('startDate'),
+    endDate: formData.get('endDate') || undefined,
+    coupon: formData.get('coupon'),
+    couponPercent: formData.get('couponPercent'),
+    contactName: formData.get('contactName'),
+    contactEmail: formData.get('contactEmail'),
   }
 
-  redirect(AddDealRoutes.COUPON_DETAILS)
-}
-
-export const submitContactDetailsAction = (
-  prevState: any,
-  formData: FormData
-): FormErrors | undefined => {
-  const data = Object.fromEntries(formData.entries())
-  const validated = contactDetailsSchema.safeParse(data)
-  if (!validated.success) {
-    const errors = validated.error.issues.reduce((acc: FormErrors, issue) => {
-      const path = issue.path[0] as string
-      acc[path] = issue.message
-      return acc
-    }, {})
-    return errors
-  }
-
-  redirect(AddDealRoutes.REVIEW_DEAL)
-}
-
-export const submitCouponDetailsAction = (
-  prevState: any,
-  formData: FormData
-): FormErrors | undefined => {
-  const data = Object.fromEntries(formData.entries())
-  const validated = couponDetailsSchema.safeParse(data)
-  console.log(validated.data)
-
-  if (!validated.success) {
-    const errors = validated.error.issues.reduce((acc: FormErrors, issue) => {
-      const path = issue.path[0] as string
-      acc[path] = issue.message
-      return acc
-    }, {})
-    return errors
-  }
-
-  redirect(AddDealRoutes.CONTACT_INFO)
-}
-
-export const submitDealAction = async (
-  data: NewDealType
-): Promise<{ error: string | undefined; redirect?: AddDealRoutes }> => {
-  const validated = newDealSchema.safeParse(data)
+  const validated = newDealSchema.safeParse(dealFromForm)
 
   if (validated.success) {
     try {
-      console.log(validated.data)
       await createDeal(validated.data)
-      return { error: undefined }
+      return { success: true }
     } catch (error) {
       console.error(error)
       return {
-        error: 'There was an error submitting the deal',
+        success: false,
+        message: 'There was an error submitting the deal',
       }
     }
   } else {
-    //TODO: redirect to correect route
-    //TODO: display validation on page load
-    const redirect = getRedirect(data)
+    const errors = validated.error.issues.reduce((acc: FormErrors, issue) => {
+      const path = issue.path[0] as string
+      acc[path] = issue.message
+      return acc
+    }, {})
     return {
-      error: 'Please verify all inputs and try again.',
-      redirect,
+      success: false,
+      errors,
     }
   }
-}
-
-const getRedirect = (data: NewDealType) => {
-  const productInfo = {
-    name: data.name,
-    category: data.category,
-    link: data.link,
-    description: data.description,
-    coverImageURL: data.coverImageURL,
-    coverImageId: data.coverImageId,
-  }
-  const validatedProductInfo = productInfoSchema.safeParse(productInfo)
-  if (!validatedProductInfo.success) {
-    return AddDealRoutes.PRODUCT_INFO
-  }
-
-  const couponDetails = {
-    startDate: data.startDate,
-    endDate: data.endDate,
-    coupon: data.coupon,
-    couponPercent: data.couponPercent,
-  }
-
-  const validatedCouponDetails = couponDetailsSchema.safeParse(couponDetails)
-  if (!validatedCouponDetails.success) {
-    return AddDealRoutes.COUPON_DETAILS
-  }
-
-  const contactDetails = {
-    contactName: data.contactName,
-    contactEmail: data.contactEmail,
-  }
-  const validatedContactDetails = contactDetailsSchema.safeParse(contactDetails)
-  if (!validatedContactDetails.success) {
-    return AddDealRoutes.CONTACT_INFO
-  }
-
-  return AddDealRoutes.REVIEW_DEAL
 }
