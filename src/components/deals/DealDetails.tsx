@@ -15,7 +15,7 @@ export default function DealDetails({ deal }: DealDetailsProps) {
     <div className=" mx-auto max-w-[800px] text-white">
       <div className="mb-10">
         <p className="mb-2 font-bold  text-teal-500">{deal.category || ''}</p>
-        <div className="mb-10 flex flex-row justify-between gap-x-4">
+        <div className="mb-10 flex flex-row items-end justify-between gap-x-4">
           <h1 className="inline text-2xl transition-colors hover:text-teal-500 md:text-3xl">
             {deal.name}
           </h1>
@@ -23,7 +23,7 @@ export default function DealDetails({ deal }: DealDetailsProps) {
             href={deal.link}
             className="flex cursor-pointer items-center gap-x-2 rounded-md bg-teal-500 px-2 py-1 text-black transition-all hover:scale-105 hover:bg-teal-500/90"
           >
-            <span>Visit website</span>
+            <span>Visit</span>
             <Image
               src="/icons/upright-arrow.svg"
               alt="arrow right"

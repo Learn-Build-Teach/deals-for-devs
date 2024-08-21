@@ -13,7 +13,6 @@ import {
   newDealInitialValuesSchema,
 } from '@/app/(public-pages)/deals/add/schemas'
 
-//TODO: separate the context into smaller contexts
 const defaultDeal: NewDealInitialValuesType = {
   name: '',
   category: '',
@@ -31,11 +30,10 @@ const defaultDeal: NewDealInitialValuesType = {
 }
 
 type AddDealContextType = {
-  currentStep: number
-  setCurrentStep: (step: number) => void
   newDealData: NewDealInitialValuesType
   updateNewDealDetails: (dealDetails: Partial<NewDealType>) => void
   dataLoaded: boolean
+  resetData: () => void
 }
 
 // prettier-ignore
@@ -46,10 +44,10 @@ export const AddDealContextProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [currentStep, setCurrentStep] = useState(1)
   const [newDealData, setNewDealData] =
     useState<NewDealInitialValuesType>(defaultDeal)
   const [dataLoaded, setDataLoaded] = useState(false)
+  const [status, setStatus] = useState('idle')
 
   useEffect(() => {
     readFromLocalStorage()
@@ -92,16 +90,18 @@ export const AddDealContextProvider = ({
       setNewDealData(defaultDeal)
     }
   }
+  const resetData = () => {
+    setNewDealData(defaultDeal)
+  }
 
   const contextValue = useMemo(
     () => ({
-      currentStep,
-      setCurrentStep,
       newDealData,
       dataLoaded,
       updateNewDealDetails,
+      resetData,
     }),
-    [currentStep, newDealData, dataLoaded, updateNewDealDetails]
+    [newDealData, dataLoaded, updateNewDealDetails]
   )
 
   return (

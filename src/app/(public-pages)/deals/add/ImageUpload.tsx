@@ -1,12 +1,11 @@
+'use client'
 import DragAndDropImage from '@/components/forms/add-a-deal/DragAndDropImage'
 import { Progress } from '@/components/ui/progress'
-import { useAddDealContext } from '@/context/AddDealContext'
 import { getImageUrl, deleteImage } from '@/lib/imageUpload'
 import { cn } from '@/lib/utils'
 import { ImageUploadStatus } from '@/types/Types'
-import { on } from 'events'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 interface ImageUploadProps {
@@ -14,12 +13,14 @@ interface ImageUploadProps {
   onImageDeleted: (coverImageId: string) => void
   initialCoverImageURL?: string
   initialCoverImageId?: string
+  shouldResetData?: boolean
 }
 export default function ImageUpload({
   onImageUploaded,
   onImageDeleted,
   initialCoverImageURL = '',
   initialCoverImageId = '',
+  shouldResetData = false,
 }: ImageUploadProps) {
   const [imageUploadStatus, setImageUploadStatus] = useState<ImageUploadStatus>(
     ImageUploadStatus.PENDING
@@ -27,6 +28,13 @@ export default function ImageUpload({
   const [imageUploadProgress, setImageUploadProgress] = useState(0)
   const [coverImageId, setCoverImageId] = useState(initialCoverImageId)
   const [coverImageURL, setCoverImageURL] = useState(initialCoverImageURL)
+
+  useEffect(() => {
+    if (shouldResetData) {
+      setCoverImageId('')
+      setCoverImageURL('')
+    }
+  }, [shouldResetData])
 
   const handleImageUpload = async (file: File) => {
     setImageUploadStatus(ImageUploadStatus.UPLOADING)

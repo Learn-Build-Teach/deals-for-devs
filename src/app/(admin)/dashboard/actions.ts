@@ -38,7 +38,6 @@ export const updateDealAction = async (
       }
     }
   } else {
-    console.log(validated.error.issues)
     return {
       error: 'Please verify all inputs and try again.',
     }

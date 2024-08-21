@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from './Input'
 import Tag from './Tag'
 import TagsList from './TagsList'
@@ -6,14 +6,22 @@ import TagsList from './TagsList'
 interface CommaSeparatedTagsProps {
   handleTagsUpdated: (tags: { text: string }[]) => void
   initialTags?: { text: string }[]
+  shouldResetData?: boolean
 }
 
 export default function CommaSeparatedTags({
   handleTagsUpdated,
   initialTags = [],
+  shouldResetData = false,
 }: CommaSeparatedTagsProps) {
   const [tagsInput, setTagsInput] = useState('')
   const [tags, setTags] = useState<{ text: string }[]>(initialTags)
+
+  useEffect(() => {
+    if (shouldResetData) {
+      setTags([])
+    }
+  }, [shouldResetData])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const lastLetter = e.target.value.slice(-1)

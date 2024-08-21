@@ -11,7 +11,7 @@ export default function RootLayout({
 }) {
   return (
     <div className="flex min-h-screen flex-col justify-between bg-gray-900">
-      <div className="mx-auto w-full max-w-screen-2xl px-4 pt-5 md:px-24 xl:pt-20">
+      <div className="max-w-8xl mx-auto w-full px-4 pt-5 md:px-16 xl:pt-20">
         <SearchProvider>
           <GlobalSearch />
           <Nav />
