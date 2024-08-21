@@ -72,7 +72,7 @@ export const deleteDealAction = async (
   }
   try {
     await deleteDeal(id)
-    revalidatePath('/admin/dashboard')
+    revalidatePath('/dashboard')
     return { successMessage: 'Rejected successfully' }
   } catch (error) {
     console.error(error)

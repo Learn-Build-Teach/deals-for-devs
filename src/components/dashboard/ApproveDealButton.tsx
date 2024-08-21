@@ -19,7 +19,7 @@ export default function ApproveDealButton({ id }: RejectDealButtonProps) {
       if (successMessage) {
         toast.success(successMessage)
       }
-      router.push('/admin/dashboard')
+      router.push('/dashboard')
     }
   }
   return (
