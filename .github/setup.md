@@ -16,7 +16,7 @@ To get started running the project locally, please follow these steps.
 
 To get a development environment running on your local machine:
 
-1. Fork the repository. Make sure to uncheck the `Copy the main branch only` option so you have access to the `dev` branch in your fork.
+1. Fork the repository. Make sure to uncheck the `Copy the main branch only` option so you have access to all branches.
 
 2. Clone the repository in a directory of your choice.
 
