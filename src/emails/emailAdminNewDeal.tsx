@@ -12,14 +12,12 @@ import {
   Tailwind,
   Link,
 } from '@react-email/components'
-import { env } from '@/env'
 
 interface EmailTemplateProps {
   email: string
   dealId: string
+  appDomain: string
 }
-
-const baseURL = env.NEXT_PUBLIC_BASE_URL
 
 export const emailAdminNewDeal = (props: EmailTemplateProps) => (
   <Tailwind>
@@ -30,7 +28,7 @@ export const emailAdminNewDeal = (props: EmailTemplateProps) => (
         <Container>
           <Section>
             <Img
-              src={`${baseURL}/logo-teal.png`}
+              src={`${props.appDomain}/logo-teal.png`}
               width="60"
               alt="Deals for Devs"
             />
@@ -38,7 +36,7 @@ export const emailAdminNewDeal = (props: EmailTemplateProps) => (
           <Heading style={h1}>Admin - Review new deal</Heading>
           <Section className="py-6">
             <Link
-              href={`${baseURL}admin/dashboard/deals${props.dealId}`}
+              href={`${props.appDomain}admin/dashboard/deals${props.dealId}`}
               className="rounded-lg border bg-teal-500 px-5 py-3 text-xl text-white no-underline"
             >
               {' '}
@@ -51,7 +49,7 @@ export const emailAdminNewDeal = (props: EmailTemplateProps) => (
           </Text>
           <Section style={codeBox}>
             <Text className="text-lg">
-              {`${baseURL}admin/dashboard/deals/${props.dealId}`}
+              {`${props.appDomain}admin/dashboard/deals/${props.dealId}`}
             </Text>
           </Section>
           <Text className="text-sm">
@@ -66,7 +64,8 @@ export const emailAdminNewDeal = (props: EmailTemplateProps) => (
 
 emailAdminNewDeal.PreviewProps = {
   email: 'testing@testing.com',
-  dealId: 'rec_cqv4d9tqrj65abvthk70',
+  dealId: 'the-deal-id-here',
+  appDomain: 'http://localhost:3000',
 } as EmailTemplateProps
 
 export default emailAdminNewDeal
