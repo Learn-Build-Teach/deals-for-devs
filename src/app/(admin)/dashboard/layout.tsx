@@ -23,7 +23,7 @@ export default async function Home({
       <div className="h-full w-52 md:w-80">
         <AdminNav />
       </div>
-      <main className=" ml-52 px-8 py-20 md:ml-80">{children}</main>
+      <main className=" ml-52 px-4 py-20 md:ml-80 md:px-8">{children}</main>
     </div>
   )
 }

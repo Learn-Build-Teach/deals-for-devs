@@ -57,6 +57,15 @@ export const newDealInitialValuesSchema = z.object({
   contactEmail: z.string().optional(),
 })
 
+export const newAdminUserSchema = z.object({
+  userId: z.string().min(1, 'Please enter a valid user ID'),
+  email: z.string().email('Please enter a valid email'),
+})
+
+export const newSubscriberSchema = z.object({
+  email: z.string().email('Please enter a valid email'),
+})
+
 export type ProductInfoType = z.infer<typeof productInfoSchema>
 export type CouponDetailsType = z.infer<typeof couponDetailsSchema>
 export type ContactDetailsType = z.infer<typeof contactDetailsSchema>
