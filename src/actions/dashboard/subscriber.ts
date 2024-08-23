@@ -4,7 +4,7 @@ import { newSubscriberSchema } from '@/app/(public-pages)/deals/add/schemas'
 import { createSubscriber, deleteSubscriber } from '@/lib/queries'
 import { ReturnValue, Status } from '@/types/Types'
 import { isAdminUser } from '@/utils/auth'
-import { auth } from '@clerk/nextjs'
+import { auth, currentUser } from '@clerk/nextjs'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
@@ -14,8 +14,14 @@ const MODEL_STR = 'subscriber'
 export const deleteSubscriberAction = async (
   id: string
 ): Promise<ReturnValue<undefined>> => {
-  const { userId } = auth().protect()
-  const isAdmin = await isAdminUser(userId)
+  auth().protect()
+  const user = await currentUser()
+
+  const email = user?.emailAddresses[0].emailAddress
+  if (!email) {
+    return redirect('/')
+  }
+  const isAdmin = await isAdminUser(email)
   if (!isAdmin) {
     return redirect('/')
   }
@@ -32,8 +38,14 @@ export const deleteSubscriberAction = async (
 export const createSubscriberAction = async (
   formData: FormData
 ): Promise<ReturnValue<undefined>> => {
-  const { userId } = auth().protect()
-  const isAdmin = await isAdminUser(userId)
+  auth().protect()
+  const user = await currentUser()
+
+  const email = user?.emailAddresses[0].emailAddress
+  if (!email) {
+    return redirect('/')
+  }
+  const isAdmin = await isAdminUser(email)
   if (!isAdmin) {
     return redirect('/')
   }

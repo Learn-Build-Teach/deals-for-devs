@@ -3,7 +3,7 @@ import { updateDealSchema } from '@/app/(public-pages)/deals/add/schemas'
 import { approveDeal, deleteDeal, updateDeal } from '@/lib/queries'
 import { DealWithTags } from '@/types/Types'
 import { isAdminUser } from '@/utils/auth'
-import { auth } from '@clerk/nextjs'
+import { auth, currentUser } from '@clerk/nextjs'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
@@ -17,8 +17,14 @@ export const updateDealAction = async (
   deal: DealWithTags,
   tags: { text: string }[]
 ): Promise<ReturnValue<undefined>> => {
-  const { userId } = auth().protect()
-  const isAdmin = await isAdminUser(userId)
+  auth().protect()
+  const user = await currentUser()
+
+  const email = user?.emailAddresses[0].emailAddress
+  if (!email) {
+    return redirect('/')
+  }
+  const isAdmin = await isAdminUser(email)
   if (!isAdmin) {
     return redirect('/')
   }
@@ -47,8 +53,14 @@ export const updateDealAction = async (
 export const approveDealAction = async (
   id: string
 ): Promise<ReturnValue<undefined>> => {
-  const { userId } = auth().protect()
-  const isAdmin = await isAdminUser(userId)
+  auth().protect()
+  const user = await currentUser()
+
+  const email = user?.emailAddresses[0].emailAddress
+  if (!email) {
+    return redirect('/')
+  }
+  const isAdmin = await isAdminUser(email)
   if (!isAdmin) {
     return redirect('/')
   }
@@ -65,8 +77,14 @@ export const approveDealAction = async (
 export const deleteDealAction = async (
   id: string
 ): Promise<ReturnValue<undefined>> => {
-  const { userId } = auth().protect()
-  const isAdmin = await isAdminUser(userId)
+  auth().protect()
+  const user = await currentUser()
+
+  const email = user?.emailAddresses[0].emailAddress
+  if (!email) {
+    return redirect('/')
+  }
+  const isAdmin = await isAdminUser(email)
   if (!isAdmin) {
     return redirect('/')
   }

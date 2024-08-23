@@ -20,28 +20,27 @@ export async function deleteAdminUser(id: string): Promise<void> {
   })
 }
 
-export const getAdminUserById = async (userId: string) => {
+export const getAdminUserById = async (email: string) => {
   return await prisma.adminUser.findUnique({
     where: {
-      userId,
+      email,
     },
   })
 }
 
-export const getSuperAdminUserById = async (userId: string) => {
+export const getSuperAdminUserById = async (email: string) => {
   return await prisma.adminUser.findUnique({
     where: {
-      userId,
+      email,
       isSuperAdmin: true,
     },
   })
 }
 
-export const createAdminUser = async (email: string, userId: string) => {
+export const createAdminUser = async (email: string) => {
   return await prisma.adminUser.create({
     data: {
       email,
-      userId,
     },
   })
 }

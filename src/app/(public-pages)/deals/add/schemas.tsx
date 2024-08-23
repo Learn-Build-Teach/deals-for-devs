@@ -58,7 +58,6 @@ export const newDealInitialValuesSchema = z.object({
 })
 
 export const newAdminUserSchema = z.object({
-  userId: z.string().min(1, 'Please enter a valid user ID'),
   email: z.string().email('Please enter a valid email'),
 })
 

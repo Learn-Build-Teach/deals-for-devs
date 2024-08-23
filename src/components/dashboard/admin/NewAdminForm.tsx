@@ -28,7 +28,6 @@ export default function NewAdminForm() {
       <div className="">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           <Input label="Email" name="email" type="email" required={true} />
-          <Input label="User Id" name="userId" type="text" required={true} />
         </div>
         <SubmitButton text="Submit" handleClick={() => {}} />
       </div>

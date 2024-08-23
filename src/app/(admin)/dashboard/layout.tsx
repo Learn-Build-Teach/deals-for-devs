@@ -1,4 +1,4 @@
-import { auth } from '@clerk/nextjs'
+import { auth, currentUser } from '@clerk/nextjs'
 import { isAdminUser } from '@/utils/auth'
 import { redirect } from 'next/navigation'
 import AdminNav from '@/components/dashboard/AdminNav'
@@ -8,12 +8,15 @@ export default async function Home({
 }: {
   children: React.ReactNode
 }) {
-  const { userId } = auth().protect()
+  auth().protect()
 
-  // If user is logged in check if user is an admin
-  const isAdmin = await isAdminUser(userId)
+  const user = await currentUser()
 
-  // If user is not an admin, redirects them to the homepage
+  const email = user?.emailAddresses[0].emailAddress
+  if (!email) {
+    return redirect('/')
+  }
+  const isAdmin = await isAdminUser(email)
   if (!isAdmin) {
     return redirect('/')
   }
