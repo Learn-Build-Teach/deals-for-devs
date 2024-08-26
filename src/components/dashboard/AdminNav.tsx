@@ -22,6 +22,12 @@ export default function AdminNav() {
           >
             <span className="hidden md:inline">Manage</span> Subscribers
           </Link>
+          <Link
+            className=" rounded p-2 text-lg transition-colors hover:bg-gray-700 hover:no-underline "
+            href="/dashboard/admins"
+          >
+            <span className="hidden md:inline">Manage</span> Admins
+          </Link>
         </div>
       </div>
       <div className="flex flex-col items-center gap-x-4 gap-y-4 md:flex-row">

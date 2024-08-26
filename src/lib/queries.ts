@@ -354,12 +354,3 @@ export async function updateSubscriberToVerified(
     },
   })
 }
-
-//ADMIN QUERIES
-export const getAdminUserById = async (userId: string) => {
-  return await prisma.adminUser.findUnique({
-    where: {
-      userId,
-    },
-  })
-}

@@ -15,7 +15,7 @@ export default function SubmitButton({
   const { pending } = useFormStatus()
   return (
     <button
-      className="mt-2 rounded-lg bg-teal-500 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
+      className="mt-2 rounded-lg bg-teal-500 px-10 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
       type="submit"
       onClick={handleClick}
     >

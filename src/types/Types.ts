@@ -47,7 +47,12 @@ export type NewSubscriberData = {
   status: string
 }
 
-export type ReturnValue<T> = { data: T } | { error: string }
+export type ReturnValue<T> = {
+  data?: T
+  message?: string
+  success: boolean
+  error?: Error
+}
 
 export enum ImageUploadStatus {
   PENDING = 'PENDING',
