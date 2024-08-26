@@ -27,6 +27,7 @@ model Deal {
   endDate        DateTime? @db.Date
   startDate      DateTime  @default(now())
   tags           Tag[]     @relation("DealToTag")
+  clicks        Int       @default(0)
 }
 
 model Tag {

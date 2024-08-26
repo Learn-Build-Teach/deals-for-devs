@@ -219,14 +219,18 @@ export async function updateDeal(
   })
 }
 
-//  connectOrCreate: {
-//         where: {
-//           text: 'viola@prisma.io',
-//         },
-//         create: {
-//           text: 'viola@prisma.io',
-//         },
-//     }
+export async function incrementDealClicks(id: string): Promise<Deal> {
+  return await prisma.deal.update({
+    where: {
+      xata_id: id,
+    },
+    data: {
+      clicks: {
+        increment: 1,
+      },
+    },
+  })
+}
 export async function getApprovedFeaturedDeals(
   limit: number = 20
 ): Promise<DealWithTags[]> {
