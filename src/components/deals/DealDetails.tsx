@@ -4,7 +4,6 @@ import DealImage from './DealImage'
 import TagsList from '../forms/add-a-deal/TagsList'
 import ClickableCoupon from '../ClickableCouponCode'
 import { format } from 'date-fns'
-import Link from 'next/link'
 import Image from 'next/image'
 
 interface DealDetailsProps {
@@ -19,8 +18,8 @@ export default function DealDetails({ deal }: DealDetailsProps) {
           <h1 className="inline text-2xl transition-colors hover:text-teal-500 md:text-3xl">
             {deal.name}
           </h1>
-          <Link
-            href={deal.link}
+          <a
+            href={`/api/tracking?id=${deal.xata_id}&url=${deal.link}`}
             className="flex cursor-pointer items-center gap-x-2 rounded-md bg-teal-500 px-2 py-1 text-black transition-all hover:scale-105 hover:bg-teal-500/90"
           >
             <span>Visit</span>
@@ -30,7 +29,7 @@ export default function DealDetails({ deal }: DealDetailsProps) {
               width={16}
               height={16}
             />
-          </Link>
+          </a>
         </div>
 
         <div className="text-md mb-4 font-light md:text-lg">
