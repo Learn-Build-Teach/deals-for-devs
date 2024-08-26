@@ -2,7 +2,12 @@ import { getApprovedAdminDeals, getApprovedDeals } from '@/lib/queries'
 import React from 'react'
 import DealsList from './DealsList'
 
-export default async function ApprovedAdminDeals() {
-  const deals = await getApprovedAdminDeals()
+interface ApprovedAdminDealsProps {
+  limit?: number
+}
+export default async function ApprovedAdminDeals({
+  limit,
+}: ApprovedAdminDealsProps) {
+  const deals = await getApprovedAdminDeals(limit)
   return <DealsList deals={deals} />
 }

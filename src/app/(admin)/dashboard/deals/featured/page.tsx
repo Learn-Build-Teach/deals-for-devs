@@ -1,12 +1,12 @@
 import ManageDealsNav from '@/components/dashboard/ManageDealsNav'
 import FeaturedAdminDeals from '../../FeaturedDeals'
+import DashboardPage from '@/components/dashboard/DashboardPage'
 
 export default async function FeaturedDeals() {
   return (
-    <section>
-      <h1 className="mb-12 text-center text-5xl text-white">Featured Deals</h1>
+    <DashboardPage heading="Manage Deals">
       <ManageDealsNav tabIndex={3} />
       <FeaturedAdminDeals />
-    </section>
+    </DashboardPage>
   )
 }

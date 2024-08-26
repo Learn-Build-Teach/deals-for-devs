@@ -219,18 +219,6 @@ export async function updateDeal(
   })
 }
 
-export async function incrementDealClicks(id: string): Promise<Deal> {
-  return await prisma.deal.update({
-    where: {
-      xata_id: id,
-    },
-    data: {
-      clicks: {
-        increment: 1,
-      },
-    },
-  })
-}
 export async function getApprovedFeaturedDeals(
   limit: number = 20
 ): Promise<DealWithTags[]> {

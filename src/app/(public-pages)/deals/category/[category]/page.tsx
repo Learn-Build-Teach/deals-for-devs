@@ -35,9 +35,7 @@ export default async function CategoryPage({
   }
   return (
     <main>
-      <div className="pb-10">
-        <PageHeader title={`${capitalizedCategory} Deals`} />
-      </div>
+      <PageHeader heading={`${capitalizedCategory} Deals`} />
       <div className="pb-10">
         <CategoryOptions />
       </div>

@@ -27,7 +27,16 @@ model Deal {
   endDate        DateTime? @db.Date
   startDate      DateTime  @default(now())
   tags           Tag[]     @relation("DealToTag")
-  clicks        Int       @default(0)
+  views          DealView[]
+}
+
+model DealView {
+  xata_id        String   @id @unique(map: "DealView__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version   Int      @default(0)
+  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
+  xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
+  deal           Deal     @relation(fields: [dealId], references: [xata_id])
+  dealId         String
 }
 
 model Tag {
