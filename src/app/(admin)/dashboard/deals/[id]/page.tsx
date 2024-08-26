@@ -51,14 +51,12 @@ export default async function EditDealPage({
   }
 
   return (
-    <main>
-      <section className="mx-auto space-y-12 px-4 pb-10">
-        <div className="flex flex-col items-center justify-between gap-y-4 sm:flex-row">
-          <h1 className="text-center text-5xl text-white">Edit Deal</h1>
-          <DeleteDealButton id={id} />
-        </div>
-        <EditDealForm deal={deal} />
-      </section>
-    </main>
+    <section>
+      <div className="mb-10 flex flex-col items-center justify-between gap-y-4 sm:flex-row ">
+        <h1 className="text-center text-5xl text-white">Edit Deal</h1>
+        <DeleteDealButton id={id} />
+      </div>
+      <EditDealForm deal={deal} />
+    </section>
   )
 }

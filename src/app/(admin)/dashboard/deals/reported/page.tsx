@@ -1,12 +1,11 @@
+import DashboardPage from '@/components/dashboard/DashboardPage'
 import ManageDealsNav from '@/components/dashboard/ManageDealsNav'
 
 export default async function Deals() {
   return (
-    <section>
-      <h1 className="mb-12 text-center text-5xl text-white">
-        Reported Deals (coming soon)
-      </h1>
+    <DashboardPage heading="Manage Deals">
       <ManageDealsNav tabIndex={4} />
-    </section>
+      <p>Coming soon!</p>
+    </DashboardPage>
   )
 }

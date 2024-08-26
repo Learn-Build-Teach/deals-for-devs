@@ -22,11 +22,10 @@ export default async function Home({
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <div className="h-full w-52 md:w-80">
-        <AdminNav />
-      </div>
-      <main className=" ml-52 px-4 py-20 md:ml-80 md:px-8">{children}</main>
+    <div className="flex min-h-screen bg-gray-900 text-white">
+      <div className="h-full min-h-screen w-72 px-6"></div>
+      <AdminNav />
+      <main className=" w-full px-4 py-20  md:px-16">{children}</main>
     </div>
   )
 }

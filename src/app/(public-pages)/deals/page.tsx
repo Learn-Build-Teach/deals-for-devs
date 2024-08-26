@@ -11,9 +11,7 @@ export default async function DealsPage() {
   //TODO: handle error
   return (
     <main>
-      <div className="pb-10">
-        <PageHeader title="All Deals" />
-      </div>
+      <PageHeader heading="All Deals" />
       <div className="pb-10">
         <CategoryOptions />
       </div>

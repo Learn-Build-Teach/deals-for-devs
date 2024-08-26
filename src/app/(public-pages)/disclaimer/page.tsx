@@ -4,10 +4,8 @@ export const revalidate = 120
 
 export default async function Disclaimer() {
   return (
-    <div>
-      <div className="pb-10">
-        <PageHeader title="Disclaimer" />
-      </div>
+    <>
+      <PageHeader heading="Disclaimer" />
       <div className="pb-10">
         <p className=" text-lrg text-gray-300">
           Some deals may include affiliate links. Proceeds from these affiliate
@@ -15,6 +13,6 @@ export default async function Disclaimer() {
           on courses and other resources.
         </p>
       </div>
-    </div>
+    </>
   )
 }

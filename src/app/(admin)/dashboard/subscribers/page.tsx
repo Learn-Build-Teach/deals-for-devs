@@ -1,6 +1,7 @@
 import { getAllSubscribers } from '@/lib/queries'
 import SubscriberList from '@/components/subscriber/SubscriberList'
 import NewSubscriberForm from '@/components/dashboard/subscribers/NewSubscriberForm'
+import DashboardPage from '@/components/dashboard/DashboardPage'
 
 export default async function Subscribers() {
   // fetch all subscribers
@@ -9,10 +10,7 @@ export default async function Subscribers() {
   const subscriberList = JSON.parse(JSON.stringify(subscribers))
 
   return (
-    <section className="px-4 pb-10">
-      <h2 className="mb-10 text-center text-5xl text-white">
-        Manage Subscribers
-      </h2>
+    <DashboardPage heading="Manage Subscribers">
       <div className="mb-10">
         <h3 className="mb-10 pt-8 text-center text-lg uppercase">
           Add Subscriber
@@ -25,6 +23,6 @@ export default async function Subscribers() {
         </h3>
         <SubscriberList subscribers={subscriberList} />
       </div>
-    </section>
+    </DashboardPage>
   )
 }

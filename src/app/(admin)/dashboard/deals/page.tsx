@@ -1,12 +1,12 @@
 import ManageDealsNav from '@/components/dashboard/ManageDealsNav'
-import ApprovedAdminDeals from '../../ApprovedDeals'
+import AllAdminDeals from '../AllDeals'
 import DashboardPage from '@/components/dashboard/DashboardPage'
 
-export default async function ApprovedDeals() {
+export default async function Deals() {
   return (
     <DashboardPage heading="Manage Deals">
-      <ManageDealsNav tabIndex={1} />
-      <ApprovedAdminDeals />
+      <ManageDealsNav tabIndex={0} />
+      <AllAdminDeals />
     </DashboardPage>
   )
 }

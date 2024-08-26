@@ -11,8 +11,8 @@ export default function DealsLayout({
     <AddDealContextProvider>
       <main className="px-2 lg:px-0">
         <PageHeader
-          title="Share a Deal"
-          subtitle="Have an amazing deal or discount tailored for developers? Let us know!"
+          heading="Share a Deal"
+          subheading="Have an amazing deal or discount tailored for developers? Let us know!"
         />
 
         {children}

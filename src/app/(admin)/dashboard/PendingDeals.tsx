@@ -1,8 +1,13 @@
 import AdminDealsList from '@/components/dashboard/AdminDealsList'
 import { getPendingAdminDeals } from '@/lib/queries'
 
-export default async function PendingAdminDeals() {
-  const pendingDeals = await getPendingAdminDeals()
+interface PendingAdminDealsProps {
+  limit?: number
+}
+export default async function PendingAdminDeals({
+  limit,
+}: PendingAdminDealsProps) {
+  const pendingDeals = await getPendingAdminDeals(limit)
 
   return (
     <>

@@ -1,7 +1,10 @@
 import DealsList from './DealsList'
 import { getApprovedFeaturedDeals } from '@/lib/queries'
 
-export default async function FeaturedDeals() {
-  const deals = await getApprovedFeaturedDeals()
+interface FeaturedDealsProps {
+  limit?: number
+}
+export default async function FeaturedDeals({ limit }: FeaturedDealsProps) {
+  const deals = await getApprovedFeaturedDeals(limit)
   return <DealsList deals={deals} />
 }

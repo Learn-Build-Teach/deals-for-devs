@@ -7,7 +7,7 @@ interface ManageDealsNavProps {
 }
 export default function ManageDealsNav({ tabIndex }: ManageDealsNavProps) {
   const links = [
-    { href: '/dashboard', text: 'All' },
+    { href: '/dashboard/deals', text: 'All' },
     { href: '/dashboard/deals/approved', text: 'Approved' },
     { href: '/dashboard/deals/pending', text: 'Pending' },
     { href: '/dashboard/deals/featured', text: 'Featured' },
