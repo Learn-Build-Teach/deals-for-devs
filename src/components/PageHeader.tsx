@@ -9,7 +9,7 @@ export default function PageHeader({
 }) {
   return (
     <div className="mb-10">
-      <h1 className="mb-4 text-4xl font-semibold text-white md:text-7xl">
+      <h1 className="mb-1 text-4xl font-semibold text-white md:mb-4 md:text-7xl">
         {heading}
       </h1>
       {subheading && (

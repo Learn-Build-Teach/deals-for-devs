@@ -7,16 +7,5 @@ export default function DealsLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <AddDealContextProvider>
-      <main className="px-2 lg:px-0">
-        <PageHeader
-          heading="Share a Deal"
-          subheading="Have an amazing deal or discount tailored for developers? Let us know!"
-        />
-
-        {children}
-      </main>
-    </AddDealContextProvider>
-  )
+  return <AddDealContextProvider>{children}</AddDealContextProvider>
 }
