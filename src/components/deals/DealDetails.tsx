@@ -40,14 +40,22 @@ export default function DealDetails({ deal }: DealDetailsProps) {
                 'No coupon code required'}
             </span>
           </div>
-          <div className="mb-4 flex flex-wrap gap-2 text-lg font-light md:mt-1.5">
-            <span className="w-40 text-white/70">Coupon Code:</span>
-            <span className="font-bold">
-              {deal.coupon ?
-                <ClickableCoupon coupon={deal.coupon} />
-              : 'No coupon code required'}
-            </span>
-          </div>
+          {deal.couponPercent && (
+            <div className="flex flex-wrap gap-2 text-lg font-light md:mt-1.5">
+              <span className="w-40 text-white/70">Discount:</span>
+              <span className="font-bold">
+                <span>{deal.couponPercent}% off </span>
+                {deal.coupon && (
+                  <span className="ml-2 font-normal">
+                    {'(coupon '}
+                    <ClickableCoupon coupon={deal.coupon} />
+                    {')'}
+                  </span>
+                )}
+              </span>
+            </div>
+          )}
+
           <TagsList tags={deal.tags} />
         </div>
       </div>
@@ -56,6 +64,7 @@ export default function DealDetails({ deal }: DealDetailsProps) {
           name={deal.name}
           coverImageURL={deal.coverImageURL || null}
           category={deal.category as Category}
+          couponPercent={deal.couponPercent || undefined}
         />
       </div>
 

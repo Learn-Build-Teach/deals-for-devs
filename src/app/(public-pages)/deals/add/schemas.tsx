@@ -16,7 +16,7 @@ export const couponDetailsSchema = z.object({
   startDate: z.string().datetime(),
   endDate: z.string().optional().or(z.string().datetime()),
   coupon: z.string().optional(),
-  couponPercent: z.coerce.number().optional(),
+  couponPercent: z.coerce.number(),
 })
 
 export const contactDetailsSchema = z.object({
