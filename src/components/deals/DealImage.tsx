@@ -18,7 +18,7 @@ export default function DealImage({
   return (
     <div className="relative @container">
       {couponPercent && (
-        <p className="-gap-y-1 absolute right-3 top-3 hidden h-14 w-14 -rotate-12 flex-col items-center justify-center rounded-full bg-pale-gold text-black  shadow-md @md:flex">
+        <p className="-gap-y-1 absolute right-3 top-3 hidden h-14 w-14 -rotate-12 flex-col items-center justify-center rounded-full bg-pale-gold text-black  shadow-md @[260px]:flex">
           <span className="text-md -mb-1 font-bold">{couponPercent}%</span>
           <span className="text-xs uppercase">off</span>
         </p>
