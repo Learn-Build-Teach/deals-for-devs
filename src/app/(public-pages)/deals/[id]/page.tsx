@@ -48,10 +48,8 @@ export default async function DealPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <main>
-      <div className="pb-10">
-        <DealDetails deal={deal} />
-      </div>
+    <main className="mx-auto max-w-[800px] pb-20">
+      <DealDetails deal={deal} />
     </main>
   )
 }

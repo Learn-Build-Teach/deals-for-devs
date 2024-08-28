@@ -11,7 +11,7 @@ interface DealDetailsProps {
 }
 export default function DealDetails({ deal }: DealDetailsProps) {
   return (
-    <div className=" mx-auto max-w-[800px] text-white">
+    <div className="  text-white">
       <div className="mb-10">
         <p className="mb-2 font-bold  text-teal-500">{deal.category || ''}</p>
         <div className="mb-10 flex flex-row items-end justify-between gap-x-4">

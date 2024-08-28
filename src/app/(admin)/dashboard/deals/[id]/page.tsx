@@ -1,43 +1,10 @@
 import { notFound } from 'next/navigation'
 import { getDealByIdAsAdmin } from '@/lib/queries'
-import { Metadata, ResolvingMetadata } from 'next'
-import EditDealForm from '@/components/dashboard/EditDealForm'
-import DeleteDealButton from '@/components/dashboard/DeleteDealButton'
-import ApproveDealButton from '@/components/dashboard/ApproveDealButton'
+import DealDetails from '@/components/deals/DealDetails'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
-export const revalidate = 120
-
-type Props = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
-  // read route params
-  const id = params.id
-
-  // fetch data
-  const deal = await getDealByIdAsAdmin(params.id)
-
-  if (!deal) {
-    return {
-      title: 'Deal not found',
-    }
-  }
-
-  return {
-    title: deal?.name,
-    description: deal?.description,
-    openGraph: {
-      images: [deal?.coverImageURL || '/logo-wide.png'],
-    },
-  }
-}
-
-export default async function EditDealPage({
+export default async function ViewDealAdminPage({
   params: { id },
 }: {
   params: { id: string }
@@ -51,12 +18,12 @@ export default async function EditDealPage({
   }
 
   return (
-    <section>
+    <main className="mx-auto max-w-[800px] pb-20">
       <div className="mb-10 flex flex-col items-center justify-between gap-y-4 sm:flex-row ">
-        <h1 className="text-center text-5xl text-white">Edit Deal</h1>
-        <DeleteDealButton id={id} />
+        <h1 className="text-center text-5xl text-white">{deal.name}</h1>
+        <Link href={`/dashboard/deals/${deal.xata_id}/edit`}>Edit Deal</Link>
       </div>
-      <EditDealForm deal={deal} />
-    </section>
+      <DealDetails deal={deal} />
+    </main>
   )
 }
