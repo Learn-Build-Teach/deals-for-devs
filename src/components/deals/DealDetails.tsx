@@ -70,6 +70,36 @@ export default function DealDetails({ deal }: DealDetailsProps) {
               category={deal.category as Category}
             />
           </div>
+<<<<<<< HEAD
+=======
+          {deal.couponPercent && deal.couponPercent > 0 && (
+            <div className="flex flex-wrap gap-2 text-lg font-light md:mt-1.5">
+              <span className="w-40 text-white/70">Discount:</span>
+              <span className="font-bold">
+                <span>{deal.couponPercent}% off </span>
+                {deal.coupon && (
+                  <span className="ml-2 font-normal">
+                    {'(coupon '}
+                    <ClickableCoupon coupon={deal.coupon} />
+                    {')'}
+                  </span>
+                )}
+              </span>
+            </div>
+          )}
+
+          <TagsList tags={deal.tags} />
+        </div>
+      </div>
+      <div className="relative mx-auto aspect-video w-full ">
+        <DealImage
+          name={deal.name}
+          coverImageURL={deal.coverImageURL || null}
+          category={deal.category as Category}
+          couponPercent={deal.couponPercent || undefined}
+        />
+      </div>
+>>>>>>> b1d0600890c1962213ea67840827a08482eb6d95
 
           <div className="text-md mt-5 flex w-full flex-col items-start md:mt-10 md:text-lg ">
             <span className="font-bold uppercase">Description</span>

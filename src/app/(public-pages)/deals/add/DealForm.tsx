@@ -168,11 +168,11 @@ export default function CreateDealForm() {
               error={errors?.coupon || undefined}
             />
             <Input
-              label="Discount %"
+              label="Discount %*"
               name="couponPercent"
               value={newDealData.couponPercent || undefined}
               onBlur={() => setBlurs({ ...blurs, couponPercent: true })}
-              required={false}
+              required={true}
               type="number"
               onChange={(e) => {
                 if (!dataLoaded) return

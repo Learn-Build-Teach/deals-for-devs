@@ -24,6 +24,7 @@ export default function SearchedDeal({ deal }: ISearchedDealProps) {
           name={deal.name}
           coverImageURL={deal.coverImageURL}
           category={deal.category as Category}
+          couponPercent={deal.couponPercent || undefined}
         />
       </div>
       <div className="SearchedDealTextContainer col-span-4 space-y-1">
