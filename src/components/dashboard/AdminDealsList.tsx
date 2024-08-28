@@ -39,6 +39,7 @@ export default function AdminDealsList({ deals }: { deals: Deal[] }) {
               >
                 <div className="hidden w-32 @[700px]:block">
                   <DealImage
+                    couponPercent={deal.couponPercent || undefined}
                     coverImageURL={deal.coverImageURL}
                     category={deal.category as Category}
                     name={deal.name}
