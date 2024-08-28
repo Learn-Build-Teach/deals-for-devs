@@ -40,7 +40,7 @@ export default function DealDetails({ deal }: DealDetailsProps) {
                 'No coupon code required'}
             </span>
           </div>
-          {deal.couponPercent && (
+          {deal.couponPercent && deal.couponPercent > 0 && (
             <div className="flex flex-wrap gap-2 text-lg font-light md:mt-1.5">
               <span className="w-40 text-white/70">Discount:</span>
               <span className="font-bold">
