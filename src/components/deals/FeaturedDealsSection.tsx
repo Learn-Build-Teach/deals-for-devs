@@ -19,7 +19,7 @@ export default function FeaturedDealsSection() {
         </Link>
       </div>
       <Suspense fallback={<LoadingDealsList count={3} />}>
-        <FeaturedDeals />
+        <FeaturedDeals limit={3} />
       </Suspense>
     </section>
   )
