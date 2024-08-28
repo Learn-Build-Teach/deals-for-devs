@@ -1,5 +1,4 @@
 import prisma from '@/lib/db'
-import { greaterThan } from '@xata.io/client'
 
 export const createDealView = async (dealId: string) => {
   return await prisma.dealView.create({

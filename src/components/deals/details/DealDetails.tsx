@@ -1,13 +1,13 @@
 import { Category, DealWithTags } from '@/types/Types'
 import React from 'react'
-import DealImage from './DealImage'
-import TagsList from '../forms/add-a-deal/TagsList'
-import ClickableCoupon from '../ClickableCouponCode'
+import DealImage from '../DealImage'
+import TagsList from '../../forms/add-a-deal/TagsList'
+import ClickableCoupon from '../../ClickableCouponCode'
 import { format } from 'date-fns'
 import Image from 'next/image'
-import Container from '../Container'
-import Section, { SECTION_STYLE, SECTION_WIDTH } from '../Section'
-import FeaturedDeals from './FeaturedDeals'
+import Section, { SECTION_STYLE, SECTION_WIDTH } from '../../Section'
+import ShareDealButton from './ShareDealButton'
+import ReportDealButton from './ReportDealButton'
 
 interface DealDetailsProps {
   deal: DealWithTags
@@ -71,9 +71,13 @@ export default function DealDetails({ deal }: DealDetailsProps) {
             />
           </div>
 
-          <div className="text-md mt-5 flex w-full flex-col items-start md:mt-10 md:text-lg ">
+          <div className="text-md mb-10 mt-5 flex w-full flex-col items-start md:mt-10 md:text-lg">
             <span className="font-bold uppercase">Description</span>
             <p className="whitespace-pre-wrap font-light">{deal.description}</p>
+          </div>
+          <div className="space-between flex flex-col justify-between gap-4 sm:flex-row">
+            <ShareDealButton />
+            <ReportDealButton dealId={deal.xata_id} />
           </div>
         </div>
       </Section>

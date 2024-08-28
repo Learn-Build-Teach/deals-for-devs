@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import { getApprovedDeals, getDealById } from '@/lib/queries'
 import { Metadata } from 'next'
-import DealDetails from '@/components/deals/DealDetails'
+import DealDetails from '@/components/deals/details/DealDetails'
 
 export const revalidate = 120
 

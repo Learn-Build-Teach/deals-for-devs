@@ -6,16 +6,16 @@ import { Category } from '@/types/Types'
 
 export default function AdminDealsList({ deals }: { deals: Deal[] }) {
   return (
-    <div className="@container relative overflow-x-auto">
+    <div className="relative overflow-x-auto @container">
       <table className="w-full rounded-md text-left text-sm text-gray-400 ">
         <thead className=" bg-gray-700 text-xs uppercase text-gray-400">
           <tr>
-            <th scope="col" className="@[700px]:underline px-6 py-3">
+            <th scope="col" className="px-6 py-3 @[700px]:underline">
               Deal
             </th>
             <th
               scope="col"
-              className="@[700px]:table-cell hidden w-20 px-6 py-3"
+              className="hidden w-20 px-6 py-3 @[700px]:table-cell"
             >
               Owner
             </th>
@@ -37,7 +37,7 @@ export default function AdminDealsList({ deals }: { deals: Deal[] }) {
                 scope="row"
                 className="flex items-center gap-x-4 whitespace-nowrap px-6 py-4 font-medium text-white"
               >
-                <div className="@[700px]:block hidden w-32">
+                <div className="hidden w-32 @[700px]:block">
                   <DealImage
                     coverImageURL={deal.coverImageURL}
                     category={deal.category as Category}
@@ -46,12 +46,12 @@ export default function AdminDealsList({ deals }: { deals: Deal[] }) {
                 </div>
                 <Link
                   className="transition-colors hover:text-teal-500"
-                  href={`/deals/${deal.xata_id}`}
+                  href={`/dashboard/deals/${deal.xata_id}`}
                 >
                   {deal.name}
                 </Link>
               </td>
-              <td className="@[700px]:table-cell hidden w-20 text-ellipsis whitespace-nowrap px-6 py-4">
+              <td className="hidden w-20 text-ellipsis whitespace-nowrap px-6 py-4 @[700px]:table-cell">
                 {deal.contactName}
               </td>
               <td className="px-6 py-4">
