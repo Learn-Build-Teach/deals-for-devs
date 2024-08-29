@@ -8,6 +8,7 @@ type InputProps = {
   name: string
   error?: string
   required?: boolean
+  labelVisible?: boolean
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
   onBlur?: () => void
 }
@@ -20,6 +21,7 @@ export default function Textarea({
   error,
   required = false,
   onBlur,
+  labelVisible = true,
 }: InputProps) {
   const labelCamelCase = camelCase(label)
 
@@ -28,10 +30,13 @@ export default function Textarea({
       <div className="flex flex-col gap-2">
         <Label
           htmlFor={labelCamelCase}
-          className="text-base font-extralight md:text-2xl"
+          className={cn('text-base font-extralight md:text-2xl', {
+            hidden: !labelVisible,
+          })}
         >
           {label}
         </Label>
+
         <TextareaDefault
           id={labelCamelCase}
           name={name}

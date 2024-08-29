@@ -1,18 +1,23 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import { ReactNode, useEffect, useRef } from 'react'
+import { useHotkeys } from 'react-hotkeys-hook'
 import { FaTimes } from 'react-icons/fa'
 
 const Overlay = ({
   isOpen,
   onClose,
   children,
+  className,
 }: {
   isOpen: boolean
   onClose: () => void
   children: ReactNode
+  className?: string
 }) => {
   const dialogRef = useRef<HTMLDialogElement>(null)
+  useHotkeys('esc', onClose)
 
   useEffect(() => {
     if (isOpen) {
@@ -24,7 +29,10 @@ const Overlay = ({
   return (
     <dialog
       ref={dialogRef}
-      className="hide-scrollbar fixed inset-0 h-[90vh]  w-full max-w-4xl rounded-xl  bg-gray-900 px-4 pt-16 shadow-lg backdrop:bg-gray-950/[.80] md:px-8 md:pt-16"
+      className={cn(
+        'hide-scrollbar fixed z-50 w-full max-w-4xl rounded-xl bg-gray-900 px-4 py-10 shadow-lg backdrop:bg-gray-950/[.80] md:px-8',
+        className
+      )}
     >
       <button
         onClick={onClose}

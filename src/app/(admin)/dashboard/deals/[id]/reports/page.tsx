@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation'
 import { getDealByIdAsAdmin } from '@/lib/queries'
-import DeleteDealButton from '@/components/dashboard/DeleteDealButton'
-import DealDetails from '@/components/deals/details/DealDetails'
+import { getReportsByDealAsAdmin } from '@/queries/reports'
+import ReportsList from '@/components/dashboard/reports/ReportsList'
+import { CiEdit } from 'react-icons/ci'
 import Link from 'next/link'
-import Section from '@/components/Section'
 
-export default async function ViewDealAdminPage({
+export default async function DealReportsPage({
   params: { id },
 }: {
   params: { id: string }
@@ -14,25 +14,27 @@ export default async function ViewDealAdminPage({
     notFound()
   }
   const deal = await getDealByIdAsAdmin(id)
+  const reports = await getReportsByDealAsAdmin(id)
   if (!deal) {
     notFound()
   }
 
   return (
-    <Section>
+    <section>
       <div className="mb-10 flex flex-col items-center justify-between gap-y-4 sm:flex-row ">
-        <h1 className="text-center text-5xl text-white">Edit Deal</h1>
-        <div className="flex gap-x-4">
+        <div className="flex w-full justify-between">
+          <h1 className="text-center text-5xl text-white">
+            Reports for <span className="font-bold">{deal.name}</span>
+          </h1>
           <Link
-            href={`/dashboard/deals/${deal.xata_id}/reports`}
+            href={`/dashboard/deals/${deal.xata_id}`}
             className="flex items-center justify-center gap-x-2 rounded-md border-2 border-blue-50 bg-blue-50 px-4 py-2 text-center text-blue-700 transition-colors hover:border-blue-700 "
           >
-            View Reports
+            View Deal
           </Link>
-          <DeleteDealButton id={id} />
         </div>
       </div>
-      <DealDetails deal={deal} />
-    </Section>
+      <ReportsList reports={reports} deal={deal} />
+    </section>
   )
 }

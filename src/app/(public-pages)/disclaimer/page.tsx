@@ -9,7 +9,7 @@ export default async function Disclaimer() {
       <main>
         <PageHeader heading="Disclaimer" />
         <div className="pb-10">
-          <p className=" text-lrg text-gray-300">
+          <p className=" text-lg text-gray-300">
             Some deals may include affiliate links. Proceeds from these
             affiliate links are invested back into the developer community
             through giveaways on courses and other resources.

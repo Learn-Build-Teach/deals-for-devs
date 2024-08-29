@@ -2,6 +2,7 @@ import DashboardCard from '@/components/dashboard/DashboardCard'
 import PendingAdminDeals from './PendingDeals'
 import DealListByViews from '@/components/dashboard/metrics/DealListByViews'
 import Link from 'next/link'
+import ReportedDeals from '@/components/dashboard/reports/ReportedDeals'
 
 export default async function RootDashboardPage() {
   return (
@@ -35,7 +36,17 @@ export default async function RootDashboardPage() {
           </div>
         </DashboardCard>
         <DashboardCard heading="Reported Deals">
-          <p>Coming soon</p>
+          <div className="mb-6">
+            <ReportedDeals limit={5} />
+          </div>
+          <div className="flex justify-end">
+            <Link
+              className="text-right underline transition-colors hover:text-teal-500"
+              href="/dashboard/deals/reported"
+            >
+              View All Reported Deals
+            </Link>
+          </div>
         </DashboardCard>
       </div>
     </section>

@@ -14,9 +14,7 @@ export default function Nav() {
     <header>
       <GlobalSearch />
       <nav
-        className={cn(
-          'my-10 mb-10 flex w-full items-center px-6 md:mb-16 md:px-0'
-        )}
+        className={cn('my-10 flex w-full items-center px-6 md:mb-16 md:px-0')}
         aria-label="main navigation"
       >
         {/* D4D logo */}
