@@ -15,7 +15,7 @@ export default function DealDetails({ deal }: DealDetailsProps) {
       <div className="mb-10">
         <p className="mb-2 font-bold  text-teal-500">{deal.category || ''}</p>
         <div className="mb-10 flex flex-row items-end justify-between gap-x-4">
-          <h1 className="inline text-2xl transition-colors hover:text-teal-500 md:text-3xl">
+          <h1 className="inline text-2xl transition-colors md:text-3xl">
             {deal.name}
           </h1>
           <a
