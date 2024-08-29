@@ -86,9 +86,9 @@ export default function Subscriber({
   return (
     <Section className="w-full">
       {/* subscribe and unsubscribe from all buttons */}
-      <div className="mb-8 flex w-full justify-between">
+      <div className="mb-10 flex w-full justify-between">
         <Button
-          variant="ghost-light"
+          variant="outline-success"
           size="lg"
           onClick={() => updateAllSubscriptions(true)}
         >
