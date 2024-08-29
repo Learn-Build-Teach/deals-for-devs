@@ -1,5 +1,6 @@
 import React from 'react'
 import PageHeader from '../PageHeader'
+import Section from '../Section'
 
 interface DashboardCardProps {
   children?: React.ReactNode
@@ -11,9 +12,9 @@ export default function DashboardCard({
   heading,
 }: DashboardCardProps) {
   return (
-    <section>
+    <Section>
       <PageHeader heading={heading} />
       {children}
-    </section>
+    </Section>
   )
 }

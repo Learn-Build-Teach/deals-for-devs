@@ -1,10 +1,11 @@
 import { notFound } from 'next/navigation'
 import { getDealByIdAsAdmin } from '@/lib/queries'
-import EditDealForm from '@/components/dashboard/EditDealForm'
 import DeleteDealButton from '@/components/dashboard/DeleteDealButton'
+import DealDetails from '@/components/deals/details/DealDetails'
 import Link from 'next/link'
+import Section from '@/components/Section'
 
-export default async function EditDealPage({
+export default async function ViewDealAdminPage({
   params: { id },
 }: {
   params: { id: string }
@@ -18,7 +19,7 @@ export default async function EditDealPage({
   }
 
   return (
-    <section>
+    <Section>
       <div className="mb-10 flex flex-col items-center justify-between gap-y-4 sm:flex-row ">
         <h1 className="text-center text-5xl text-white">Edit Deal</h1>
         <div className="flex gap-x-4">
@@ -31,7 +32,7 @@ export default async function EditDealPage({
           <DeleteDealButton id={id} />
         </div>
       </div>
-      <EditDealForm deal={deal} />
-    </section>
+      <DealDetails deal={deal} />
+    </Section>
   )
 }
