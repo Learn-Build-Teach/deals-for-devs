@@ -24,7 +24,7 @@ export default async function EditDealPage({
         <div className="flex gap-x-4">
           <Link
             href={`/dashboard/deals/${deal.xata_id}/reports`}
-            className="flex items-center justify-center gap-x-2 rounded-md border-2 border-blue-50 bg-blue-50 px-4 py-2 text-center text-blue-500 transition-colors hover:border-blue-300 "
+            className="flex items-center justify-center gap-x-2 rounded-md border-2 border-blue-50 bg-blue-50 px-4 py-2 text-center text-blue-700 transition-colors hover:border-blue-700 "
           >
             View Reports
           </Link>
