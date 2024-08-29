@@ -29,7 +29,7 @@ export default function DealDetails({ deal }: DealDetailsProps) {
               <span>Visit</span>
               <Image
                 src="/icons/upright-arrow.svg"
-                alt="arrow right"
+                alt=""
                 width={16}
                 height={16}
               />
