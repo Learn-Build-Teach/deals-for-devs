@@ -1,6 +1,6 @@
 import { Category } from '@/types/Types'
 import { Deal } from '@prisma/client'
-import DealGradientPlaceholder from '../DealGradientPlaceholder'
+import DealGradientPlaceholder from '../deals/DealGradientPlaceholder'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -24,6 +24,7 @@ export default function SearchedDeal({ deal }: ISearchedDealProps) {
           name={deal.name}
           coverImageURL={deal.coverImageURL}
           category={deal.category as Category}
+          couponPercent={deal.couponPercent || undefined}
         />
       </div>
       <div className="SearchedDealTextContainer col-span-4 space-y-1">

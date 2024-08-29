@@ -1,22 +1,22 @@
 import React from 'react'
 
 export default function PageHeader({
-  title,
-  subtitle,
+  heading,
+  subheading,
 }: {
-  title: string
-  subtitle?: string
+  heading: string
+  subheading?: string
 }) {
   return (
-    <>
-      <h1 className="mb-4 text-4xl font-semibold text-white md:text-7xl">
-        {title}
+    <div className="mb-10">
+      <h1 className="mb-1 text-4xl font-semibold text-white md:mb-4 md:text-7xl">
+        {heading}
       </h1>
-      {subtitle && (
+      {subheading && (
         <span className="text-sm font-light text-white md:text-2xl">
-          {subtitle}
+          {subheading}
         </span>
       )}
-    </>
+    </div>
   )
 }

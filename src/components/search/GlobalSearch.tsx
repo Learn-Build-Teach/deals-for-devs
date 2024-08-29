@@ -72,35 +72,33 @@ export default function GlobalSearch() {
   }
 
   return (
-    <div>
-      <Overlay isOpen={searchOpen} onClose={reset}>
-        <div className="flex h-full flex-col">
-          <div className="relative">
-            <input
-              type="text"
-              value={searchQuery}
-              className="mb-8 w-full rounded-md border-2 border-gray-400  bg-transparent p-4 px-10 text-lg text-gray-100"
-              placeholder="Search Deals"
-              onChange={handleSearchOnChange}
-              ref={inputRef}
-            />
-            <FaSearch className="absolute left-4 top-6 text-gray-400" />
-            <button
-              className="absolute right-4 top-6"
-              onClick={handleClearSearch}
-            >
-              <FaTimes className="text-gray-400 hover:text-gray-100" />
-            </button>
-          </div>
-
-          <SearchResults
-            loading={loading}
-            deals={deals}
-            searchQuery={searchQuery}
+    <Overlay isOpen={searchOpen} onClose={reset} className="h-[90vh]">
+      <div className="flex h-full flex-col">
+        <div className="relative">
+          <input
+            type="text"
+            value={searchQuery}
+            className="mb-8 w-full rounded-md border-2 border-gray-400  bg-transparent p-4 px-10 text-lg text-gray-100"
+            onChange={handleSearchOnChange}
+            ref={inputRef}
           />
-          <Footer />
+          <FaSearch className="absolute left-4 top-6 text-gray-400" />
+          <button
+            className="absolute right-4 top-6"
+            onClick={handleClearSearch}
+            aria-label="Clear search query"
+          >
+            <FaTimes className="text-gray-400 hover:text-gray-100" />
+          </button>
         </div>
-      </Overlay>
-    </div>
+
+        <SearchResults
+          loading={loading}
+          deals={deals}
+          searchQuery={searchQuery}
+        />
+        <Footer />
+      </div>
+    </Overlay>
   )
 }

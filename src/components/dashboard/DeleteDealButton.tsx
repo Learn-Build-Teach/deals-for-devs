@@ -1,17 +1,17 @@
 'use client'
-import { rejectDealAction } from '@/app/admin/dashboard/actions'
+import { deleteDealAction } from '@/app/(admin)/dashboard/actions'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import toast from 'react-hot-toast'
 
-interface RejectDealButtonProps {
+interface DeleteDealButtonProps {
   id: string
 }
-export default function RejectDealButton({ id }: RejectDealButtonProps) {
+export default function DeleteDealButton({ id }: DeleteDealButtonProps) {
   const router = useRouter()
 
   const handleDeleteClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    const { error, successMessage } = await rejectDealAction(id)
+    const { error, successMessage } = await deleteDealAction(id)
 
     if (error) {
       toast.error(error)
@@ -19,7 +19,7 @@ export default function RejectDealButton({ id }: RejectDealButtonProps) {
       if (successMessage) {
         toast.success(successMessage)
       }
-      router.push('/admin/dashboard/deals')
+      router.push('/dashboard')
     }
   }
   return (
@@ -27,7 +27,7 @@ export default function RejectDealButton({ id }: RejectDealButtonProps) {
       className="rounded-md border border-red-500 px-4 py-2 text-red-500 hover:bg-red-500 hover:text-red-50"
       onClick={handleDeleteClick}
     >
-      Delete Deal
+      Delete
     </button>
   )
 }

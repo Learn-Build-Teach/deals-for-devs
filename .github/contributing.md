@@ -84,9 +84,9 @@ If you would like to work on a specific issue within our repo:
 
 Here is the [Figma File](https://www.figma.com/file/IZagx6tJRWHbExsZXmIO2n/Deals-for-devs?type=design&node-id=0-1&mode=design) for reference as needed.
 
-Once you have the repo forked and cloned, the upstream remote has been set, and you are in the `dev` branch you can begin working on your issue:
+Once you have the repo forked and cloned, the upstream remote has been set, and you are in the `main` branch you can begin working on your issue:
 
-1. Create a new branch off of the `dev` branch (unless given specific instructions), replacing the `<your branch name>` with an actual branch name that briefly explains the purpose of the branch in some way:
+1. Create a new branch off of the `main` branch (unless given specific instructions), replacing the `<your branch name>` with an actual branch name that briefly explains the purpose of the branch in some way:
 
    ```bash
    git checkout -b <your branch name>
@@ -106,11 +106,11 @@ Once you have the repo forked and cloned, the upstream remote has been set, and 
    git commit -m "docs: corrected spelling of FEAUTRE"
    ```
 
-3. Make sure to sync your work with the remote `dev` branch unless the maintainer has given specific instructions:
+3. Make sure to sync your work with the remote `main` branch unless the maintainer has given specific instructions:
 
    ```bash
-   # Fetching the most updated copy from dev branch
-   git fetch upstream dev
+   # Fetching the most updated copy from main branch
+   git fetch upstream main
 
    # Merging the copy to your local main
    git merge
@@ -128,8 +128,6 @@ Once you have the repo forked and cloned, the upstream remote has been set, and 
 ## Opening a Pull Request
 
 1. After pushing your changes, go to your forked repo on GitHub and click the "Compare & pull request" button. If you have multiples of this button, be sure you click the one for the correct branch.
-
-> PRs should be made to the `dev` branch.
 
 - If you don't see this button, you can click the branch dropdown menu and then select the branch you just pushed from your local clone:
 

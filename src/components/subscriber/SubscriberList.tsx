@@ -8,21 +8,37 @@ interface SubscribersProps {
 
 export default function SubscriberList({ subscribers }: SubscribersProps) {
   return (
-    <div className="mx-auto flex flex-col space-y-8 text-center text-white">
-      <h3 className="text-md uppercase">Add a Subscriber</h3>
-      <SubscribeForm />
-      <h3 className="text-md pt-8 uppercase">Subscriber List</h3>
-      <ul className="grid w-full gap-2">
-        {subscribers.map((subscriber) => (
-          <li
-            key={subscriber.email + subscriber.xata_id}
-            className="flex w-full justify-between border border-gray-800 px-2 py-1 transition-all duration-300 ease-in-out hover:scale-105 hover:border-teal-500"
-          >
-            {subscriber.email}
-            <DeleteButton id={subscriber.xata_id} />
-          </li>
-        ))}
-      </ul>
+    <div className="relative overflow-x-auto">
+      <table className="w-full rounded-md text-left text-sm text-gray-400 ">
+        <thead className=" bg-gray-700 text-xs uppercase text-gray-400">
+          <tr>
+            <th scope="col" className="px-6 py-3">
+              Name
+            </th>
+            <th scope="col" className="w-32 px-6 py-3">
+              Manage
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {subscribers.map((subscriber) => (
+            <tr
+              className="border-b border-gray-700 bg-gray-800"
+              key={subscriber.xata_id}
+            >
+              <th
+                scope="row"
+                className="whitespace-nowrap px-6 py-4 font-medium text-white"
+              >
+                {subscriber.email}
+              </th>
+              <td className="px-6 py-4">
+                <DeleteButton id={subscriber.xata_id} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }

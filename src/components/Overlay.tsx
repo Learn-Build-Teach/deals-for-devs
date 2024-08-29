@@ -1,33 +1,48 @@
 'use client'
 
-import { ReactNode } from 'react'
+import { cn } from '@/lib/utils'
+import { ReactNode, useEffect, useRef } from 'react'
+import { useHotkeys } from 'react-hotkeys-hook'
 import { FaTimes } from 'react-icons/fa'
 
 const Overlay = ({
   isOpen,
   onClose,
   children,
+  className,
 }: {
   isOpen: boolean
   onClose: () => void
   children: ReactNode
+  className?: string
 }) => {
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  useHotkeys('esc', onClose)
+
+  useEffect(() => {
+    if (isOpen) {
+      dialogRef.current?.showModal()
+    } else {
+      dialogRef.current?.close()
+    }
+  })
   return (
-    <div
-      className={`fixed inset-0  flex items-center justify-center p-10 ${
-        isOpen ? 'block' : 'hidden'
-      } z-50 bg-gray-950/[.80] `}
+    <dialog
+      ref={dialogRef}
+      className={cn(
+        'hide-scrollbar fixed z-50 w-full max-w-4xl rounded-xl bg-gray-900 px-4 py-10 shadow-lg backdrop:bg-gray-950/[.80] md:px-8',
+        className
+      )}
     >
-      <div className="hide-scrollbar relative h-[90vh]  w-full max-w-4xl overflow-y-scroll rounded-xl  bg-gray-900 px-4 pt-16 shadow-lg md:px-8 md:pt-16">
-        <button
-          onClick={onClose}
-          className="fixed right-3 top-3 text-gray-400 transition-colors hover:text-white focus:outline-none"
-        >
-          <FaTimes className="h-10" />
-        </button>
-        {children}
-      </div>
-    </div>
+      <button
+        onClick={onClose}
+        className="fixed right-3 top-3 text-gray-400 transition-colors hover:text-white"
+        aria-label="Close"
+      >
+        <FaTimes className="h-10" />
+      </button>
+      {children}
+    </dialog>
   )
 }
 
