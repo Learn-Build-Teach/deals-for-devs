@@ -3,6 +3,7 @@ import { getDealByIdAsAdmin } from '@/lib/queries'
 import EditDealForm from '@/components/dashboard/EditDealForm'
 import DeleteDealButton from '@/components/dashboard/DeleteDealButton'
 import PageHeader from '@/components/PageHeader'
+import Section from '@/components/Section'
 
 export default async function EditDealPage({
   params: { id },
@@ -18,12 +19,12 @@ export default async function EditDealPage({
   }
 
   return (
-    <section className="mx-auto max-w-[800px] pb-20">
+    <Section>
       <div className="mb-10 flex flex-col items-center justify-between gap-y-4 sm:flex-row ">
         <PageHeader heading="Edit Deal" />
         <DeleteDealButton id={id} />
       </div>
       <EditDealForm deal={deal} />
-    </section>
+    </Section>
   )
 }
