@@ -17,7 +17,7 @@ export default function ReportDealButton({ dealId }: ReportDealButtonProps) {
     <>
       <button
         onClick={handleClick}
-        className="flex items-center justify-center gap-x-2 rounded-md border-2 border-red-50 bg-red-50 px-4 py-2 text-center text-red-500 transition-colors hover:border-red-300 "
+        className="flex items-center justify-center gap-x-2 rounded-md border-2 border-red-50 bg-red-50 px-4 py-2 text-center text-red-700 transition-colors hover:border-red-700 "
       >
         <CiFlag1 /> <span>Report Deal</span>
       </button>
