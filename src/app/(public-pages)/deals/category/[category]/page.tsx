@@ -7,6 +7,7 @@ import DealsList from '@/components/deals/DealsList'
 import ApprovedDealsByCategory from '@/components/deals/ApprovedDealsByCategory'
 import { Suspense } from 'react'
 import LoadingDealsList from '@/components/deals/loading/LoadingDealsList'
+import Container from '@/components/Container'
 
 export const revalidate = 120
 
@@ -34,14 +35,16 @@ export default async function CategoryPage({
     capitalizedCategory = capitalizedCategory.slice(0, -1)
   }
   return (
-    <main>
-      <PageHeader heading={`${capitalizedCategory} Deals`} />
-      <div className="pb-10">
-        <CategoryOptions />
-      </div>
-      <Suspense fallback={<LoadingDealsList count={3} />}>
-        <ApprovedDealsByCategory category={category} />
-      </Suspense>
-    </main>
+    <Container>
+      <main>
+        <PageHeader heading={`${capitalizedCategory} Deals`} />
+        <div className="pb-10">
+          <CategoryOptions />
+        </div>
+        <Suspense fallback={<LoadingDealsList count={3} />}>
+          <ApprovedDealsByCategory category={category} />
+        </Suspense>
+      </main>
+    </Container>
   )
 }
