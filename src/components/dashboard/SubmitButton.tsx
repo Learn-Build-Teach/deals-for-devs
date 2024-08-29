@@ -15,13 +15,7 @@ export default function SubmitButton({
 }: DeleteDealButtonProps) {
   const { pending } = useFormStatus()
   return (
-    <Button
-      //   className="mt-2 rounded-lg bg-teal-500 px-10 py-4 text-lg text-black disabled:bg-teal-600/30 lg:-mt-4 lg:py-7 lg:text-2xl"
-      variant="primary"
-      type="submit"
-      onClick={handleClick}
-      size="lg"
-    >
+    <Button variant="primary" type="submit" onClick={handleClick} size="lg">
       {pending ?
         <span className=" text-black">
           <Loading />
