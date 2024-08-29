@@ -47,7 +47,7 @@ export default function AdminDealsList({ deals }: { deals: Deal[] }) {
                 </div>
                 <Link
                   className="transition-colors hover:text-teal-500"
-                  href={`/deals/${deal.xata_id}`}
+                  href={`/dashboard/deals/${deal.xata_id}`}
                 >
                   {deal.name}
                 </Link>

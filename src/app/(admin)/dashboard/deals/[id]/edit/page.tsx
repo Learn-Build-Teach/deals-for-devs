@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation'
 import { getDealByIdAsAdmin } from '@/lib/queries'
-import DealDetails from '@/components/deals/DealDetails'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+import EditDealForm from '@/components/dashboard/EditDealForm'
+import DeleteDealButton from '@/components/dashboard/DeleteDealButton'
+import PageHeader from '@/components/PageHeader'
 import Section from '@/components/Section'
 
-export default async function ViewDealAdminPage({
+export default async function EditDealPage({
   params: { id },
 }: {
   params: { id: string }
@@ -21,10 +21,10 @@ export default async function ViewDealAdminPage({
   return (
     <Section>
       <div className="mb-10 flex flex-col items-center justify-between gap-y-4 sm:flex-row ">
-        <h1 className="text-center text-5xl text-white">{deal.name}</h1>
-        <Link href={`/dashboard/deals/${deal.xata_id}/edit`}>Edit Deal</Link>
+        <PageHeader heading="Edit Deal" />
+        <DeleteDealButton id={id} />
       </div>
-      <DealDetails deal={deal} />
+      <EditDealForm deal={deal} />
     </Section>
   )
 }
