@@ -3,6 +3,7 @@ import GlobalSearch from '@/components/search/GlobalSearch'
 import { SearchProvider } from '@/components/search/SearchContext'
 
 import Nav from '@/components/nav/Nav'
+import Container from '@/components/Container'
 
 export default function RootLayout({
   children,
@@ -10,15 +11,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex min-h-screen flex-col justify-between bg-gray-900">
-      <div className="max-w-8xl mx-auto w-full px-4 pt-5 md:px-16 xl:pt-20">
-        <SearchProvider>
-          <GlobalSearch />
+    <div className="flex min-h-screen flex-col bg-gray-900">
+      <SearchProvider>
+        <Container>
           <Nav />
-        </SearchProvider>
-        <div>{children}</div>
-      </div>
-      <Footer />
+        </Container>
+
+        <div className="grow">{children}</div>
+        <Footer />
+      </SearchProvider>
     </div>
   )
 }

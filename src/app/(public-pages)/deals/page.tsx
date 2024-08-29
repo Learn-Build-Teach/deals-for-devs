@@ -1,4 +1,5 @@
 import CategoryOptions from '@/components/CategoryOptions'
+import Container from '@/components/Container'
 import NeverMissADeal from '@/components/NeverMissADeal'
 import PageHeader from '@/components/PageHeader'
 import ApprovedDeals from '@/components/deals/ApprovedDeals'
@@ -10,15 +11,17 @@ export const revalidate = 120
 export default async function DealsPage() {
   //TODO: handle error
   return (
-    <main>
-      <PageHeader heading="All Deals" />
-      <div className="pb-10">
-        <CategoryOptions />
-      </div>
-      <Suspense fallback={<LoadingDealsList count={3} />}>
-        <ApprovedDeals />
-      </Suspense>
-      <NeverMissADeal />
-    </main>
+    <Container>
+      <main>
+        <PageHeader heading="All Deals" />
+        <div className="pb-10">
+          <CategoryOptions />
+        </div>
+        <Suspense fallback={<LoadingDealsList count={3} />}>
+          <ApprovedDeals />
+        </Suspense>
+        <NeverMissADeal />
+      </main>
+    </Container>
   )
 }

@@ -5,15 +5,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import NavLink from '@/components/nav/NavLink'
 import { useSearch } from '@/components/search/SearchContext'
+import GlobalSearch from '../search/GlobalSearch'
 
 export default function Nav() {
   const { setSearchOpen } = useSearch()
 
   return (
     <header>
+      <GlobalSearch />
       <nav
         className={cn(
-          'mb-[79px] flex w-full items-center px-6 md:mb-[153px] md:px-0'
+          'my-10 mb-10 flex w-full items-center px-6 md:mb-16 md:px-0'
         )}
         aria-label="main navigation"
       >
@@ -30,8 +32,8 @@ export default function Nav() {
 
         {/* nav links */}
         <div className=" flex flex-1 flex-row items-center justify-end gap-x-5 gap-y-2">
-          <NavLink href="/deals">Shop All Deals</NavLink>
-          <NavLink href="/deals/add">Add a deal</NavLink>
+          <NavLink href="/deals">All Deals</NavLink>
+          <NavLink href="/deals/add">Add Deal</NavLink>
 
           {/* search */}
           <button
