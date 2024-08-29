@@ -1,6 +1,7 @@
 'use client'
 import { sendConfirmationEmail } from '@/utils/resend/email-sendConfirmation'
 import toast from 'react-hot-toast'
+import { Button } from '../ui/button'
 
 interface ResendConfirmationProps {
   email: string
@@ -14,7 +15,6 @@ export default function ResendConfirmationButton({
   return (
     <form
       action={async () => {
-        console.info(email, validateEmailLink)
         const { error } = await sendConfirmationEmail(email, validateEmailLink)
 
         if (error) {
@@ -24,12 +24,9 @@ export default function ResendConfirmationButton({
         toast.success('Confirmation Email Sent!')
       }}
     >
-      <button
-        type="submit"
-        className="rounded-md border border-teal-500 px-3 py-2 text-xs  text-teal-500 hover:bg-teal-500 hover:text-white md:rounded-lg md:px-7 md:py-5 md:text-2xl"
-      >
+      <Button variant="primary" type="submit" size="lg">
         Resend Email
-      </button>
+      </Button>
     </form>
   )
 }

@@ -3,6 +3,7 @@ import { approveDealAction } from '@/app/(admin)/dashboard/actions'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import toast from 'react-hot-toast'
+import { Button } from '../ui/button'
 
 interface RejectDealButtonProps {
   id: string
@@ -23,11 +24,8 @@ export default function ApproveDealButton({ id }: RejectDealButtonProps) {
     }
   }
   return (
-    <button
-      className="rounded-md border border-teal-500 px-4 py-2 text-teal-500 hover:bg-teal-500 hover:text-teal-50"
-      onClick={handleApproveClick}
-    >
+    <Button className="" onClick={handleApproveClick} variant="outline-success">
       Approve
-    </button>
+    </Button>
   )
 }

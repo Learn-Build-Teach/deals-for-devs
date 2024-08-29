@@ -16,7 +16,7 @@ export default async function SubscriberPreferences({
   searchParams,
 }: SubscriberPreferencesProps) {
   const tokenFromParams = searchParams.token
-
+  console.log(tokenFromParams)
   if (!tokenFromParams) {
     return redirect('/')
   }

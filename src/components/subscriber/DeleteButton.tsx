@@ -2,11 +2,13 @@
 
 import { deleteSubscriberAction } from '@/actions/dashboard/subscriber'
 import toast from 'react-hot-toast'
+import { Button } from '../ui/button'
 
 export default function DeleteButton({ id }: { id: string }) {
   return (
-    <button
-      className="cursor text-red-600"
+    <Button
+      variant={'outline-destructive'}
+      size={'sm'}
       type="button"
       onClick={async () => {
         const res = await deleteSubscriberAction(id)
@@ -20,6 +22,6 @@ export default function DeleteButton({ id }: { id: string }) {
       }}
     >
       X
-    </button>
+    </Button>
   )
 }

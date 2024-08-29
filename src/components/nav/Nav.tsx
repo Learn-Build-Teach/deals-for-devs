@@ -6,6 +6,7 @@ import Link from 'next/link'
 import NavLink from '@/components/nav/NavLink'
 import { useSearch } from '@/components/search/SearchContext'
 import GlobalSearch from '../search/GlobalSearch'
+import { Button } from '../ui/button'
 
 export default function Nav() {
   const { setSearchOpen } = useSearch()
@@ -34,13 +35,13 @@ export default function Nav() {
           <NavLink href="/deals/add">Add Deal</NavLink>
 
           {/* search */}
-          <button
-            className="text-white"
+          <Button
+            variant="ghost-light"
             onClick={() => setSearchOpen(true)}
             aria-label="search"
           >
             <GoSearch className="h-4 w-4 md:h-7 md:w-7" />
-          </button>
+          </Button>
         </div>
       </nav>
     </header>

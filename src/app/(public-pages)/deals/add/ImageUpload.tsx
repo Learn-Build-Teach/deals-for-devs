@@ -1,5 +1,6 @@
 'use client'
 import DragAndDropImage from '@/components/forms/add-a-deal/DragAndDropImage'
+import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { getImageUrl, deleteImage } from '@/lib/imageUpload'
 import { cn } from '@/lib/utils'
@@ -127,13 +128,13 @@ export default function ImageUpload({
             height={720}
             className="absolute bottom-0 left-0 right-0 top-0 aspect-video w-full object-cover"
           />
-          <button
+          <Button
             type="button"
             onClick={handleImageDelete}
-            className="absolute right-0 top-0 rounded-bl-lg rounded-tr-lg bg-black bg-opacity-50 px-3.5 py-1.5 text-white hover:bg-teal-500"
+            className="absolute right-2 top-2 "
           >
             X
-          </button>
+          </Button>
         </div>
       : <>
           <DragAndDropImage
