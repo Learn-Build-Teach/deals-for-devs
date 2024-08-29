@@ -30,7 +30,7 @@ export default async function DealReportsPage({
             href={`/dashboard/deals/${deal.xata_id}`}
             className="flex items-center justify-center gap-x-2 rounded-md border-2 border-blue-50 bg-blue-50 px-4 py-2 text-center text-blue-500 transition-colors hover:border-blue-300 "
           >
-            <span>View Deal</span>
+            View Deal
           </Link>
         </div>
       </div>
