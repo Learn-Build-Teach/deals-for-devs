@@ -7,7 +7,6 @@ interface ReportedDealsProps {
 }
 export default async function ReportedDeals({ limit }: ReportedDealsProps) {
   const reportedDeals = await getReportedDeals(limit)
-  console.log(reportedDeals)
   return (
     <>
       {reportedDeals.length > 0 ?
