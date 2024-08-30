@@ -8,6 +8,7 @@ import { FaSearch, FaTimes } from 'react-icons/fa'
 import SearchResults from '@/components/search/SearchResults'
 import { Deal } from '@prisma/client'
 import Footer from '@/components/search/Footer'
+import { Button } from '../ui/button'
 
 export default function GlobalSearch() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -83,13 +84,14 @@ export default function GlobalSearch() {
             ref={inputRef}
           />
           <FaSearch className="absolute left-4 top-6 text-gray-400" />
-          <button
-            className="absolute right-4 top-6"
+          <Button
+            className="absolute right-4 top-4"
+            variant="ghost-light"
             onClick={handleClearSearch}
             aria-label="Clear search query"
           >
-            <FaTimes className="text-gray-400 hover:text-gray-100" />
-          </button>
+            <FaTimes className="" />
+          </Button>
         </div>
 
         <SearchResults

@@ -3,6 +3,7 @@ import { deleteDealAction } from '@/app/(admin)/dashboard/actions'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import toast from 'react-hot-toast'
+import { Button } from '../ui/button'
 
 interface DeleteDealButtonProps {
   id: string
@@ -23,11 +24,8 @@ export default function DeleteDealButton({ id }: DeleteDealButtonProps) {
     }
   }
   return (
-    <button
-      className="rounded-md border border-red-500 px-4 py-2 text-red-500 hover:bg-red-500 hover:text-red-50"
-      onClick={handleDeleteClick}
-    >
+    <Button variant="outline-destructive" onClick={handleDeleteClick}>
       Delete
-    </button>
+    </Button>
   )
 }

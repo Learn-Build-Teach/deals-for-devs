@@ -1,12 +1,12 @@
 import { useFormStatus } from 'react-dom'
+import { Button } from '../ui/button'
 
 export default function SubscribeFormButton() {
   const { pending } = useFormStatus()
 
   return (
-    <button
-      type="submit"
-      className="h absolute right-1 top-4 pr-[19px] hover:translate-x-1 md:top-6"
+    <Button
+      className="h absolute right-1 top-1 bg-transparent pr-[19px] transition-transform hover:translate-x-0.5 md:top-4"
       disabled={pending}
       aria-label="Submit"
     >
@@ -33,6 +33,6 @@ export default function SubscribeFormButton() {
           </svg>
 
       }
-    </button>
+    </Button>
   )
 }
