@@ -9,6 +9,5 @@ export default async function ApprovedDealsByCategory({
   category: Category
 }) {
   const deals = await getApprovedDealsByCategory(category)
-
   return <DealsList deals={deals} />
 }
