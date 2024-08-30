@@ -18,13 +18,17 @@ const Overlay = ({
   className?: string
 }) => {
   const dialogRef = useRef<HTMLDialogElement>(null)
-  useHotkeys('esc', onClose)
+  useHotkeys('esc', () => {
+    onClose()
+  })
 
   useEffect(() => {
     if (isOpen) {
       dialogRef.current?.showModal()
+      document.body.style.overflow = 'hidden'
     } else {
       dialogRef.current?.close()
+      document.body.style.overflow = 'unset'
     }
   })
   return (

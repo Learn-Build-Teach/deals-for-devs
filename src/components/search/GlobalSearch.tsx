@@ -18,24 +18,16 @@ export default function GlobalSearch() {
   const [loading, setLoading] = useState(false)
   const inputRef = useRef<null | HTMLInputElement>(null)
 
-  useEffect(() => {
-    inputRef?.current?.focus()
-  }, [searchOpen])
-
   const openSearch = () => {
     setSearchOpen(true)
-    document.body.style.overflow = 'hidden'
     inputRef?.current?.focus()
   }
 
-  const reset = () => {
+  const onClose = () => {
     setSearchOpen(false)
     setSearchQuery('')
     setDeals(null)
-    document.body.style.overflow = 'unset'
   }
-
-  useHotkeys('esc', reset)
 
   useHotkeys('/', openSearch, {
     preventDefault: true,
@@ -73,7 +65,7 @@ export default function GlobalSearch() {
   }
 
   return (
-    <Overlay isOpen={searchOpen} onClose={reset} className="h-[90vh]">
+    <Overlay isOpen={searchOpen} onClose={onClose} className="h-[90vh]">
       <div className="flex h-full flex-col">
         <div className="relative">
           <input
