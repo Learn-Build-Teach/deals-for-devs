@@ -1,13 +1,14 @@
 'use client'
 
 import { deleteAdminUserAction } from '@/actions/dashboard/adminUser'
+import { Button } from '@/components/ui/button'
 import toast from 'react-hot-toast'
 
 export default function DeleteButton({ id }: { id: string }) {
   return (
-    <button
-      className="cursor text-red-600"
-      type="button"
+    <Button
+      variant="outline-destructive"
+      size="sm"
       onClick={async () => {
         const res = await deleteAdminUserAction(id)
         if (res.message) {
@@ -20,6 +21,6 @@ export default function DeleteButton({ id }: { id: string }) {
       }}
     >
       X
-    </button>
+    </Button>
   )
 }

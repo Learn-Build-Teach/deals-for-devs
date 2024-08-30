@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { ReactNode, useEffect, useRef } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 import { FaTimes } from 'react-icons/fa'
+import { Button } from './ui/button'
 
 const Overlay = ({
   isOpen,
@@ -17,13 +18,17 @@ const Overlay = ({
   className?: string
 }) => {
   const dialogRef = useRef<HTMLDialogElement>(null)
-  useHotkeys('esc', onClose)
+  useHotkeys('esc', () => {
+    onClose()
+  })
 
   useEffect(() => {
     if (isOpen) {
       dialogRef.current?.showModal()
+      document.body.style.overflow = 'hidden'
     } else {
       dialogRef.current?.close()
+      document.body.style.overflow = 'unset'
     }
   })
   return (
@@ -34,13 +39,14 @@ const Overlay = ({
         className
       )}
     >
-      <button
+      <Button
         onClick={onClose}
-        className="fixed right-3 top-3 text-gray-400 transition-colors hover:text-white"
+        className="fixed right-2 top-2"
         aria-label="Close"
+        variant="ghost-light"
       >
         <FaTimes className="h-10" />
-      </button>
+      </Button>
       {children}
     </dialog>
   )

@@ -75,10 +75,6 @@ export default function DealDetails({ deal }: DealDetailsProps) {
             <span className="font-bold uppercase">Description</span>
             <p className="whitespace-pre-wrap font-light">{deal.description}</p>
           </div>
-          <div className="space-between flex flex-col justify-between gap-4 sm:flex-row">
-            <ShareDealButton />
-            <ReportDealButton dealId={deal.xata_id} />
-          </div>
         </div>
       </Section>
     </div>

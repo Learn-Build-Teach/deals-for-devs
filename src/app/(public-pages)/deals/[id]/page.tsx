@@ -2,6 +2,9 @@ import { notFound } from 'next/navigation'
 import { getApprovedDeals, getDealById } from '@/lib/queries'
 import { Metadata } from 'next'
 import DealDetails from '@/components/deals/details/DealDetails'
+import ReportDealButton from '@/components/deals/details/ReportDealButton'
+import ShareDealButton from '@/components/deals/details/ShareDealButton'
+import Section, { SECTION_STYLE, SECTION_WIDTH } from '@/components/Section'
 
 export const revalidate = 120
 
@@ -50,6 +53,17 @@ export default async function DealPage({ params }: { params: { id: string } }) {
   return (
     <main className="pb-20">
       <DealDetails deal={deal} />
+
+      <Section
+        style={SECTION_STYLE.LIGHT}
+        width={SECTION_WIDTH.SM}
+        className="-translate-y-20 py-0"
+      >
+        <div className="space-between flex flex-col justify-between gap-4 sm:flex-row">
+          <ShareDealButton />
+          <ReportDealButton dealId={deal.xata_id} />
+        </div>
+      </Section>
     </main>
   )
 }
