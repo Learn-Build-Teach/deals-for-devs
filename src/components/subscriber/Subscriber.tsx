@@ -51,7 +51,6 @@ export default function Subscriber({
   ]
 
   const updateAllSubscriptions = async (subscribedStatus: boolean) => {
-    // Create a new object with the updated values
     const newData = {
       ...subscriberData,
       courseNotifications: subscribedStatus,
@@ -63,14 +62,12 @@ export default function Subscriber({
       status: subscribedStatus ? Status.SUBSCRIBED : Status.UNSUBSCRIBED,
     }
 
-    // Update the state
     setSubscriberData((prevData) => ({
       ...prevData,
       ...newData,
     }))
 
     //TODO: Look if updatePref is REALLY being used as a server action or server component
-    // Update the database
     try {
       await updateSubscriberPreferences(subscriberData.xata_id, newData) //TODO: Fix type error for newData
       toast.success(
@@ -85,7 +82,6 @@ export default function Subscriber({
 
   return (
     <Section className="w-full">
-      {/* subscribe and unsubscribe from all buttons */}
       <div className="mb-10 flex w-full justify-between">
         <Button
           variant="outline-success"
@@ -104,7 +100,6 @@ export default function Subscriber({
         </Button>
       </div>
 
-      {/* checkboxes */}
       <ul className="flex flex-col gap-6 md:gap-12">
         {subscribedCategories.map((category, index) => (
           <li key={category.name + index} className="flex gap-8 md:gap-16">
