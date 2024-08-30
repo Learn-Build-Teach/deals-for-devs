@@ -5,6 +5,7 @@ import LoadingText, {
   LOADING_TEXT_STYLE,
   LOADING_TEXT_WIDHTS,
 } from './LoadingText'
+
 export default function LoadingPreview() {
   return (
     <div>
