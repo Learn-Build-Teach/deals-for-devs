@@ -129,7 +129,6 @@ export default function ImageUpload({
             className="absolute bottom-0 left-0 right-0 top-0 aspect-video w-full object-cover"
           />
           <Button
-            type="button"
             onClick={handleImageDelete}
             className="absolute right-2 top-2 "
           >
