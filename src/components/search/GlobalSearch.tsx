@@ -22,7 +22,7 @@ export default function GlobalSearch() {
     inputRef?.current?.focus()
   }
 
-  const closeSearch = () => {
+  const onClose = () => {
     setSearchOpen(false)
     setSearchQuery('')
     setDeals(null)
@@ -64,7 +64,7 @@ export default function GlobalSearch() {
   }
 
   return (
-    <Overlay isOpen={searchOpen} onClose={closeSearch} className="h-[90vh]">
+    <Overlay isOpen={searchOpen} onClose={onClose} className="h-[90vh]">
       <div className="flex h-full flex-col">
         <div className="relative">
           <input
