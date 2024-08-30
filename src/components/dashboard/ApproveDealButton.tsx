@@ -24,7 +24,7 @@ export default function ApproveDealButton({ id }: RejectDealButtonProps) {
     }
   }
   return (
-    <Button className="" onClick={handleApproveClick} variant="outline-success">
+    <Button onClick={handleApproveClick} variant="outline-success">
       Approve
     </Button>
   )
