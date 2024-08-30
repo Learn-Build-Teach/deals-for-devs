@@ -118,7 +118,6 @@ export default function Subscriber({
       </ul>
 
       <Button
-        className=""
         variant="primary"
         size="lg"
         onClick={async () => {
