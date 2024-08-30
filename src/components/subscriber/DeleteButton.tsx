@@ -7,7 +7,7 @@ import { Button } from '../ui/button'
 export default function DeleteButton({ id }: { id: string }) {
   return (
     <Button
-      variant={'outline-destructive'}
+      variant="outline-destructive"
       size={'sm'}
       type="button"
       onClick={async () => {

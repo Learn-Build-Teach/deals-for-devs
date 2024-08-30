@@ -15,7 +15,7 @@ export default function Tag({ text, handleDelete }: TagProps) {
           onClick={() => handleDelete(text)}
           type="button"
           aria-label="Close"
-          variant={'ghost-light'}
+          variant="ghost-light"
           size="sm"
         >
           <FaTimes className="h-4" />

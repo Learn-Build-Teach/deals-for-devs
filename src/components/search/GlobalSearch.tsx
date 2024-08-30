@@ -86,7 +86,7 @@ export default function GlobalSearch() {
           <FaSearch className="absolute left-4 top-6 text-gray-400" />
           <Button
             className="absolute right-4 top-4"
-            variant={'ghost-light'}
+            variant="ghost-light"
             onClick={handleClearSearch}
             aria-label="Clear search query"
           >

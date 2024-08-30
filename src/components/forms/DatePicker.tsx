@@ -23,7 +23,7 @@ export function DatePicker({
   className,
   onDateChange,
   initialDate,
-  disableDates
+  disableDates,
 }: DatePickerProps) {
   const [date, setDate] = React.useState<Date | undefined>(initialDate)
 
@@ -35,7 +35,7 @@ export function DatePicker({
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          variant={'outline'}
+          variant="outline"
           className={cn(
             'h-16  w-full justify-start bg-transparent text-lg font-normal',
             !date && 'text-muted-foreground'

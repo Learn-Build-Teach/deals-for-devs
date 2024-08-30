@@ -18,7 +18,7 @@ export default function ReportDealButton({ dealId }: ReportDealButtonProps) {
     <>
       <Button
         className="flex items-center gap-x-2 underline"
-        variant={'link-destructive'}
+        variant="link-destructive"
         onClick={handleClick}
       >
         <CiFlag1 /> <span>Report Deal</span>
