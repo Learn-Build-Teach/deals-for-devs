@@ -4,7 +4,6 @@ import DeleteDealButton from '@/components/dashboard/DeleteDealButton'
 import DealDetails from '@/components/deals/details/DealDetails'
 import Link from 'next/link'
 import Section from '@/components/Section'
-import ApproveDealButton from '@/components/dashboard/ApproveDealButton'
 
 export default async function ViewDealAdminPage({
   params: { id },
