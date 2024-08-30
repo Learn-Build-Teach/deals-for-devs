@@ -6,7 +6,6 @@ export default function SubscribeFormButton() {
 
   return (
     <Button
-      type="submit"
       className="h absolute right-1 top-1 bg-transparent pr-[19px] transition-transform hover:translate-x-0.5 md:top-4"
       disabled={pending}
       aria-label="Submit"
