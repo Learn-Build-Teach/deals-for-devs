@@ -9,19 +9,17 @@ import { Suspense } from 'react'
 export const revalidate = 120
 
 export default async function DealsPage() {
-  //TODO: handle error
   return (
-    <Container>
-      <main>
-        <PageHeader heading="All Deals" />
-        <div className="pb-10">
-          <CategoryOptions />
-        </div>
-        <Suspense fallback={<LoadingDealsList count={3} />}>
-          <ApprovedDeals />
-        </Suspense>
-        <NeverMissADeal />
-      </main>
+    <Container className="pb-20">
+      <PageHeader heading="Deals" />
+      <div className="pb-10">
+        <CategoryOptions selectedCategory={undefined} />
+      </div>
+
+      <Suspense fallback={<LoadingDealsList count={3} />}>
+        <ApprovedDeals />
+      </Suspense>
+      <NeverMissADeal />
     </Container>
   )
 }
