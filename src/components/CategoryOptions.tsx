@@ -1,6 +1,6 @@
 import { Category } from '@/types/Types'
 import CategoryOption from './CategoryOption'
-import { getDealCategoryCounts, getTotaylApprovedDeals } from '@/lib/queries'
+import { getDealCategoryCounts, getTotalApprovedDeals } from '@/queries/deals'
 
 interface CategoryOptionsProps {
   selectedCategory?: Category
@@ -9,7 +9,7 @@ export default async function CategoryOptions({
   selectedCategory,
 }: CategoryOptionsProps) {
   const categoryCounts = await getDealCategoryCounts()
-  const totalDeals = await getTotaylApprovedDeals()
+  const totalDeals = await getTotalApprovedDeals()
 
   return (
     <div>

@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import { getDealByIdAsAdmin } from '@/lib/queries'
 import DeleteDealButton from '@/components/dashboard/DeleteDealButton'
 import DealDetails from '@/components/deals/details/DealDetails'
 import Link from 'next/link'
 import Section from '@/components/Section'
+import { getDealByIdAsAdmin } from '@/queries/adminDeals'
 
 export default async function ViewDealAdminPage({
   params: { id },

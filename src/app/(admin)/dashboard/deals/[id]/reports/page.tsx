@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import { getDealByIdAsAdmin } from '@/lib/queries'
 import { getReportsByDealAsAdmin } from '@/queries/reports'
 import ReportsList from '@/components/dashboard/reports/ReportsList'
 import { CiEdit } from 'react-icons/ci'
 import Link from 'next/link'
+import { getDealByIdAsAdmin } from '@/queries/adminDeals'
 
 export default async function DealReportsPage({
   params: { id },

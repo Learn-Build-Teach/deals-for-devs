@@ -1,8 +1,8 @@
 import React from 'react'
 import Subscriber from '@/components/subscriber/Subscriber'
+import { getOneSubscriberByToken } from '@/queries/subscribers'
 import { redirect } from 'next/navigation'
 import VerifiedStatus from '@/components/subscriber/VerifiedStatus'
-import { getOneSubscriberByToken } from '@/lib/queries'
 import { Subscriber as SubscriberType } from '@prisma/client'
 import Container from '@/components/Container'
 
