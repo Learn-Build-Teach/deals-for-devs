@@ -166,6 +166,51 @@ export async function getApprovedDealsByCategory(
   })
 }
 
+export async function getDealCategoryCounts(): Promise<
+  { category: Category; count: number }[]
+> {
+  const res = await prisma.deal.groupBy({
+    by: ['category'],
+    _count: true,
+    where: {
+      approved: true,
+      OR: [
+        {
+          endDate: {
+            gte: new Date(),
+          },
+        },
+        { endDate: null },
+      ],
+    },
+  })
+
+  return res
+    .filter((record) => record.category in Category)
+    .map((record) => {
+      return {
+        count: record._count,
+        category: record.category as Category,
+      }
+    })
+}
+
+export const getTotaylApprovedDeals = async () => {
+  return await prisma.deal.count({
+    where: {
+      approved: true,
+      OR: [
+        {
+          endDate: {
+            gte: new Date(),
+          },
+        },
+        { endDate: null },
+      ],
+    },
+  })
+}
+
 //TODO: get a type from prisma for new deal
 export const createDeal = async (newDeal: any) => {
   const data = await prisma.deal.create({
