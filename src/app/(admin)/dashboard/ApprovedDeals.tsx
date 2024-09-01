@@ -1,8 +1,8 @@
 import AdminDealsList from '@/components/dashboard/AdminDealsList'
-import { getApprovedAdminDeals } from '@/lib/queries'
+import { getAdminDeals } from '@/queries/adminDeals'
 
 export default async function ApprovedAdminDeals() {
-  const deals = await getApprovedAdminDeals()
+  const deals = await getAdminDeals({ approved: true })
 
   return (
     <>

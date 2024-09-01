@@ -1,4 +1,4 @@
-import { createDeal } from '@/lib/queries'
+import { createDeal } from '@/queries/deals'
 import { FORM_DEAL_SCHEMA } from '@/types/Types'
 import { getXataClient } from '@/xata'
 import { NextRequest } from 'next/server'
@@ -48,7 +48,6 @@ export async function POST(request: Request) {
   try {
     const newDeal = {
       ...parsed,
-      //   image: { name: parsed.name, mediaType: 'image/png', base64Content: '' },
     }
 
     const createdRecord = await createDeal(newDeal)

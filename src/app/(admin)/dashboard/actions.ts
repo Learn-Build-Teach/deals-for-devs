@@ -1,6 +1,6 @@
 'use server'
 import { updateDealSchema } from '@/app/(public-pages)/deals/add/schemas'
-import { approveDeal, deleteDeal, updateDeal } from '@/lib/queries'
+import { updateDeal, approveDeal, deleteDeal } from '@/queries/deals'
 import { DealWithTags } from '@/types/Types'
 import { isAdminUser } from '@/utils/auth'
 import { auth, currentUser } from '@clerk/nextjs'

@@ -1,8 +1,8 @@
 import AdminDealsList from '@/components/dashboard/AdminDealsList'
-import { getAllAdminDeals } from '@/lib/queries'
+import { getAdminDeals } from '@/queries/adminDeals'
 
 export default async function AllAdminDeals() {
-  const deals = await getAllAdminDeals()
+  const deals = await getAdminDeals({})
 
   return (
     <>

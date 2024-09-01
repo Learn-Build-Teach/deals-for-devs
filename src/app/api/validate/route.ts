@@ -1,8 +1,10 @@
 import { NextRequest } from 'next/server'
 import { redirect } from 'next/navigation'
-import { getOneSubscriberByToken } from '@/lib/queries'
 import { createConfirmEmailLink } from '@/lib/utils'
-import { updateSubscriberToVerified } from '@/lib/queries'
+import {
+  getOneSubscriberByToken,
+  updateSubscriberToVerified,
+} from '@/queries/subscribers'
 
 //TODO: Add error checking
 export async function GET(request: NextRequest) {
