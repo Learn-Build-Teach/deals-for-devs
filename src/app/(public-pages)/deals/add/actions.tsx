@@ -1,8 +1,8 @@
 'use server'
 
+import { createDeal } from '@/queries/deals'
 import { newDealSchema } from './schemas'
 import { DealFormServerState, FormErrors } from './types'
-import { createDeal } from '@/lib/queries'
 
 export const submitDealAction = async (
   prevState: DealFormServerState,

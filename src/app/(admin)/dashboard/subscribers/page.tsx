@@ -1,10 +1,9 @@
-import { getAllSubscribers } from '@/lib/queries'
 import SubscriberList from '@/components/subscriber/SubscriberList'
 import NewSubscriberForm from '@/components/dashboard/subscribers/NewSubscriberForm'
 import DashboardPage from '@/components/dashboard/DashboardPage'
+import { getAllSubscribers } from '@/queries/subscribers'
 
 export default async function Subscribers() {
-  // fetch all subscribers
   const subscribersData = getAllSubscribers()
   const [subscribers] = await Promise.all([subscribersData])
   const subscriberList = JSON.parse(JSON.stringify(subscribers))

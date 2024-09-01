@@ -1,11 +1,11 @@
 import ResendConfirmationButton from '@/components/subscriber/ResendConfirmationButton'
 import { createValidateEmailLink } from '@/lib/utils'
 import { redirect } from 'next/navigation'
-import { getOneSubscriberByToken } from '@/lib/queries'
 import VerifiedStatus from '@/components/subscriber/VerifiedStatus'
 import Link from 'next/link'
 import Container from '@/components/Container'
 import PageHeader from '@/components/PageHeader'
+import { getOneSubscriberByToken } from '@/queries/subscribers'
 
 interface ConfirmEmailProps {
   searchParams: {

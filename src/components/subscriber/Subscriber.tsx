@@ -1,12 +1,12 @@
 'use client'
 import { useState } from 'react'
-import { updateSubscriberPreferences } from '@/lib/queries'
 import toast from 'react-hot-toast'
 import CategoryCheckbox from './CategoryCheckbox'
 import { Status } from '@/types/Types'
 import { Subscriber as SubscriberType } from '@prisma/client'
 import { Button } from '../ui/button'
 import Section from '../Section'
+import { updateSubscriberPreferences } from '@/queries/subscribers'
 
 export default function Subscriber({
   subscriber,
@@ -26,9 +26,6 @@ export default function Subscriber({
     setUpdate(true)
   }
 
-  //TODO: Iterate through ENUM for categories
-  //TODO: Add category table to Xata
-  //TODO: Update name with ENUM category value.
   const subscribedCategories = [
     {
       name: 'courseNotifications',
@@ -67,7 +64,6 @@ export default function Subscriber({
       ...newData,
     }))
 
-    //TODO: Look if updatePref is REALLY being used as a server action or server component
     try {
       await updateSubscriberPreferences(subscriberData.xata_id, newData) //TODO: Fix type error for newData
       toast.success(
