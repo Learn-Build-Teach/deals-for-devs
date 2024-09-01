@@ -18,7 +18,7 @@ export const subscribe = async (formData: FormData) => {
     const token = uuidv4()
 
     const parsed = subscribeSchema.safeParse({ email: formData.get('email') })
-    if (!parsed.success) return { error: parsed.error.message }
+    if (!parsed.success) return { error: 'Please enter a valid email.' }
     const checkedEmail = parsed.data.email.toLowerCase()
 
     const existingSubscriber = await getOneSubscriberByEmail(checkedEmail)

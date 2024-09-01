@@ -34,6 +34,7 @@ export default function SubscribeForm() {
         <input
           type="email"
           name="email"
+          required
           placeholder="E-mail address"
           className="w-full rounded-md border border-white/[.67] bg-transparent p-3 pl-4  text-white md:h-[70px]  md:rounded-[16px] md:placeholder:text-white/[.47]"
         />
