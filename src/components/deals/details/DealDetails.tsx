@@ -68,6 +68,7 @@ export default function DealDetails({ deal }: DealDetailsProps) {
               name={deal.name}
               coverImageURL={deal.coverImageURL || null}
               category={deal.category as Category}
+              couponPercent={deal.couponPercent || undefined}
             />
           </div>
 
