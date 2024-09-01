@@ -1,5 +1,5 @@
 import AdminDealsList from '@/components/dashboard/AdminDealsList'
-import { getPendingAdminDeals } from '@/lib/queries'
+import { getAdminDeals } from '@/queries/adminDeals'
 
 interface PendingAdminDealsProps {
   limit?: number
@@ -7,7 +7,7 @@ interface PendingAdminDealsProps {
 export default async function PendingAdminDeals({
   limit,
 }: PendingAdminDealsProps) {
-  const pendingDeals = await getPendingAdminDeals(limit)
+  const pendingDeals = await getAdminDeals({ limit, approved: false })
 
   return (
     <>

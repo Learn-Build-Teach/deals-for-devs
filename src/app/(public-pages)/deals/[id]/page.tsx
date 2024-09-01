@@ -1,10 +1,10 @@
 import { notFound } from 'next/navigation'
-import { getApprovedDeals, getDealById } from '@/lib/queries'
 import { Metadata } from 'next'
 import DealDetails from '@/components/deals/details/DealDetails'
 import ReportDealButton from '@/components/deals/details/ReportDealButton'
 import ShareDealButton from '@/components/deals/details/ShareDealButton'
 import Section, { SECTION_STYLE, SECTION_WIDTH } from '@/components/Section'
+import { getDealById, getDeals } from '@/queries/deals'
 
 export const revalidate = 120
 
@@ -15,7 +15,7 @@ type Props = {
 export const dynamicParams = true
 
 export async function generateStaticParams() {
-  const deals = await getApprovedDeals()
+  const deals = await getDeals({})
 
   return deals.map((deal) => ({
     id: deal.xata_id,

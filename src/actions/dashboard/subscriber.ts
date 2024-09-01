@@ -1,7 +1,7 @@
 'use server'
 
 import { newSubscriberSchema } from '@/app/(public-pages)/deals/add/schemas'
-import { createSubscriber, deleteSubscriber } from '@/lib/queries'
+import { deleteSubscriber, createSubscriber } from '@/queries/subscribers'
 import { ReturnValue, Status } from '@/types/Types'
 import { isAdminUser } from '@/utils/auth'
 import { auth, currentUser } from '@clerk/nextjs'

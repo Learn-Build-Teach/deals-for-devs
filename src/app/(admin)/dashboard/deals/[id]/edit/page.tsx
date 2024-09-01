@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
-import { getDealByIdAsAdmin } from '@/lib/queries'
 import EditDealForm from '@/components/dashboard/EditDealForm'
 import DeleteDealButton from '@/components/dashboard/DeleteDealButton'
 import PageHeader from '@/components/PageHeader'
 import Section from '@/components/Section'
+import { getDealByIdAsAdmin } from '@/queries/adminDeals'
 
 export default async function EditDealPage({
   params: { id },
