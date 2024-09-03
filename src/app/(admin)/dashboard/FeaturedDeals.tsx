@@ -1,8 +1,13 @@
 import AdminDealsList from '@/components/dashboard/AdminDealsList'
 import { getAdminDeals } from '@/queries/adminDeals'
 
-export default async function FeaturedAdminDeals() {
-  const deals = await getAdminDeals({ featured: true })
+interface FeaturedAdminDealsProps {
+  limit?: number
+}
+export default async function FeaturedAdminDeals({
+  limit,
+}: FeaturedAdminDealsProps) {
+  const deals = await getAdminDeals({ featured: true, limit })
 
   return (
     <>
