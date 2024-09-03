@@ -1,12 +1,12 @@
-import { Subscriber } from '@prisma/client'
 import DeleteButton from './DeleteButton'
-import SubscribeForm from '@/components/forms/SubscribeForm'
-
+import { getSubscribers } from '@/queries/subscribers'
 interface SubscribersProps {
-  subscribers: Subscriber[]
+  limit?: number
 }
 
-export default function SubscriberList({ subscribers }: SubscribersProps) {
+export default async function SubscriberList({ limit }: SubscribersProps) {
+  const subscribers = await getSubscribers(limit)
+
   return (
     <div className="relative overflow-x-auto">
       <table className="w-full rounded-md text-left text-sm text-gray-400 ">
