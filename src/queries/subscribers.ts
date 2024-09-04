@@ -77,8 +77,13 @@ export async function getOneSubscriberByEmail(
     },
   })
 }
-export async function getAllSubscribers(): Promise<Subscriber[]> {
-  return await prisma.subscriber.findMany()
+export async function getSubscribers(limit = 50): Promise<Subscriber[]> {
+  return await prisma.subscriber.findMany({
+    take: limit,
+    orderBy: {
+      xata_createdat: 'desc',
+    },
+  })
 }
 
 export async function updateSubscriberToVerified(
