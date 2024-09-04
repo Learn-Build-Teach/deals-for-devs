@@ -3,7 +3,7 @@ import { updateDealSchema } from '@/app/(public-pages)/deals/add/schemas'
 import { updateDeal, approveDeal, deleteDeal } from '@/queries/deals'
 import { DealWithTags } from '@/types/Types'
 import { isAdminUser } from '@/utils/auth'
-import { auth, currentUser } from '@clerk/nextjs'
+import { auth, currentUser } from '@clerk/nextjs/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
