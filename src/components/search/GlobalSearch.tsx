@@ -14,10 +14,6 @@ export default function GlobalSearch() {
     useSearch()
   const inputRef = useRef<null | HTMLInputElement>(null)
 
-  useEffect(() => {
-    console.log(data, isLoading, error, query)
-  }, [data, isLoading, error, query])
-
   const openSearch = () => {
     setSearchOpen(true)
     inputRef?.current?.focus()
