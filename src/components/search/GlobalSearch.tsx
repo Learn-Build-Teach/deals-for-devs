@@ -21,7 +21,6 @@ export default function GlobalSearch() {
 
   const onClose = () => {
     setSearchOpen(false)
-    setQuery('')
   }
 
   useHotkeys('/', openSearch, {

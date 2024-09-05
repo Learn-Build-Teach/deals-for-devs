@@ -18,9 +18,6 @@ const Overlay = ({
   className?: string
 }) => {
   const dialogRef = useRef<HTMLDialogElement>(null)
-  useHotkeys('esc', () => {
-    onClose()
-  })
 
   useEffect(() => {
     if (isOpen) {
@@ -38,6 +35,7 @@ const Overlay = ({
         'hide-scrollbar fixed z-50 w-full max-w-4xl rounded-xl bg-gray-900 px-4 py-10 shadow-lg backdrop:bg-gray-950/[.80] md:px-8',
         className
       )}
+      onClose={onClose}
     >
       <Button
         onClick={onClose}
