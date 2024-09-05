@@ -1,21 +1,17 @@
 'use client'
 
 import { useHotkeys } from 'react-hotkeys-hook'
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
 import Overlay from '../Overlay'
 import { useSearch } from '@/components/search/SearchContext'
 import { FaSearch, FaTimes } from 'react-icons/fa'
 import SearchResults from '@/components/search/SearchResults'
-import { Deal } from '@prisma/client'
 import Footer from '@/components/search/Footer'
 import { Button } from '../ui/button'
 
 export default function GlobalSearch() {
-  const [searchQuery, setSearchQuery] = useState('')
-  const { searchOpen, setSearchOpen } = useSearch()
-  const [timer, setTimer] = useState<null | NodeJS.Timeout>(null)
-  const [deals, setDeals] = useState<Deal[] | null>(null)
-  const [loading, setLoading] = useState(false)
+  const { searchOpen, setSearchOpen, data, isLoading, error, setQuery, query } =
+    useSearch()
   const inputRef = useRef<null | HTMLInputElement>(null)
 
   const openSearch = () => {
@@ -25,8 +21,6 @@ export default function GlobalSearch() {
 
   const onClose = () => {
     setSearchOpen(false)
-    setSearchQuery('')
-    setDeals(null)
   }
 
   useHotkeys('/', openSearch, {
@@ -36,32 +30,11 @@ export default function GlobalSearch() {
   const handleSearchOnChange = async (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setSearchQuery(e.target.value)
-    if (!e.target.value) {
-      setDeals(null)
-      return
-    }
-    if (timer) {
-      clearTimeout(timer)
-    }
-    setLoading(true)
-    setTimer(
-      setTimeout(async () => {
-        try {
-          const res = await fetch(`/api/deals?query=${e.target.value}`)
-          if (res.ok) {
-            const data = await res.json()
-            setDeals(data)
-          }
-          setLoading(false)
-        } catch (error) {}
-      }, 500)
-    )
+    setQuery(e.target.value)
   }
 
   const handleClearSearch = () => {
-    setSearchQuery('')
-    setDeals(null)
+    setQuery('')
   }
 
   return (
@@ -70,7 +43,7 @@ export default function GlobalSearch() {
         <div className="relative">
           <input
             type="text"
-            value={searchQuery}
+            value={query}
             className="mb-8 w-full rounded-md border-2 border-gray-400  bg-transparent p-4 px-10 text-lg text-gray-100"
             onChange={handleSearchOnChange}
             ref={inputRef}
@@ -86,11 +59,7 @@ export default function GlobalSearch() {
           </Button>
         </div>
 
-        <SearchResults
-          loading={loading}
-          deals={deals}
-          searchQuery={searchQuery}
-        />
+        <SearchResults loading={isLoading} deals={data} searchQuery={query} />
         <Footer />
       </div>
     </Overlay>
