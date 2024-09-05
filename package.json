@@ -30,6 +30,7 @@
     "@tailwindcss/container-queries": "^0.1.1",
     "@tanstack/react-table": "^8.12.0",
     "@types/uuid": "^9.0.8",
+    "@uidotdev/usehooks": "^2.4.1",
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "@xata.io/cli": "^0.15.15",
