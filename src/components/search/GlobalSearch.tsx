@@ -1,7 +1,7 @@
 'use client'
 
 import { useHotkeys } from 'react-hotkeys-hook'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import Overlay from '../Overlay'
 import { useSearch } from '@/components/search/SearchContext'
 import { FaSearch, FaTimes } from 'react-icons/fa'
