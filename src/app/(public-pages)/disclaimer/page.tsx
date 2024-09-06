@@ -1,8 +1,6 @@
 import Container from '@/components/Container'
 import PageHeader from '@/components/PageHeader'
 
-export const revalidate = 120
-
 export default async function Disclaimer() {
   return (
     <Container>
