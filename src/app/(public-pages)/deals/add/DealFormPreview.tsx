@@ -1,11 +1,11 @@
 'use client'
-import DealDetails from '@/components/deals/details/DealDetails'
+import DealPreview from '@/components/deals/details/DealPreview'
 import { useAddDealContext } from '@/context/AddDealContext'
 import { DealWithTags } from '@/types/Types'
 import React from 'react'
 
-export default function DealPreview() {
+export default function DealFormPreview() {
   const { newDealData } = useAddDealContext()
 
-  return <DealDetails deal={newDealData as unknown as DealWithTags} />
+  return <DealPreview deal={newDealData as unknown as DealWithTags} />
 }

@@ -7,13 +7,13 @@ import { format } from 'date-fns'
 import Image from 'next/image'
 import Section, { SECTION_STYLE, SECTION_WIDTH } from '../../Section'
 
-interface DealDetailsProps {
+interface DealPreviewProps {
   deal: DealWithTags
 }
-export default function DealDetails({ deal }: DealDetailsProps) {
+export default function DealPreview({ deal }: DealPreviewProps) {
   return (
     <div className="text-white">
-      <Section width={SECTION_WIDTH.SM} className="pb-32 sm:pb-40 md:pb-80">
+      <Section width={SECTION_WIDTH.SM}>
         <div className="mb-10">
           <p className="mb-2 font-bold  text-teal-500">{deal.category || ''}</p>
           <div className="mb-10 flex flex-row items-end justify-between gap-x-4">
@@ -53,27 +53,19 @@ export default function DealDetails({ deal }: DealDetailsProps) {
             <TagsList tags={deal.tags} />
           </div>
         </div>
-      </Section>
 
-      <Section
-        style={SECTION_STYLE.LIGHT}
-        width={SECTION_WIDTH.SM}
-        className="-mb-40 md:-mb-64"
-      >
-        <div className="-translate-y-48 md:-translate-y-80">
-          <div className="relative mx-auto aspect-video w-full ">
-            <DealImage
-              name={deal.name}
-              coverImageURL={deal.coverImageURL || null}
-              category={deal.category as Category}
-              couponPercent={deal.couponPercent || undefined}
-            />
-          </div>
+        <div className="relative mx-auto aspect-video w-full ">
+          <DealImage
+            name={deal.name}
+            coverImageURL={deal.coverImageURL || null}
+            category={deal.category as Category}
+            couponPercent={deal.couponPercent || undefined}
+          />
+        </div>
 
-          <div className="text-md mb-10 mt-5 flex w-full flex-col items-start md:mt-10 md:text-lg">
-            <span className="font-bold uppercase">Description</span>
-            <p className="whitespace-pre-wrap font-light">{deal.description}</p>
-          </div>
+        <div className="text-md mb-10 mt-5 flex w-full flex-col items-start md:mt-10 md:text-lg">
+          <span className="font-bold uppercase">Description</span>
+          <p className="whitespace-pre-wrap font-light">{deal.description}</p>
         </div>
       </Section>
     </div>

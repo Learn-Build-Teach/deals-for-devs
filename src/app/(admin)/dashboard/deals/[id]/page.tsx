@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
 import DeleteDealButton from '@/components/dashboard/DeleteDealButton'
-import DealDetails from '@/components/deals/details/DealDetails'
 import Link from 'next/link'
 import Section from '@/components/Section'
 import { getDealByIdAsAdmin } from '@/queries/adminDeals'
+import DealPreview from '@/components/deals/details/DealPreview'
 
 export default async function ViewDealAdminPage({
   params: { id },
@@ -32,7 +32,7 @@ export default async function ViewDealAdminPage({
           <DeleteDealButton id={id} />
         </div>
       </div>
-      <DealDetails deal={deal} />
+      <DealPreview deal={deal} />
     </Section>
   )
 }

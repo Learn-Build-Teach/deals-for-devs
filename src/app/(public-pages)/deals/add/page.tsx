@@ -2,7 +2,7 @@
 import { useAddDealContext } from '@/context/AddDealContext'
 import CreateDealForm from './DealForm'
 import Loading from '@/components/Loading'
-import DealPreview from './DealPreview'
+import DealFormPreview from './DealFormPreview'
 import Container from '@/components/Container'
 import PageHeader from '@/components/PageHeader'
 
@@ -28,7 +28,7 @@ export default function AddDealPage() {
             </div>
             <div className="hidden w-0.5 bg-gray-100/20 xl:block"></div>
             <div className="hidden grow xl:block">
-              <DealPreview />
+              <DealFormPreview />
             </div>
           </div>
         )}
