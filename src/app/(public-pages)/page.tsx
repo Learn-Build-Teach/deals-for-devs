@@ -5,8 +5,6 @@ import Hero from '@/components/Hero'
 import NeverMissADeal from '@/components/NeverMissADeal'
 import Separator from '@/components/Separator'
 
-export const revalidate = 120
-
 export default async function Home() {
   return (
     <Container>
