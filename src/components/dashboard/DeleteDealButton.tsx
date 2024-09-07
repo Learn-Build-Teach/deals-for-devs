@@ -12,6 +12,9 @@ export default function DeleteDealButton({ id }: DeleteDealButtonProps) {
   const router = useRouter()
 
   const handleDeleteClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!confirm('Are you sure you want to delete deal?') == true) {
+      return
+    }
     const { error, successMessage } = await deleteDealAction(id)
 
     if (error) {
@@ -25,7 +28,7 @@ export default function DeleteDealButton({ id }: DeleteDealButtonProps) {
   }
   return (
     <Button variant="outline-destructive" onClick={handleDeleteClick}>
-      Delete
+      X
     </Button>
   )
 }
