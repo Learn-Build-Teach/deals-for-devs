@@ -23,7 +23,10 @@ export default function DealDetails({ deal }: DealDetailsProps) {
             href={`/api/tracking?id=${deal.xata_id}&url=${deal.link}`}
             className="flex cursor-pointer items-center gap-x-2 rounded-md bg-teal-500 px-2 py-1 text-black transition-all hover:scale-105 hover:bg-teal-500/90"
           >
-            <span>Visit</span>
+            <span>
+              Visit<span className="sr-only">this deal</span>
+            </span>
+
             <Image
               src="/icons/upright-arrow.svg"
               alt=""
