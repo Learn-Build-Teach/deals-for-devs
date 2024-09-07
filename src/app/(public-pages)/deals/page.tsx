@@ -6,8 +6,6 @@ import ApprovedDeals from '@/components/deals/ApprovedDeals'
 import LoadingDealsList from '@/components/deals/loading/LoadingDealsList'
 import { Suspense } from 'react'
 
-export const revalidate = 120
-
 export default async function DealsPage() {
   return (
     <Container className="pb-20">

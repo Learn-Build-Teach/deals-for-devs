@@ -4,8 +4,6 @@ import ApprovedDealsByCategory from '@/components/deals/ApprovedDealsByCategory'
 import { Suspense } from 'react'
 import LoadingDealsList from '@/components/deals/loading/LoadingDealsList'
 
-export const revalidate = 120
-
 export default async function CategoryPage({
   params,
 }: {

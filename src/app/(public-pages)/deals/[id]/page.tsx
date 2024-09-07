@@ -6,12 +6,10 @@ import ShareDealButton from '@/components/deals/details/ShareDealButton'
 import Section, { SECTION_STYLE, SECTION_WIDTH } from '@/components/Section'
 import { getDealById, getDeals } from '@/queries/deals'
 
-export const revalidate = 120
-
 type Props = {
   params: { id: string }
 }
-
+//! pages that aren't built at build-time will never be generated if someone makes a request to the url before the deal is approved
 export const dynamicParams = true
 
 export async function generateStaticParams() {
@@ -23,6 +21,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  console.log(params.id)
   const deal = await getDealById(params.id)
 
   if (!deal) {
