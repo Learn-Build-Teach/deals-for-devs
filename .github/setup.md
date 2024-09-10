@@ -29,9 +29,10 @@ cp .env.example .env
 ```
 
 ### Install packages
+This project uses [pnpm](https://pnpm.io). Follow the [installation docs](https://pnpm.io/installation) to get started. Then, install dependencies.
 
 ```bash
-npm install
+pnpm i
 ```
 
 ## Database Setup
@@ -78,10 +79,10 @@ Unfortunately, the `image` column in the `DealImage` table that is generated fro
 
 In this project, we'll be connecting to our db in two different ways: using Prisma ORM and the Xata client SDK. All standard CRUD (Create, read, update, and delete) db interactions will be run through Prisma. We'll use the Xata client to take advantage of Xata specific features like search and file uploads.
 
-You'll need to generate the Xata configuration and typings in your project. To do this, you'll use the Xata CLI. This should have been installed during the `npm install`. If you have issues, you can manually install like so:
+You'll need to generate the Xata configuration and typings in your project. To do this, you'll use the Xata CLI. This should have been installed during the `pnpm i`. If you have issues, you can manually install like so:
 
 ```bash
-npm install @xata.io/cli
+pnpm add @xata.io/cli
 ```
 
 Log in to your Xata account by running the follwing command. This will pop open a new browser window to handle authentication.
@@ -93,7 +94,7 @@ xata auth login
 If you run into an issue `xata command not found` you may have a permissions error that prevented you from installing the xata cli. Either run:
 
 ```bash
-sudo npm install
+sudo pnpm i
 ```
 
 or install the cli manually
@@ -113,9 +114,5 @@ Choose your newly created database. Then, choose `TypeScript` for the `Generate 
 ## Run the development server
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
 ```
