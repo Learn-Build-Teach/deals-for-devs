@@ -1,4 +1,4 @@
-import { auth, currentUser } from '@clerk/nextjs'
+import { auth, currentUser } from '@clerk/nextjs/server'
 import { isAdminUser } from '@/utils/auth'
 import { redirect } from 'next/navigation'
 import AdminNav from '@/components/dashboard/AdminNav'
