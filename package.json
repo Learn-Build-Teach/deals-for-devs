@@ -5,7 +5,8 @@
   "scripts": {
     "prepare": "husky",
     "dev": "next dev",
-    "build": "npm run xata-codegen && prisma generate && next build",
+    "preinstall": "npx only-allow pnpm", 
+    "build": "pnpm xata-codegen && prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "lint-commit": "npx --no-install commitlint --edit \"$1\"",
