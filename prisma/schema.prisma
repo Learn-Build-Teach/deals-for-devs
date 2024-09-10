@@ -47,7 +47,7 @@ model DealView {
   xata_version   Int      @default(0)
   xata_createdat DateTime @default(now()) @db.Timestamptz(6)
   xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
-  deal           Deal     @relation(fields: [dealId], references: [xata_id])
+  deal           Deal     @relation(fields: [dealId], references: [xata_id], onDelete: Cascade)
   dealId         String
 }
 

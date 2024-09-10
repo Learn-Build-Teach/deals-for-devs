@@ -41,7 +41,14 @@ export default function Section({
         className
       )}
     >
-      <Container className={SECTION_WIDTH_MAP[width]}>{children}</Container>
+      <div
+        className={cn(
+          'mx-auto w-full max-w-7xl px-4 md:px-8 lg:px-16',
+          SECTION_WIDTH_MAP[width]
+        )}
+      >
+        {children}
+      </div>
     </div>
   )
 }
