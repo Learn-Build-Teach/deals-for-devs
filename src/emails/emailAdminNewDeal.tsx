@@ -14,7 +14,6 @@ import {
 } from '@react-email/components'
 
 interface EmailTemplateProps {
-  email: string
   dealId: string
   appDomain: string
 }
@@ -63,7 +62,6 @@ export const emailAdminNewDeal = (props: EmailTemplateProps) => (
 )
 
 emailAdminNewDeal.PreviewProps = {
-  email: 'testing@testing.com',
   dealId: 'the-deal-id-here',
   appDomain: 'http://localhost:3000',
 } as EmailTemplateProps
