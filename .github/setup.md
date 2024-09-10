@@ -35,6 +35,8 @@ This project uses [pnpm](https://pnpm.io). Follow the [installation docs](https:
 pnpm i
 ```
 
+> If you previously set up this project using npm or yarn, you can follow this guide on [migrating from npm or yarn to pnpm](https://dev.to/andreychernykh/yarn-npm-to-pnpm-migration-guide-2n04) to convert to pnpm and **ignore step 4**.
+
 ## Database Setup
 
 To get started, you'll need to create a **free** account with [Xata](https://xata.io/).
