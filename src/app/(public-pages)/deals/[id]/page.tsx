@@ -51,7 +51,7 @@ export default async function DealPage({ params }: { params: { id: string } }) {
 
   return (
     <main className="pb-20">
-      <Section width={SECTION_WIDTH.SM} className="">
+      <Section>
         <DealDetails deal={deal} />
 
         <div className="space-between flex flex-col justify-between gap-4 sm:flex-row">

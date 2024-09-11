@@ -5,7 +5,6 @@ import TagsList from '../../forms/add-a-deal/TagsList'
 import ClickableCoupon from '../../ClickableCouponCode'
 import { format } from 'date-fns'
 import Image from 'next/image'
-import Section, { SECTION_WIDTH } from '../../Section'
 
 interface DealDetailsProps {
   deal: DealWithTags
@@ -36,15 +35,15 @@ export default function DealDetails({ deal }: DealDetailsProps) {
           </a>
         </div>
 
-        <div className="text-md mb-4 font-light md:text-lg">
-          <div className="mb-1 flex flex-wrap gap-2">
+        <div className="mb-4 font-light">
+          <div className="text-md mb-1 flex flex-wrap gap-2 md:text-lg">
             <span className="w-40 text-white/70 ">Valid from:</span>
             <span className="font-bold">
               {`${format(new Date(deal.startDate), 'MMM d, yyyy')} - ${deal.endDate ? format(new Date(deal.endDate), 'MMM d, yyyy') : '(no end date)'}` ||
                 'No coupon code required'}
             </span>
           </div>
-          <div className="mb-4 flex flex-wrap gap-2 text-lg font-light md:mt-1.5">
+          <div className="text-md mb-4 flex flex-wrap  gap-2 font-light md:text-lg">
             <span className="w-40 text-white/70">Coupon Code:</span>
             <span className="font-bold">
               {deal.coupon ?
