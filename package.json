@@ -12,7 +12,8 @@
     "lint-commit": "npx --no-install commitlint --edit \"$1\"",
     "xata-init": "xata init --db $XATA_HTTPS_DATABASE_URL --no-input --yes --codegen src/xata.ts --force",
     "xata-codegen": "xata codegen --db $XATA_HTTPS_DATABASE_URL -o src/xata.ts",
-    "email:dev": "email dev --dir ./src/emails -p 3001"
+    "email:dev": "email dev --dir ./src/emails -p 3001",
+    "inngest:dev": "inngest-cli dev --no-discovery -u http://localhost:3000/api/inngest"
   },
   "dependencies": {
     "@clerk/nextjs": "^5.4.1",

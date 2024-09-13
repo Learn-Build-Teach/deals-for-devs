@@ -15,23 +15,21 @@ type EmailOptions = {
 export const emailNewDealToAdmin = async(
   dealId: string,
   options: EmailOptions,   
-) => {
-  let data
+) => {  
   let { to, reply_to, subject, from, resendAPIKey } = options 
 
   const resend = new Resend(resendAPIKey)
 
   from = `Deals for Devs<${env.FROM_EMAIL}>`
     
-  try {
-    data = await resend.emails.send({
+  const { data, error } = await resend.emails.send({    
       from,
       to,
       reply_to,
       subject,
-      react: React.createElement(emailAdminNewDeal, {        
+      react: React.createElement(emailAdminNewDeal, {
         dealId,
-        appDomain: env.NEXT_PUBLIC_BASE_URL
+        appDomain: env.NEXT_PUBLIC_BASE_URL        
       }
       ),
       headers: {
@@ -44,16 +42,5 @@ export const emailNewDealToAdmin = async(
         },
       ],
     })
-    console.info(data)
-    console.info(`Email sent to ${to}`)
-  } catch (error: unknown) {
-    console.error(error)
-    return {
-      error: 'Failed to send new deal alert to admin email',
-    }
-  }
-
-  return {
-    data,
-  }
+  return { data, error }
 }
