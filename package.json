@@ -5,7 +5,7 @@
   "scripts": {
     "prepare": "husky",
     "dev": "next dev",
-    "preinstall": "npx only-allow pnpm", 
+    "preinstall": "npx only-allow pnpm",
     "build": "pnpm xata-codegen && prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
@@ -40,6 +40,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns": "^3.3.1",
+    "inngest": "^3.22.13",
     "lucide-react": "^0.340.0",
     "next": "^15.0.0-rc.0",
     "next-plausible": "^3.12.0",

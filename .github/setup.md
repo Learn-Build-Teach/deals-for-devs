@@ -22,13 +22,14 @@ To get a development environment running on your local machine:
 
 3. Create a `.env` file (from `.env.example`) and add all the credentials necessary to run the app.
 
-> Most of the example values can be left as-is. Each variable in the example file is annotated with whether or not it needs to be updated. The only truly required variables to get started are the ones associated with the database.
+> Some values can be left as-is. Each variable in the example file is annotated with whether or not it needs to be updated. To get the necessary variables, you'll need to create free accounts with both [Xata](https://xata.io/) and [Clerk](https://clerk.com/).
 
 ```bash
 cp .env.example .env
 ```
 
 ### Install packages
+
 This project uses [pnpm](https://pnpm.io). Follow the [installation docs](https://pnpm.io/installation) to get started. Then, install dependencies.
 
 ```bash
@@ -112,6 +113,12 @@ xata init
 ```
 
 Choose your newly created database. Then, choose `TypeScript` for the `Generate code and types from your Xata database` option. Lastly, choose the default of `src/xata.ts` for the output path of the generated code.
+
+## Clerk Setup
+
+This project uses Clerk to handle authentication. You'll need to create a free account and project to get started. Follow the `Set up your Clerk account` to create your account and a new project.
+
+Then, follow the [`Set your environment variables`](https://clerk.com/docs/quickstarts/nextjs#set-your-environment-variables) instructions to add your environment variables to the `.env` file.
 
 ## Run the development server
 
