@@ -22,12 +22,12 @@ export default function AddDealPage() {
           </div>
         )}
         {dataLoaded && (
-          <div className="mb-28 mt-10 flex  items-stretch gap-x-20 text-white ">
+          <div className="mb-28 mt-10 flex items-start gap-x-20 text-white ">
             <div className="grow md:min-w-[500px]">
               <CreateDealForm />
             </div>
             <div className="hidden w-0.5 bg-gray-100/20 xl:block"></div>
-            <div className="hidden grow xl:block">
+            <div className="sticky top-10 hidden grow xl:block">
               <DealPreview />
             </div>
           </div>
