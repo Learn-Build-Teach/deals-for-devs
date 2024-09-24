@@ -1,7 +1,7 @@
-import { Category } from '@/types/Types'
 import React from 'react'
 import DealGradientPlaceholder from './DealGradientPlaceholder'
 import Image from 'next/image'
+import { Category } from '@/types'
 
 interface IDealImageProps {
   coverImageURL: string | null

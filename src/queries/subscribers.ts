@@ -1,5 +1,5 @@
 import prisma from '@/lib/db'
-import { Status, NewSubscriberData } from '@/types/Types'
+import { NewSubscriberData, Status } from '@/types'
 import { Subscriber } from '@prisma/client'
 
 export async function updateSubscriberPreferences(

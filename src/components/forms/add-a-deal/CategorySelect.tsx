@@ -6,7 +6,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { cn } from '@/lib/utils'
-import { Category } from '@/types/Types'
+import { Category } from '@/types'
 
 export default function CategorySelect({
   onCategoryChange,

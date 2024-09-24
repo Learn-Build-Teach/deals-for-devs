@@ -1,9 +1,6 @@
-import { useFormStatus } from 'react-dom'
 import { Button } from '../ui/button'
 
-export default function SubscribeFormButton() {
-  const { pending } = useFormStatus()
-
+export default function SubscribeFormButton({ pending }: { pending: boolean }) {
   return (
     <Button
       className="h absolute right-1 top-1 bg-transparent pr-[19px] transition-transform hover:translate-x-0.5 md:top-4"

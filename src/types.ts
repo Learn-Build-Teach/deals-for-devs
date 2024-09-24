@@ -47,11 +47,14 @@ export type NewSubscriberData = {
   status: string
 }
 
-export type ReturnValue<T> = {
+export interface ActionResult<T = undefined> {
   data?: T
   message?: string
   success: boolean
-  error?: Error
+}
+
+export interface FormActionResult<T = undefined> extends ActionResult<T> {
+  errors?: FormErrors
 }
 
 export enum ImageUploadStatus {
@@ -63,3 +66,11 @@ export enum ImageUploadStatus {
 export type DealWithTags = Prisma.DealGetPayload<{
   include: { tags: true }
 }>
+
+export interface FormErrors {
+  [key: string]: string | undefined
+}
+
+export interface FormBlurs {
+  [key: string]: boolean | undefined
+}

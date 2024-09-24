@@ -1,4 +1,4 @@
-import { Category } from '@/types/Types'
+import { Category } from '@/types'
 import CategoryOption from './CategoryOption'
 import { getDealCategoryCounts, getTotalApprovedDeals } from '@/queries/deals'
 

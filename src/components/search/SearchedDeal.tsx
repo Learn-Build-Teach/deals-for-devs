@@ -1,10 +1,8 @@
-import { Category } from '@/types/Types'
 import { Deal } from '@prisma/client'
-import DealGradientPlaceholder from '../deals/DealGradientPlaceholder'
-import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import DealImage from '../deals/DealImage'
+import { Category } from '@/types'
 
 interface ISearchedDealProps {
   deal: Deal

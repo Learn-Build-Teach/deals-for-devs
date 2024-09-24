@@ -1,5 +1,5 @@
 import prisma from '@/lib/db'
-import { Category, DealWithTags } from '@/types/Types'
+import { Category, DealWithTags } from '@/types'
 
 export async function getAdminDeals({
   limit = 50,

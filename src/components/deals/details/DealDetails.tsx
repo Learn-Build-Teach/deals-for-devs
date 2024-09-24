@@ -1,10 +1,10 @@
-import { Category, DealWithTags } from '@/types/Types'
 import React from 'react'
 import DealImage from '../DealImage'
 import TagsList from '../../forms/add-a-deal/TagsList'
 import ClickableCoupon from '../../ClickableCouponCode'
 import { format } from 'date-fns'
 import Image from 'next/image'
+import { Category, DealWithTags } from '@/types'
 
 interface DealDetailsProps {
   deal: DealWithTags

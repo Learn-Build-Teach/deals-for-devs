@@ -2,12 +2,12 @@
 
 import { createDeal } from '@/queries/deals'
 import { newDealSchema } from './schemas'
-import { DealFormServerState, FormErrors } from './types'
+import { FormActionResult, FormErrors } from '@/types'
 
 export const submitDealAction = async (
-  prevState: DealFormServerState,
+  prevState: FormActionResult,
   formData: FormData
-): Promise<DealFormServerState> => {
+): Promise<FormActionResult> => {
   const dealFromForm = {
     name: formData.get('name'),
     category: formData.get('category'),

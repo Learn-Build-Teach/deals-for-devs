@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { Category } from '@/types/Types'
 import { Deal } from '@prisma/client'
 import DealImage from './DealImage'
+import { Category } from '@/types'
 
 export default function DealCard({ deal }: { deal: Deal }) {
   return (

@@ -1,5 +1,5 @@
 import prisma from '@/lib/db'
-import { DealWithTags, Category } from '@/types/Types'
+import { Category, DealWithTags } from '@/types'
 import { Deal } from '@prisma/client'
 
 export async function getDeals({

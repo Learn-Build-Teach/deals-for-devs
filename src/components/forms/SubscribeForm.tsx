@@ -1,35 +1,27 @@
 'use client'
-import { subscribe } from '@/actions/subscriber-subscribe'
-import { createConfirmEmailLink } from '@/lib/utils'
-import { redirect } from 'next/navigation'
+import { subscribeAction } from '@/actions/subscriber-subscribe'
 import toast from 'react-hot-toast'
 import SubscribeFormButton from './SubscribeFormButton'
+import { useActionState, useEffect } from 'react'
+import { ActionResult } from '@/types'
+
+const initialState: ActionResult = { success: false }
 
 export default function SubscribeForm() {
+  const [serverState, formAction, pending] = useActionState(
+    subscribeAction,
+    initialState
+  )
+
+  useEffect(() => {
+    console.log(serverState)
+    if (serverState.success === false && serverState?.message) {
+      toast.error(serverState.message)
+    }
+  }, [serverState])
+
   return (
-    <form
-      id="subscribe-form"
-      action={async (formData) => {
-        const { data: token, error } = await subscribe(formData)
-        if (error) {
-          console.error(error)
-          return toast.error(error)
-        }
-
-        if (!token) {
-          return toast.error('Failed to subscribe')
-        }
-
-        const form = document.getElementById(
-          'subscribe-form'
-        ) as HTMLFormElement
-        form.reset()
-
-        // route subscriber to confirm page
-        const confirmEmailLink = createConfirmEmailLink(token)
-        redirect(confirmEmailLink)
-      }}
-    >
+    <form action={formAction}>
       <div className="relative h-11 w-full md:h-16 ">
         <input
           type="email"
@@ -38,7 +30,7 @@ export default function SubscribeForm() {
           placeholder="E-mail address"
           className="w-full rounded-md border border-white/[.67] bg-transparent p-3 pl-4  text-white md:h-[70px]  md:rounded-[16px] md:placeholder:text-white/[.47]"
         />
-        <SubscribeFormButton />
+        <SubscribeFormButton pending={pending} />
       </div>
     </form>
   )

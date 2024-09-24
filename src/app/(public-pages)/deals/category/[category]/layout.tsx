@@ -1,7 +1,7 @@
 import CategoryOptions from '@/components/CategoryOptions'
 import Container from '@/components/Container'
 import PageHeader from '@/components/PageHeader'
-import { Category } from '@/types/Types'
+import { Category } from '@/types'
 
 export default async function CategoryLayout({
   children,

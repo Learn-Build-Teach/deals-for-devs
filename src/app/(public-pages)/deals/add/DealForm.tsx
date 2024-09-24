@@ -1,7 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { DealFormServerState, FormBlurs, FormErrors } from './types'
+import { useActionState, useEffect, useState } from 'react'
 import { useAddDealContext } from '@/context/AddDealContext'
 import Input from '@/components/forms/add-a-deal/Input'
 import CommaSeparatedTags from '@/components/forms/add-a-deal/CommaSeparatedTagsInput'
@@ -10,20 +9,21 @@ import Textarea from '@/components/forms/add-a-deal/TextArea'
 import ImageUpload from './ImageUpload'
 import { DatePicker } from '@/components/forms/DatePicker'
 import SubmitButton from '@/components/dashboard/SubmitButton'
-import { useFormState } from 'react-dom'
 import { submitDealAction } from './actions'
 import toast from 'react-hot-toast'
-import { useRouter } from 'next/navigation'
+import { FormActionResult, FormBlurs, FormErrors } from '@/types'
 
-const initialState: DealFormServerState = {}
+const initialState: FormActionResult = { success: false }
 
 export default function CreateDealForm() {
-  const router = useRouter()
   const { newDealData, updateNewDealDetails, dataLoaded, resetData } =
     useAddDealContext()
   const [blurs, setBlurs] = useState<FormBlurs>({})
   const [errors, setErrors] = useState<FormErrors>({})
-  const [serverState, formAction] = useFormState(submitDealAction, initialState)
+  const [serverState, formAction] = useActionState(
+    submitDealAction,
+    initialState
+  )
   const [shouldResetData, setShouldResetData] = useState<boolean>(false)
 
   useEffect(() => {

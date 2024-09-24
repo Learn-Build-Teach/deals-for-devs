@@ -2,7 +2,7 @@ import { Deal } from '@prisma/client'
 import { format } from 'date-fns'
 import Link from 'next/link'
 import DealImage from '../deals/DealImage'
-import { Category } from '@/types/Types'
+import { Category } from '@/types'
 
 export default function AdminDealsList({ deals }: { deals: Deal[] }) {
   return (

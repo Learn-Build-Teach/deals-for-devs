@@ -2,7 +2,7 @@
 
 import { newSubscriberSchema } from '@/app/(public-pages)/deals/add/schemas'
 import { deleteSubscriber, createSubscriber } from '@/queries/subscribers'
-import { ReturnValue, Status } from '@/types/Types'
+import { ActionResult, Status } from '@/types'
 import { isAdminUser } from '@/utils/auth'
 import { auth, currentUser } from '@clerk/nextjs/server'
 import { revalidatePath } from 'next/cache'
@@ -13,7 +13,7 @@ const MODEL_STR = 'subscriber'
 
 export const deleteSubscriberAction = async (
   id: string
-): Promise<ReturnValue<undefined>> => {
+): Promise<ActionResult> => {
   auth().protect()
   const user = await currentUser()
 
@@ -37,7 +37,7 @@ export const deleteSubscriberAction = async (
 
 export const createSubscriberAction = async (
   formData: FormData
-): Promise<ReturnValue<undefined>> => {
+): Promise<ActionResult> => {
   auth().protect()
   const user = await currentUser()
 

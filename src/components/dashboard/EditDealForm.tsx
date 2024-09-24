@@ -1,10 +1,8 @@
 'use client'
 import React, { useState } from 'react'
-import { DealWithTags, ImageUploadStatus } from '@/types/Types'
 import CategorySelect from '../forms/add-a-deal/CategorySelect'
 import Input from '../forms/add-a-deal/Input'
 import Textarea from '../forms/add-a-deal/TextArea'
-import { FormBlurs, FormErrors } from '@/app/(public-pages)/deals/add/types'
 import { DatePicker } from '../forms/DatePicker'
 import toast from 'react-hot-toast'
 import { Progress } from '../ui/progress'
@@ -18,6 +16,7 @@ import TagsList from '../forms/add-a-deal/TagsList'
 import FeaturedSelect from '../forms/add-a-deal/FeaturedSelect'
 import SubmitButton from './SubmitButton'
 import { updateDealAction } from '@/app/(admin)/dashboard/actions'
+import { DealWithTags, FormBlurs, FormErrors } from '@/types'
 
 interface EditDealFormProps {
   deal: DealWithTags

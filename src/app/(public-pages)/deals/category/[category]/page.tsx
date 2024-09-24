@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation'
-import { Category } from '@/types/Types'
 import ApprovedDealsByCategory from '@/components/deals/ApprovedDealsByCategory'
 import { Suspense } from 'react'
 import LoadingDealsList from '@/components/deals/loading/LoadingDealsList'
+import { Category } from '@/types'
 
 export default async function CategoryPage({
   params,

@@ -1,13 +1,13 @@
 'use server'
 import { reportDeal } from '@/queries/reports'
 import { reportSchema } from '@/schemas/reports'
-import { ReturnValue } from '@/types/Types'
+import { ActionResult } from '@/types'
 
 export const reportDealAction = async (
   dealId: string,
   reason: string,
   email: string
-): Promise<ReturnValue<undefined>> => {
+): Promise<ActionResult> => {
   const res = reportSchema.safeParse({ dealId, reason, email })
   if (!res.success) {
     return { message: 'Invalid data', success: false }

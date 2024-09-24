@@ -2,11 +2,11 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import CategoryCheckbox from './CategoryCheckbox'
-import { Status } from '@/types/Types'
 import { Subscriber as SubscriberType } from '@prisma/client'
 import { Button } from '../ui/button'
 import Section from '../Section'
 import { updateSubscriberPreferences } from '@/queries/subscribers'
+import { Status } from '@/types'
 
 export default function Subscriber({
   subscriber,

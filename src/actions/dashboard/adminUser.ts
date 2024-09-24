@@ -1,7 +1,7 @@
 'use server'
 import { newAdminUserSchema } from '@/app/(public-pages)/deals/add/schemas'
 import { createAdminUser, deleteAdminUser } from '@/queries/adminUsers'
-import { ReturnValue } from '@/types/Types'
+import { ActionResult } from '@/types'
 import { isAdminUser, isSuperAdminUser } from '@/utils/auth'
 import { auth, currentUser } from '@clerk/nextjs/server'
 import { revalidatePath } from 'next/cache'
@@ -10,7 +10,7 @@ import { redirect } from 'next/navigation'
 const MODEL_STR = 'admin user'
 export const deleteAdminUserAction = async (
   id: string
-): Promise<ReturnValue<undefined>> => {
+): Promise<ActionResult> => {
   auth().protect()
   const user = await currentUser()
   const email = user?.emailAddresses[0].emailAddress
@@ -33,7 +33,7 @@ export const deleteAdminUserAction = async (
 
 export const createAdminUserAction = async (
   formData: FormData
-): Promise<ReturnValue<undefined>> => {
+): Promise<ActionResult> => {
   auth().protect()
   const user = await currentUser()
   const email = user?.emailAddresses[0].emailAddress
