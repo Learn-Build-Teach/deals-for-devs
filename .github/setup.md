@@ -22,7 +22,7 @@ To get a development environment running on your local machine:
 
 3. Create a `.env` file (from `.env.example`) and add all the credentials necessary to run the app.
 
-> Most of the example values can be left as-is. Each variable in the example file is annotated with whether or not it needs to be updated. The only truly required variables to get started are the ones associated with the database.
+> Some values can be left as-is. Each variable in the example file is annotated with whether or not it needs to be updated. To get the necessary variables, you'll need to create free accounts with both [Xata](https://xata.io/) and [Clerk](https://clerk.com/).
 
 ```bash
 cp .env.example .env
@@ -30,9 +30,13 @@ cp .env.example .env
 
 ### Install packages
 
+This project uses [pnpm](https://pnpm.io). Follow the [installation docs](https://pnpm.io/installation) to get started. Then, install dependencies.
+
 ```bash
-npm install
+pnpm i
 ```
+
+> If you previously set up this project using npm or yarn, you can follow this guide on [migrating from npm or yarn to pnpm](https://dev.to/andreychernykh/yarn-npm-to-pnpm-migration-guide-2n04) to convert to pnpm and **ignore step 4**.
 
 ## Database Setup
 
@@ -78,10 +82,10 @@ Unfortunately, the `image` column in the `DealImage` table that is generated fro
 
 In this project, we'll be connecting to our db in two different ways: using Prisma ORM and the Xata client SDK. All standard CRUD (Create, read, update, and delete) db interactions will be run through Prisma. We'll use the Xata client to take advantage of Xata specific features like search and file uploads.
 
-You'll need to generate the Xata configuration and typings in your project. To do this, you'll use the Xata CLI. This should have been installed during the `npm install`. If you have issues, you can manually install like so:
+You'll need to generate the Xata configuration and typings in your project. To do this, you'll use the Xata CLI. This should have been installed during the `pnpm i`. If you have issues, you can manually install like so:
 
 ```bash
-npm install @xata.io/cli
+pnpm add @xata.io/cli
 ```
 
 Log in to your Xata account by running the follwing command. This will pop open a new browser window to handle authentication.
@@ -93,7 +97,7 @@ xata auth login
 If you run into an issue `xata command not found` you may have a permissions error that prevented you from installing the xata cli. Either run:
 
 ```bash
-sudo npm install
+sudo pnpm i
 ```
 
 or install the cli manually
@@ -110,12 +114,14 @@ xata init
 
 Choose your newly created database. Then, choose `TypeScript` for the `Generate code and types from your Xata database` option. Lastly, choose the default of `src/xata.ts` for the output path of the generated code.
 
+## Clerk Setup
+
+This project uses Clerk to handle authentication. You'll need to create a free account and project to get started. Follow the `Set up your Clerk account` to create your account and a new project.
+
+Then, follow the [`Set your environment variables`](https://clerk.com/docs/quickstarts/nextjs#set-your-environment-variables) instructions to add your environment variables to the `.env` file.
+
 ## Run the development server
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
 ```

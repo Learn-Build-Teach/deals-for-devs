@@ -1,1 +1,2 @@
-npm run lint-commit
+#!/bin/sh
+npx --no-install commitlint --edit $1

@@ -3,11 +3,11 @@ import React from 'react'
 
 interface LoadingTextProps {
   className?: string
-  width?: LOADING_TEXT_WIDHTS
+  width?: LOADING_TEXT_WIDTHS
   style?: LOADING_TEXT_STYLE
 }
 
-export enum LOADING_TEXT_WIDHTS {
+export enum LOADING_TEXT_WIDTHS {
   XS = 'w-10',
   SMALL = 'w-20',
   MEDIUM = 'w-40',
@@ -21,12 +21,17 @@ export enum LOADING_TEXT_STYLE {
 
 export default function LoadingText({
   className,
-  width = LOADING_TEXT_WIDHTS.MEDIUM,
+  width = LOADING_TEXT_WIDTHS.MEDIUM,
   style = LOADING_TEXT_STYLE.DARK,
 }: LoadingTextProps) {
   return (
-    <div className={cn('animate-pulse rounded-md', width, style, className)}>
-      l
-    </div>
+    <div
+      className={cn(
+        'box-content h-[1lh] animate-pulse rounded-md ',
+        width,
+        style,
+        className
+      )}
+    ></div>
   )
 }

@@ -1,15 +1,12 @@
-import { SignIn, auth } from '@clerk/nextjs'
-import { redirect } from 'next/navigation'
+import Section from '@/components/Section'
+import { SignIn } from '@clerk/nextjs'
 
 export default function Page() {
-  const { userId } = auth()
-  if (userId) {
-    return redirect('/dashboard')
-  }
-
   return (
-    <main className="flex justify-center">
-      <SignIn />
-    </main>
+    <Section>
+      <main className="flex justify-center">
+        <SignIn />
+      </main>
+    </Section>
   )
 }

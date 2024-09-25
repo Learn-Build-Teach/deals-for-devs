@@ -3,7 +3,7 @@ import { updateDealSchema } from '@/app/(public-pages)/deals/add/schemas'
 import { updateDeal, approveDeal, deleteDeal } from '@/queries/deals'
 import { DealWithTags } from '@/types/Types'
 import { isAdminUser } from '@/utils/auth'
-import { auth, currentUser } from '@clerk/nextjs'
+import { auth, currentUser } from '@clerk/nextjs/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
@@ -36,6 +36,8 @@ export const updateDealAction = async (
   if (validated.success) {
     try {
       await updateDeal(deal, tags)
+      revalidatePath('/deals')
+      revalidatePath('/')
       return { error: undefined, successMessage: 'Updated successfully' }
     } catch (error) {
       console.error(error)
@@ -67,6 +69,7 @@ export const approveDealAction = async (
   try {
     await approveDeal(id)
     revalidatePath('/deals')
+    revalidatePath('/')
     return { successMessage: 'Approved successfully' }
   } catch (error) {
     console.error(error)
@@ -90,7 +93,8 @@ export const deleteDealAction = async (
   }
   try {
     await deleteDeal(id)
-    revalidatePath('/dashboard')
+    revalidatePath('/deals')
+    revalidatePath('/')
     return { successMessage: 'Rejected successfully' }
   } catch (error) {
     console.error(error)

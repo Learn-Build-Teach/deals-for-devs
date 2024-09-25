@@ -1,5 +1,3 @@
-import { createDeal } from '@/queries/deals'
-import { FORM_DEAL_SCHEMA } from '@/types/Types'
 import { getXataClient } from '@/xata'
 import { NextRequest } from 'next/server'
 
@@ -32,31 +30,5 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error(error)
     return new Response('Bad Request', { status: 400 })
-  }
-}
-
-export async function POST(request: Request) {
-  const body = await request.json()
-  let parsed
-  try {
-    parsed = FORM_DEAL_SCHEMA.parse(body)
-  } catch (error) {
-    console.error('failed to parse', error)
-    return new Response('Bad Request', { status: 400 })
-  }
-
-  try {
-    const newDeal = {
-      ...parsed,
-    }
-
-    const createdRecord = await createDeal(newDeal)
-
-    return new Response(JSON.stringify(createdRecord), {
-      headers: { 'content-type': 'application/json' },
-    })
-  } catch (error) {
-    console.error(error)
-    return new Response(JSON.stringify(error), { status: 500 })
   }
 }

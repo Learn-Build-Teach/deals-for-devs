@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
 import PlausibleProvider from 'next-plausible'
-
 import { Raleway } from 'next/font/google'
+
 const raleway = Raleway({
   subsets: ['latin'],
   display: 'swap',
