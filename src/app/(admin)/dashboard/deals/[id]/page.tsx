@@ -5,6 +5,7 @@ import Section from '@/components/Section'
 import { getDealByIdAsAdmin } from '@/queries/adminDeals'
 import EditButton from '@/components/dashboard/EditButton'
 import DealReportsLink from '@/components/dashboard/DealReportsLink'
+import PageHeader from '@/components/PageHeader'
 
 export default async function ViewDealAdminPage({
   params: { id },
@@ -22,7 +23,7 @@ export default async function ViewDealAdminPage({
   return (
     <Section>
       <div className="mb-10 flex flex-col items-center justify-between gap-y-4 sm:flex-row ">
-        <h1 className="text-center text-5xl text-white">Manage Deals</h1>
+        <PageHeader heading="Manage Deal" />
         <div className="flex items-end gap-x-4">
           <DealReportsLink id={id} />
           <EditButton id={id} />
