@@ -4,7 +4,7 @@ import Link from 'next/link'
 import DealStatus from './DealStatus'
 import { DealPopover } from './DealPopover'
 
-export default function AdminDealsList({ deals, children }: { deals: Deal[] }) {
+export default function AdminDealsList({ deals }: { deals: Deal[] }) {
   return (
     <div className="relative overflow-x-auto @container">
       <table className="w-full rounded-md text-left text-sm text-gray-400 ">
