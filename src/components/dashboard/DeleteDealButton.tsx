@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { Button } from '../ui/button'
+import { FaTrash } from 'react-icons/fa'
 
 interface DeleteDealButtonProps {
   id: string
@@ -28,7 +29,7 @@ export default function DeleteDealButton({ id }: DeleteDealButtonProps) {
   }
   return (
     <Button variant="outline-destructive" onClick={handleDeleteClick}>
-      X
+      <FaTrash className="inline h-3" />
     </Button>
   )
 }

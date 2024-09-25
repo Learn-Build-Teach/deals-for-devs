@@ -1,11 +1,9 @@
 import { notFound } from 'next/navigation'
 import DeleteDealButton from '@/components/dashboard/DeleteDealButton'
 import DealDetails from '@/components/deals/details/DealDetails'
-import { FaInfo } from 'react-icons/fa'
 import Section from '@/components/Section'
 import { getDealByIdAsAdmin } from '@/queries/adminDeals'
 import EditButton from '@/components/dashboard/EditButton'
-import { Button } from '@/components/ui/button'
 import DealReportsLink from '@/components/dashboard/DealReportsLink'
 
 export default async function ViewDealAdminPage({
@@ -25,7 +23,7 @@ export default async function ViewDealAdminPage({
     <Section>
       <div className="mb-10 flex flex-col items-center justify-between gap-y-4 sm:flex-row ">
         <h1 className="text-center text-5xl text-white">Manage Deals</h1>
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-end gap-x-4">
           <DealReportsLink id={id} />
           <EditButton id={id} />
           <DeleteDealButton id={id} />

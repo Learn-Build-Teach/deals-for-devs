@@ -9,9 +9,9 @@ export default function DealReportsLink({ id }: DealReportsLinkProps) {
     <Button
       href={`/dashboard/deals/${id}/reports`}
       asLink={true}
-      variant="outline"
+      variant="link"
     >
-      Reports
+      View Reports
     </Button>
   )
 }

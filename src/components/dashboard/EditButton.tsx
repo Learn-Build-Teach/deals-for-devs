@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Button } from '../ui/button'
+import { FaEdit } from 'react-icons/fa'
 
 export default function EditButton({ id }: { id: string }) {
   return (
@@ -10,7 +11,7 @@ export default function EditButton({ id }: { id: string }) {
       href={`/dashboard/deals/${id}/edit`}
       variant="outline"
     >
-      Edit
+      <FaEdit className="inline h-3" />
     </Button>
   )
 }
