@@ -38,15 +38,3 @@ export const camelCase = (str: string) => {
 
   return camelCase
 }
-
-export const sendAdminNewDeal = async (dealId: string) => {
-  const response = await fetch(`${baseURL}/api/admin/sendAdminNewDeal`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ dealId }),
-  })
-
-  return response.json()
-}

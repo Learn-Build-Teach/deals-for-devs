@@ -3,7 +3,7 @@
 import { createDeal } from '@/queries/deals'
 import { newDealSchema } from './schemas'
 import { DealFormServerState, FormErrors } from './types'
-import { sendAdminNewDeal } from '@/lib/utils'
+import { inngest } from '@/utils/inngest/client'
 
 export const submitDealAction = async (
   prevState: DealFormServerState,
@@ -29,22 +29,20 @@ export const submitDealAction = async (
 
   const validated = newDealSchema.safeParse(dealFromForm)
 
-
-
-
   if (validated.success) {
-    const createDealAndSendEmails = async () => {
+    try {
       const deal = await createDeal(validated.data)
       try {
-        await sendAdminNewDeal(deal.xata_id)
+        const { ids } = await inngest.send({
+          name: 'admin/new-deal-created',
+          data: {
+            dealId: deal.xata_id,
+          },
+        })
       } catch (error) {
         console.error('Error sending emails:', error)
       }
-      return deal
-    }
 
-    try {
-      await createDealAndSendEmails()
       return { success: true }
     } catch (error) {
       console.error('Error in deal creation process:', error)
@@ -54,7 +52,6 @@ export const submitDealAction = async (
       }
     }
   }
-
   // Handle validation failure
   const errors = validated.error.issues.reduce((acc: FormErrors, issue) => {
     const path = issue.path[0] as string
