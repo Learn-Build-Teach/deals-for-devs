@@ -4,6 +4,7 @@ import { createDeal } from '@/queries/deals'
 import { newDealSchema } from './schemas'
 import { DealFormServerState, FormErrors } from './types'
 import { inngest } from '@/utils/inngest/client'
+import { StepError } from 'inngest'
 
 export const submitDealAction = async (
   prevState: DealFormServerState,
@@ -32,28 +33,27 @@ export const submitDealAction = async (
   if (validated.success) {
     try {
       const deal = await createDeal(validated.data)
-      try {
-        const { ids } = await inngest.send({
-          name: 'admin/new-deal-created',
-          data: {
-            dealId: deal.xata_id,
-          },
-        })
-      } catch (error) {
-        console.error('Error sending emails:', error)
-      }
-
+      await inngest.send({
+        name: 'admin/new-deal-created',
+        data: {
+          dealId: deal.xata_id,
+        },
+      })
       return { success: true }
     } catch (error) {
-      console.error('Error in deal creation process:', error)
-      return {
-        success: false,
-        message: 'There was an error creating the deal',
+      if (error instanceof StepError) {
+        console.error('Error sending emails:', error)
+      } else {
+        console.error('Error in deal creation process:', error)
+        return {
+          success: false,
+          message: 'There was an error creating the deal',
+        }
       }
     }
   }
   // Handle validation failure
-  const errors = validated.error.issues.reduce((acc: FormErrors, issue) => {
+  const errors = validated.error?.issues.reduce((acc: FormErrors, issue) => {
     const path = issue.path[0] as string
     acc[path] = issue.message
     return acc

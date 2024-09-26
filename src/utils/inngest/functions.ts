@@ -30,20 +30,19 @@ export const processNewDeal = inngest.createFunction(
 
       // Trigger email sending for each admin
       for (const admin of adminUsers) {
+        try {
         await step.run(`Enqueue email for ${admin.email}`, async () => {
-          try {
             await inngest.send({
               name: "admin/email-new-deal",
               data: { dealId, adminEmail: admin.email }
             });
             console.log(`Email event enqueued successfully for ${admin.email}`);
-          } catch (error) {
-            console.error(`Failed to enqueue email event for ${admin.email}:`, error);            
-            throw error;
-          }
         });
+      } catch (error) {
+        console.error(`Failed to enqueue email event for ${admin.email}:`, error);            
+        throw error;
+        }
       }
-
       return { message: "Email sending triggered for admins" };
     } catch (error) {
       console.error('Error in processNewDeal:', error);
@@ -88,7 +87,6 @@ export const sendEmailToAdmin = inngest.createFunction(
       } else {
         console.error(`Error in sendEmailToAdmin: ${error.message}`);
         throw error;
-
     }
   } }
 );
