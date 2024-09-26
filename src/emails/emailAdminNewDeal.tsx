@@ -35,7 +35,7 @@ export const emailAdminNewDeal = (props: EmailTemplateProps) => (
           <Heading style={h1}>Admin - Review new deal</Heading>
           <Section className="py-6">
             <Link
-              href={`${props.appDomain}/dashboard/deals${props.dealId}`}
+              href={`${props.appDomain}/dashboard/deals/${props.dealId}`}
               className="rounded-lg border bg-teal-500 px-5 py-3 text-xl text-white no-underline"
             >
               Review Deal
