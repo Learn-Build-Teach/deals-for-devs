@@ -29,6 +29,7 @@ export default function DeleteDealButton({ id }: DeleteDealButtonProps) {
   }
   return (
     <Button variant="outline-destructive" onClick={handleDeleteClick}>
+      <span className="sr-only">Delete</span>
       <FaTrash className="inline h-3" />
     </Button>
   )
