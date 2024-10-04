@@ -24,15 +24,6 @@ export default function NotFound() {
                 Back to Home
               </Link>
             </div>
-
-            {/* If you want to add these two sections (NeverMissADeal & DevGiveaways) */}
-            {/*  
-            <div className="mb-20">
-              <NeverMissADeal />
-            </div>
-            <Separator className="mx-6 mb-20 md:mx-0" />
-            <DevGiveaways /> */}
-
           </main>
         </Container>
         <Footer />
