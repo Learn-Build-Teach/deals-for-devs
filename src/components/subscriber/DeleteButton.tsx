@@ -8,9 +8,13 @@ export default function DeleteButton({ id }: { id: string }) {
   return (
     <Button
       variant="outline-destructive"
-      size={'sm'}
       type="button"
       onClick={async () => {
+        if (
+          !confirm('Are you sure you want to delete this subscriber?') == true
+        ) {
+          return
+        }
         const res = await deleteSubscriberAction(id)
         if (res.message) {
           if (!res.success) {
