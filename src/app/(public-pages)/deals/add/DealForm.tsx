@@ -155,6 +155,11 @@ export default function CreateDealForm() {
                   before: new Date(newDealData.startDate),
                 }}
               />
+              <input
+                type="hidden"
+                name="endDate"
+                value={newDealData.endDate}
+              />
             </div>
           </div>
           <div className="grid gap-x-4 gap-y-4 md:grid-cols-2">
