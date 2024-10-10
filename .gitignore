@@ -48,3 +48,6 @@ next-env.d.ts
 .xatarc
 src/xata.ts
 .xata
+
+# Sentry Config File
+.env.sentry-build-plugin
