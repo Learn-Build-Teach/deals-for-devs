@@ -28,5 +28,14 @@ Sentry.init({
       blockAllMedia: true,
     }),
     Sentry.browserTracingIntegration({ enableInp: true }),
+    Sentry.feedbackIntegration({
+      // Additional SDK configuration goes in here, for example:
+      isNameRequired : true,
+      isEmailRequired : true,
+      colorScheme: "system",
+      themeDark: {
+        background: "#202d4c",
+      },
+    }),
   ],
 })
