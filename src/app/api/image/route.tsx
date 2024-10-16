@@ -34,6 +34,7 @@ export async function POST(req: Request, res: Response) {
       },
       ['image.url', 'image.enablePublicUrl', 'image.uploadUrl', 'image.xata_id']
     )
+    console.log(record)
 
     const image = {
       id: record.xata_id,
