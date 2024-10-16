@@ -13,6 +13,8 @@ export const env = createEnv({
     REPLY_TO_EMAIL: z.string().email(),
     DATABASE_URL: z.string(),
     REVALIDATE_SECRET: z.string(),
+    INNGEST_SIGNING_KEY: z.string(),
+    INNGEST_EVENT_KEY: z.string(),
   },
 
   /**
