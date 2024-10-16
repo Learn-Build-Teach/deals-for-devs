@@ -32,7 +32,7 @@ export async function POST(req: Request, res: Response) {
           base64Content: '',
         },
       },
-      ['image.url', 'image.enablePublicUrl', 'image.uploadUrl']
+      ['image.url', 'image.enablePublicUrl', 'image.uploadUrl', 'image.xata_id']
     )
 
     const image = {
