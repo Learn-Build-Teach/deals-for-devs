@@ -15,7 +15,7 @@ export const createImage = async (mediaType: string) => {
   )
 
   return {
-    id: record.id,
+    id: record.xata_id,
     uploadUrl: record.image?.uploadUrl,
   }
 }

@@ -38,7 +38,7 @@ export async function POST(req: Request, res: Response) {
     )
 
     const image = {
-      id: record.id,
+      id: record.xata_id,
       url: record.image?.url,
       uploadUrl: record.image?.uploadUrl,
     }

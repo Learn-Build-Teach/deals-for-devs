@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     //TODO: fix this hack based on weird data from search api
     const formattedRecords = records.map((record) => ({
       ...record,
-      xata_id: record.id,
+      xata_id: record.xata_id,
     }))
 
     return new Response(JSON.stringify(formattedRecords), {
