@@ -21,7 +21,6 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  console.log(params.id)
   const deal = await getDealById(params.id)
 
   if (!deal) {
