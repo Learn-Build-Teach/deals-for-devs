@@ -23,9 +23,7 @@ export async function POST(req: Request, res: Response) {
   }
 
   try {
-    const id = uuidv4()
     const record = await xataClient.db.DealImage.create(
-      id,
       {
         image: {
           enablePublicUrl: true,
