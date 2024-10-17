@@ -4,6 +4,9 @@ import ReportsList from '@/components/dashboard/reports/ReportsList'
 import { CiEdit } from 'react-icons/ci'
 import Link from 'next/link'
 import { getDealByIdAsAdmin } from '@/queries/adminDeals'
+import BackToDealLink from '@/components/dashboard/BackToDealLink'
+import Section from '@/components/Section'
+import PageHeader from '@/components/PageHeader'
 
 export default async function DealReportsPage({
   params: { id },
@@ -20,21 +23,13 @@ export default async function DealReportsPage({
   }
 
   return (
-    <section>
+    <Section>
+      <BackToDealLink id={id} />
       <div className="mb-10 flex flex-col items-center justify-between gap-y-4 sm:flex-row ">
-        <div className="flex w-full justify-between">
-          <h1 className="text-center text-5xl text-white">
-            Reports for <span className="font-bold">{deal.name}</span>
-          </h1>
-          <Link
-            href={`/dashboard/deals/${deal.xata_id}`}
-            className="flex items-center justify-center gap-x-2 rounded-md border-2 border-blue-50 bg-blue-50 px-4 py-2 text-center text-blue-700 transition-colors hover:border-blue-700 "
-          >
-            View Deal
-          </Link>
-        </div>
+        <PageHeader heading="Reports" />
       </div>
+
       <ReportsList reports={reports} deal={deal} />
-    </section>
+    </Section>
   )
 }
