@@ -3,6 +3,7 @@ import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 
 const buttonVariants = cva(
   'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-gray-950 dark:focus-visible:ring-gray-300',
@@ -16,7 +17,7 @@ const buttonVariants = cva(
         success:
           'bg-green-800 text-gray-50 hover:bg-green-800/90 dark:bg-green-800 dark:text-gray-50 dark:hover:bg-green-800/90',
         outline:
-          'border border-gray-100 hover:bg-white bg-gray-100 hover:border-gray-900 hover:text-gray-900',
+          'border border-gray-400 bg-transparent text-gray-400 hover:text-gray-200 hover:bg-gray-700 ',
         'outline-success':
           'border border-teal-400 bg-transparent text-teal-400 hover:text-teal-200  hover:bg-teal-900 ',
         'outline-destructive':
@@ -27,7 +28,7 @@ const buttonVariants = cva(
         secondary:
           'bg-gray-100 text-gray-900 hover:bg-gray-100/80 dark:bg-gray-800 dark:text-gray-50 dark:hover:bg-gray-800/80',
         'ghost-light': ' hover:text-gray-300 text-gray-50',
-        link: 'text-gray-900 underline-offset-4 hover:underline dark:text-gray-50',
+        link: 'text-gray-200 underline-offset-4 hover:underline dark:text-gray-50 ',
         'link-destructive': 'text-red-600 underline-offset-4 hover:underline',
       },
       size: {
@@ -48,10 +49,33 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
+  asLink?: boolean
+  href?: string
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      asLink = false,
+      href,
+      ...props
+    },
+    ref
+  ) => {
+    if (asLink && href) {
+      return (
+        <Link
+          className={cn(buttonVariants({ variant, size, className }))}
+          href={href}
+        >
+          {props.children}
+        </Link>
+      )
+    }
     const Comp = asChild ? Slot : 'button'
     return (
       <Comp
