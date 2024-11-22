@@ -72,8 +72,8 @@ importers:
         specifier: ^0.15.15
         version: 0.15.15(typescript@5.5.4)
       '@xata.io/client':
-        specifier: ^0.29.5
-        version: 0.29.5(typescript@5.5.4)
+        specifier: 0.0.0-next.va121e4207b94bfe0a3c025fc00b247b923880930
+        version: 0.0.0-next.va121e4207b94bfe0a3c025fc00b247b923880930(typescript@5.5.4)
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.20(postcss@8.4.45)
@@ -1810,6 +1810,11 @@ packages:
   '@xata.io/cli@0.15.15':
     resolution: {integrity: sha512-FaKgFGzG9G7H1EmSwcHcXtc6KHwJUfUnHwRxjmdcJlro/MqHeFK2FRVgWF6hKYOFIvTVEwzR2PK5qjuiepXsHg==}
     hasBin: true
+
+  '@xata.io/client@0.0.0-next.va121e4207b94bfe0a3c025fc00b247b923880930':
+    resolution: {integrity: sha512-tRhsrV6vSJk4r+Cn7WkE1hyV2WfnHOoMzpQeLujqrbemPtVj82R1uhqHM2fPFuUKMfD+19PVF+Gist0ePlX5SQ==}
+    peerDependencies:
+      typescript: '>=4.5'
 
   '@xata.io/client@0.29.5':
     resolution: {integrity: sha512-b55dmPVNVFOE5nj2F2G6t9l/d5yYBhIu5X5w3rznhhsriGHkrzn93tqJexIZPS77E7f/yDXcFz06KbvR3bHK5w==}
@@ -6686,6 +6691,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
       - typescript
+
+  '@xata.io/client@0.0.0-next.va121e4207b94bfe0a3c025fc00b247b923880930(typescript@5.5.4)':
+    dependencies:
+      typescript: 5.5.4
 
   '@xata.io/client@0.29.5(typescript@5.5.4)':
     dependencies:
