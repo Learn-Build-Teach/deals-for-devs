@@ -131,6 +131,7 @@ export default function ImageUpload({
           <Button
             onClick={handleImageDelete}
             className="absolute right-2 top-2 "
+            type="button"
           >
             X
           </Button>

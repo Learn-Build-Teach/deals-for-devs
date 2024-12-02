@@ -3,6 +3,11 @@ import { DropEvent, FileRejection, useDropzone } from 'react-dropzone'
 import Icon from '@/components/Icon'
 import toast from 'react-hot-toast'
 
+function is16by9Ratio(image: HTMLImageElement) {
+  const ratio = image.width / image.height
+  return Math.abs(ratio - 16 / 9) < 0.01 // Allow a small tolerance
+}
+
 export default function DragAndDropImage({
   onFileChange,
 }: {
@@ -16,8 +21,8 @@ export default function DragAndDropImage({
 
       //* custom validation for aspect ratio
       const img = await loadImage(file)
-      const aspectRatio = img.width / img.height
-      if (aspectRatio !== 16 / 9) {
+
+      if (!is16by9Ratio(img)) {
         return toast.error('Image should be in 16:9 aspect ratio')
       }
       //validation passed

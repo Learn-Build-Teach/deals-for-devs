@@ -8,12 +8,11 @@ const schema = z.object({
 })
 
 export async function POST(req: Request, res: Response) {
-  const body = await req.json()
-  const xataClient = getXataClient()
-
   let parsed
 
   try {
+    const body = await req.json()
+
     parsed = schema.parse(body)
   } catch (error) {
     console.error(error)
@@ -23,6 +22,7 @@ export async function POST(req: Request, res: Response) {
   }
 
   try {
+    const xataClient = getXataClient()
     const record = await xataClient.db.DealImage.create(
       {
         image: {
@@ -32,12 +32,11 @@ export async function POST(req: Request, res: Response) {
           base64Content: '',
         },
       },
-      ['image.url', 'image.enablePublicUrl', 'image.uploadUrl', 'image.xata_id']
+      ['image.url', 'image.enablePublicUrl', 'image.uploadUrl']
     )
-    console.log(record)
 
     const image = {
-      id: record.xata_id,
+      id: record.id,
       url: record.image?.url,
       uploadUrl: record.image?.uploadUrl,
     }
